@@ -1,0 +1,30 @@
+{
+  "name": "english-spaced-repetition",
+  "version": "1.0.0",
+  "description": "Sistema de repetição espaçada para estudo de inglês com enriquecimento por LLM",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "process": "node src/processDocuments.js",
+    "process:force": "node src/processDocuments.js --force",
+    "study": "node src/server.js"
+  },
+  "keywords": [
+    "english",
+    "spaced-repetition",
+    "learning",
+    "llm"
+  ],
+  "author": "Wilson dos Santos",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/identity": "^4.13.0",
+    "docxtemplater": "^3.67.6",
+    "express": "^4.18.2",
+    "mammoth": "^1.7.2",
+    "openai": "^6.17.0",
+    "pizzip": "^3.2.0"
+  }
+}

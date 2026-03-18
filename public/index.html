@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Study - Repetição Espaçada</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📚 English Study</h1>
+      <p class="subtitle">Sistema de Repetição Espaçada</p>
+    </header>
+
+    <!-- Dashboard de Estatísticas -->
+    <section id="stats-section" class="card">
+      <h2>📊 Seu Progresso</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-due">-</div>
+          <div class="stat-label">Para Revisar Hoje</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-total">-</div>
+          <div class="stat-label">Total de Itens</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-mastered">-</div>
+          <div class="stat-label">Dominados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-reviews">-</div>
+          <div class="stat-label">Total de Revisões</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Área de Estudo -->
+    <section id="study-section" class="card">
+      <div id="no-items" class="message" style="display: none;">
+        <h3>🎉 Parabéns!</h3>
+        <p>Você não tem nenhum item para revisar hoje.</p>
+        <p>Volte amanhã para continuar seu progresso!</p>
+      </div>
+
+      <div id="study-area" style="display: none;">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+          <div class="progress-text" id="progress-text">0 / 0</div>
+        </div>
+
+        <div id="study-card" class="study-card">
+          <div class="card-header">
+            <span class="category-badge" id="card-category">Vocabulário</span>
+            <span class="lesson-info" id="card-lesson">Aula: 2025-10-01</span>
+          </div>
+          
+          <div class="card-content">
+            <div id="card-question" class="question"></div>
+            <div id="card-answer" class="answer" style="display: none;"></div>
+          </div>
+
+          <div class="card-actions">
+            <button id="show-answer-btn" class="btn btn-primary">Mostrar Resposta</button>
+            
+            <div id="rating-buttons" style="display: none;">
+              <p class="rating-label">Como você se saiu?</p>
+              <div class="rating-grid">
+                <button class="btn btn-rating btn-fail" data-quality="0">
+                  😞<br>Esqueci
+                </button>
+                <button class="btn btn-rating btn-hard" data-quality="2">
+                  😐<br>Difícil
+                </button>
+                <button class="btn btn-rating btn-good" data-quality="4">
+                  😊<br>Bom
+                </button>
+                <button class="btn btn-rating btn-easy" data-quality="5">
+                  😎<br>Fácil
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista de Aulas -->
+    <section id="lessons-section" class="card">
+      <h2>📖 Aulas Processadas</h2>
+      <div id="lessons-list" class="lessons-list">
+        <p class="loading">Carregando aulas...</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
