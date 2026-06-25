@@ -9,13 +9,26 @@
 <body>
   <div class="container">
     <header>
-      <h1>📚 English Study</h1>
-      <p class="subtitle">Sistema de Repetição Espaçada</p>
+      <h1>📚 Sistema de Estudo</h1>
+      <p class="subtitle">Repetição Espaçada Multi-Categoria</p>
     </header>
 
+    <!-- Seletor de Categoria -->
+    <section id="category-section" class="card">
+      <div class="section-header">
+        <h2>🗂️ Selecione uma Categoria</h2>
+        <a class="btn btn-sm btn-primary" href="/anki.html">⚡ Anki Rápido</a>
+      </div>
+      <div id="categories-list" class="categories-grid">
+        <p class="loading">Carregando categorias...</p>
+      </div>
+    </section>
+
     <!-- Dashboard de Estatísticas -->
-    <section id="stats-section" class="card">
-      <h2>📊 Seu Progresso</h2>
+    <section id="stats-section" class="card" style="display: none;">
+      <div class="section-header">
+        <h2>📊 Seu Progresso</h2>
+      </div>
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-value" id="stat-due">-</div>
@@ -95,6 +108,7 @@
     </section>
   </div>
 
+  <script src="categoryAdapter.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,402 @@
+{
+  "id": "lesson-2026-06-14-1",
+  "date": "2026-06-14",
+  "title": "az 104 Termos em inglês",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "which",
+        "translation": "qual",
+        "definition": "used to ask or indicate choice between options",
+        "examples": [
+          "Which color do you prefer?",
+          "Do you know which way to go?",
+          "Which one is yours?",
+          "I don’t know which book to choose.",
+          "Which of these is correct?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "pronoun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-14-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-06-30",
+          "lastReview": "2026-06-14",
+          "reviews": [
+            {
+              "date": "2026-06-14T14:10:03.398Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-06-14T14:12:57.835Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-06-14T19:02:44.164Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "statement",
+        "translation": "declaração",
+        "definition": "a clear expression of something in speech or writing",
+        "examples": [
+          "She gave a statement to the police.",
+          "His statement was very clear.",
+          "The company issued a statement about the incident.",
+          "Her statement surprised everyone.",
+          "Can you confirm this statement?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.58,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-14T14:11:24.933Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-06-14T14:13:01.158Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-06-14T19:03:40.253Z",
+              "quality": 2,
+              "interval": 6
+            },
+            {
+              "date": "2026-06-20T20:56:28.379Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "which",
+        "translation": "qual, que",
+        "definition": "used to ask or specify one or more items from a set",
+        "examples": [
+          "Which book do you want?",
+          "Do you know which way to go?",
+          "She couldn't decide which dress to wear.",
+          "Tell me which option you prefer.",
+          "Which of these is your favorite?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "pronoun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-14-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-14T14:12:31.032Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-06-14T19:03:48.629Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-06-20T20:59:17.834Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "otherwise",
+        "translation": "caso contrário",
+        "definition": "in a different way or if not",
+        "examples": [
+          "You need to study; otherwise, you'll fail the test.",
+          "She must be busy; otherwise, she would have called.",
+          "Wear a jacket, otherwise you'll feel cold.",
+          "Hurry up, otherwise we'll miss the bus.",
+          "Follow the rules, otherwise there will be consequences."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-3",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-14T19:02:08.658Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-06-20T20:58:17.203Z",
+              "quality": 0,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "within",
+        "translation": "dentro de",
+        "definition": "inside or not further than a particular area or period of time",
+        "examples": [
+          "The package arrived within two days.",
+          "Stay within the marked boundaries.",
+          "She managed to finish the project within the deadline.",
+          "The answer lies within the text.",
+          "Within a year, he was promoted."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-4",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:56:44.822Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "meet",
+        "translation": "encontrar",
+        "definition": "to come into the presence of someone or something",
+        "examples": [
+          "I will meet her at the café.",
+          "Nice to meet you!",
+          "They meet every Friday for lunch.",
+          "We need to meet the deadline.",
+          "Let's meet at 3 PM."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-14-1-5",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-06-21",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:56:49.796Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "spreads",
+        "translation": "espalha",
+        "definition": "moves or stretches over a larger area",
+        "examples": [
+          "The fire spreads quickly.",
+          "She spreads butter on the bread.",
+          "The news spreads throughout the town.",
+          "He spreads the blanket on the ground.",
+          "The virus spreads from person to person."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-6",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:57:22.108Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "equally",
+        "translation": "igualmente",
+        "definition": "in the same manner or degree",
+        "examples": [
+          "She treated everyone equally.",
+          "The money was equally divided.",
+          "Both options are equally good.",
+          "He is equally talented in music and art.",
+          "They are equally responsible for the project."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-7",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:57:29.698Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "will be the same",
+        "translation": "será o mesmo",
+        "definition": "used to express that something will remain unchanged in the future",
+        "examples": [
+          "Tomorrow will be the same as today.",
+          "No matter what you choose, the outcome will be the same.",
+          "The rules will be the same for everyone.",
+          "Even after the repairs, the car will be the same.",
+          "His opinion will be the same regardless of what you say."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-8",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-06-21",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:57:41.167Z",
+              "quality": 4,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "You find that",
+        "translation": "Você descobre que",
+        "definition": "Expression used to indicate realizing or discovering something.",
+        "examples": [
+          "You find that the task is easier than expected.",
+          "You find that she is very talented.",
+          "You find that the answer was obvious.",
+          "You find that he already knew the truth.",
+          "You find that teamwork makes it simpler."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-9",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:57:52.789Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "Attempt",
+        "translation": "tentar",
+        "definition": "To try to do something, especially something difficult.",
+        "examples": [
+          "She will attempt to solve the problem.",
+          "He made an attempt to climb the mountain.",
+          "They attempted to break the record.",
+          "We should attempt to finish the project today.",
+          "The team is attempting a new approach."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-14-1-10",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:12.301Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      }
+    ],
+    "grammar": [],
+    "expressions": [],
+    "practiceQuestions": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-14T13:55:01.463Z",
+  "updatedAt": "2026-06-17T23:03:57.769Z",
+  "status": "enriched"
+}

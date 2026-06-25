@@ -1,0 +1,42 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-2026-06-14-1",
+      "date": "2026-06-14",
+      "title": "az 104 Termos em inglês",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-17-1",
+      "date": "2026-06-17",
+      "title": "How was the night sky key to our survival?",
+      "status": "created",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-19-1",
+      "date": "2026-06-19",
+      "title": "Microsoft",
+      "status": "created",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-24-1",
+      "date": "2026-06-24",
+      "title": "even",
+      "status": "created",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-1",
+      "date": "2026-06-25",
+      "title": "Redes Sociais",
+      "status": "created",
+      "file": "manual"
+    }
+  ],
+  "totalLessons": 5,
+  "processedAt": "2026-06-25T13:20:14.425Z",
+  "categoryId": "anki"
+}

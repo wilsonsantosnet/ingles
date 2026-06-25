@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Aulas - Sistema de Estudo</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      padding: 20px;
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .editor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f3f4f6;
+    }
+    
+    .editor-header h2 {
+      color: #667eea;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+    
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+    
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #e5e7eb;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab {
+      padding: 16px 28px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #9ca3af;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      position: relative;
+    }
+    
+    .tab:hover {
+      color: #667eea;
+      background: #f9fafb;
+    }
+    
+    .tab.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+      background: #f9fafb;
+    }
+    
+    .tab-content {
+      display: none;
+      animation: slideIn 0.4s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .add-item-form {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      border: 2px solid #d1d5db;
+    }
+    
+    .add-item-form h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #667eea;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .editor-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+      
+      .button-group {
+        width: 100%;
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    .item-list {
+      margin-top: 20px;
+      border: 2px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 20px;
+      background: #fafafa;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    
+    .item-list:empty::before {
+      content: "Nenhum item adicionado ainda";
+      color: #9ca3af;
+      font-style: italic;
+      display: block;
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .item-card {
+      background: white;
+      padding: 20px;
+      padding-right: 60px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 2px solid #e5e7eb;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .item-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .ai-content-preview {
+      margin-top: 10px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .ai-content-block {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-left: 4px solid #8b5cf6;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .ai-content-block h4 {
+      margin: 0 0 10px;
+      color: #374151;
+      font-size: 1rem;
+    }
+
+    .ai-content-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+
+    .ai-content-type {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .ai-content-text {
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    .ai-content-text p {
+      margin: 0 0 12px;
+    }
+
+    .ai-content-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-content-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ai-content-list li {
+      background: #f9fafb;
+      border-radius: 8px;
+      border-left: 3px solid #667eea;
+      padding: 10px 12px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .ai-content-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .ai-content-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .ai-content-card-title {
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    
+    .item-card .remove-btn {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+    
+    .item-card .remove-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+    }
+    
+    .item-card strong {
+      color: #667eea;
+      font-size: 1.1rem;
+    }
+    
+    .item-card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .item-card li {
+      margin: 5px 0;
+      color: #6b7280;
+    }
+    
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 25px;
+      margin: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+    }
+    
+    .chip .remove {
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.3rem;
+      transition: transform 0.2s ease;
+      opacity: 0.8;
+    }
+    
+    .chip .remove:hover {
+      transform: rotate(90deg) scale(1.3);
+      opacity: 1;
+    }
+    
+    .hint {
+      color: #9ca3af;
+      font-style: italic;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.95rem;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Status badges */
+    .status-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    /* Scrollbar customization */
+    .item-list::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .item-list::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    .item-list::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 4px;
+    }
+    
+    .item-list::-webkit-scrollbar-thumb:hover {
+      background: #5a67d8;
+    }
+    
+    /* Drag and Drop Area */
+    .drop-zone {
+      border: 3px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .drop-zone:hover {
+      border-color: #667eea;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+    }
+    
+    .drop-zone.drag-over {
+      border-color: #667eea;
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      border-style: solid;
+      box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    .drop-zone.drag-over .drop-zone-icon {
+      transform: scale(1.2);
+      animation: bounce 0.6s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: scale(1.2) translateY(0); }
+      50% { transform: scale(1.2) translateY(-10px); }
+    }
+    
+    .drop-zone-content {
+      pointer-events: none;
+    }
+    
+    .drop-zone-icon {
+      font-size: 4rem;
+      line-height: 1;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+      filter: grayscale(20%);
+    }
+    
+    .drop-zone-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    
+    .drop-zone-subtext {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+    
+    .drop-zone-formats {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+    
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 0.875rem;
+      border-radius: 6px;
+    }
+    
+    /* Animation for image preview */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    #image-preview {
+      animation: fadeIn 0.4s ease;
+    }
+    
+    /* Animations for paste notification */
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛠️ Editor de Aula</h1>
+      <p class="subtitle">Edição Completa de Conteúdo</p>
+    </header>
+
+    <div class="card">
+      <div class="editor-header">
+        <h2 id="lesson-title">Nova Aula</h2>
+        <div class="button-group">
+          <button onclick="saveLesson()" class="btn btn-primary" id="save-btn">
+            💾 Salvar Aula
+          </button>
+          <button onclick="goBackToLessonList()" class="btn btn-secondary">
+            ← Voltar para Aulas
+          </button>
+          <button onclick="goBackToManager()" class="btn btn-secondary">
+            ← Voltar ao Manager
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('basic')">📝 Básico</button>
+        <button class="tab" onclick="showTab('vocabulary')">📚 Vocabulário</button>
+        <button class="tab" onclick="showTab('grammar')">📖 Gramática</button>
+        <button class="tab" onclick="showTab('questions')">❓ Exercícios</button>
+        <button class="tab" onclick="showTab('topics')">🎯 Tópicos</button>
+        <button class="tab" onclick="showTab('materials')">🔗 Materiais de Apoio</button>
+        <button class="tab" onclick="showTab('aicontent')">🧠 Conteúdo AI</button>
+      </div>
+
+      <!-- Tab: Básico -->
+      <div id="tab-basic" class="tab-content active">
+        <div class="form-group">
+          <label for="lesson-date">Data da Aula *</label>
+          <input type="date" id="lesson-date" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="lesson-title-input">Título *</label>
+          <input type="text" id="lesson-title-input" placeholder="Ex: Simple Past and Past Continuous" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="lesson-summary">Resumo</label>
+          <textarea id="lesson-summary" rows="3" placeholder="Resumo breve da aula..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="lesson-content">Conteúdo Bruto</label>
+          <textarea id="lesson-content" rows="10" placeholder="Cole aqui o conteúdo da aula..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>📸 Criar Aula a partir de Imagem (Opcional)</label>
+          <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">
+            Arraste uma foto ou clique para selecionar. O sistema extrairá o texto automaticamente.
+          </p>
+          
+          <!-- Drag and Drop Area -->
+          <div id="drop-zone" class="drop-zone">
+            <div class="drop-zone-content">
+              <div class="drop-zone-icon">📸</div>
+              <div class="drop-zone-text">Arraste imagens aqui</div>
+              <div class="drop-zone-subtext">ou clique para selecionar (múltiplas imagens)</div>
+              <div class="drop-zone-formats">JPEG, PNG (máx 20MB cada)</div>
+            </div>
+            <input type="file" id="image-upload" accept="image/jpeg,image/jpg,image/png" multiple style="display: none;">
+          </div>
+          
+          <!-- Preview Area -->
+          <div id="image-preview" style="display: none; margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <span id="image-count-label" style="font-weight: 600; color: #374151;">Imagens selecionadas: 0</span>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="btn btn-small btn-secondary" onclick="document.getElementById('image-upload').click()" style="padding: 5px 10px; font-size: 0.85rem;">
+                  ➕ Adicionar mais
+                </button>
+                <button type="button" class="btn btn-small btn-secondary" onclick="clearImageUpload()" style="padding: 5px 10px; font-size: 0.85rem;">
+                  🗑️ Remover todas
+                </button>
+              </div>
+            </div>
+            <div id="image-thumbs" style="display: flex; flex-wrap: wrap; gap: 10px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; padding: 10px;"></div>
+            <button type="button" class="btn btn-primary" onclick="processImageUpload()" id="process-image-btn" style="width: 100%; margin-top: 10px;">
+              🔍 Processar Imagens e Extrair Texto
+            </button>
+          </div>
+          
+          <!-- OCR Status -->
+          <div id="ocr-status" style="display: none; margin-top: 10px; padding: 12px; border-radius: 8px; font-size: 0.9rem;"></div>
+        </div>
+      </div>
+
+      <!-- Tab: Vocabulário -->
+      <div id="tab-vocabulary" class="tab-content">
+        <div class="add-item-form">
+          <h3>➕ Adicionar Vocabulário</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Palavra (EN) *</label>
+              <input type="text" id="vocab-word" placeholder="fall">
+            </div>
+            <div class="form-group">
+              <label>Tradução (PT) *</label>
+              <input type="text" id="vocab-translation" placeholder="cair">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Definição</label>
+            <input type="text" id="vocab-definition" placeholder="To move downward...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pronúncia</label>
+              <input type="text" id="vocab-pronunciation" placeholder="/fɔːl/">
+            </div>
+            <div class="form-group">
+              <label>Classe Gramatical</label>
+              <select id="vocab-pos">
+                <option value="verb">verb</option>
+                <option value="noun">noun</option>
+                <option value="adjective">adjective</option>
+                <option value="adverb">adverb</option>
+                <option value="preposition">preposition</option>
+                <option value="conjunction">conjunction</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Exemplo</label>
+            <input type="text" id="vocab-example" placeholder="The athlete tripped and fell.">
+          </div>
+          <button onclick="addVocabulary()" class="btn btn-primary">➕ Adicionar</button>
+        </div>
+
+        <div class="item-list" id="vocabulary-list">
+          <p class="hint">Nenhum vocabulário adicionado ainda.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Gramática -->
+      <div id="tab-grammar" class="tab-content">
+        <div class="add-item-form">
+          <h3>➕ Adicionar Tópico de Gramática</h3>
+          <div class="form-group">
+            <label>Tópico *</label>
+            <input type="text" id="grammar-topic" placeholder="Simple Past">
+          </div>
+          <div class="form-group">
+            <label>Explicação *</label>
+            <textarea id="grammar-explanation" rows="3" placeholder="O simple past é usado para..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Regras (uma por linha)</label>
+            <textarea id="grammar-rules" rows="3" placeholder="Add '-ed' to regular verbs&#10;Irregular verbs have unique forms"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Exemplo</label>
+            <input type="text" id="grammar-example" placeholder="The baker dropped the tray.">
+          </div>
+          <button onclick="addGrammar()" class="btn btn-primary">➕ Adicionar</button>
+        </div>
+
+        <div class="item-list" id="grammar-list">
+          <p class="hint">Nenhum tópico de gramática adicionado ainda.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Exercícios -->
+      <div id="tab-questions" class="tab-content">
+        <div class="add-item-form">
+          <h3>➕ Adicionar Exercício</h3>
+          <div class="form-group">
+            <label>Pergunta *</label>
+            <textarea id="question-text" rows="2" placeholder="Complete the sentence: The baker _____ the tray..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Resposta *</label>
+            <input type="text" id="question-answer" placeholder="dropped; was taking">
+          </div>
+          <div class="form-group">
+            <label>Explicação</label>
+            <textarea id="question-explanation" rows="2" placeholder="O primeiro verbo descreve uma ação completa..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tipo</label>
+              <select id="question-type">
+                <option value="fill-in-the-blank">Preencher Lacunas</option>
+                <option value="multiple-choice">Múltipla Escolha</option>
+                <option value="translation">Tradução</option>
+                <option value="sentence-building">Construção de Frases</option>
+              </select>
+            </div>
+            <!-- Para idiomas: Tempo Verbal -->
+            <div class="form-group" id="question-tense-group">
+              <label>Tempo Verbal</label>
+              <input type="text" id="question-tense" placeholder="Simple Past">
+            </div>
+            <!-- Para tecnologia: Tópico Relacionado -->
+            <div class="form-group" id="question-topic-group" style="display: none;">
+              <label>Tópico Relacionado</label>
+              <input type="text" id="question-topic" placeholder="Ex: Azure Storage, Virtual Machines">
+            </div>
+          </div>
+          <button onclick="addQuestion()" class="btn btn-primary">➕ Adicionar</button>
+        </div>
+
+        <div class="item-list" id="questions-list">
+          <p class="hint">Nenhum exercício adicionado ainda.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Tópicos Principais -->
+      <div id="tab-topics" class="tab-content">
+        <div class="form-group">
+          <label>Adicionar Tópico Principal</label>
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="topic-input" placeholder="Ex: Simple Past" style="flex: 1;">
+            <button onclick="addTopic()" class="btn btn-primary">➕ Adicionar</button>
+          </div>
+        </div>
+
+        <div id="topics-list" style="margin-top: 20px;">
+          <p class="hint">Nenhum tópico principal adicionado ainda.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Materiais de Apoio -->
+      <div id="tab-materials" class="tab-content">
+        <div class="form-group">
+          <label>Adicionar Material de Apoio</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input type="text" id="material-title-input" placeholder="Título do material" style="flex: 1;">
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <input type="url" id="material-url-input" placeholder="https://..." style="flex: 1;">
+            <button onclick="addSupportMaterial()" class="btn btn-primary">➕ Adicionar</button>
+          </div>
+          <p class="hint">Adicione links para vídeos, artigos, exercícios online, etc.</p>
+        </div>
+
+        <div id="materials-list" style="margin-top: 20px;">
+          <p class="hint">Nenhum material de apoio adicionado ainda.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Conteúdo AI -->
+      <div id="tab-aicontent" class="tab-content">
+        <div class="add-item-form">
+          <h3>🧠 Gerar Novo Conteúdo com IA</h3>
+          <p style="color: #6b7280; margin-bottom: 16px; font-size: 0.95rem;">
+            A IA usará todos os dados desta aula (conteúdo bruto, enriquecido, exercícios, etc.) como contexto para gerar o que você pedir.
+          </p>
+          <div class="form-group">
+            <label for="ai-content-prompt">Prompt *</label>
+            <textarea id="ai-content-prompt" rows="4" placeholder="Ex: Gere 10 questões de múltipla escolha sobre este conteúdo..."></textarea>
+          </div>
+          <button onclick="generateAiContent()" class="btn btn-primary" id="ai-content-generate-btn">🚀 Gerar Conteúdo</button>
+        </div>
+
+        <div class="item-list" id="ai-content-list">
+          <p class="hint">Nenhum conteúdo AI gerado ainda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/categoryAdapter.js"></script>
+  <script src="/manage-full.js"></script>
+</body>
+</html>

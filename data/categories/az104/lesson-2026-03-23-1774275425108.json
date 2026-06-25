@@ -1,0 +1,313 @@
+{
+  "id": "lesson-2026-03-23-1774275425108",
+  "date": "2026-03-23",
+  "title": "Azure Availability Set",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "PS Azure:\\> az vm availability-set list -g RG1  \n[  \n  {  \n    \"id\": \"/subscriptions/8372f433-2dcd-4361-b5ef-5b188fed87d0/resourceGroups/RG1/providers/Microsoft.Compute/availabilitySets/WEBPROD-AS-USE2\",  \n    \"location\": \"eastus2\",  \n    \"name\": \"WEBPROD-AS-USE2\",  \n    \"platformFaultDomainCount\": 2,  \n    \"platformUpdateDomainCount\": 10,  \n    \"proximityPlacementGroup\": null,  \n    \"resourceGroup\": \"RG1\",  \n    \"sku\": {  \n      \"capacity\": null,  \n      \"name\": \"Aligned\",  \n      \"tier\": null  \n    },  \n    \"statuses\": null,  \n    \"tags\": {},  \n    \"type\": \"Microsoft.Compute/availabilitySets\",  \n    \"virtualMachines\": []  \n  }  \n]  \n\nAzure:/  \n\nYou add 14 virtual machines to WEBPROD-AS-USE2.  \n\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.  \n\nNOTE: Each correct selection is worth one point.  \n\nExplanation:  \n\nAnswer Area  \n\nWhen Microsoft performs planned maintenance in East US 2, the maximum number of unavailable virtual machines will be [answer choice].  \n[2]  \n7  \n10  \n14  \n\nIf the server rack in the Azure datacenter that hosts WEBPROD-AS-USE2 experiences a power failure, the maximum number of unavailable virtual machines will be [answer choice].  \n[7]  \n2  \n10  \n14  \n\nBox 1: 2  \nThere are 10 update domains. The 14 VMs are shared across the 10 update domains so four update domains will have two VMs and six update domains will have one VM. Only one update domain is rebooted at a time. Therefore, a maximum of two VMs will be offline.  \n\nBox 2: 7  \nThere are 2 fault domains. The 14 VMs are shared across the 2 fault domains, so 7 VMs in each fault domain. A rack failure will affect one fault domain so 7 VMs will be offline.  \n\nReference:  \nhttps://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability",
+  "enriched": {
+    "summary": "A aula aborda conceitos de conjuntos de disponibilidade (availability sets) no Azure, incluindo domínios de falha e atualização, e seu impacto na resiliência de máquinas virtuais durante manutenção planejada ou falhas de hardware. Também foi discutido como calcular a distribuição de máquinas virtuais em domínios de falha e atualização para minimizar downtime.",
+    "mainTopics": [
+      "Availability Sets",
+      "Fault Domains",
+      "Update Domains",
+      "Planned Maintenance",
+      "Azure CLI"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Availability Sets",
+        "description": "Conjuntos de disponibilidade são usados para garantir alta disponibilidade de máquinas virtuais distribuindo-as por múltiplos domínios de falha e atualização.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Fault Domains",
+        "description": "Domínios de falha representam grupos de recursos que compartilham o mesmo hardware físico no datacenter, como racks. Uma falha afeta todos os recursos dentro do mesmo domínio.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Update Domains",
+        "description": "Domínios de atualização representam grupos de máquinas virtuais que podem ser reiniciados sequencialmente durante manutenção planejada, minimizando o impacto no serviço.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Planned Maintenance",
+        "description": "Manutenção planejada realizada pela Microsoft em datacenters, que pode envolver reinicializações de máquinas virtuais em update domains específicos.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Azure CLI",
+        "description": "Interface de linha de comando usada para gerenciar recursos no Azure, incluindo máquinas virtuais e conjuntos de disponibilidade.",
+        "category": "Tools",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Availability Set",
+        "definition": "Um agrupamento lógico de máquinas virtuais que permite alta disponibilidade distribuindo-as entre domínios de falha e atualização.",
+        "examples": [
+          "Usar um availability set para hospedar servidores web redundantes.",
+          "Configurar dois availability sets para separar front-end e back-end."
+        ],
+        "relatedConcepts": [
+          "Fault Domain",
+          "Update Domain"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Fault Domain",
+        "definition": "Uma unidade lógica que compartilha hardware físico, como racks. Uma falha no hardware afeta todo o domínio.",
+        "examples": [
+          "Dois domínios de falha em um availability set podem isolar máquinas virtuais em racks diferentes.",
+          "Configuração padrão no Azure suporta até 3 fault domains."
+        ],
+        "relatedConcepts": [
+          "Availability Set",
+          "Planned Maintenance"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Update Domain",
+        "definition": "Grupo lógico de máquinas virtuais que são reiniciadas sequencialmente durante manutenção planejada.",
+        "examples": [
+          "Configurar 10 update domains para distribuir 14 máquinas virtuais.",
+          "Manutenção planejada afeta apenas um update domain por vez."
+        ],
+        "relatedConcepts": [
+          "Availability Set",
+          "Planned Maintenance"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Azure CLI",
+        "definition": "Interface de linha de comando para gerenciar e automatizar tarefas no Azure.",
+        "examples": [
+          "Executar 'az vm availability-set list' para listar conjuntos de disponibilidade.",
+          "Criar um availability set com 'az vm availability-set create'."
+        ],
+        "relatedConcepts": [
+          "PowerShell",
+          "Azure Portal"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Planned Maintenance",
+        "definition": "Processo de atualização de infraestrutura realizado pela Microsoft em datacenters, que pode reiniciar máquinas virtuais.",
+        "examples": [
+          "Manutenção em East US 2 pode reiniciar máquinas em um único update domain.",
+          "Minimizar impacto configurando múltiplos update domains."
+        ],
+        "relatedConcepts": [
+          "Update Domain",
+          "Fault Domain"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [
+      {
+        "command": "az vm availability-set list",
+        "description": "Lista todos os conjuntos de disponibilidade em um grupo de recursos específico.",
+        "syntax": "az vm availability-set list -g <resource-group-name>",
+        "examples": [
+          "az vm availability-set list -g RG1",
+          "az vm availability-set list -g ProductionGroup"
+        ],
+        "platform": "Azure CLI"
+      }
+    ],
+    "scenarios": [
+      {
+        "scenario": "Calcular impacto de manutenção planejada",
+        "problem": "Determinar o número máximo de máquinas virtuais afetadas durante manutenção planejada no conjunto WEBPROD-AS-USE2.",
+        "solution": "Divida as 14 máquinas virtuais pelos 10 domínios de atualização. Quatro domínios terão 2 VMs, e seis terão 1 VM. Apenas um domínio é afetado por vez, então o impacto máximo é de 2 VMs.",
+        "explanation": "Os update domains permitem a reinicialização sequencial de máquinas virtuais, garantindo que apenas um grupo seja afetado por vez."
+      },
+      {
+        "scenario": "Simular falha em rack no datacenter",
+        "problem": "Calcular o número máximo de VMs indisponíveis caso um rack no datacenter falhe.",
+        "solution": "As 14 VMs estão distribuídas em 2 fault domains, com 7 VMs em cada. Uma falha de rack afeta um fault domain, indisponibilizando 7 VMs.",
+        "explanation": "Fault domains isolam VMs em hardware diferente, mas uma falha no hardware impacta todas as VMs no mesmo domínio."
+      },
+      {
+        "scenario": "Criar um novo conjunto de disponibilidade",
+        "problem": "Criar um availability set com 3 fault domains e 5 update domains.",
+        "solution": "Execute o comando 'az vm availability-set create --name NewAS --resource-group RG1 --platform-fault-domain-count 3 --platform-update-domain-count 5'.",
+        "explanation": "O comando especifica a contagem de fault domains e update domains para o novo conjunto de disponibilidade."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é um fault domain no Azure?",
+        "answer": "Um fault domain é um grupo lógico de recursos que compartilham o mesmo hardware físico, como racks no datacenter.",
+        "hint": "Pense na separação física de hardware.",
+        "topic": "Fault Domains"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando lista os conjuntos de disponibilidade em um grupo de recursos específico?",
+        "answer": "az vm availability-set list -g <resource-group-name>",
+        "hint": "Use Azure CLI para listar recursos.",
+        "topic": "Azure CLI"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Quantas VMs podem ser afetadas durante manutenção planejada em um availability set com 14 VMs e 10 update domains?",
+        "answer": "2 VMs.",
+        "hint": "Considere como as VMs são distribuídas nos update domains.",
+        "topic": "Planned Maintenance"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Se um rack falhar em um datacenter que hospeda um availability set com 14 VMs e 2 fault domains, quantas VMs ficarão indisponíveis?",
+        "answer": "7 VMs.",
+        "hint": "Distribua as VMs pelos fault domains.",
+        "topic": "Fault Domains"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Como garantir alta disponibilidade ao configurar um serviço no Azure?",
+        "answer": "Use availability sets para distribuir máquinas virtuais entre múltiplos fault domains e update domains.",
+        "hint": "Pense em isolamento físico e planejamento de manutenção.",
+        "topic": "Availability Sets"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre lembre que um update domain afeta apenas um grupo de máquinas virtuais por vez durante manutenção planejada.",
+        "relevance": "Questões de exame frequentemente pedem para calcular o impacto de manutenção planejada.",
+        "topic": "Update Domains"
+      },
+      {
+        "tip": "Domínios de falha isolam máquinas virtuais em diferentes racks no datacenter.",
+        "relevance": "Importante para perguntas sobre falhas de hardware.",
+        "topic": "Fault Domains"
+      },
+      {
+        "tip": "Entenda a diferença entre fault domains e update domains.",
+        "relevance": "Perguntas podem tentar confundir os dois conceitos.",
+        "topic": "Availability Sets"
+      },
+      {
+        "tip": "Ao usar o Azure CLI, sempre especifique o grupo de recursos correto ao listar ou criar recursos.",
+        "relevance": "Evita erros em comandos durante o exame.",
+        "topic": "Azure CLI"
+      },
+      {
+        "tip": "Distribua máquinas virtuais uniformemente entre fault domains e update domains para minimizar downtime.",
+        "relevance": "Perguntas práticas podem solicitar configurações otimizadas.",
+        "topic": "Availability Sets"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "concept",
+        "question": "O que é um fault domain no Azure?",
+        "answer": "Um fault domain é um grupo lógico de recursos que compartilham o mesmo hardware físico, como racks no datacenter.",
+        "hint": "Pense na separação física de hardware.",
+        "topic": "Fault Domains",
+        "id": "question-lesson-2026-03-23-1774275425108-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Qual comando lista os conjuntos de disponibilidade em um grupo de recursos específico?",
+        "answer": "az vm availability-set list -g <resource-group-name>",
+        "hint": "Use Azure CLI para listar recursos.",
+        "topic": "Azure CLI",
+        "id": "question-lesson-2026-03-23-1774275425108-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Quantas VMs podem ser afetadas durante manutenção planejada em um availability set com 14 VMs e 10 update domains?",
+        "answer": "2 VMs.",
+        "hint": "Considere como as VMs são distribuídas nos update domains.",
+        "topic": "Planned Maintenance",
+        "id": "question-lesson-2026-03-23-1774275425108-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Se um rack falhar em um datacenter que hospeda um availability set com 14 VMs e 2 fault domains, quantas VMs ficarão indisponíveis?",
+        "answer": "7 VMs.",
+        "hint": "Distribua as VMs pelos fault domains.",
+        "topic": "Fault Domains",
+        "id": "question-lesson-2026-03-23-1774275425108-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Como garantir alta disponibilidade ao configurar um serviço no Azure?",
+        "answer": "Use availability sets para distribuir máquinas virtuais entre múltiplos fault domains e update domains.",
+        "hint": "Pense em isolamento físico e planejamento de manutenção.",
+        "topic": "Availability Sets",
+        "id": "question-lesson-2026-03-23-1774275425108-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Learning",
+        "url": "https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability",
+        "type": "document"
+      }
+    ]
+  },
+  "createdAt": "2026-03-23T14:42:07.967Z",
+  "updatedAt": "2026-03-23T14:44:47.323Z",
+  "status": "enriched",
+  "enrichedAt": "2026-03-23T14:42:58.765Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

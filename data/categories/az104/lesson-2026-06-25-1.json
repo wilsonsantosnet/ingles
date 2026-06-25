@@ -1,0 +1,197 @@
+{
+  "id": "lesson-2026-06-25-1",
+  "date": "2026-06-25",
+  "title": "Gerenciamento de Permissões e Funções no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription named Subscription1 that contains a virtual network named VNet1. VNet1 is in a resource group named RG1.\n\nSubscription1 has a user named User1. User1 has the following roles:\n- Reader\n- Security Admin\n- Security Reader\n\nYou need to ensure that User1 can assign the Reader role for VNet1 to other users.\n\nWhat should you do?\n\nA. Remove User1 from the Security Reader role for Subscription1. Assign User1 the Contributor role for RG1.\n\nB. Assign User1 the Access Administrator role for VNet1.\n\nC. Remove User1 from the Security Reader and Reader roles for Subscription1. Assign User1 the Contributor role for Subscription1.\n\nD. Assign User1 the Network Contributor role for RG1.",
+  "enriched": {
+    "title": "Gerenciamento de Permissões e Funções no Azure",
+    "summary": "Esta aula aborda como configurar permissões no Azure para permitir que um usuário atribua a função Reader a outros usuários dentro de um recurso específico. Discute cenários práticos e o uso de funções de controle de acesso baseadas em função (RBAC).",
+    "topics": [
+      {
+        "title": "Controle de Acesso Baseado em Função (RBAC)",
+        "description": "Explora como as funções RBAC controlam o acesso a recursos no Azure.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Funções no Azure",
+        "description": "Examina diferentes tipos de funções, como Reader, Contributor e Access Administrator.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Permissões de Recursos Específicos",
+        "description": "Discute como atribuir permissões específicas a recursos individuais, como redes virtuais.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure RBAC",
+        "definition": "Sistema de gerenciamento de permissões no Azure que permite atribuir funções específicas a usuários, grupos ou aplicativos.",
+        "examples": [
+          "Permitir que um usuário acesse apenas um grupo de recursos",
+          "Restringir um usuário a apenas leitura em uma assinatura"
+        ],
+        "relatedConcepts": [
+          "IAM (Identity and Access Management)",
+          "Azure Policy"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Access Administrator",
+        "definition": "Função que permite gerenciar o acesso a recursos do Azure, incluindo atribuir funções a outros usuários.",
+        "examples": [
+          "Um Access Administrator pode atribuir a função Contributor a outro usuário para um recurso específico"
+        ],
+        "relatedConcepts": [
+          "Reader",
+          "Contributor",
+          "Owner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Reader",
+        "definition": "Função que permite visualizar recursos, mas não realizar alterações.",
+        "examples": [
+          "Um usuário com função Reader pode acessar logs de uma rede virtual, mas não pode modificá-los"
+        ],
+        "relatedConcepts": [
+          "Contributor",
+          "Access Administrator"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Network Contributor",
+        "definition": "Função que permite gerenciar recursos de rede, como VNet, mas não gerenciar permissões de acesso.",
+        "examples": [
+          "Criar sub-redes em uma VNet",
+          "Configurar regras de segurança em um NSG"
+        ],
+        "relatedConcepts": [
+          "Contributor",
+          "Access Administrator"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configurar permissões para atribuir funções a outros usuários",
+        "problem": "User1 precisa atribuir a função Reader a outros usuários para o recurso VNet1, mas atualmente não possui as permissões necessárias.",
+        "solution": "Atribua a função Access Administrator a User1 para o recurso VNet1.",
+        "explanation": "A função Access Administrator permite gerenciar o acesso a um recurso específico, incluindo a capacidade de atribuir funções como Reader a outros usuários."
+      },
+      {
+        "scenario": "Falha ao atribuir permissões com a função Reader",
+        "problem": "User1, com a função Reader, não consegue atribuir funções a outros usuários.",
+        "solution": "Atualize as permissões de User1 para incluir a função Access Administrator no escopo do recurso necessário.",
+        "explanation": "A função Reader é apenas para visualização e não permite alterar permissões de acesso."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual função no Azure permite atribuir permissões de acesso a outros usuários?",
+        "answer": "Access Administrator",
+        "hint": "Esta função é específica para gerenciar acessos.",
+        "topic": "Controle de Acesso Baseado em Função (RBAC)"
+      },
+      {
+        "type": "scenario-based",
+        "question": "User1 precisa atribuir a função Reader para um recurso de rede específico. Qual função adicional deve ser atribuída a ele?",
+        "answer": "Access Administrator para o recurso específico",
+        "hint": "Reflita sobre funções que permitem gerenciar acessos.",
+        "topic": "Permissões de Recursos Específicos"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando no Azure CLI pode ser usado para atribuir uma função a um usuário?",
+        "answer": "az role assignment create",
+        "hint": "Este comando é usado para criar atribuições de função.",
+        "topic": "Controle de Acesso Baseado em Função (RBAC)"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "User1, com a função Reader, tenta atribuir permissões e falha. O que está errado?",
+        "answer": "A função Reader não permite gerenciar permissões. É necessário atribuir uma função como Access Administrator.",
+        "hint": "A função Reader é apenas para visualização.",
+        "topic": "Funções no Azure"
+      },
+      {
+        "type": "concept",
+        "question": "Quais permissões a função Network Contributor concede?",
+        "answer": "Gerenciamento de recursos de rede, mas sem capacidade de gerenciar permissões.",
+        "hint": "Esta função está relacionada a redes.",
+        "topic": "Funções no Azure"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "A função Reader não permite gerenciar permissões, apenas visualizar recursos.",
+        "relevance": "Evita confusões comuns ao escolher funções em cenários de prova.",
+        "topic": "Funções no Azure"
+      },
+      {
+        "tip": "Lembre-se de que a função Access Administrator é necessária para gerenciar atribuições de função.",
+        "relevance": "É frequentemente testado em questões práticas sobre RBAC.",
+        "topic": "Controle de Acesso Baseado em Função (RBAC)"
+      },
+      {
+        "tip": "Entenda a diferença entre funções no nível de assinatura e no nível de recurso.",
+        "relevance": "Ajuda a evitar erros ao configurar permissões em diferentes escopos.",
+        "topic": "Permissões de Recursos Específicos"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação Oficial do RBAC no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Funções Integradas do Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+        "type": "documentation"
+      },
+      {
+        "title": "Atribuir Funções no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "type": "tutorial"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação Oficial do RBAC no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Funções Integradas do Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+        "type": "documentation"
+      },
+      {
+        "title": "Atribuir Funções no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal",
+        "type": "tutorial"
+      }
+    ]
+  },
+  "createdAt": "2026-06-25T12:32:42.588Z",
+  "updatedAt": "2026-06-25T12:33:49.577Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-25T12:33:49.573Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

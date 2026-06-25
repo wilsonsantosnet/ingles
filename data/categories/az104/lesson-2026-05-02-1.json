@@ -1,0 +1,359 @@
+{
+  "id": "lesson-2026-05-02-1",
+  "date": "2026-05-02",
+  "title": "IP Publico",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:  \nB: An Azure Load Balancer must have an IP address associated with a frontend. A separate public IP address can be utilized as a frontend for ingress and egress traffic.  \n\nTo change the IP, you associate a new public IP address previously created with the load balancer frontend.  \n\n● Sign in to the Azure portal.  \n\n● In the search box at the top of the portal, enter Load balancer.  \n\n● In the search results, select Load balancers.  \n\n● In Load Balancers, select myLoadBalancer or the load balancer you wish to change.  \n\n● In settings of myLoadBalancer, select Frontend IP configuration.  \n\n● In Frontend IP configuration, select myFrontend or your load balancer frontend.  \n\n● In the load balancer frontend configuration, select myStandardPublicIP-2 in Public IP address.  \n\n● Select Save.",
+  "enriched": {
+    "summary": "A aula aborda a configuração do Azure Load Balancer, explicando como associar um novo endereço IP público ao frontend para gerenciar o tráfego de entrada e saída. Inclui instruções práticas para realizar a alteração pelo portal do Azure.",
+    "topics": [
+      {
+        "title": "Azure Load Balancer Frontend IP Configuration",
+        "description": "Configuração do endereço IP do frontend em um Azure Load Balancer para gerenciar o tráfego de rede.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Azure Portal Navigation",
+        "description": "Uso do portal do Azure para acessar e modificar configurações de serviços.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure Load Balancer",
+        "definition": "Serviço de balanceamento de carga na nuvem que distribui o tráfego de rede para garantir alta disponibilidade.",
+        "examples": [
+          "Distribuir requisições para VMs em uma aplicação web",
+          "Gerenciar tráfego de entrada e saída em redes virtuais"
+        ],
+        "relatedConcepts": [
+          "Network Security Group (NSG)",
+          "Public IP Address"
+        ],
+        "difficulty": "intermediate",
+        "spacedRepetition": {
+          "easeFactor": 3.600000000000001,
+          "interval": 153069,
+          "repetitions": 11,
+          "nextReview": "2445-06-03",
+          "lastReview": "2026-05-02",
+          "reviews": [
+            {
+              "date": "2026-05-02T20:19:02.462Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-05-02T20:19:06.987Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-05-02T20:19:22.980Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-05-02T20:19:26.126Z",
+              "quality": 5,
+              "interval": 16
+            },
+            {
+              "date": "2026-05-02T20:19:33.986Z",
+              "quality": 5,
+              "interval": 45
+            },
+            {
+              "date": "2026-05-02T20:19:38.049Z",
+              "quality": 5,
+              "interval": 131
+            },
+            {
+              "date": "2026-05-02T20:19:42.011Z",
+              "quality": 5,
+              "interval": 393
+            },
+            {
+              "date": "2026-05-02T20:19:50.982Z",
+              "quality": 5,
+              "interval": 1218
+            },
+            {
+              "date": "2026-05-02T20:19:58.225Z",
+              "quality": 5,
+              "interval": 3898
+            },
+            {
+              "date": "2026-05-02T20:20:15.688Z",
+              "quality": 5,
+              "interval": 12863
+            },
+            {
+              "date": "2026-05-02T20:20:21.493Z",
+              "quality": 5,
+              "interval": 43734
+            }
+          ]
+        }
+      },
+      {
+        "concept": "Frontend IP Configuration",
+        "definition": "Configuração usada para definir como o tráfego será roteado para o Azure Load Balancer, incluindo associação de um endereço IP público ou privado.",
+        "examples": [
+          "Associar um endereço IP público ao Load Balancer",
+          "Alterar o endereço IP do frontend"
+        ],
+        "relatedConcepts": [
+          "Azure Load Balancer",
+          "Public IP Address"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Public IP Address",
+        "definition": "Endereço IP acessível publicamente usado para comunicação de entrada e saída em serviços da nuvem.",
+        "examples": [
+          "Criar um endereço IP público para um Load Balancer",
+          "Associar um endereço IP público a uma VM"
+        ],
+        "relatedConcepts": [
+          "Frontend IP Configuration",
+          "Azure Load Balancer"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure Portal",
+        "definition": "Interface gráfica baseada na web para gerenciar e configurar serviços do Azure.",
+        "examples": [
+          "Acessar o serviço Load Balancer",
+          "Modificar configurações de IP"
+        ],
+        "relatedConcepts": [
+          "Azure CLI",
+          "PowerShell"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Alterar o endereço IP associado ao frontend de um Azure Load Balancer",
+        "problem": "Você precisa modificar o endereço IP público associado ao frontend de um Load Balancer para um novo endereço previamente criado.",
+        "solution": "1. Acesse o portal do Azure. 2. Pesquise por 'Load balancer' e selecione o serviço desejado. 3. Na configuração do frontend, selecione o novo endereço IP público. 4. Salve as alterações.",
+        "explanation": "A solução funciona porque o Azure permite alterar dinamicamente o endereço IP associado ao frontend de um Load Balancer, o que redireciona o tráfego para o novo IP sem interrupção.",
+        "spacedRepetition": {
+          "easeFactor": 3.600000000000001,
+          "interval": 153069,
+          "repetitions": 11,
+          "nextReview": "2445-06-03",
+          "lastReview": "2026-05-02",
+          "reviews": [
+            {
+              "date": "2026-05-02T20:19:02.462Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-05-02T20:19:06.987Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-05-02T20:19:22.981Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-05-02T20:19:26.126Z",
+              "quality": 5,
+              "interval": 16
+            },
+            {
+              "date": "2026-05-02T20:19:33.986Z",
+              "quality": 5,
+              "interval": 45
+            },
+            {
+              "date": "2026-05-02T20:19:38.049Z",
+              "quality": 5,
+              "interval": 131
+            },
+            {
+              "date": "2026-05-02T20:19:42.011Z",
+              "quality": 5,
+              "interval": 393
+            },
+            {
+              "date": "2026-05-02T20:19:50.982Z",
+              "quality": 5,
+              "interval": 1218
+            },
+            {
+              "date": "2026-05-02T20:19:58.225Z",
+              "quality": 5,
+              "interval": 3898
+            },
+            {
+              "date": "2026-05-02T20:20:15.688Z",
+              "quality": 5,
+              "interval": 12863
+            },
+            {
+              "date": "2026-05-02T20:20:21.493Z",
+              "quality": 5,
+              "interval": 43734
+            }
+          ]
+        }
+      },
+      {
+        "scenario": "Configurar um novo frontend IP para um Load Balancer",
+        "problem": "Você precisa criar e associar um novo endereço IP público a um Load Balancer para separar tráfego de entrada e saída.",
+        "solution": "1. Crie um novo endereço IP público no portal do Azure. 2. Acesse o Load Balancer desejado. 3. Configure um novo frontend e associe o endereço IP criado. 4. Salve as configurações.",
+        "explanation": "A adição de um novo frontend IP permite gerenciar múltiplos fluxos de tráfego, útil para cenários como balanceamento multi-site."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é o Azure Load Balancer e qual sua principal função?",
+        "answer": "O Azure Load Balancer é um serviço que distribui automaticamente o tráfego de rede entre recursos para garantir alta disponibilidade.",
+        "hint": "Pense em como o tráfego é gerenciado em uma aplicação web de alta demanda.",
+        "topic": "Azure Load Balancer",
+        "spacedRepetition": {
+          "easeFactor": 3.600000000000001,
+          "interval": 153069,
+          "repetitions": 11,
+          "nextReview": "2445-06-03",
+          "lastReview": "2026-05-02",
+          "reviews": [
+            {
+              "date": "2026-05-02T20:19:02.462Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-05-02T20:19:06.987Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-05-02T20:19:22.981Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-05-02T20:19:26.126Z",
+              "quality": 5,
+              "interval": 16
+            },
+            {
+              "date": "2026-05-02T20:19:33.986Z",
+              "quality": 5,
+              "interval": 45
+            },
+            {
+              "date": "2026-05-02T20:19:38.049Z",
+              "quality": 5,
+              "interval": 131
+            },
+            {
+              "date": "2026-05-02T20:19:42.011Z",
+              "quality": 5,
+              "interval": 393
+            },
+            {
+              "date": "2026-05-02T20:19:50.982Z",
+              "quality": 5,
+              "interval": 1218
+            },
+            {
+              "date": "2026-05-02T20:19:58.225Z",
+              "quality": 5,
+              "interval": 3898
+            },
+            {
+              "date": "2026-05-02T20:20:15.688Z",
+              "quality": 5,
+              "interval": 12863
+            },
+            {
+              "date": "2026-05-02T20:20:21.493Z",
+              "quality": 5,
+              "interval": 43734
+            }
+          ]
+        }
+      },
+      {
+        "type": "command",
+        "question": "Como navegar até a configuração de Frontend IP no portal do Azure?",
+        "answer": "Acesse o portal do Azure, pesquise 'Load balancer', selecione o serviço desejado e acesse a configuração de Frontend IP.",
+        "hint": "Use os menus de navegação no portal para localizar o serviço.",
+        "topic": "Azure Portal Navigation"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como alterar o IP público associado ao frontend de um Load Balancer?",
+        "answer": "Acesse o portal do Azure, selecione o Load Balancer, vá para Frontend IP Configuration, escolha o novo IP e salve.",
+        "hint": "Certifique-se de que o novo IP público já foi criado.",
+        "topic": "Frontend IP Configuration"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Após alterar o IP do frontend, o tráfego não está fluindo corretamente. O que pode estar errado?",
+        "answer": "Verifique se o novo IP público está corretamente configurado e se não há regras de firewall ou NSG bloqueando o tráfego.",
+        "hint": "Considere verificar as regras de segurança na rede.",
+        "topic": "Troubleshooting Azure Load Balancer"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Por que usar múltiplos endereços IP no frontend de um Load Balancer?",
+        "answer": "Para separar diferentes tipos de tráfego ou gerenciar múltiplas aplicações no mesmo Load Balancer.",
+        "hint": "Considere cenários com múltiplas aplicações ou balanceamento multi-site.",
+        "topic": "Frontend IP Configuration"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que o Azure Load Balancer requer pelo menos um frontend IP configurado.",
+        "relevance": "É um requisito básico frequentemente testado em exames.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "tip": "Certifique-se de que o novo IP público esteja previamente criado antes de associá-lo ao Load Balancer.",
+        "relevance": "Essa etapa pode ser uma pegadinha em perguntas práticas de certificação.",
+        "topic": "Frontend IP Configuration"
+      },
+      {
+        "tip": "Entenda a diferença entre IPs públicos e privados em configurações de frontend.",
+        "relevance": "Perguntas teóricas e práticas podem explorar essa distinção.",
+        "topic": "Public IP Address"
+      },
+      {
+        "tip": "Pratique a navegação no portal do Azure para encontrar rapidamente configurações como Frontend IP.",
+        "relevance": "A familiaridade com o portal é essencial para questões práticas.",
+        "topic": "Azure Portal Navigation"
+      },
+      {
+        "tip": "Saiba como resolver problemas de conectividade após alteração de IP no Load Balancer.",
+        "relevance": "Questões de troubleshooting são comuns em exames.",
+        "topic": "Troubleshooting Azure Load Balancer"
+      }
+    ]
+  },
+  "createdAt": "2026-05-02T19:21:03.874Z",
+  "updatedAt": "2026-05-02T20:18:18.701Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-02T20:18:18.700Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

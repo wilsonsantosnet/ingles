@@ -35,8 +35,26 @@ export const config = {
   },
   port: process.env.PORT || 3000,
   paths: {
+    root: join(__dirname, '..'),
     docs: join(__dirname, '..', 'docs'),
-    processed: join(__dirname, '..', 'data', 'processed'),
+    data: join(__dirname, '..', 'data'),
+    categories: join(__dirname, '..', 'data', 'categories'),
+    categoriesJson: join(__dirname, '..', 'data', 'categories.json'),
+    // Paths legados (para compatibilidade)
+    processed: join(__dirname, '..', 'data', 'categories', 'ingles'),
     userData: join(__dirname, '..', 'data', 'user-data.json')
+  },
+  
+  /**
+   * Retorna os paths de uma categoria específica
+   * @param {string} categoryId - ID da categoria
+   */
+  getCategoryPaths(categoryId) {
+    const base = join(__dirname, '..', 'data', 'categories', categoryId);
+    return {
+      docs: join(__dirname, '..', 'docs', categoryId),
+      processed: base,
+      index: join(base, 'index.json')
+    };
   }
 };

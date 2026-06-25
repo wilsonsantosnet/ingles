@@ -1,0 +1,324 @@
+{
+  "id": "lesson-2025-07-02",
+  "date": "2025-07-02",
+  "title": "Describing daily activities, Discussing technical issues, Using the past tense",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONI will try to tell you how my day was.I had a big problem with my VPN. I need to activate my VPN when I connect to Microsoft’s intranet. But today, I needed to configure a new VPN for my customer and the VPNs created conflicting IPs. So I didn’t work.",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONI will try to tell you how my day was.I had a big problem with my VPN. I need to activate my VPN when I connect to Microsoft’s intranet. But today, I needed to configure a new VPN for my customer and the VPNs created conflicting IPs. So I didn’t work."
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONI will try to tell you how my day was.I had a big problem with my VPN. I need to activate my VPN when I connect to Microsoft’s intranet. But today, I needed to configure a new VPN for my customer and the VPNs created conflicting IPs. So I didn’t work."
+      ]
+    }
+  ],
+  "enriched": {
+    "summary": "The class focused on describing daily activities using the past tense and discussing technical issues related to VPNs. Vocabulary and pronunciation were also emphasized.",
+    "mainTopics": [
+      "Describing daily activities",
+      "Discussing technical issues",
+      "Using the past tense",
+      "Vocabulary and pronunciation"
+    ],
+    "vocabulary": [
+      {
+        "word": "VPN",
+        "translation": "VPN (Rede Privada Virtual)",
+        "definition": "A virtual private network that extends a private network across a public network and enables secure data transmission.",
+        "examples": [
+          "I had a big problem with my VPN.",
+          "I need to activate my VPN when I connect to Microsoft’s intranet."
+        ],
+        "pronunciation": "viː-piː-ɛn",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "virtual private network"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-07-02-vpn",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:38.023Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:15.552Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "intranet",
+        "translation": "intranet",
+        "definition": "A private network used within an organization.",
+        "examples": [
+          "I need to activate my VPN when I connect to Microsoft’s intranet."
+        ],
+        "pronunciation": "ˈɪn.trə.nɛt",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "internal network"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-07-02-intranet",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:40.387Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:17.657Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "configure",
+        "translation": "configurar",
+        "definition": "To arrange or set up something to work in a particular way.",
+        "examples": [
+          "Today, I needed to configure a new VPN for my customer."
+        ],
+        "pronunciation": "kənˈfɪɡ.jʊər",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "set up",
+          "arrange"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-07-02-configure",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:43.387Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:19.817Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "conflicting",
+        "translation": "conflitante",
+        "definition": "Being in disagreement or opposition.",
+        "examples": [
+          "The VPNs created conflicting IPs."
+        ],
+        "pronunciation": "kənˈflɪktɪŋ",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "contradictory",
+          "incompatible"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-07-02-conflicting",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:45.672Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:41.348Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "activate",
+        "translation": "ativar",
+        "definition": "To make something active or start working.",
+        "examples": [
+          "I need to activate my VPN when I connect to Microsoft’s intranet."
+        ],
+        "pronunciation": "ˈæk.tɪ.veɪt",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "enable",
+          "start"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-07-02-activate",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:47.561Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:43.567Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Past Simple Tense",
+        "explanation": "The past simple is used to describe actions or events that have already happened.",
+        "rules": [
+          "Add '-ed' to the regular verbs to form the past tense.",
+          "Irregular verbs do not follow a fixed pattern and must be memorized."
+        ],
+        "examples": [
+          "I had a big problem with my VPN.",
+          "I didn’t work."
+        ],
+        "commonMistakes": [
+          "Using 'did' and the past form of the verb together (e.g., 'I didn’t worked').",
+          "Forgetting to change irregular verbs (e.g., 'I sitted' instead of 'I sat')."
+        ],
+        "id": "grammar-lesson-2025-07-02-0",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:37:17.382Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:23:24.676Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      }
+    ],
+    "expressions": [
+      {
+        "expression": "connect to",
+        "meaning": "To establish a link or relationship with something.",
+        "usage": "Used when referring to establishing a network or physical connection.",
+        "examples": [
+          "I need to activate my VPN when I connect to Microsoft’s intranet."
+        ]
+      }
+    ],
+    "practiceQuestions": [
+      {
+        "question": "Write about a technical problem you faced recently using the past tense.",
+        "answer": "Answers will vary. Example: I had trouble with my internet connection yesterday.",
+        "explanation": "This exercise helps practice using the past simple tense to describe past events.",
+        "type": "open-ended",
+        "id": "question-lesson-2025-07-02-0",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:37:09.439Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:23:13.398Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        },
+        "tense": "Simple Past"
+      },
+      {
+        "question": "What does VPN stand for?",
+        "answer": "Virtual Private Network",
+        "explanation": "This question checks the understanding of the vocabulary term 'VPN'.",
+        "type": "fill-in-blank",
+        "id": "question-lesson-2025-07-02-1",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:37:14.377Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:23:22.472Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        },
+        "tense": "Simple Present"
+      }
+    ],
+    "culturalNotes": [
+      "VPNs are commonly used in corporate environments to ensure secure access to private networks.",
+      "Intranets are often used by companies like Microsoft for internal communication and document sharing."
+    ],
+    "studyTips": [
+      "Practice forming sentences in the past tense using both regular and irregular verbs.",
+      "Try explaining technical problems you’ve encountered in English to improve fluency and vocabulary."
+    ],
+    "originalExamples": [
+      "I will try to tell you how my day was. (Eu tentarei contar como foi o meu dia.)",
+      "I had a big problem with my VPN. (Eu tive um grande problema com meu VPN.)",
+      "I need to activate my VPN when I connect to Microsoft’s intranet. (Eu preciso ativar meu VPN quando me conecto à intranet da Microsoft.)",
+      "But today, I needed to configure a new VPN for my customer and the VPNs created conflicting IPs. (Mas hoje, eu precisei configurar um novo VPN para meu cliente e os VPNs criaram IPs conflitantes.)",
+      "So I didn’t work. (Então eu não trabalhei.)"
+    ]
+  },
+  "enrichedAt": "2026-02-26T01:22:04.966Z",
+  "status": "enriched"
+}

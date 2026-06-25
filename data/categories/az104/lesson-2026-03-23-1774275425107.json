@@ -1,0 +1,249 @@
+{
+  "id": "lesson-2026-03-23-1774275425107",
+  "date": "2026-03-23",
+  "title": "You have a Microsoft Entra tenant.",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have a Microsoft Entra tenant.\n\nYou plan to perform a bulk import of users.\n\nYou need to ensure that imported user objects are added automatically as the members of a specific group based on each user's department. The solution must minimize administrative effort.\n\nWhich two actions should you perform? Each correct answer presents part of the solution.\n\nNOTE: Each correct selection is worth one point.\n\n☐ A  Create groups that use the Assigned membership type.\n\n☐ B  Create an Azure Resource Manager (ARM) template.\n\n☑ C  Create groups that use the Dynamic User membership type.\n\n☐ D  Write a PowerShell script that parses an import file.\n\n☐ E  Create an XML file that contains user information and the appropriate attributes.\n\n☑ F  Create a CSV file that contains user information and the appropriate attributes.\n\nAnswer: C, F\n\nExplanation:\n\nC: Dynamic membership rules for groups in Microsoft Entra ID  \nYou can create attribute-based rules to enable dynamic membership for a group in Microsoft Entra ID, part of Microsoft Entra. Dynamic group membership adds and removes group members automatically using membership rules based on member attributes.\n\nF: Bulk create users in Microsoft Entra ID  \nMicrosoft Entra ID, part of Microsoft Entra, supports bulk user create and delete operations and supports downloading lists of users. Just fill out comma-separated values (CSV) template you can download from Microsoft Entra ID.\n\nReference:  \nhttps://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership  \nhttps://learn.microsoft.com/en-us/entra/identity/users/groups-bulk-import-members",
+  "enriched": {
+    "summary": "A aula aborda como realizar uma importação em massa de usuários no Microsoft Entra ID, garantindo que esses usuários sejam automaticamente adicionados a grupos com base em atributos dinâmicos, como o departamento. O objetivo é minimizar o esforço administrativo utilizando recursos como grupos dinâmicos e arquivos CSV para configuração em lote.",
+    "mainTopics": [
+      "Dynamic User Groups in Microsoft Entra ID",
+      "Bulk User Import with CSV"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Dynamic User Groups in Microsoft Entra ID",
+        "description": "Criação de grupos com regras dinâmicas baseadas em atributos dos usuários para automação de memberships.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Bulk User Import with CSV",
+        "description": "Uso de arquivos CSV para importar usuários em massa no Microsoft Entra ID.",
+        "category": "Identity",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Dynamic User Membership",
+        "definition": "Regras baseadas em atributos que adicionam ou removem automaticamente membros de um grupo no Microsoft Entra ID.",
+        "examples": [
+          "Adicionar usuários ao grupo 'TI' com base no atributo 'department=IT'.",
+          "Gerenciar grupos automaticamente com base na localização do usuário."
+        ],
+        "relatedConcepts": [
+          "Group-based Access Management",
+          "Attribute-based Rules"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "CSV File",
+        "definition": "Formato de arquivo delimitado por vírgulas usado para organizar dados estruturados, como informações de usuários.",
+        "examples": [
+          "Arquivo CSV contendo colunas como DisplayName, UserPrincipalName, Department.",
+          "Modelo de importação no Microsoft Entra ID para criar usuários em massa."
+        ],
+        "relatedConcepts": [
+          "Bulk Operations",
+          "Data Import"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Microsoft Entra ID",
+        "definition": "Serviço de gerenciamento de identidades e acessos da Microsoft para autenticação e autorização.",
+        "examples": [
+          "Gerenciamento de grupos dinâmicos para controle de acesso.",
+          "Configuração de políticas de segurança baseadas em identidade."
+        ],
+        "relatedConcepts": [
+          "Azure AD",
+          "Identity Management"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Bulk Import of Users and Automatic Group Assignment",
+        "problem": "Você precisa importar 500 novos usuários para o Microsoft Entra ID e garantir que sejam automaticamente atribuídos a grupos com base no departamento.",
+        "solution": "Crie um arquivo CSV contendo os atributos dos usuários, como 'Department'. Configure grupos dinâmicos no Microsoft Entra ID com regras baseadas nesses atributos (ex: 'department=IT'). Realize a importação em massa usando o portal do Microsoft Entra ID.",
+        "explanation": "A solução utiliza a funcionalidade de grupos dinâmicos, que automatiza o gerenciamento de memberships com base em atributos, reduzindo o esforço manual."
+      },
+      {
+        "scenario": "Dynamic Group for IT Department",
+        "problem": "Um administrador precisa configurar um grupo dinâmico no Microsoft Entra ID para incluir automaticamente todos os usuários do departamento de TI.",
+        "solution": "Crie um grupo no Microsoft Entra ID com tipo de membership 'Dynamic User' e configure a regra 'department=IT'.",
+        "explanation": "Grupos dinâmicos permitem automação baseada em regras de atributo, evitando a necessidade de adicionar ou remover usuários manualmente."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que são grupos dinâmicos no Microsoft Entra ID e como eles funcionam?",
+        "answer": "Grupos dinâmicos são grupos em que as memberships são gerenciadas automaticamente com base em regras de atributos, como 'Department' ou 'Location'.",
+        "hint": "Pense em como os atributos do usuário podem ser usados para automatizar o gerenciamento de grupos.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      },
+      {
+        "type": "command",
+        "question": "Qual formato de arquivo deve ser usado para realizar importações em massa de usuários no Microsoft Entra ID?",
+        "answer": "O formato CSV deve ser usado.",
+        "hint": "Lembre-se de que o CSV é amplamente utilizado para dados tabulares.",
+        "topic": "Bulk User Import with CSV"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como criar um grupo dinâmico que inclua todos os usuários cujo departamento seja 'Finance'?",
+        "answer": "Crie um grupo com tipo 'Dynamic User' e configure a regra com 'department=Finance'.",
+        "hint": "Use o atributo 'department' para configurar a regra.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa importar 300 usuários e garantir que os usuários do departamento de Vendas estejam em um grupo específico. Qual é o processo?",
+        "answer": "Crie um arquivo CSV com os atributos dos usuários, incluindo 'department'. Configure um grupo dinâmico com a regra 'department=Sales' e importe o CSV.",
+        "hint": "Combine importação em massa com regras de grupos dinâmicos.",
+        "topic": "Bulk User Import with CSV"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um usuário importado não foi adicionado automaticamente a um grupo dinâmico?",
+        "answer": "Verifique se o atributo do usuário corresponde à regra configurada no grupo dinâmico.",
+        "hint": "Reveja os valores dos atributos e as condições da regra.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Grupos dinâmicos são frequentemente testados em questões que envolvem automação de memberships no Microsoft Entra ID.",
+        "relevance": "É importante entender como configurar regras baseadas em atributos para grupos dinâmicos.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      },
+      {
+        "tip": "Saiba como criar e formatar corretamente arquivos CSV para importação em massa.",
+        "relevance": "Perguntas podem incluir erros comuns, como uso de colunas incorretas no CSV.",
+        "topic": "Bulk User Import with CSV"
+      },
+      {
+        "tip": "Lembre-se de que o tipo de membership 'Assigned' não suporta automação.",
+        "relevance": "Isso pode ser uma pegadinha comum em questões de múltipla escolha.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      },
+      {
+        "tip": "Entenda as limitações e os pré-requisitos para grupos dinâmicos, como suporte a atributos específicos.",
+        "relevance": "Certificações podem cobrar conhecimento detalhado sobre regras de grupo.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "concept",
+        "question": "O que são grupos dinâmicos no Microsoft Entra ID e como eles funcionam?",
+        "answer": "Grupos dinâmicos são grupos em que as memberships são gerenciadas automaticamente com base em regras de atributos, como 'Department' ou 'Location'.",
+        "hint": "Pense em como os atributos do usuário podem ser usados para automatizar o gerenciamento de grupos.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID",
+        "id": "question-lesson-2026-03-23-1774275425107-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Qual formato de arquivo deve ser usado para realizar importações em massa de usuários no Microsoft Entra ID?",
+        "answer": "O formato CSV deve ser usado.",
+        "hint": "Lembre-se de que o CSV é amplamente utilizado para dados tabulares.",
+        "topic": "Bulk User Import with CSV",
+        "id": "question-lesson-2026-03-23-1774275425107-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como criar um grupo dinâmico que inclua todos os usuários cujo departamento seja 'Finance'?",
+        "answer": "Crie um grupo com tipo 'Dynamic User' e configure a regra com 'department=Finance'.",
+        "hint": "Use o atributo 'department' para configurar a regra.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID",
+        "id": "question-lesson-2026-03-23-1774275425107-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa importar 300 usuários e garantir que os usuários do departamento de Vendas estejam em um grupo específico. Qual é o processo?",
+        "answer": "Crie um arquivo CSV com os atributos dos usuários, incluindo 'department'. Configure um grupo dinâmico com a regra 'department=Sales' e importe o CSV.",
+        "hint": "Combine importação em massa com regras de grupos dinâmicos.",
+        "topic": "Bulk User Import with CSV",
+        "id": "question-lesson-2026-03-23-1774275425107-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um usuário importado não foi adicionado automaticamente a um grupo dinâmico?",
+        "answer": "Verifique se o atributo do usuário corresponde à regra configurada no grupo dinâmico.",
+        "hint": "Reveja os valores dos atributos e as condições da regra.",
+        "topic": "Dynamic User Groups in Microsoft Entra ID",
+        "id": "question-lesson-2026-03-23-1774275425107-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "learning",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+        "type": "document"
+      },
+      {
+        "title": "Learning",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-bulk-import-members",
+        "type": "document"
+      }
+    ]
+  },
+  "createdAt": "2026-03-23T14:17:05.107Z",
+  "updatedAt": "2026-03-23T14:29:05.043Z",
+  "status": "enriched",
+  "enrichedAt": "2026-03-23T14:18:16.555Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

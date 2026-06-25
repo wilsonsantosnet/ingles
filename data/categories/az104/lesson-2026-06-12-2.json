@@ -1,0 +1,204 @@
+{
+  "id": "lesson-2026-06-12-2",
+  "date": "2026-06-12",
+  "title": "Configuração de DNS e Resolução de Nomes em Redes Virtuais no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the virtual networks shown in the following table.\n\n| Name   | Peered with | DNS server                  |\n|--------|-------------|-----------------------------|\n| VNET1  | VNET2       | Default (Azure-provided)    |\n| VNET2  | VNET1       | 10.10.0.4                   |\n\nYou have the virtual machines shown in the following table.\n\n| Name    | IP address    | Network interface | Connects to       |\n|---------|---------------|-------------------|-------------------|\n| Server1 | 10.10.0.4     | NIC1              | VNET1/Subnet1     |\n| Server2 | 172.16.0.4    | NIC2              | VNET1/Subnet2     |\n| Server3 | 192.168.0.4   | NIC3              | VNET2/Subnet2     |\n\nYou have the virtual network interfaces shown in the following table.\n\n| Name   | DNS server                     |\n|--------|--------------------------------|\n| NIC1   | Inherit from virtual network   |\n| NIC2   | 10.10.0.4                      |\n| NIC3   | Inherit from virtual network   |\n\nServer1 is a DNS server that contains the resources shown in the following table.\n\n| Name             | Type                | Value              |\n|------------------|---------------------|--------------------|\n| contoso.com      | Primary DNS zone    | Not applicable     |\n| Host1.contoso.com| A record            | 131.107.10.15      |\n\nYou have an Azure private DNS zone named contoso.com that has a virtual network link to VNET2 and the records shown in the following table.\n\n| Name   | Type    | Value              |\n|--------|---------|--------------------|\n| Host1  | A record| 131.107.200.20     |\n| Host2  | A record| 131.107.50.50      |\n\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\n\nNOTE: Each correct selection is worth one point.\n\n---\n\nAnswer:  \nAnswer Area  \n\nStatements  \nServer2 resolves host2.contoso.com to 131.107.50.50.  \n[Yes] [No]  \n\nServer2 resolves host1.contoso.com to 131.107.10.15.  \n[Yes] [No]  \n\nServer3 resolves host2.contoso.com to 131.107.50.50.  \n[Yes] [No]  \n\nExplanation:",
+  "enriched": {
+    "title": "Configuração de DNS e Resolução de Nomes em Redes Virtuais no Azure",
+    "summary": "A aula aborda a configuração e interação entre redes virtuais no Azure, com foco na resolução de nomes utilizando servidores DNS personalizados e zonas DNS privadas. São explorados cenários de conectividade entre máquinas virtuais e redes emparelhadas.",
+    "topics": [
+      {
+        "title": "Configuração de DNS em Redes Virtuais",
+        "description": "Configuração de servidores DNS personalizados e integração com zonas DNS privadas em redes virtuais do Azure.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Peering de Redes Virtuais",
+        "description": "Configuração de emparelhamento entre redes virtuais para permitir conectividade bidirecional.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Resolução de Nomes no Azure",
+        "description": "Entendimento do processo de resolução de nomes utilizando servidores DNS e zonas DNS privadas.",
+        "category": "Network",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "VNET (Virtual Network)",
+        "definition": "Rede lógica no Azure que conecta recursos como máquinas virtuais e outros serviços.",
+        "examples": [
+          "VNET1 conectando Server1 e Server2",
+          "Peering entre VNET1 e VNET2"
+        ],
+        "relatedConcepts": [
+          "Subnet",
+          "Network Interface"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Servidor DNS",
+        "definition": "Servidor responsável por traduzir nomes de domínio em endereços IP.",
+        "examples": [
+          "Server1 configurado como DNS personalizado",
+          "Uso do DNS padrão do Azure"
+        ],
+        "relatedConcepts": [
+          "Resolução de Nomes",
+          "Zonas DNS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Zona DNS Privada",
+        "definition": "Zona DNS gerenciada no Azure com escopo privado, vinculada a uma ou mais redes virtuais.",
+        "examples": [
+          "Zona DNS 'contoso.com' vinculada a VNET2",
+          "Resolução de 'host2.contoso.com' para 131.107.50.50"
+        ],
+        "relatedConcepts": [
+          "VNET Link",
+          "Servidor DNS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Peering de Redes Virtuais",
+        "definition": "Conexão entre duas redes virtuais no Azure, permitindo comunicação entre recursos nas redes.",
+        "examples": [
+          "Peering entre VNET1 e VNET2",
+          "Comunicação entre Server1 (VNET1) e Server3 (VNET2)"
+        ],
+        "relatedConcepts": [
+          "VNET",
+          "Subnet"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Resolução de Nome com Zona DNS Privada",
+        "problem": "Server2 precisa resolver 'host2.contoso.com' para o IP correto utilizando a zona DNS privada vinculada a VNET2.",
+        "solution": "Configure a interface de rede NIC2 para usar o servidor DNS 10.10.0.4, que está configurado para resolver nomes da zona 'contoso.com'.",
+        "explanation": "NIC2 está configurado com um servidor DNS personalizado que pode acessar e consultar a zona DNS privada vinculada a VNET2."
+      },
+      {
+        "scenario": "Resolução de Nome com DNS Local",
+        "problem": "Server2 precisa resolver 'host1.contoso.com' para o IP correto configurado no servidor DNS Server1.",
+        "solution": "Garanta que o servidor DNS configurado em NIC2 (10.10.0.4) tenha o registro 'host1.contoso.com' na zona local.",
+        "explanation": "Server1 atua como servidor DNS personalizado para VNET1 e pode resolver registros locais configurados diretamente nele."
+      },
+      {
+        "scenario": "Comunicação entre Redes Emparelhadas",
+        "problem": "Server3 em VNET2 precisa resolver e se comunicar com Server1 em VNET1.",
+        "solution": "Confirme que o peering entre VNET1 e VNET2 está configurado corretamente e que o DNS de VNET2 pode acessar Server1.",
+        "explanation": "O peering permite a comunicação entre recursos de redes distintas e o uso de DNS configurado para resolução de nomes entre elas."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é uma zona DNS privada no Azure?",
+        "answer": "É uma zona DNS gerenciada no Azure, com escopo privado, vinculada a redes virtuais para resolução de nomes.",
+        "hint": "Considere como o Azure gerencia a resolução de nomes sem expor os registros publicamente.",
+        "topic": "Resolução de Nomes no Azure"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar Server2 para resolver 'host2.contoso.com' utilizando a zona DNS privada vinculada a VNET2?",
+        "answer": "Configure NIC2 para usar o servidor DNS 10.10.0.4.",
+        "hint": "Verifique o servidor DNS configurado na interface de rede.",
+        "topic": "Configuração de DNS em Redes Virtuais"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Server3 não consegue resolver 'host1.contoso.com'. Qual pode ser o problema?",
+        "answer": "O servidor DNS configurado em VNET2 pode não ter acesso ao servidor DNS que contém o registro.",
+        "hint": "Verifique as configurações de peering e de DNS no VNET2.",
+        "topic": "Peering de Redes Virtuais"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando seria usado para criar uma zona DNS privada no Azure?",
+        "answer": "az network private-dns zone create --name contoso.com --resource-group myResourceGroup",
+        "hint": "Use a CLI do Azure para gerenciar recursos DNS.",
+        "topic": "Configuração de DNS em Redes Virtuais"
+      },
+      {
+        "type": "concept",
+        "question": "O que é peering de redes virtuais?",
+        "answer": "É uma conexão entre duas redes virtuais no Azure para permitir comunicação entre seus recursos.",
+        "hint": "Considere como as redes são conectadas sem VPN ou gateways adicionais.",
+        "topic": "Peering de Redes Virtuais"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda a ordem de precedência entre DNS configurados em uma interface de rede e DNS configurados na rede virtual.",
+        "relevance": "Essa diferença é frequentemente testada em cenários práticos de certificação.",
+        "topic": "Configuração de DNS em Redes Virtuais"
+      },
+      {
+        "tip": "Saiba como o peering de VNETs afeta a comunicação e a resolução de nomes entre redes.",
+        "relevance": "Questões de conectividade entre redes emparelhadas são comuns em exames de Azure.",
+        "topic": "Peering de Redes Virtuais"
+      },
+      {
+        "tip": "Lembre-se de que zonas DNS privadas precisam estar vinculadas a uma VNET para funcionar.",
+        "relevance": "Pegadinhas relacionadas à vinculação de VNETs com zonas privadas são frequentes.",
+        "topic": "Configuração de DNS em Redes Virtuais"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre Azure DNS",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/",
+        "type": "documentation"
+      },
+      {
+        "title": "Tutorial sobre peering de redes virtuais no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "type": "tutorial"
+      },
+      {
+        "title": "Como configurar zonas DNS privadas no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "type": "reference"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre Azure DNS",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/",
+        "type": "documentation"
+      },
+      {
+        "title": "Tutorial sobre peering de redes virtuais no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "type": "tutorial"
+      },
+      {
+        "title": "Como configurar zonas DNS privadas no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview",
+        "type": "reference"
+      }
+    ]
+  },
+  "createdAt": "2026-06-12T14:13:33.302Z",
+  "updatedAt": "2026-06-12T14:14:33.080Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-12T14:14:33.079Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

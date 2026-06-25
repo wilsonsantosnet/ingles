@@ -1,0 +1,490 @@
+{
+  "categoryId": "ingles",
+  "processedAt": "2026-06-12T12:30:50.453Z",
+  "totalLessons": 69,
+  "lessons": [
+    {
+      "id": "lesson-2025-06-18-2",
+      "date": "2025-06-18",
+      "title": "Vocabulário técnico e emocional e gramática de verbos irregulares em inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-06-18-3",
+      "date": "2025-06-18",
+      "title": "Vocabulário e Gramática: Verbos Irregulares e Termos Técnicos",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-06-18",
+      "date": "2025-06-18",
+      "title": "Vocabulário de sentimentos, tecnologia e saúde; verbos irregulares e pronúncia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-06-25-2",
+      "date": "2025-06-25",
+      "title": "Apresentação de ideias e automação de migração de adaptadores Java em Python",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-06-25-3",
+      "date": "2025-06-25",
+      "title": "Apresentação de Ferramenta para Migração de Adaptadores Java",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-06-25",
+      "date": "2025-06-25",
+      "title": "Presenting new ideas, Using AI in software migrations, Grammar for presentations",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-07-02-2",
+      "date": "2025-07-02",
+      "title": "Praticando o Simple Past e Vocabulário Técnico: Relatando Problemas com VPNs",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-07-02-3",
+      "date": "2025-07-02",
+      "title": "Relato Diário: Problemas com VPN e Vocabulário Técnico",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-07-02",
+      "date": "2025-07-02",
+      "title": "Describing daily activities, Discussing technical issues, Using the past tense",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-01-2",
+      "date": "2025-10-01",
+      "title": "Prática de tempos verbais e vocabulário cotidiano em inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-01-3",
+      "date": "2025-10-01",
+      "title": "Gramática e Vocabulário Prático: Perguntas no Passado e Presente",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-01",
+      "date": "2025-10-01",
+      "title": "Present Simple, Past Progressive, Future intentions",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-08-2",
+      "date": "2025-10-08",
+      "title": "Prática de tempos verbais e vocabulário para situações cotidianas em inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-08-3",
+      "date": "2025-10-08",
+      "title": "Past Continuous e Vocabulário Diversificado",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-08",
+      "date": "2025-10-08",
+      "title": "Uso de tempos verbais, Vocabulário cotidiano, Estruturas gramaticais em frases complexas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-15-2",
+      "date": "2025-10-15",
+      "title": "Adjetivos, Verbos Irregulares e Tempos Verbais no Cotidiano em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-15-3",
+      "date": "2025-10-15",
+      "title": "Verbos Irregulares e Comparativos em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-15",
+      "date": "2025-10-15",
+      "title": "Uso de 'very' com adjetivos, Verbos irregulares, Futuro com 'going to' e 'will'",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-22-2",
+      "date": "2025-10-22",
+      "title": "Estruturas e conversação: tempos verbais e vocabulário do dia a dia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-22-3",
+      "date": "2025-10-22",
+      "title": "Frases do Dia a Dia e Estruturas Gramaticais Úteis",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-10-22",
+      "date": "2025-10-22",
+      "title": "Prática de Conversação: Passado Contínuo, 'Do' vs 'Make' e Vocabulário Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-19-2",
+      "date": "2025-11-19",
+      "title": "Praticando Present Simple: Afirmativas, Negativas e Interrogativas com Vocabulário-chave",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-19-3",
+      "date": "2025-11-19",
+      "title": "Present Simple: Frases Afirmativas, Negativas e Interrogativas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-19",
+      "date": "2025-11-19",
+      "title": "Present Simple tense, Pronunciation practice, Vocabulary building",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-26-2",
+      "date": "2025-11-26",
+      "title": "Vocabulário, Gramática e Pronúncia: Presente Simples e Expressões Idiomáticas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-26-3",
+      "date": "2025-11-26",
+      "title": "Vocabulário, Pronúncia e Gramática Básica em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-11-26",
+      "date": "2025-11-26",
+      "title": "Vocabulário, Expressões idiomáticas, Gramática básica",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-03-2",
+      "date": "2025-12-03",
+      "title": "Present Simple: Verbos Irregulares, Frases e Vocabulário do Dia a Dia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-03-3",
+      "date": "2025-12-03",
+      "title": "Presente Simples e Vocabulário Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-03",
+      "date": "2025-12-03",
+      "title": "Vocabulário em inglês, Presente simples, Prática de pronúncia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-10-2",
+      "date": "2025-12-10",
+      "title": "Present Continuous e vocabulário sobre aposentadoria e tendências",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-10-3",
+      "date": "2025-12-10",
+      "title": "Present Continuous e Vocabulário sobre Aposentadoria e Varejo",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-10",
+      "date": "2025-12-10",
+      "title": "Present Continuous: Uso, Vocabulário de Aposentadoria e Tendências em Prática",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-17-2",
+      "date": "2025-12-17",
+      "title": "Present Continuous e Pronomes: Uso, Respostas Curtas e Transformações de Frases",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-17-3",
+      "date": "2025-12-17",
+      "title": "Present Continuous e Respostas Curtas em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2025-12-17",
+      "date": "2025-12-17",
+      "title": "Present Continuous Tense, Short Answers, Subject and Object Pronouns",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-01-07-2",
+      "date": "2026-01-07",
+      "title": "Present Continuous: Explicações e Consequências com Vocabulário e Pronúncia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-01-07-3",
+      "date": "2026-01-07",
+      "title": "Presente Contínuo e Vocabulário Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-01-07",
+      "date": "2026-01-07",
+      "title": "Uso do presente contínuo e vocabulário cotidiano em explicações práticas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-18-2",
+      "date": "2026-02-18",
+      "title": "Praticando Simple Past e Past Continuous com vocabulário do dia a dia e expressões",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-18-3",
+      "date": "2026-02-18",
+      "title": "Passado Simples e Contínuo com Vocabulário do Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-18",
+      "date": "2026-02-18",
+      "title": "Simple past, Past continuous, Culinary vocabulary",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-25-2",
+      "date": "2026-02-25",
+      "title": "Simple Past e Past Continuous com vocabulário de refeições e atividades diárias",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-25-3",
+      "date": "2026-02-25",
+      "title": "Simple Past e Verb to Be no Passado",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-02-25",
+      "date": "2026-02-25",
+      "title": "Verbos irregulares no passado, Verbo 'to be' no passado, Estruturas interrogativas e negativas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-04-2",
+      "date": "2026-03-04",
+      "title": "Vocabulário e Pronúncia em Inglês: Empreendedorismo, Finanças e Expressões Úteis",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-04-3",
+      "date": "2026-03-04",
+      "title": "Vocabulário de Negócios e Pronúncia de Termos Financeiros",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-04",
+      "date": "2026-03-04",
+      "title": "Vocabulário e Pronúncia em Inglês para Economia e Empreendedorismo",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-11-2",
+      "date": "2026-03-11",
+      "title": "Uso do Simple Past e Past Continuous em histórias e situações reais",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-11-3",
+      "date": "2026-03-11",
+      "title": "Passado Simples e Contínuo com Vocabulário de Verbos Irregulares",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-11",
+      "date": "2026-03-11",
+      "title": "Simple Past, Past Continuous, Vocabulary Expansion",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-18-2",
+      "date": "2026-03-18",
+      "title": "Simple Past e Past Continuous: Gramática, Verbos Irregulares e Vocabulário de Negócios",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-18-3",
+      "date": "2026-03-18",
+      "title": "Passado Simples e Contínuo com Verbos Irregulares e Vocabulário",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-18",
+      "date": "2026-03-18",
+      "title": "Uso do Simple Past e Past Continuous com Foco em Negócios e Aquecimento Global",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-25-1",
+      "date": "2026-03-25",
+      "title": "Past Simple e Past Continuous com Vocabulário para Negócios e Chamadas Telefônicas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-03-25-2",
+      "date": "2026-03-25",
+      "title": "Past Simple e Past Continuous com Vocabulário de Negócios",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-01-1",
+      "date": "2026-04-01",
+      "title": "Present Perfect: Mudanças, Acontecimentos Recentes e Relatar Notícias",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-01-2",
+      "date": "2026-04-01",
+      "title": "Present Perfect e Vocabulário do Dia a Dia",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-15-1",
+      "date": "2026-04-15",
+      "title": "Present Perfect: Uso, Conjugação de Verbos Irregulares e Vocabulário Essencial",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-15-2",
+      "date": "2026-04-15",
+      "title": "Present Perfect e Vocabulário do Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-22-1",
+      "date": "2026-04-22",
+      "title": "Present Perfect: Uso, Conjugação e Conexão com o Presente",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-22-2",
+      "date": "2026-04-22",
+      "title": "Present Perfect e Situações do Cotidiano",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-29-1",
+      "date": "2026-04-29",
+      "title": "Tempos Verbais e Vocabulário Essencial para Trabalho e Situações Cotidianas",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-04-29-2",
+      "date": "2026-04-29",
+      "title": "Present Perfect, Vocabulário e Diferenças de Tempos Verbais",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-05-20-1",
+      "date": "2026-05-20",
+      "title": "Vocabulário, Gramática e Pronúncia Básica em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-05-26-1",
+      "date": "2026-05-26",
+      "title": "Present Perfect e Vocabulário de Ações Comuns",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-05-27-1",
+      "date": "2026-05-27",
+      "title": "Demonstrativos e o Mundo das Ideias de Platão",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-06-03-1",
+      "date": "2026-06-03",
+      "title": "Platão, Vocabulário e Conceitos Filosóficos em Inglês",
+      "file": "docx",
+      "status": "enriched"
+    },
+    {
+      "id": "lesson-2026-06-10-1",
+      "date": "2026-06-10",
+      "title": "Vocabulário de Utensílios Domésticos e Tempos Verbais",
+      "file": "docx",
+      "status": "enriched"
+    }
+  ]
+}

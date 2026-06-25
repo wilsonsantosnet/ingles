@@ -1,0 +1,264 @@
+{
+  "id": "lesson-2026-06-19-1",
+  "date": "2026-06-19",
+  "title": "Microsoft",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "tailored",
+        "translation": "sob medida",
+        "definition": "customized or adapted for a specific purpose or person",
+        "examples": [
+          "The program is tailored to beginners.",
+          "She wore a perfectly tailored suit.",
+          "Our services are tailored to your needs.",
+          "The course is tailored for professionals.",
+          "Each lesson is tailored to the student's level."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-06-21",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:30.459Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "gathering",
+        "translation": "reunião",
+        "definition": "a meeting or assembly of people",
+        "examples": [
+          "She attended a family gathering last weekend.",
+          "The gathering was held in the park.",
+          "They are hosting a gathering to celebrate the holiday.",
+          "Everyone enjoyed the gathering at his house.",
+          "The gathering started at 7 PM."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:39.103Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "readiness",
+        "translation": "prontidão",
+        "definition": "the state of being prepared or ready",
+        "examples": [
+          "She showed readiness to help.",
+          "The troops are in a state of readiness.",
+          "His readiness to learn impressed the teacher.",
+          "We admired her readiness to take on challenges.",
+          "The team’s readiness ensured their success."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-06-21",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:43.802Z",
+              "quality": 4,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "assessed",
+        "translation": "avaliado",
+        "definition": "evaluated or determined the value, quality, or importance of something",
+        "examples": [
+          "The teacher assessed the students' essays.",
+          "The damage to the house was assessed after the storm.",
+          "She was assessed for her eligibility for the program.",
+          "The company assessed the risks before making a decision.",
+          "They assessed the situation carefully."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-3",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:53.703Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "unify",
+        "translation": "avaliado",
+        "definition": "evaluated or determined the value, quality, or importance of something",
+        "examples": [
+          "The teacher assessed the students' essays.",
+          "The damage to the house was assessed after the storm.",
+          "She was assessed for her eligibility for the program.",
+          "The company assessed the risks before making a decision.",
+          "They assessed the situation carefully."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-4",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:59:01.372Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "unify",
+        "translation": "unificar",
+        "definition": "to bring together into one unit or group",
+        "examples": [
+          "The new leader aims to unify the country.",
+          "The goal is to unify the two departments.",
+          "They worked to unify their efforts.",
+          "This treaty will unify the nations.",
+          "The project helped unify the community."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-5",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:59:05.105Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "smooth",
+        "translation": "suave",
+        "definition": "having an even and regular surface; not rough or bumpy",
+        "examples": [
+          "The table has a smooth surface.",
+          "His voice is very smooth and calming.",
+          "Apply the cream for smooth skin.",
+          "The road is finally smooth after repairs.",
+          "She made a smooth transition to her new job."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-19-1-6",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-20",
+          "lastReview": "2026-06-20",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:59:14.010Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "exhibit",
+        "translation": "exibir, exposição",
+        "definition": "to show something publicly or to display an item.",
+        "examples": [
+          "The museum will exhibit rare paintings.",
+          "She likes to exhibit confidence in meetings.",
+          "The artist's work was exhibited in Paris.",
+          "He exhibited no signs of fear.",
+          "The zoo exhibits exotic animals."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb, noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-7",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-25",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-19T12:41:25.446Z",
+  "updatedAt": "2026-06-25T13:04:41.803Z",
+  "status": "created"
+}

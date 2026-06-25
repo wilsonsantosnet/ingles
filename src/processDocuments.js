@@ -1,16 +1,34 @@
-import { readdir, writeFileSync, mkdirSync, existsSync } from 'fs';
-import { join } from 'path';
+import { readdir, readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { join, extname } from 'path';
 import { config } from './config.js';
 import { extractWordContent, parseLesson } from './wordExtractor.js';
 import { enrichWithLLM } from './llmEnricher.js';
 import { SpacedRepetitionSystem } from './spacedRepetition.js';
+import { CategoryManager } from './categoryManager.js';
+import { LessonManager } from './lessonManager.js';
+import { imageProcessor } from './imageProcessor.js';
 
 /**
- * Processa documentos Word na pasta docs
+ * Processa documentos Word na pasta docs de uma categoria
+ * @param {string} categoryId - ID da categoria (padrão: 'ingles')
  * @param {boolean} force - Se true, reprocessa todos os arquivos
  */
-async function processAllDocuments(force = false) {
+async function processAllDocuments(categoryId = 'ingles', force = false) {
   console.log('📚 Iniciando processamento de documentos...\n');
+  
+  // Validar categoria
+  const categoryManager = new CategoryManager();
+  const category = categoryManager.getCategory(categoryId);
+  if (!category) {
+    console.error(`❌ Categoria '${categoryId}' não encontrada!`);
+    console.log('\n📋 Categorias disponíveis:');
+    categoryManager.listCategories().forEach(c => {
+      console.log(`   - ${c.id}: ${c.name}`);
+    });
+    process.exit(1);
+  }
+  
+  console.log(`📂 Categoria: ${category.icon} ${category.name}`);
   
   if (force) {
     console.log('⚠️  Modo FORCE ativado: reprocessando TODOS os arquivos\n');
@@ -18,66 +36,143 @@ async function processAllDocuments(force = false) {
     console.log('✅ Modo incremental: processando apenas arquivos novos\n');
   }
 
+  const paths = config.getCategoryPaths(categoryId);
+
   // Criar pasta de dados se não existir
-  if (!existsSync(config.paths.processed)) {
-    mkdirSync(config.paths.processed, { recursive: true });
+  if (!existsSync(paths.processed)) {
+    mkdirSync(paths.processed, { recursive: true });
+  }
+  
+  // Criar pasta de docs se não existir
+  if (!existsSync(paths.docs)) {
+    mkdirSync(paths.docs, { recursive: true });
+    console.log(`\n⚠️  Pasta de documentos criada: ${paths.docs}`);
+    console.log(`   Adicione arquivos .docx nesta pasta e execute novamente.\n`);
+    process.exit(0);
   }
 
-  // Listar arquivos .docx
+  // Listar arquivos .docx e imagens (.jpg, .jpeg, .png)
   const files = await new Promise((resolve, reject) => {
-    readdir(config.paths.docs, (err, files) => {
+    readdir(paths.docs, (err, files) => {
       if (err) reject(err);
-      else resolve(files.filter(f => f.endsWith('.docx')));
+      else resolve(files.filter(f => {
+        const ext = extname(f).toLowerCase();
+        return ['.docx', '.jpg', '.jpeg', '.png'].includes(ext);
+      }));
     });
   });
 
-  console.log(`📄 Encontrados ${files.length} documentos\n`);
+  if (files.length === 0) {
+    console.log(`\n⚠️  Nenhum arquivo encontrado em: ${paths.docs}`);
+    console.log(`   Adicione documentos Word (.docx) ou imagens (.jpg, .png) e execute novamente.\n`);
+    process.exit(0);
+  }
+
+  console.log(`📄 Encontrados ${files.length} arquivos\n`);
 
   const srs = new SpacedRepetitionSystem();
+  const lessonManager = new LessonManager();
   const processedLessons = [];
   let skipped = 0;
 
   for (const file of files) {
-    const filePath = join(config.paths.docs, file);
+    const filePath = join(paths.docs, file);
+    const fileExt = extname(file).toLowerCase();
+    const isImage = ['.jpg', '.jpeg', '.png'].includes(fileExt);
     
-    // 1. Extrair conteúdo do Word
-    const extracted = await extractWordContent(filePath);
-    if (!extracted.success || !extracted.text || extracted.text.trim().length === 0) {
-      console.log(`\n⚠️  Pulando ${file}: não foi possível ler ou documento vazio`);
-      continue;
+    // 1. Extrair conteúdo (Word ou Imagem)
+    let extracted;
+    let source;
+    
+    if (isImage) {
+      console.log(`\n${'='.repeat(60)}`);
+      console.log(`📸 Processando IMAGEM: ${file}`);
+      console.log('='.repeat(60));
+      
+      try {
+        const ocrResult = await imageProcessor.extractTextFromImage(filePath);
+        
+        if (!ocrResult.success || !ocrResult.text || ocrResult.text.trim().length === 0) {
+          console.log(`\n⚠️  Pulando ${file}: OCR falhou ou imagem sem texto`);
+          continue;
+        }
+        
+        console.log(`   ✅ Texto extraído: ${ocrResult.text.length} caracteres`);
+        console.log(`   📊 Qualidade: ${ocrResult.quality} (confiança: ${(ocrResult.confidence * 100).toFixed(1)}%)`);
+        
+        if (ocrResult.quality === 'poor') {
+          console.log(`   ⚠️  AVISO: Qualidade baixa - revise o conteúdo extraído`);
+        }
+        
+        extracted = {
+          success: true,
+          text: ocrResult.text,
+          metadata: ocrResult.metadata
+        };
+        source = 'image';
+        
+      } catch (error) {
+        console.log(`\n❌ Erro ao processar imagem ${file}: ${error.message}`);
+        continue;
+      }
+      
+    } else {
+      // Processar Word
+      console.log(`\n${'='.repeat(60)}`);
+      console.log(`📖 Processando DOCUMENTO: ${file}`);
+      console.log('='.repeat(60));
+      console.log('1️⃣  Extraindo conteúdo...');
+      
+      extracted = await extractWordContent(filePath);
+      source = 'docx';
+      
+      if (!extracted.success || !extracted.text || extracted.text.trim().length === 0) {
+        console.log(`\n⚠️  Pulando ${file}: não foi possível ler ou documento vazio`);
+        continue;
+      }
+      
+      console.log(`   ✅ Extraído com sucesso: ${extracted.text.length} caracteres`);
     }
     
     // 2. Parsear para obter ID e verificar se já foi processado
     const lesson = parseLesson(extracted.text, file);
-    const outputPath = join(config.paths.processed, `${lesson.id}.json`);
+    lesson.source = source; // Adicionar fonte
+    
+    // Gerar ID único com indexador para múltiplas aulas no mesmo dia
+    lesson.id = lessonManager.generateNextLessonId(categoryId, lesson.date);
+    const outputPath = join(paths.processed, `${lesson.id}.json`);
     
     // Verificar se já foi processado (somente se não for modo force)
     if (!force && existsSync(outputPath)) {
       console.log(`⏭️  Pulando ${file} (já processado)`);
       skipped++;
+
+      let existingTitle = lesson.title;
+      try {
+        const existingLesson = JSON.parse(readFileSync(outputPath, 'utf-8'));
+        if (existingLesson?.title) {
+          existingTitle = existingLesson.title;
+        }
+      } catch {
+        // Mantém fallback do título atual se não conseguir ler o arquivo existente.
+      }
       
       // Ainda assim adicionar ao índice
       processedLessons.push({
         id: lesson.id,
         date: lesson.date,
-        title: lesson.title,
-        file: file,
+        title: existingTitle,
+        file: source,
         status: 'enriched'
       });
       continue;
     }
-    
-    console.log(`\n${'='.repeat(60)}`);
-    console.log(`📖 Processando: ${file}`);
-    console.log('='.repeat(60));
-    console.log('1️⃣  Extraindo conteúdo...');
-    console.log(`   ✅ Extraído com sucesso: ${extracted.text.length} caracteres`);
 
     // 3. Analisar estrutura
     console.log('2️⃣  Analisando estrutura...');
 
     // 4. Enriquecer com LLM
-    const enrichedLesson = await enrichWithLLM(lesson);
+    const enrichedLesson = await enrichWithLLM(lesson, category);
 
     // 5. Adicionar dados de repetição espaçada
     console.log('3️⃣  Configurando repetição espaçada...');
@@ -89,17 +184,18 @@ async function processAllDocuments(force = false) {
     console.log(`✅ Salvo em: ${outputPath}`);
     
     processedLessons.push({
-      id: lesson.id,
-      date: lesson.date,
-      title: lesson.title,
-      file: file,
+      id: lessonWithSRS.id,
+      date: lessonWithSRS.date,
+      title: lessonWithSRS.title,
+      file: source,
       status: enrichedLesson.status
     });
   }
 
   // Salvar índice de todas as aulas
-  const indexPath = join(config.paths.processed, 'index.json');
+  const indexPath = paths.index;
   writeFileSync(indexPath, JSON.stringify({
+    categoryId: categoryId,
     processedAt: new Date().toISOString(),
     totalLessons: processedLessons.length,
     lessons: processedLessons
@@ -160,8 +256,16 @@ function addSpacedRepetitionData(lesson, srs) {
 }
 
 // Executar processamento
-const force = process.argv.includes('--force');
-processAllDocuments(force).catch(error => {
+const args = process.argv.slice(2);
+const categoryArg = args.find(arg => arg.startsWith('--category='));
+const categoryId = categoryArg ? categoryArg.split('=')[1] : 'ingles';
+const force = args.includes('--force');
+
+console.log('\n🎯 Parâmetros:');
+console.log(`   Categoria: ${categoryId}`);
+console.log(`   Modo force: ${force ? 'Sim' : 'Não'}\n`);
+
+processAllDocuments(categoryId, force).catch(error => {
   console.error('💥 Erro fatal:', error);
   process.exit(1);
 });

@@ -80,11 +80,22 @@ export function parseLesson(text, fileName) {
   // Dividir em parágrafos
   const paragraphs = text.split('\n').filter(p => p.trim().length > 0);
   
-  // Estrutura básica
+  // Gerar título inteligente (limitar a 100 caracteres ou primeira linha)
+  let title = `Aula de ${lessonDate}`;
+  if (paragraphs.length > 0 && paragraphs[0].trim()) {
+    const firstLine = paragraphs[0].trim();
+    // Se é muito longo, pegar apenas os primeiros 80 caracteres
+    if (firstLine.length > 80) {
+      title = firstLine.substring(0, 80) + '...';
+    } else {
+      title = firstLine;
+    }
+  }
+  
+  // Estrutura básica (ID será gerado depois pelo LessonManager)
   const lesson = {
-    id: `lesson-${lessonDate}`,
     date: lessonDate,
-    title: paragraphs[0] || `Aula de ${lessonDate}`,
+    title: title,
     rawContent: text,
     paragraphs: paragraphs,
     sections: identifySections(paragraphs)

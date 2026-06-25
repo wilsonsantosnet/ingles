@@ -1,0 +1,204 @@
+{
+  "id": "lesson-2026-06-15-3",
+  "date": "2026-06-15",
+  "title": "Automação de Endpoints Privados no Azure com ARM Templates",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the resources shown in the following table.\n\n| Name                              | Description                                                   |\n|-----------------------------------|---------------------------------------------------------------|\n| VNet1                             | Virtual network that contains a subnet named Subnet1          |\n| privatelink.vaultcore.azure.net   | Azure Private DNS zone                                        |\n| Vault1                            | Azure key vault                                               |\n\nYou need to automate the creation of private endpoints for Vault1 by using an Azure Resource Manager (ARM) template.\n\nHow should you complete the template? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\n---\n\n```\n{\n  \"type\": \"Microsoft.Network/privateEndpoints\",\n  \"apiVersion\": \"2024-05-01\",\n  \"name\": \"Vault1-PE\",\n  \"location\": \"southeastasia\",\n  \"properties\": {\n    \"privateLinkServiceConnections\": [\n      {\n        \"name\": \"Vault1-PE\",\n        \"properties\": {\n          \"privateLinkServiceId\": \"[resourceId('Microsoft.KeyVault/vaults', 'Vault1')]\",\n          \"groupIds\": [\n            \"vault\"\n          ]\n        }\n      }\n    ],\n    \"subnet\": {\n      \"id\": \"[resourceId('Microsoft.Network/virtualNetworks/subnets', 'VNET1', 'Subnet1')]\"\n    }\n  }\n}\n```",
+  "enriched": {
+    "title": "Automação de Endpoints Privados no Azure com ARM Templates",
+    "summary": "Nesta aula, você aprenderá a criar endpoints privados para um Azure Key Vault utilizando um template do Azure Resource Manager (ARM). O foco está na configuração de redes virtuais, sub-redes e zonas DNS privadas para habilitar conectividade segura.",
+    "topics": [
+      {
+        "title": "Azure Resource Manager (ARM) Templates",
+        "description": "Uso de templates para provisionar recursos de forma automatizada no Azure.",
+        "category": "Automation",
+        "importance": "high"
+      },
+      {
+        "title": "Private Endpoints no Azure",
+        "description": "Configuração de endpoints privados para conectar serviços de forma segura usando a rede privada.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Azure Key Vault",
+        "description": "Serviço para gerenciamento seguro de chaves, segredos e certificados.",
+        "category": "Security",
+        "importance": "medium"
+      },
+      {
+        "title": "Azure Private DNS Zones",
+        "description": "Gerenciamento de zonas DNS privadas para resolver nomes em redes virtuais.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure Resource Manager (ARM)",
+        "definition": "Plataforma de gerenciamento do Azure para provisionar, gerenciar e organizar recursos em grupos.",
+        "examples": [
+          "ARM Templates para automação",
+          "Implantação de múltiplos recursos simultaneamente"
+        ],
+        "relatedConcepts": [
+          "Azure CLI",
+          "Azure PowerShell"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Private Endpoint",
+        "definition": "Interface de rede privada que conecta serviços do Azure de forma segura à rede virtual.",
+        "examples": [
+          "Conexão segura ao Azure Key Vault",
+          "Integração com Azure Storage via endpoint privado"
+        ],
+        "relatedConcepts": [
+          "Azure Virtual Network",
+          "Azure Private Link"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Azure Key Vault",
+        "definition": "Serviço para armazenamento e gerenciamento seguro de segredos, chaves e certificados.",
+        "examples": [
+          "Armazenamento de connection strings",
+          "Criação de chaves para criptografia"
+        ],
+        "relatedConcepts": [
+          "Azure Security",
+          "Azure Private Endpoint"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure Private DNS Zone",
+        "definition": "Serviço para resolver nomes DNS privados em redes virtuais, suportando conectividade segura.",
+        "examples": [
+          "Configuração de privatelink.vaultcore.azure.net",
+          "Integração com endpoints privados"
+        ],
+        "relatedConcepts": [
+          "Azure Virtual Network",
+          "DNS"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configuração de um endpoint privado para Azure Key Vault",
+        "problem": "Você precisa configurar um endpoint privado para o serviço Azure Key Vault e garantir que ele utilize uma sub-rede existente e uma zona DNS privada.",
+        "solution": "Usar um ARM Template com as propriedades corretas, como PrivateLinkServiceId, subnet ID e a zona DNS privada.",
+        "explanation": "A solução funciona porque o ARM Template permite provisionar todos os recursos necessários de forma automatizada e consistente, garantindo que o endpoint privado seja configurado com a segurança e conectividade exigidas."
+      },
+      {
+        "scenario": "Automatização de endpoints para múltiplos serviços",
+        "problem": "Você deseja automatizar a criação de endpoints privados para vários serviços no Azure.",
+        "solution": "Modificar o ARM Template para incluir múltiplos recursos privateEndpoints, cada um configurado com os IDs dos serviços e sub-redes apropriados.",
+        "explanation": "Permitir múltiplas definições no template garante que você possa escalar a configuração para diversos serviços mantendo a consistência."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é um Private Endpoint no Azure?",
+        "answer": "Um Private Endpoint é uma interface de rede que conecta serviços do Azure à sua rede virtual de forma segura.",
+        "hint": "Pense em conectividade privada entre recursos do Azure.",
+        "topic": "Private Endpoints no Azure"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um endpoint privado para o Azure Key Vault utilizando ARM Templates?",
+        "answer": "Defina o recurso Microsoft.Network/privateEndpoints no template e configure as propriedades privateLinkServiceConnections, subnet e privateLinkServiceId.",
+        "hint": "Verifique os parâmetros obrigatórios do recurso no ARM Template.",
+        "topic": "Azure Resource Manager (ARM) Templates"
+      },
+      {
+        "type": "command",
+        "question": "Qual propriedade do ARM Template é usada para associar o endpoint privado a uma sub-rede específica?",
+        "answer": "A propriedade 'subnet' dentro de 'properties'.",
+        "hint": "Procure por 'subnet' no ARM Template.",
+        "topic": "Azure Resource Manager (ARM) Templates"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um endpoint privado não consegue resolver o nome DNS do serviço?",
+        "answer": "A zona DNS privada pode não estar configurada ou associada corretamente à rede virtual.",
+        "hint": "Verifique a configuração da zona privatelink.vaultcore.azure.net.",
+        "topic": "Azure Private DNS Zones"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a função do Azure Key Vault em uma solução de endpoints privados?",
+        "answer": "Gerenciar segredos, chaves e certificados utilizados pela aplicação, garantindo segurança.",
+        "hint": "Pense em segurança e armazenamento seguro.",
+        "topic": "Azure Key Vault"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que a propriedade 'privateLinkServiceId' deve conter o resourceId do serviço que está sendo configurado.",
+        "relevance": "Essa propriedade é frequentemente testada em questões sobre configuração de Private Endpoints.",
+        "topic": "Private Endpoints no Azure"
+      },
+      {
+        "tip": "Zonas DNS privadas devem corresponder ao serviço de endpoint privado para resolução de nomes funcionar.",
+        "relevance": "Essa é uma configuração crítica para conectividade em redes privadas.",
+        "topic": "Azure Private DNS Zones"
+      },
+      {
+        "tip": "Certifique-se de que a sub-rede especificada no ARM Template exista e tenha espaço de IP disponível.",
+        "relevance": "Questões sobre provisionamento de recursos no Azure podem incluir erros de configuração de rede.",
+        "topic": "Azure Resource Manager (ARM) Templates"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial do Azure Key Vault",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/",
+        "type": "documentation"
+      },
+      {
+        "title": "Azure Private Endpoint Overview",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Referência do Azure Resource Manager Template",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/",
+        "type": "reference"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial do Azure Key Vault",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/",
+        "type": "documentation"
+      },
+      {
+        "title": "Azure Private Endpoint Overview",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Referência do Azure Resource Manager Template",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/",
+        "type": "reference"
+      }
+    ]
+  },
+  "createdAt": "2026-06-15T02:47:35.017Z",
+  "updatedAt": "2026-06-15T02:48:00.033Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-15T02:48:00.030Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

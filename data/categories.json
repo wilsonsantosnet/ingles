@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "ingles",
+      "name": "Inglês",
+      "description": "Estudo de inglês técnico e conversação",
+      "icon": "🇺🇸",
+      "type": "language",
+      "ttsLang": "en-US",
+      "ttsRate": 0.9,
+      "createdAt": "2025-06-01T00:00:00.000Z",
+      "color": "#4A90E2"
+    },
+    {
+      "id": "az104",
+      "name": "Azure AZ-104",
+      "description": "Microsoft Azure Administrator",
+      "icon": "☁️",
+      "type": "technology",
+      "ttsLang": "pt-BR",
+      "ttsRate": 1,
+      "color": "#4A90E2",
+      "createdAt": "2026-03-19T14:01:23.825Z"
+    },
+    {
+      "id": "anki",
+      "name": "Anki",
+      "description": "Cadastro rápido de vocabulário com IA",
+      "icon": "⚡",
+      "color": "#0F766E",
+      "createdAt": "2026-06-14T13:50:57.847Z"
+    }
+  ]
+}

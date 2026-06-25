@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anki Rápido</title>
+  <link rel="stylesheet" href="anki.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <h1>Anki Rápido</h1>
+        <p>Digite a palavra, gere com IA e salve em segundos.</p>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn btn-muted" href="/?manager">Voltar ao Manager</a>
+        <a class="btn btn-muted" href="/">Voltar ao Estudo</a>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>1) Palavra</h2>
+      <div class="row">
+        <input id="word-input" type="text" placeholder="Ex: resilient" maxlength="120">
+        <button id="preview-btn" class="btn btn-primary">Gerar com IA</button>
+      </div>
+      <p id="preview-error" class="error" hidden></p>
+    </section>
+
+    <section class="panel" id="preview-panel" hidden>
+      <h2>2) Prévia</h2>
+      <div class="preview-grid">
+        <div>
+          <label>Palavra</label>
+          <input id="preview-word" type="text">
+        </div>
+        <div>
+          <label>Tradução</label>
+          <input id="preview-translation" type="text">
+        </div>
+        <div>
+          <label>Classe gramatical</label>
+          <input id="preview-pos" type="text" placeholder="noun, verb...">
+        </div>
+        <div>
+          <label>Dificuldade</label>
+          <select id="preview-difficulty">
+            <option value="basic">basic</option>
+            <option value="intermediate">intermediate</option>
+            <option value="advanced">advanced</option>
+          </select>
+        </div>
+        <div class="full">
+          <label>Definição</label>
+          <textarea id="preview-definition" rows="2"></textarea>
+        </div>
+        <div class="full">
+          <label>Exemplos (1 por linha)</label>
+          <textarea id="preview-examples" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="save-panel" hidden>
+      <h2>3) Salvar em aula</h2>
+
+      <div class="mode-switch">
+        <label><input type="radio" name="lesson-mode" value="existing" checked> Aula existente</label>
+        <label><input type="radio" name="lesson-mode" value="new"> Criar nova aula</label>
+      </div>
+
+      <div id="existing-lesson-box">
+        <label>Aula da categoria anki</label>
+        <select id="lesson-select"></select>
+      </div>
+
+      <div id="new-lesson-box" hidden>
+        <div class="row two">
+          <div>
+            <label>Título da aula</label>
+            <input id="new-lesson-title" type="text" placeholder="Ex: Vocabulário do dia">
+          </div>
+          <div>
+            <label>Data</label>
+            <input id="new-lesson-date" type="date">
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="save-btn" class="btn btn-primary">Salvar Palavra</button>
+      </div>
+      <p id="save-feedback" class="feedback" hidden></p>
+    </section>
+  </main>
+
+  <script src="anki.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+{
+  "id": "lesson-2026-05-03-4",
+  "date": "2026-05-03",
+  "title": "Gerenciamento de Blobs e File Shares no Azure Storage Explorer",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:\n\n* Task2  \nUpload blobs to the container  \nBlob storage supports block blobs, append blobs, and page blobs. VHD files used to back IaaS VMs are page blobs. Append blobs are used for logging, such as when you want to write to a file and then keep adding more information. Most files stored in Blob storage are block blobs.  \n\nOn the container ribbon, select Upload. This operation gives you the option to upload a folder or a file.  \n\nChoose the files or folder to upload. Select the blob type. Acceptable choices are Append, Page, or Block blob. Etc.  \n\n* Task3  \nThe following steps illustrate how to create a file share within Storage Explorer.  \n\n  - Open Storage Explorer.  \n  - In the left pane, expand the storage account within which you wish to create the file share.  \n  - Right-click File Shares, and - from the context menu - select Create File Share.  \n\nIncorrect:  \n* Task1  \nYou can create a storage account using the Azure portal, Azure PowerShell, Azure CLI, or an Azure Resource Manager template. You cannot create a storage account in Azure Storage Explorer.  \n\nReference:  \nhttps://learn.microsoft.com/en-us/azure/storage/blobs/quickstart-storage-explorer  \nhttps://learn.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-files",
+  "enriched": {
+    "title": "Gerenciamento de Blobs e File Shares no Azure Storage Explorer",
+    "summary": "Esta aula aborda o upload de blobs no Azure Storage, destacando os tipos de blobs suportados (block, append e page) e a criação de file shares utilizando o Storage Explorer. Também esclarece limitações quanto à criação de contas de armazenamento na ferramenta.",
+    "topics": [
+      {
+        "title": "Upload de blobs no Azure Storage",
+        "description": "Como realizar o upload de arquivos ou pastas para containers no Azure Storage, incluindo a seleção do tipo de blob.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Criação de file shares no Storage Explorer",
+        "description": "Passos para criar file shares dentro de contas de armazenamento usando o Azure Storage Explorer.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Limitações do Azure Storage Explorer",
+        "description": "Identificação de limitações no uso do Azure Storage Explorer, como a impossibilidade de criar contas de armazenamento.",
+        "category": "Storage",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Blob",
+        "definition": "Tipo de armazenamento do Azure que suporta grandes volumes de dados não estruturados, como imagens, vídeos e backups.",
+        "examples": [
+          "Upload de arquivos de log em formato append blob",
+          "Armazenamento de backups como block blobs"
+        ],
+        "relatedConcepts": [
+          "Container",
+          "Azure Storage Account"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Block Blob",
+        "definition": "Tipo de blob usado para armazenar arquivos de dados gerais, como documentos e imagens.",
+        "examples": [
+          "Upload de um arquivo PDF para um container",
+          "Armazenamento de logs gerados por uma aplicação"
+        ],
+        "relatedConcepts": [
+          "Append Blob",
+          "Page Blob"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Append Blob",
+        "definition": "Blob otimizado para operações de anexação, ideal para logs e arquivos que crescem com o tempo.",
+        "examples": [
+          "Armazenar logs de aplicação em tempo real",
+          "Manter um registro contínuo de eventos"
+        ],
+        "relatedConcepts": [
+          "Block Blob",
+          "Page Blob"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Page Blob",
+        "definition": "Blob otimizado para operações de leitura e escrita aleatórias, usado principalmente para armazenar VHDs de VMs.",
+        "examples": [
+          "Armazenar discos virtuais para VMs do Azure",
+          "Gerenciar dados com acesso aleatório frequente"
+        ],
+        "relatedConcepts": [
+          "Block Blob",
+          "Disk Storage"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "File Share",
+        "definition": "Serviço de compartilhamento de arquivos do Azure Storage que permite acesso via SMB para armazenamento e compartilhamento.",
+        "examples": [
+          "Montar um file share em uma VM do Azure",
+          "Compartilhar arquivos entre várias aplicações"
+        ],
+        "relatedConcepts": [
+          "Azure Storage Account",
+          "Storage Explorer"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Upload de logs de aplicação para um container",
+        "problem": "Uma aplicação gera logs diários que precisam ser armazenados em um local centralizado. É necessário enviar os arquivos para um container no Azure Storage.",
+        "solution": "1. Acesse o Azure Storage Explorer. 2. Selecione o container desejado. 3. Clique em 'Upload' e escolha os arquivos. 4. Selecione 'Append Blob' como tipo de blob. 5. Conclua o upload.",
+        "explanation": "O uso de append blobs permite adicionar novos logs ao final do arquivo, garantindo que os dados existentes não sejam sobrescritos."
+      },
+      {
+        "scenario": "Criação de um file share para armazenar arquivos de backup",
+        "problem": "Você precisa criar um file share no Azure Storage para armazenar backups de uma aplicação.",
+        "solution": "1. Abra o Azure Storage Explorer. 2. Navegue até a conta de armazenamento desejada. 3. Clique com o botão direito em 'File Shares' e selecione 'Create File Share'. 4. Nomeie o file share e configure as permissões necessárias.",
+        "explanation": "File shares permitem acesso via SMB, o que facilita o uso por múltiplos sistemas e aplicações."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Quais são os três tipos de blobs suportados pelo Azure Storage?",
+        "answer": "Block blobs, append blobs e page blobs.",
+        "hint": "Um deles é usado para VHDs, outro para logs e o terceiro para dados gerais.",
+        "topic": "Blob"
+      },
+      {
+        "type": "command",
+        "question": "Qual operação deve ser usada no Azure Storage Explorer para fazer upload de arquivos?",
+        "answer": "A operação 'Upload' disponível no ribbon do container.",
+        "hint": "É a opção localizada no menu superior do container no Storage Explorer.",
+        "topic": "Upload de blobs"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa armazenar arquivos de log que crescem continuamente. Qual tipo de blob deve ser usado?",
+        "answer": "Append blob.",
+        "hint": "Esse tipo de blob é otimizado para operações de anexação.",
+        "topic": "Append Blob"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "É possível criar uma conta de armazenamento no Azure Storage Explorer? Justifique.",
+        "answer": "Não. Contas de armazenamento só podem ser criadas via Azure Portal, CLI, PowerShell ou ARM templates.",
+        "hint": "O Storage Explorer é limitado a gerenciar recursos existentes.",
+        "topic": "Limitações do Azure Storage Explorer"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a principal vantagem de usar file shares no Azure Storage?",
+        "answer": "Permitir acesso compartilhado via SMB para múltiplos sistemas e aplicações.",
+        "hint": "Pense no compartilhamento de arquivos entre diferentes usuários ou sistemas.",
+        "topic": "File Share"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que contas de armazenamento não podem ser criadas no Azure Storage Explorer.",
+        "relevance": "Essa é uma pegadinha comum em questões de certificação.",
+        "topic": "Limitações do Azure Storage Explorer"
+      },
+      {
+        "tip": "Entenda os casos de uso para cada tipo de blob (block, append, page).",
+        "relevance": "Questões frequentemente pedem para identificar o tipo de blob adequado para um cenário.",
+        "topic": "Blob"
+      },
+      {
+        "tip": "Saiba como criar file shares e suas utilidades no Azure Storage Explorer.",
+        "relevance": "A criação e o uso de file shares são frequentemente abordados em exames.",
+        "topic": "File Share"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre o Azure Storage Explorer (Blobs)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/quickstart-storage-explorer",
+        "type": "documentation"
+      },
+      {
+        "title": "Guia oficial sobre file shares no Azure Storage Explorer",
+        "url": "https://learn.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-files",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre o Azure Storage Explorer (Blobs)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/quickstart-storage-explorer",
+        "type": "documentation"
+      },
+      {
+        "title": "Guia oficial sobre file shares no Azure Storage Explorer",
+        "url": "https://learn.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-files",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T19:22:29.055Z",
+  "updatedAt": "2026-05-03T19:22:55.062Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T19:22:55.060Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

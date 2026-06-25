@@ -1,0 +1,205 @@
+{
+  "id": "lesson-2026-05-03-5",
+  "date": "2026-05-03",
+  "title": "Movendo Recursos entre Grupos no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains two resource groups named RG1 and RG2.\n\nRG1 contains the resources shown in the following table.\n\n| Name  | Description                          |\n|-------|--------------------------------------|\n| VM1   | Virtual machine                      |\n| VNet1 | Virtual network                      |\n| NIC1  | Network interface used by VM1        |\n| Disk1 | OS disk used by VM1                  |\n\nYou move VM1 to RG2.\n\nWhich resources are in RG2 after the move?\n\nA. VM1 only  \nB. VM1 and Disk1 only  \nC. VM1, NIC1, and Disk1 only  \nD. VM1, VNet1, NIC1, and Disk1  \n\nAnswer: C",
+  "enriched": {
+    "title": "Movendo Recursos entre Grupos no Azure",
+    "summary": "A aula aborda o comportamento e os impactos técnicos ao mover recursos entre grupos de recursos no Azure. Inclui exemplos práticos e conceitos relacionados a dependências de recursos e organização no Azure.",
+    "topics": [
+      {
+        "title": "Grupos de Recursos no Azure",
+        "description": "Estruturas lógicas usadas para organizar recursos no Azure.",
+        "category": "Management",
+        "importance": "high"
+      },
+      {
+        "title": "Dependências entre Recursos",
+        "description": "Como recursos dependentes são afetados ao mover um recurso para outro grupo.",
+        "category": "Management",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Machines no Azure",
+        "description": "Conceitos básicos de máquinas virtuais e seus recursos associados.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Rede Virtual no Azure",
+        "description": "Conceitos relacionados às redes virtuais (VNets) e interfaces de rede (NICs).",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Resource Group (Grupo de Recursos)",
+        "definition": "Uma unidade lógica no Azure que agrupa recursos relacionados para gerenciamento e organização.",
+        "examples": [
+          "RG1 contendo VM1, VNet1, NIC1 e Disk1",
+          "Mover recursos de RG1 para RG2"
+        ],
+        "relatedConcepts": [
+          "Azure Subscription",
+          "Resource Manager"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Virtual Machine (VM)",
+        "definition": "Um recurso de computação que simula um computador físico no Azure.",
+        "examples": [
+          "VM1 hospedada em RG1",
+          "Configuração de NIC1 e Disk1 para VM1"
+        ],
+        "relatedConcepts": [
+          "Disk",
+          "NIC",
+          "VNet"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Disk",
+        "definition": "Disco usado para armazenar o sistema operacional ou dados de uma VM.",
+        "examples": [
+          "Disk1 como disco de sistema operacional de VM1",
+          "Disk gerenciado no Azure"
+        ],
+        "relatedConcepts": [
+          "VM",
+          "Storage Account"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "NIC (Network Interface Card)",
+        "definition": "Interface de rede que conecta uma VM a uma rede virtual no Azure.",
+        "examples": [
+          "NIC1 conectada a VNet1",
+          "Configuração de IP público em uma NIC"
+        ],
+        "relatedConcepts": [
+          "VNet",
+          "VM",
+          "IP Address"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Virtual Network (VNet)",
+        "definition": "Rede lógica no Azure que permite a comunicação entre recursos.",
+        "examples": [
+          "VNet1 associada a RG1",
+          "Configuração de sub-redes em uma VNet"
+        ],
+        "relatedConcepts": [
+          "Subnet",
+          "NIC",
+          "Firewall"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Movendo uma VM entre grupos de recursos",
+        "problem": "Você precisa mover uma máquina virtual chamada VM1 de RG1 para RG2, mas quer entender quais recursos serão movidos junto com ela.",
+        "solution": "Ao mover a VM1 para RG2, os recursos dependentes da VM, como NIC1 e Disk1, também serão movidos automaticamente.",
+        "explanation": "Quando uma VM é movida no Azure, todos os seus recursos relacionados diretamente dependentes, como NICs e discos, também são movidos. No entanto, recursos independentes, como VNets, permanecem no grupo de recursos original."
+      },
+      {
+        "scenario": "Organizando recursos em grupos diferentes",
+        "problem": "Você deseja reorganizar os recursos de um grupo de recursos para melhorar a organização e o gerenciamento.",
+        "solution": "Identifique os recursos independentes e os recursos dependentes. Mova apenas os recursos necessários e deixe os independentes no grupo de recursos original.",
+        "explanation": "A organização de recursos em grupos diferentes permite segmentar responsabilidades e gerenciar permissões de forma mais eficaz. Recursos dependentes não podem ser movidos separadamente de seus recursos primários."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que acontece com os recursos dependentes de uma VM ao movê-la para outro grupo de recursos?",
+        "answer": "Os recursos dependentes, como discos e NICs, são movidos junto com a VM.",
+        "hint": "Pense nas dependências entre recursos no Azure.",
+        "topic": "Dependências entre Recursos"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você move uma VM para RG2. O que acontece com a VNet associada à VM?",
+        "answer": "A VNet permanece no grupo de recursos original.",
+        "hint": "A VNet não depende diretamente da VM.",
+        "topic": "Rede Virtual no Azure"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Ao mover uma VM, você percebe que a VNet não foi movida. Por quê?",
+        "answer": "Porque a VNet não é um recurso dependente direto da VM.",
+        "hint": "Analise o que é considerado dependente no Azure.",
+        "topic": "Dependências entre Recursos"
+      },
+      {
+        "type": "command",
+        "question": "Como verificar os recursos em um grupo de recursos específico no Azure CLI?",
+        "answer": "Use o comando `az resource list` com o parâmetro `--resource-group`.",
+        "hint": "Procure um comando que liste recursos em um grupo.",
+        "topic": "Grupos de Recursos no Azure"
+      },
+      {
+        "type": "concept",
+        "question": "Quais são os componentes básicos de uma VM no Azure?",
+        "answer": "Os componentes básicos incluem VM, NIC, disco e, opcionalmente, VNet.",
+        "hint": "Considere os recursos que compõem uma máquina virtual.",
+        "topic": "Virtual Machines no Azure"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Ao mover uma VM, lembre-se de que apenas os recursos diretamente dependentes (como NICs e discos) serão movidos automaticamente.",
+        "relevance": "Essa é uma área comum de confusão em exames, especialmente ao considerar recursos independentes, como VNets.",
+        "topic": "Dependências entre Recursos"
+      },
+      {
+        "tip": "Sempre verifique as dependências antes de mover recursos no Azure.",
+        "relevance": "Evita problemas de conectividade e mau funcionamento de recursos após a migração.",
+        "topic": "Grupos de Recursos no Azure"
+      }
+    ],
+    "references": [
+      {
+        "title": "Microsoft Learn - Gerenciar grupos de recursos do Azure",
+        "url": "https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "type": "documentation"
+      },
+      {
+        "title": "Microsoft Learn - Mover recursos para um novo grupo de recursos",
+        "url": "https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/move-resource-group-and-subscription",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Microsoft Learn - Gerenciar grupos de recursos do Azure",
+        "url": "https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/manage-resource-groups-portal",
+        "type": "documentation"
+      },
+      {
+        "title": "Microsoft Learn - Mover recursos para um novo grupo de recursos",
+        "url": "https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/move-resource-group-and-subscription",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T19:30:26.257Z",
+  "updatedAt": "2026-05-03T19:31:14.085Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T19:31:14.084Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

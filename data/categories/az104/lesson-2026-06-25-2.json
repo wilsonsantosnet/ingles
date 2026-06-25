@@ -1,0 +1,203 @@
+{
+  "id": "lesson-2026-06-25-2",
+  "date": "2026-06-25",
+  "title": "Configuração de Application Security Groups (ASG) no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the resources in the following table.\n\n| Name   | Type                          |\n|--------|-------------------------------|\n| ASG1   | Application security group    |\n| NSG1   | Network security group (NSG)  |\n| Subnet1| Subnet                        |\n| VNet1  | Virtual network               |\n| NIC1   | Network interface             |\n| VM1    | Virtual machine               |\n\nSubnet1 is associated to VNet1. NIC1 attaches VM1 to Subnet1.\n\nYou need to apply ASG1 to VM1.\n\nWhat should you do?\n\n☑ A Associate NIC1 to ASG1  \n☐ B Modify the properties of ASG1  \n☐ C Modify the properties of NSG1\n\nhttps://learn.microsoft.com/pt-br/azure/virtual-network/application-security-groups",
+  "enriched": {
+    "title": "Configuração de Application Security Groups (ASG) no Azure",
+    "summary": "Esta aula aborda como associar um Application Security Group (ASG) a uma máquina virtual (VM) no Azure. O conteúdo inclui a relação entre ASG, Network Security Groups (NSG), subnets, e outros componentes de rede, além de configurá-los corretamente para cenários práticos.",
+    "topics": [
+      {
+        "title": "Application Security Groups (ASG)",
+        "description": "Grupos lógicos usados para simplificar a configuração de regras de segurança de rede em máquinas virtuais.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Network Security Groups (NSG)",
+        "description": "Regras que permitem ou negam o tráfego de rede para recursos do Azure.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Subnets e redes virtuais (VNet)",
+        "description": "Estruturas de rede essenciais no Azure para segmentação e conectividade.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Network Interface (NIC)",
+        "description": "Componente que conecta máquinas virtuais à rede.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Máquinas Virtuais (VM)",
+        "description": "Instâncias de computação que rodam na infraestrutura do Azure.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Application Security Group (ASG)",
+        "definition": "Recurso que permite agrupar VMs logicamente para configurar regras de segurança de rede.",
+        "examples": [
+          "Grupo ASG1 associado a VMs para tráfego HTTP",
+          "Agrupamento lógico para isolar VMs de front-end"
+        ],
+        "relatedConcepts": [
+          "Network Security Group (NSG)",
+          "Virtual Network (VNet)"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Network Security Group (NSG)",
+        "definition": "Recurso que contém regras de segurança para controlar o tráfego de entrada e saída.",
+        "examples": [
+          "Regra para permitir tráfego na porta 443",
+          "Regra para bloquear tráfego de saída"
+        ],
+        "relatedConcepts": [
+          "Application Security Group (ASG)",
+          "Subnets"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Virtual Network (VNet)",
+        "definition": "Rede lógica no Azure usada para conectar recursos de maneira segura.",
+        "examples": [
+          "VNet1 conectando front-end e back-end",
+          "VNet com subnets separadas para diferentes funções"
+        ],
+        "relatedConcepts": [
+          "Subnets",
+          "Network Interface (NIC)"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Subnet",
+        "definition": "Segmentação de uma VNet que permite isolar e gerenciar o tráfego entre recursos.",
+        "examples": [
+          "Subnet1 para back-end",
+          "Subnet separada para desenvolvimento e produção"
+        ],
+        "relatedConcepts": [
+          "Virtual Network (VNet)",
+          "Network Security Group (NSG)"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Network Interface (NIC)",
+        "definition": "Interface usada para conectar uma máquina virtual a uma rede.",
+        "examples": [
+          "NIC1 conectando VM1 à Subnet1",
+          "NIC para configurar IPs públicos e privados"
+        ],
+        "relatedConcepts": [
+          "Virtual Machine (VM)",
+          "Subnet"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Associar um ASG a uma máquina virtual",
+        "problem": "Você precisa configurar regras de segurança para uma VM usando um Application Security Group (ASG).",
+        "solution": "Associe o NIC da VM ao ASG configurado.",
+        "explanation": "No Azure, os ASGs são aplicados diretamente aos NICs das VMs, permitindo que regras de segurança sejam configuradas de forma lógica e escalável."
+      },
+      {
+        "scenario": "Configurar NSG e ASG em conjunto",
+        "problem": "Você deseja aplicar regras de segurança a um grupo de VMs enquanto mantém controle granular por subnet.",
+        "solution": "Crie um ASG para as VMs e configure regras no NSG associando-o à subnet correspondente.",
+        "explanation": "Os ASGs operam no nível do NIC, enquanto os NSGs operam no nível da subnet, permitindo um controle combinado e eficiente."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é um Application Security Group (ASG) e como ele é usado?",
+        "answer": "Um ASG é um recurso no Azure que permite agrupar VMs logicamente para configuração de regras de segurança de rede.",
+        "hint": "Pense em como os ASGs simplificam a configuração de regras de segurança.",
+        "topic": "Application Security Groups (ASG)"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você associaria um ASG a uma VM no Azure?",
+        "answer": "Associando o NIC da VM ao ASG desejado.",
+        "hint": "O ASG opera no nível do NIC.",
+        "topic": "Application Security Groups (ASG)"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando pode ser usado para associar um NIC a um ASG no Azure CLI?",
+        "answer": "az network nic update --name <NIC_NAME> --resource-group <RESOURCE_GROUP> --application-security-groups <ASG_ID>",
+        "hint": "Use o comando `az network nic update`.",
+        "topic": "Network Interface (NIC)"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que uma regra de NSG pode não funcionar para uma VM associada a um ASG?",
+        "answer": "O NSG pode não estar configurado para considerar o ASG ou pode haver conflito de regras.",
+        "hint": "Verifique as regras do NSG e a associação do ASG.",
+        "topic": "Network Security Groups (NSG)"
+      },
+      {
+        "type": "concept",
+        "question": "Qual a diferença entre um ASG e um NSG?",
+        "answer": "Um ASG agrupa VMs logicamente para aplicação de regras de segurança; um NSG define regras que controlam o tráfego de rede para subnets ou NICs.",
+        "hint": "Pense em níveis de aplicação das regras de segurança.",
+        "topic": "Application Security Groups (ASG)"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que ASGs são associados a NICs, não diretamente a VMs ou subnets.",
+        "relevance": "Essa é uma área onde perguntas com opções confusas podem aparecer.",
+        "topic": "Application Security Groups (ASG)"
+      },
+      {
+        "tip": "Entenda como ASGs e NSGs trabalham juntos para controlar o tráfego.",
+        "relevance": "É comum que exames explorem a relação entre esses dois recursos.",
+        "topic": "Network Security Groups (NSG)"
+      },
+      {
+        "tip": "Verifique se as regras de NSG estão configuradas corretamente para permitir o tráfego esperado.",
+        "relevance": "Questões sobre troubleshooting de conectividade são frequentes.",
+        "topic": "Network Security Groups (NSG)"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre Application Security Groups no Azure",
+        "url": "https://learn.microsoft.com/pt-br/azure/virtual-network/application-security-groups",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre Application Security Groups no Azure",
+        "url": "https://learn.microsoft.com/pt-br/azure/virtual-network/application-security-groups",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-06-25T13:03:43.200Z",
+  "updatedAt": "2026-06-25T13:05:15.368Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-25T13:05:15.366Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

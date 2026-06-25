@@ -1,0 +1,150 @@
+{
+  "id": "lesson-2026-05-02-3",
+  "date": "2026-05-02",
+  "title": "Azure Subscription Alerts",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:\n\nAnswer Area\n\nFor Alert1, User response [answer choice]:\ncannot be changed  \ncan be changed to New only  \ncan be changed to Acknowledged only  \ncan be changed to New or Acknowledged  \n\nFor Alert2, User response [answer choice]:\ncannot be changed  \ncan be changed to Acknowledged only  \ncan be changed to closed only  \ncan be changed to Acknowledged or Closed  \n\nBox 1: cannot be changed  \nAlert1 is closed. It cannot be changed.  \n\nBox 2: can be changed to Acknowledged or Closed  \nAlert2 is new. You can then change the response to ‘Acknowledged’ or ‘closed’.  \n\nReference:  \nhttps://github.com/MicrosoftDocs/azure-docs/issues/94131",
+  "enriched": {
+    "summary": "A aula aborda a possibilidade de alteração de estados de alertas (Alert1 e Alert2) com base em suas condições atuais, destacando as regras específicas de modificação e os estados permitidos. O conteúdo inclui uma explicação técnica fundamentada e referência oficial na documentação Azure.",
+    "topics": [
+      {
+        "title": "Alert States Management",
+        "description": "Exploração das regras de alteração de estados de alertas no Azure com base em condições predefinidas.",
+        "category": "Monitoring",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Alert State",
+        "definition": "Representa o estado atual de um alerta, como 'New', 'Acknowledged' ou 'Closed', que determina as ações permitidas.",
+        "examples": [
+          "Um alerta 'New' pode ser alterado para 'Acknowledged' ou 'Closed'",
+          "Um alerta 'Closed' não pode ser alterado"
+        ],
+        "relatedConcepts": [
+          "Monitoring Alerts",
+          "Alert Rules"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Acknowledged State",
+        "definition": "Estado intermediário que indica que um alerta foi reconhecido, mas ainda não resolvido.",
+        "examples": [
+          "Alterar um alerta 'New' para 'Acknowledged'",
+          "Usar 'Acknowledged' antes de fechar um alerta"
+        ],
+        "relatedConcepts": [
+          "Alert Workflow",
+          "Alert Resolution"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Closed State",
+        "definition": "Estado final de um alerta que indica que ele foi resolvido ou não requer mais ação.",
+        "examples": [
+          "Um alerta 'Acknowledged' pode ser alterado para 'Closed'",
+          "Um alerta 'New' pode ser diretamente fechado"
+        ],
+        "relatedConcepts": [
+          "Alert Lifecycle",
+          "Monitoring Automation"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Alteração de estado de alerta: New para Acknowledged ou Closed",
+        "problem": "Um alerta foi identificado como 'New'. O usuário precisa alterar seu estado para 'Acknowledged' ou 'Closed'.",
+        "solution": "Verificar o estado inicial do alerta como 'New' e modificar para 'Acknowledged' ou 'Closed' utilizando as opções disponíveis.",
+        "explanation": "Um alerta no estado 'New' permite modificações para 'Acknowledged' (indicando que foi reconhecido) ou diretamente para 'Closed' (indicando que foi resolvido). Essa flexibilidade é importante para workflows de monitoramento."
+      },
+      {
+        "scenario": "Restrição de alteração de estado: Closed",
+        "problem": "Um alerta foi identificado como 'Closed'. O usuário tenta modificar seu estado.",
+        "solution": "Confirmar que alertas no estado 'Closed' não podem ser alterados e comunicar ao usuário que ações adicionais não são permitidas.",
+        "explanation": "O estado 'Closed' é final e indica que o alerta já foi resolvido ou não requer ação. Por isso, ele não pode ser modificado."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual estado de alerta não pode ser alterado?",
+        "answer": "'Closed'",
+        "hint": "Considere o estado final de um alerta.",
+        "topic": "Alert States Management"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Um alerta está no estado 'New'. Quais estados ele pode ser alterado?",
+        "answer": "'Acknowledged' ou 'Closed'",
+        "hint": "Considere os estados permitidos para um alerta 'New'.",
+        "topic": "Alert States Management"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Um alerta foi alterado para 'Acknowledged'. Qual seria o próximo estado possível?",
+        "answer": "'Closed'",
+        "hint": "Considere o fluxo de resolução de alertas.",
+        "topic": "Alert States Management"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Um usuário tenta alterar um alerta 'Closed'. O que aconteceria?",
+        "answer": "A alteração não seria permitida, pois o estado 'Closed' é final.",
+        "hint": "Considere as regras de estados imutáveis.",
+        "topic": "Alert States Management"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Qual seria o primeiro passo para alterar um alerta 'New' para 'Closed'?",
+        "answer": "Verificar o estado do alerta e garantir que ele está definido como 'New'.",
+        "hint": "Considere o início do fluxo de modificação de alertas.",
+        "topic": "Alert States Management"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda quais estados de alerta podem ser modificados e quais são imutáveis.",
+        "relevance": "Essas regras são frequentemente testadas em questões de certificação relacionadas ao monitoramento.",
+        "topic": "Alert States Management"
+      },
+      {
+        "tip": "Lembre-se que 'Closed' é um estado final e não permite alterações.",
+        "relevance": "É uma pegadinha comum em exames que testam conhecimento sobre alertas.",
+        "topic": "Alert States Management"
+      },
+      {
+        "tip": "Diferencie entre 'Acknowledged' e 'Closed' e os contextos em que cada um é usado.",
+        "relevance": "Exames podem avaliar sua compreensão do ciclo de vida dos alertas.",
+        "topic": "Alert States Management"
+      }
+    ]
+  },
+  "createdAt": "2026-05-02T20:46:12.855Z",
+  "updatedAt": "2026-05-02T21:01:39.814Z",
+  "status": "enriched",
+  "generatedContents": [
+    {
+      "id": "gen-1777755043226",
+      "generatedContent": {
+        "title": "Explicação da Pergunta sobre Alertas na Assinatura Azure",
+        "type": "explanation",
+        "content": "A pergunta apresentada está relacionada à análise de alertas em uma assinatura Azure. No gráfico exibido, temos informações sobre os alertas que foram disparados na assinatura. Vamos detalhar os elementos importantes:\n\n1. **Resumo dos Alertas**:\n   - Total de alertas: 4\n   - Alertas críticos: 0\n   - Alertas de erro: 0\n   - Alertas de aviso: 0\n   - Alertas informativos: 0\n   - Alertas verbose: 4\n\n   Isso indica que todos os alertas disparados são classificados como 'Verbose', que geralmente fornecem informações detalhadas e não indicam uma emergência ou problema crítico.\n\n2. **Detalhes dos Alertas**:\n   - Cada alerta tem um nome (Alert1, Alert2, etc.), severidade, condição do alerta, resposta do usuário e o horário em que foi disparado.\n   - Severidade: Todos os alertas têm severidade 4 - Verbose.\n   - Condição do alerta: Todos os alertas estão na condição 'Fired', ou seja, foram disparados.\n   - Resposta do usuário: Dois alertas estão marcados como 'New', indicando que ainda não foram tratados, e dois estão marcados como 'Closed', indicando que já foram reconhecidos e encerrados.\n   - Horário: Dois alertas foram disparados às 2:09 PM e dois às 2:04 PM no dia 29/04/2022.\n\n3. **Objetivo da Pergunta**:\n   A questão pede para usar menus suspensos para selecionar as opções corretas que completam afirmações com base nas informações apresentadas no gráfico. Isso exige que você analise os dados exibidos e escolha as respostas adequadas.\n\n4. **Nota Importante**:\n   Cada seleção correta vale um ponto, então é essencial ler e interpretar as informações cuidadosamente antes de responder.\n\nSe precisar de auxílio em identificar padrões ou selecionar respostas específicas, forneça mais contexto sobre as opções disponíveis nos menus suspensos."
+      },
+      "generatedAt": "2026-05-02T20:50:43.226Z",
+      "userPrompt": "pode me ajudar a enteder essa pergunta?"
+    }
+  ],
+  "enrichedAt": "2026-05-02T21:01:39.812Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

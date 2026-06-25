@@ -1,23 +1,254 @@
+// ============================================
+// TEXT-TO-SPEECH (TTS)
+// ============================================
+
+const TTS = {
+  speaking: false,
+  queue: [],
+  currentUtterance: null,
+
+  /** Fala um texto individual */
+  speak(text, lang = 'en-US', rate = 0.9) {
+    this.stop();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = rate;
+    utterance.onend = () => { this.speaking = false; this._updateButtons(); };
+    utterance.onerror = () => { this.speaking = false; this._updateButtons(); };
+    this.speaking = true;
+    this.currentUtterance = utterance;
+    speechSynthesis.speak(utterance);
+    this._updateButtons();
+  },
+
+  /** Fala uma lista de textos em sequência */
+  speakList(texts, lang = 'en-US', rate = 0.9) {
+    this.stop();
+    this.queue = [...texts];
+    this.speaking = true;
+    this._updateButtons();
+    this._speakNext(lang, rate);
+  },
+
+  _speakNext(lang, rate) {
+    if (this.queue.length === 0) {
+      this.speaking = false;
+      this._updateButtons();
+      return;
+    }
+    const text = this.queue.shift();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = rate;
+    utterance.onend = () => {
+      // Pequena pausa entre itens
+      setTimeout(() => this._speakNext(lang, rate), 400);
+    };
+    utterance.onerror = () => {
+      this.speaking = false;
+      this.queue = [];
+      this._updateButtons();
+    };
+    this.currentUtterance = utterance;
+    speechSynthesis.speak(utterance);
+  },
+
+  /** Para a fala atual */
+  stop() {
+    speechSynthesis.cancel();
+    this.queue = [];
+    this.speaking = false;
+    this.currentUtterance = null;
+    this._updateButtons();
+  },
+
+  /** Atualiza visual dos botões */
+  _updateButtons() {
+    document.querySelectorAll('.tts-btn').forEach(btn => {
+      btn.classList.toggle('tts-playing', false);
+    });
+  }
+};
+
+/** Retorna lang e rate da categoria atual */
+function getTTSConfig() {
+  return {
+    lang: currentCategory?.ttsLang || 'en-US',
+    rate: currentCategory?.ttsRate || 0.9
+  };
+}
+
+/** Fala um texto individual (chamado pelos botões inline) */
+function ttsSpeak(text, lang) {
+  if (TTS.speaking) {
+    TTS.stop();
+  } else {
+    const cfg = getTTSConfig();
+    TTS.speak(text, lang || cfg.lang, cfg.rate);
+  }
+}
+
+/** Fala todos os itens de uma seção */
+function ttsSpeakSection(sectionId) {
+  if (TTS.speaking) {
+    TTS.stop();
+    return;
+  }
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  const items = section.querySelectorAll('[data-tts-text]');
+  const texts = Array.from(items).map(el => el.getAttribute('data-tts-text')).filter(Boolean);
+  if (texts.length > 0) {
+    const cfg = getTTSConfig();
+    TTS.speakList(texts, cfg.lang, cfg.rate);
+  }
+}
+
+/** Fala o texto visível de um elemento DOM pelo ID */
+function ttsReadElement(elementId) {
+  if (TTS.speaking) {
+    TTS.stop();
+    return;
+  }
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const text = el.innerText || el.textContent || '';
+  if (text.trim()) {
+    const cfg = getTTSConfig();
+    TTS.speak(text.trim(), cfg.lang, cfg.rate);
+  }
+}
+
+// Expor globalmente
+window.ttsSpeak = ttsSpeak;
+window.ttsSpeakSection = ttsSpeakSection;
+window.ttsReadElement = ttsReadElement;
+window.TTS = TTS;
+
 // Estado da aplicação
+let currentCategory = null;
+let categoryAdapter = null;
 let currentItems = [];
 let currentIndex = 0;
 let stats = {};
+let categories = [];
 
 // Inicializar aplicação
 document.addEventListener('DOMContentLoaded', () => {
-  loadStats();
-  loadLessons();
-  loadStudySession();
+  const urlParams = new URLSearchParams(window.location.search);
+  const isManager = urlParams.has('manager');
+  
+  if (isManager) {
+    // Modo manager: mostrar tela de seleção de categorias
+    loadCategories();
+  } else {
+    // Modo padrão: ir direto para inglês
+    loadCategoriesAndAutoSelect();
+  }
   setupEventListeners();
 });
+
+// ============================================
+// CATEGORIAS
+// ============================================
+
+async function loadCategories() {
+  try {
+    const response = await fetch('/api/categories');
+    const data = await response.json();
+    categories = data.categories;
+    displayCategories();
+  } catch (error) {
+    console.error('Erro ao carregar categorias:', error);
+    document.getElementById('categories-list').innerHTML = 
+      '<p class="error">Erro ao carregar categorias.</p>';
+  }
+}
+
+async function loadCategoriesAndAutoSelect() {
+  try {
+    const response = await fetch('/api/categories');
+    const data = await response.json();
+    categories = data.categories;
+    await selectCategory('ingles');
+  } catch (error) {
+    console.error('Erro ao carregar categoria:', error);
+    // Fallback: mostrar seletor
+    loadCategories();
+  }
+}
+
+function displayCategories() {
+  const container = document.getElementById('categories-list');
+  
+  if (!categories || categories.length === 0) {
+    container.innerHTML = `
+      <p class="loading">Nenhuma categoria disponível.</p>
+      <p class="hint">Execute: npm run categories:create -- --id "id" --name "Nome"</p>
+    `;
+    return;
+  }
+  
+  container.innerHTML = categories.map(cat => `
+    <div class="category-card">
+      <div onclick="selectCategory('${cat.id}')" style="cursor: pointer;">
+        <div class="category-icon">${cat.icon}</div>
+        <h3>${cat.name}</h3>
+        <p>${cat.description}</p>
+      </div>
+      <button class="btn btn-secondary" onclick="event.stopPropagation(); window.location.href='/manage.html?category=${cat.id}'" style="width: 100%; margin-top: 10px;">
+        🛠️ Gerenciar Aulas
+      </button>
+    </div>
+  `).join('');
+}
+
+async function selectCategory(categoryId) {
+  currentCategory = categories.find(c => c.id === categoryId);
+  
+  // Criar adaptador para essa categoria
+  categoryAdapter = new CategoryAdapter(currentCategory);
+  
+  // Esconder seletor de categorias
+  document.getElementById('category-section').style.display = 'none';
+  
+  // Mostrar seções de estudo
+  document.getElementById('stats-section').style.display = 'block';
+  document.getElementById('study-section').style.display = 'block';
+  document.getElementById('lessons-section').style.display = 'block';
+  
+  // Carregar dados da categoria
+  await loadStats(categoryId);
+  await loadLessons(categoryId);
+  await loadStudySession(categoryId);
+}
+
+function changeCategory() {
+  currentCategory = null;
+  categoryAdapter = null;
+  currentItems = [];
+  currentIndex = 0;
+  
+  // Mostrar seletor
+  document.getElementById('category-section').style.display = 'block';
+  
+  // Esconder seções
+  document.getElementById('stats-section').style.display = 'none';
+  document.getElementById('study-section').style.display = 'none';
+  document.getElementById('lessons-section').style.display = 'none';
+}
+
+// Tornar funções globais
+window.selectCategory = selectCategory;
+window.changeCategory = changeCategory;
 
 // ============================================
 // CARREGAR DADOS
 // ============================================
 
-async function loadStats() {
+async function loadStats(categoryId) {
   try {
-    const response = await fetch('/api/stats');
+    const response = await fetch(`/api/categories/${categoryId}/stats`);
     stats = await response.json();
     updateStatsUI();
   } catch (error) {
@@ -25,21 +256,21 @@ async function loadStats() {
   }
 }
 
-async function loadLessons() {
+async function loadLessons(categoryId) {
   try {
-    const response = await fetch('/api/lessons');
-    const index = await response.json();
-    displayLessons(index.lessons);
+    const response = await fetch(`/api/categories/${categoryId}/lessons`);
+    const lessons = await response.json();
+    displayLessons(lessons, categoryId);
   } catch (error) {
     console.error('Erro ao carregar aulas:', error);
     document.getElementById('lessons-list').innerHTML = 
-      '<p class="loading">Erro ao carregar aulas. Execute o processamento primeiro.</p>';
+      '<p class="loading">Nenhuma aula processada. Execute o processamento primeiro.</p>';
   }
 }
 
-async function loadStudySession() {
+async function loadStudySession(categoryId) {
   try {
-    const response = await fetch('/api/study/today');
+    const response = await fetch(`/api/categories/${categoryId}/study/today`);
     const data = await response.json();
     
     currentItems = data.items;
@@ -58,22 +289,59 @@ async function loadStudySession() {
   }
 }
 
+// Carregar aula específica para prática (não baseada em SRS)
+async function startLessonPractice(categoryId, lessonId) {
+  try {
+    const response = await fetch(`/api/categories/${categoryId}/lessons/${lessonId}/practice`);
+    const data = await response.json();
+    
+    currentItems = data.items;
+    currentIndex = 0;
+    
+    if (currentItems.length === 0) {
+      alert('❌ Esta aula não possui itens para praticar ainda.');
+      return;
+    }
+    
+    // Rolar para área de estudo
+    document.getElementById('study-section').scrollIntoView({ behavior: 'smooth' });
+    
+    // Mostrar área de estudo
+    document.getElementById('no-items').style.display = 'none';
+    document.getElementById('study-area').style.display = 'block';
+    
+    // Atualizar título da sessão
+    const studyHeader = document.querySelector('#study-section h2');
+    if (studyHeader) {
+      studyHeader.innerHTML = `🎯 Praticando: ${data.lessonTitle || lessonId}`;
+    }
+    
+    showCurrentCard();
+  } catch (error) {
+    console.error('Erro ao carregar aula para prática:', error);
+    alert('❌ Erro ao carregar exercícios da aula.');
+  }
+}
+
+window.startLessonPractice = startLessonPractice;
+
 // ============================================
 // INTERFACE
 // ============================================
 
 function updateStatsUI() {
-  document.getElementById('stat-due').textContent = stats.dueToday + stats.overdue || 0;
+  document.getElementById('stat-due').textContent = (stats.dueToday || 0) + (stats.overdue || 0);
   document.getElementById('stat-total').textContent = stats.total || 0;
   document.getElementById('stat-mastered').textContent = stats.mastered || 0;
   document.getElementById('stat-reviews').textContent = stats.totalReviews || 0;
 }
 
-function displayLessons(lessons) {
+function displayLessons(lessons, categoryId) {
   const container = document.getElementById('lessons-list');
   
   if (!lessons || lessons.length === 0) {
-    container.innerHTML = '<p class="loading">Nenhuma aula processada ainda.</p>';
+    container.innerHTML = `<p class="loading">Nenhuma aula processada ainda.</p>
+      <p class="hint">Execute: npm run process -- --category=${categoryId}</p>`;
     return;
   }
   
@@ -83,10 +351,10 @@ function displayLessons(lessons) {
       <div class="lesson-item">
         <div class="lesson-header">
           <div>
-            <h3>📖 Aula de ${formatDate(lesson.date)}</h3>
+            <h3>📖 ${lesson.title || 'Aula de ' + formatDate(lesson.date)}</h3>
             <p class="lesson-meta">📄 ${lesson.file} • ${lesson.status === 'enriched' ? '✅ Enriquecida' : '❌ Erro'}</p>
           </div>
-          <button class="btn-expand" onclick="toggleLesson('${lesson.id}')">
+          <button class="btn-expand" onclick="toggleLesson('${lesson.id}', '${categoryId}')">
             <span id="icon-${lesson.id}">▼</span> Ver Detalhes
           </button>
         </div>
@@ -97,115 +365,86 @@ function displayLessons(lessons) {
     `).join('');
 }
 
-async function toggleLesson(lessonId) {
+async function toggleLesson(lessonId, categoryId) {
   const detailsEl = document.getElementById(`details-${lessonId}`);
   const iconEl = document.getElementById(`icon-${lessonId}`);
   
   if (detailsEl.style.display === 'none') {
-    // Expandir
     detailsEl.style.display = 'block';
     iconEl.textContent = '▲';
     
-    // Carregar detalhes se ainda não foi carregado
     if (detailsEl.innerHTML.includes('Carregando')) {
       try {
-        const response = await fetch(`/api/lessons/${lessonId}`);
+        const response = await fetch(`/api/categories/${categoryId}/lessons/${lessonId}`);
         const lesson = await response.json();
+        
+        // Garantir que categoryId está disponível para o botão de prática
+        if (!lesson.categoryId) {
+          lesson.categoryId = categoryId;
+        }
+        
         detailsEl.innerHTML = formatLessonDetails(lesson);
       } catch (error) {
         detailsEl.innerHTML = '<p class="error">Erro ao carregar detalhes da aula.</p>';
       }
     }
   } else {
-    // Colapsar
     detailsEl.style.display = 'none';
     iconEl.textContent = '▼';
   }
 }
 
+window.toggleLesson = toggleLesson;
+
 function formatLessonDetails(lesson) {
+  // Usar o adaptador se disponível
+  if (categoryAdapter) {
+    return categoryAdapter.formatLessonDetails(lesson);
+  }
+  
+  // Fallback para formato antigo
   const enriched = lesson.enriched;
   
   if (!enriched) {
     return '<p class="error">Aula não foi enriquecida ainda.</p>';
   }
   
-  return `
+  let html = `
     <div class="lesson-section">
       <h4>📝 Resumo</h4>
-      <p>${enriched.summary}</p>
+      <p>${enriched.summary || 'Não disponível'}</p>
     </div>
-    
-    <div class="lesson-section">
-      <h4>🎯 Tópicos Principais</h4>
-      <ul class="topics-list">
-        ${enriched.mainTopics.map(topic => `<li>${topic}</li>`).join('')}
-      </ul>
-    </div>
-    
-    ${enriched.vocabulary && enriched.vocabulary.length > 0 ? `
+  `;
+  
+  if (enriched.mainTopics && enriched.mainTopics.length > 0) {
+    html += `
+      <div class="lesson-section">
+        <h4>🎯 Tópicos Principais</h4>
+        <ul class="topics-list">
+          ${enriched.mainTopics.map(topic => `<li>${topic}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+  
+  if (enriched.vocabulary && enriched.vocabulary.length > 0) {
+    html += `
       <div class="lesson-section">
         <h4>📚 Vocabulário (${enriched.vocabulary.length} palavras)</h4>
         <div class="vocab-grid">
-          ${enriched.vocabulary.map(item => `
+          ${enriched.vocabulary.slice(0, 10).map(item => `
             <div class="vocab-card-mini">
               <strong>${item.word}</strong>
               <span class="translation">${item.translation || '—'}</span>
-              <span class="pronunciation">${item.pronunciation || ''}</span>
             </div>
           `).join('')}
         </div>
       </div>
-    ` : ''}
-    
-    ${enriched.grammar && enriched.grammar.length > 0 ? `
-      <div class="lesson-section">
-        <h4>✏️ Gramática (${enriched.grammar.length} tópicos)</h4>
-        <ul class="grammar-list">
-          ${enriched.grammar.map(item => `
-            <li>
-              <strong>${item.topic}</strong>
-              <p>${item.explanation}</p>
-            </li>
-          `).join('')}
-        </ul>
-      </div>
-    ` : ''}
-    
-    ${enriched.expressions && enriched.expressions.length > 0 ? `
-      <div class="lesson-section">
-        <h4>💬 Expressões Úteis</h4>
-        <div class="expressions-grid">
-          ${enriched.expressions.map(exp => `
-            <div class="expression-card">
-              <strong>${exp.expression}</strong>
-              <span>${exp.meaning || exp.translation || exp.usage || ''}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    ` : ''}
-    
-    ${enriched.originalExamples && enriched.originalExamples.length > 0 ? `
-      <div class="lesson-section">
-        <h4>📖 Frases Originais da Aula</h4>
-        <div class="examples-list">
-          ${enriched.originalExamples.map(example => `<div class="example-item">${example}</div>`).join('')}
-        </div>
-      </div>
-    ` : ''}
-    
-    ${enriched.practiceQuestions && enriched.practiceQuestions.length > 0 ? `
-      <div class="lesson-section">
-        <h4>📝 Exercícios (${enriched.practiceQuestions.length})</h4>
-        <p class="hint">Use a área de estudo acima para praticar!</p>
-      </div>
-    ` : ''}
-  `;
+    `;
+  }
+  
+  return html;
 }
-
-// Tornar função global para o onclick
-window.toggleLesson = toggleLesson;
 
 function showCurrentCard() {
   if (currentIndex >= currentItems.length) {
@@ -224,90 +463,74 @@ function showCurrentCard() {
   document.getElementById('card-category').textContent = getCategoryLabel(item.category);
   document.getElementById('card-lesson').textContent = `Aula: ${formatDate(item.lessonDate)}`;
   
-  // Atualizar conteúdo
+  // Atualizar conteúdo usando adaptador
   const questionEl = document.getElementById('card-question');
   const answerEl = document.getElementById('card-answer');
   
-  switch (item.category) {
-    case 'vocabulary':
-      questionEl.innerHTML = `
-        <h3>${item.word}</h3>
-        <p style="color: #666; margin-top: 10px;">${item.partOfSpeech || 'word'}</p>
-      `;
+  if (categoryAdapter) {
+    const formatted = categoryAdapter.formatStudyCard(item);
+    questionEl.innerHTML = formatted.question;
+    answerEl.innerHTML = formatted.answer;
+    
+    // Limpar campos de resposta do usuário (se existirem)
+    setTimeout(() => {
+      const userInputs = document.querySelectorAll('.user-answer-input');
+      userInputs.forEach(input => input.value = '');
+    }, 0);
+  } else {
+    // Fallback para lógica antiga
+    if (item.category === 'vocabulary') {
+      questionEl.innerHTML = `<h3>${item.word}</h3>`;
       answerEl.innerHTML = `
-        <h4>📖 Tradução</h4>
-        <p><strong>${item.translation}</strong></p>
-        
-        <h4 style="margin-top: 15px;">💬 Definição</h4>
-        <p>${item.definition || 'N/A'}</p>
-        
-        ${item.examples && item.examples.length > 0 ? `
-          <h4 style="margin-top: 15px;">📝 Exemplos</h4>
-          <ul style="margin-left: 20px;">
-            ${item.examples.map(ex => `<li>${ex}</li>`).join('')}
-          </ul>
-        ` : ''}
-        
-        ${item.synonyms && item.synonyms.length > 0 ? `
-          <p style="margin-top: 10px;"><strong>Sinônimos:</strong> ${item.synonyms.join(', ')}</p>
-        ` : ''}
+        <p><strong>Tradução:</strong> ${item.translation || 'N/A'}</p>
+        <p><strong>Definição:</strong> ${item.definition || 'N/A'}</p>
       `;
-      break;
-      
-    case 'question':
-      questionEl.innerHTML = `
-        ${item.tense ? `<p class="tense-badge" style="background: #667eea; color: white; display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 12px;">📚 ${item.tense}</p>` : ''}
-        <h3>${item.question}</h3>
-      `;
-      answerEl.innerHTML = `
-        <h4>✅ Resposta</h4>
-        <p><strong>${item.answer}</strong></p>
-        ${item.explanation ? `
-          <h4 style="margin-top: 15px;">💡 Explicação</h4>
-          <p>${item.explanation}</p>
-        ` : ''}
-      `;
-      break;
-      
-    case 'grammar':
-      questionEl.innerHTML = `<h3>${item.topic}</h3>`;
-      answerEl.innerHTML = `
-        <h4>📚 Explicação</h4>
-        <p>${item.explanation}</p>
-        
-        ${item.rules && item.rules.length > 0 ? `
-          <h4 style="margin-top: 15px;">📋 Regras</h4>
-          <ul style="margin-left: 20px;">
-            ${item.rules.map(rule => `<li>${rule}</li>`).join('')}
-          </ul>
-        ` : ''}
-        
-        ${item.examples && item.examples.length > 0 ? `
-          <h4 style="margin-top: 15px;">📝 Exemplos</h4>
-          <ul style="margin-left: 20px;">
-            ${item.examples.map(ex => `<li>${ex}</li>`).join('')}
-          </ul>
-        ` : ''}
-      `;
-      break;
+    } else if (item.category === 'question') {
+      questionEl.innerHTML = `<p>${item.question}</p>`;
+      answerEl.innerHTML = `<p><strong>Resposta:</strong> ${item.answer || item.explanation || 'N/A'}</p>`;
+    } else {
+      questionEl.innerHTML = `<p>${item.topic || item.question || item.word}</p>`;
+      answerEl.innerHTML = `<p>${item.explanation || item.answer || item.definition || 'N/A'}</p>`;
+    }
   }
   
-  // Reset UI
-  answerEl.style.display = 'none';
+  // Resetar botões
   document.getElementById('show-answer-btn').style.display = 'block';
   document.getElementById('rating-buttons').style.display = 'none';
+  answerEl.style.display = 'none';
+}
+
+async function submitRating(quality) {
+  const item = currentItems[currentIndex];
+  
+  try {
+    await fetch(`/api/categories/${currentCategory.id}/study/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        itemId: item.id,
+        lessonId: item.lessonId,
+        quality: parseInt(quality)
+      })
+    });
+    
+    currentIndex++;
+    showCurrentCard();
+  } catch (error) {
+    console.error('Erro ao registrar revisão:', error);
+    alert('Erro ao salvar resposta. Tente novamente.');
+  }
 }
 
 function finishStudySession() {
-  document.getElementById('study-area').innerHTML = `
-    <div class="message">
-      <h3>🎊 Sessão Concluída!</h3>
-      <p>Você revisou ${currentItems.length} itens hoje.</p>
-      <p>Continue assim para manter seu progresso!</p>
-      <button class="btn btn-primary" onclick="location.reload()">Recarregar Página</button>
-    </div>
+  document.getElementById('study-area').style.display = 'none';
+  document.getElementById('no-items').style.display = 'block';
+  document.getElementById('no-items').innerHTML = `
+    <h3>🎉 Sessão Concluída!</h3>
+    <p>Você revisou <strong>${currentItems.length}</strong> itens hoje.</p>
+    <p>Continue assim e você dominará tudo em breve!</p>
   `;
-  loadStats(); // Atualizar estatísticas
+  loadStats(currentCategory.id);
 }
 
 // ============================================
@@ -315,61 +538,34 @@ function finishStudySession() {
 // ============================================
 
 function setupEventListeners() {
-  document.getElementById('show-answer-btn').addEventListener('click', () => {
+  document.getElementById('show-answer-btn')?.addEventListener('click', () => {
     document.getElementById('card-answer').style.display = 'block';
     document.getElementById('show-answer-btn').style.display = 'none';
     document.getElementById('rating-buttons').style.display = 'block';
   });
   
   document.querySelectorAll('.btn-rating').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      const quality = parseInt(e.currentTarget.dataset.quality);
-      await submitReview(quality);
+    btn.addEventListener('click', (e) => {
+      const quality = e.currentTarget.dataset.quality;
+      submitRating(quality);
     });
   });
 }
 
-async function submitReview(quality) {
-  const item = currentItems[currentIndex];
-  
-  try {
-    const response = await fetch('/api/study/review', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        itemId: item.id,
-        quality: quality,
-        lessonId: item.lessonId
-      })
-    });
-    
-    if (response.ok) {
-      currentIndex++;
-      showCurrentCard();
-    }
-  } catch (error) {
-    console.error('Erro ao registrar revisão:', error);
-  }
-}
-
 // ============================================
-// UTILS
+// UTILIDADES
 // ============================================
 
 function getCategoryLabel(category) {
   const labels = {
-    vocabulary: '📚 Vocabulário',
-    question: '❓ Exercício',
-    grammar: '✏️ Gramática'
+    'vocabulary': '📚 Vocabulário',
+    'question': '❓ Questão',
+    'grammar': '✏️ Gramática'
   };
-  return labels[category] || category;
+  return labels[category] || '📖 Conteúdo';
 }
 
-function formatDate(dateStr) {
-  const date = new Date(dateStr + 'T00:00:00');
-  return date.toLocaleDateString('pt-BR', { 
-    day: '2-digit', 
-    month: '2-digit', 
-    year: 'numeric' 
-  });
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('pt-BR');
 }

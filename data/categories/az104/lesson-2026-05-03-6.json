@@ -1,0 +1,172 @@
+{
+  "id": "lesson-2026-05-03-6",
+  "date": "2026-05-03",
+  "title": "Configuração de funções e conversão de dados no Azure PowerShell",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You need to implement Role1.\n\nWhich command should you run before you create Role1? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nAnswer Area\n\nFind-RoleCapability  \nGet-AzureADDirectoryRole  \nGet-AzRoleDefinition  \nGet-AzResourceProvider  \n\n-Name \"Reader\" |  \nConvertFrom-Json  \nConvertFrom-String  \nConvertTo-Json  \nConvertTo-Xml  \n\nAnswer:\n\nAnswer Area\n\nFind-RoleCapability  \nGet-AzureADDirectoryRole  \n**Get-AzRoleDefinition**  \nGet-AzResourceProvider  \n\n-Name \"Reader\" |  \nConvertFrom-Json  \nConvertFrom-String  \n**ConvertTo-Json**  \nConvertTo-Xml",
+  "enriched": {
+    "title": "Configuração de funções e conversão de dados no Azure PowerShell",
+    "summary": "A aula aborda comandos para criar e gerenciar funções no Azure, com foco em 'Get-AzRoleDefinition' e manipulação de dados em JSON usando 'ConvertTo-Json'. Enfatiza a importância desses comandos na administração de permissões e na exportação de dados estruturados.",
+    "topics": [
+      {
+        "title": "Get-AzRoleDefinition",
+        "description": "Comando usado para recuperar definições de função existentes na conta do Azure.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "ConvertTo-Json",
+        "description": "Comando para converter objetos do PowerShell em representações JSON.",
+        "category": "Data Manipulation",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Role Definition",
+        "definition": "Um conjunto de permissões que define as ações permitidas e negadas para uma função no Azure.",
+        "examples": [
+          "A função 'Reader' permite apenas ações de leitura.",
+          "A função 'Contributor' concede permissões para criar e gerenciar recursos."
+        ],
+        "relatedConcepts": [
+          "Role Assignment",
+          "Azure RBAC"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "ConvertTo-Json",
+        "definition": "Cmdlet do PowerShell que converte objetos em formato JSON, usado para exportar dados estruturados.",
+        "examples": [
+          "ConvertTo-Json -InputObject $Object",
+          "Usar ConvertTo-Json ao preparar dados para APIs REST."
+        ],
+        "relatedConcepts": [
+          "ConvertFrom-Json",
+          "Invoke-RestMethod"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [
+      {
+        "command": "Get-AzRoleDefinition -Name 'Reader'",
+        "description": "Obtém a definição de uma função específica no Azure com base no nome.",
+        "syntax": "Get-AzRoleDefinition -Name <RoleName>",
+        "examples": [
+          "Get-AzRoleDefinition -Name 'Reader'",
+          "Get-AzRoleDefinition -Name 'Contributor'"
+        ],
+        "platform": "PowerShell"
+      },
+      {
+        "command": "ConvertTo-Json -InputObject $Object",
+        "description": "Converte um objeto do PowerShell em uma string no formato JSON.",
+        "syntax": "ConvertTo-Json [-InputObject] <PSObject> [-Depth <Int32>]",
+        "examples": [
+          "$json = ConvertTo-Json -InputObject $Object",
+          "ConvertTo-Json -InputObject $Object -Depth 3"
+        ],
+        "platform": "PowerShell"
+      }
+    ],
+    "scenarios": [
+      {
+        "scenario": "Exportar definições de função para JSON",
+        "problem": "Você precisa compartilhar as permissões de uma função específica com outro administrador em formato legível.",
+        "solution": "Use o comando 'Get-AzRoleDefinition' para obter a definição da função e 'ConvertTo-Json' para exportá-la.",
+        "explanation": "O 'Get-AzRoleDefinition' recupera as permissões associadas à função, enquanto o 'ConvertTo-Json' transforma os dados obtidos em um formato padronizado e compartilhável."
+      },
+      {
+        "scenario": "Listar permissões de uma função específica",
+        "problem": "É necessário verificar quais ações são permitidas pela função 'Reader'.",
+        "solution": "Execute o comando 'Get-AzRoleDefinition -Name Reader' para listar as permissões atribuídas.",
+        "explanation": "O comando exibe os detalhes da função, incluindo ações permitidas e negadas, permitindo análise detalhada."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "command",
+        "question": "Qual comando você usaria para obter a definição da função 'Reader' no Azure?",
+        "answer": "Get-AzRoleDefinition -Name 'Reader'",
+        "hint": "O comando começa com 'Get-AzRoleDefinition' e requer o parâmetro '-Name'.",
+        "topic": "Get-AzRoleDefinition"
+      },
+      {
+        "type": "concept",
+        "question": "Explique o propósito do cmdlet 'ConvertTo-Json' no PowerShell.",
+        "answer": "O cmdlet 'ConvertTo-Json' converte objetos em representações JSON, facilitando a exportação de dados.",
+        "hint": "Pense em como JSON é usado para integração entre sistemas.",
+        "topic": "ConvertTo-Json"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você exportaria as definições da função 'Reader' para um arquivo JSON?",
+        "answer": "Get-AzRoleDefinition -Name 'Reader' | ConvertTo-Json | Out-File 'RoleDefinition.json'",
+        "hint": "Combine 'Get-AzRoleDefinition' com 'ConvertTo-Json' e redirecione a saída para um arquivo.",
+        "topic": "Exportação de dados"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "O que fazer se o comando 'Get-AzRoleDefinition' não retornar resultados?",
+        "answer": "Verifique se você está conectado à conta correta no Azure PowerShell e se a função existe.",
+        "hint": "Valide a conexão com o Azure usando o comando 'Connect-AzAccount'.",
+        "topic": "Get-AzRoleDefinition"
+      },
+      {
+        "type": "command",
+        "question": "Qual parâmetro do 'ConvertTo-Json' controla a profundidade de objetos aninhados?",
+        "answer": "-Depth",
+        "hint": "É um parâmetro que define o nível de recursão.",
+        "topic": "ConvertTo-Json"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "O comando 'Get-AzRoleDefinition' é frequentemente usado para questões relacionadas a RBAC.",
+        "relevance": "Entender suas opções e saída é essencial para responder perguntas sobre permissões.",
+        "topic": "Get-AzRoleDefinition"
+      },
+      {
+        "tip": "Preste atenção na profundidade ao usar 'ConvertTo-Json' em objetos complexos.",
+        "relevance": "Se a profundidade não for especificada corretamente, objetos aninhados podem ser truncados.",
+        "topic": "ConvertTo-Json"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial do Get-AzRoleDefinition",
+        "url": "https://learn.microsoft.com/en-us/powershell/module/az.resources/get-azroledefinition",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação oficial do ConvertTo-Json",
+        "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial do Get-AzRoleDefinition",
+        "url": "https://learn.microsoft.com/en-us/powershell/module/az.resources/get-azroledefinition",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação oficial do ConvertTo-Json",
+        "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T20:06:29.579Z",
+  "updatedAt": "2026-05-03T20:06:52.807Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T20:06:52.805Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

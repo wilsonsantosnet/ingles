@@ -1,0 +1,47 @@
+{
+  "id": "lesson-2026-06-25-1",
+  "date": "2026-06-25",
+  "title": "Redes Sociais",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "worth",
+        "translation": "valor; que vale a pena",
+        "definition": "having value or importance",
+        "examples": [
+          "This book is worth reading.",
+          "The painting is worth a fortune.",
+          "Is it worth the effort?",
+          "Every second of the trip was worth it.",
+          "The idea is worth considering."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-25-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-25",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-25T13:20:14.423Z",
+  "updatedAt": "2026-06-25T13:20:14.429Z",
+  "status": "created"
+}
