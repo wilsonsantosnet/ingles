@@ -108,7 +108,7 @@ async function generatePreview() {
 
   try {
     if (!word) {
-      throw new Error('Digite uma palavra antes de gerar');
+      throw new Error('Digite um termo ou frase antes de gerar');
     }
 
     const response = await fetch('/api/anki/preview', {
@@ -169,9 +169,21 @@ async function saveWord() {
     }
 
     els.saveFeedback.hidden = false;
-    els.saveFeedback.textContent = data.createdLesson
-      ? 'Palavra salva com sucesso em uma nova aula.'
-      : 'Palavra salva com sucesso na aula selecionada.';
+    if (data.inputType === 'sentence') {
+      const lessonInfo = data.createdLesson ? 'em uma nova aula' : 'na aula selecionada';
+      const details = [];
+      if (data.addedQuestion) {
+        details.push('frase adicionada em exercícios');
+      }
+      if (data.addedVocabularyCount > 0) {
+        details.push(`${data.addedVocabularyCount} palavra(s) adicionada(s) ao vocabulário`);
+      }
+      els.saveFeedback.textContent = `Frase salva com sucesso ${lessonInfo}: ${details.join(' + ')}.`;
+    } else {
+      els.saveFeedback.textContent = data.createdLesson
+        ? 'Termo salvo com sucesso em uma nova aula.'
+        : 'Termo salvo com sucesso na aula selecionada.';
+    }
 
     const lessonToKeepSelected = data.lessonId || selectedLessonBeforeSave;
     await loadLessons(lessonToKeepSelected);

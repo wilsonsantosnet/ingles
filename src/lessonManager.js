@@ -333,11 +333,20 @@ export class LessonManager {
     };
 
     lesson.enriched.vocabulary.push(newItem);
+    lesson.status = 'enriched';
     lesson.updatedAt = new Date().toISOString();
 
     const paths = config.getCategoryPaths(categoryId);
     const lessonPath = join(paths.processed, `${lessonId}.json`);
     writeFileSync(lessonPath, JSON.stringify(lesson, null, 2), 'utf-8');
+
+    this.updateIndex(categoryId, {
+      id: lesson.id,
+      date: lesson.date,
+      title: lesson.title,
+      status: lesson.status,
+      file: lesson.file || 'manual'
+    }, 'update');
 
     return lesson;
   }
@@ -370,11 +379,20 @@ export class LessonManager {
     };
 
     lesson.enriched.practiceQuestions.push(newItem);
+    lesson.status = 'enriched';
     lesson.updatedAt = new Date().toISOString();
 
     const paths = config.getCategoryPaths(categoryId);
     const lessonPath = join(paths.processed, `${lessonId}.json`);
     writeFileSync(lessonPath, JSON.stringify(lesson, null, 2), 'utf-8');
+
+    this.updateIndex(categoryId, {
+      id: lesson.id,
+      date: lesson.date,
+      title: lesson.title,
+      status: lesson.status,
+      file: lesson.file || 'manual'
+    }, 'update');
 
     return lesson;
   }

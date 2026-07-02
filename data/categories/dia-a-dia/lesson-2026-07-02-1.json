@@ -1,0 +1,794 @@
+{
+  "id": "lesson-2026-07-02-1",
+  "date": "2026-07-02",
+  "title": "Comparando Event Grid, Event Hubs e Service Bus",
+  "categoryId": "dia-a-dia",
+  "source": "manual",
+  "rawContent": "Expand table\n\nCriterion     Event Grid     Event Hubs     Service Bus\n\nPrimary purpose\nReactive event routing     Big data streaming and ingestion     Enterprise transactional messaging\n\nData model\nEvents (discrete notifications)     Event streams (time-ordered series)     Messages (high-value payloads)\n\nDelivery guarantee\nAt least once     At least once     At least once (optional ordered, exactly once with sessions)\n\nWhen to use\nReact to status changes, serverless architectures     Telemetry, distributed data streaming, real-time analytics     Order processing, financial transactions, workflows",
+  "enriched": {
+    "title": "Comparando Event Grid, Event Hubs e Service Bus",
+    "summary": "Resumo dos propósitos, modelos de dados e garantias de entrega das três soluções de mensageria/telemetria. Indica quando usar cada serviço com exemplos práticos de cenários.",
+    "mainTopics": [
+      "Propósito primário de cada serviço",
+      "Modelos de dados: events, event streams, messages",
+      "Garantias de entrega (at least once, exactly once)",
+      "Cenários de uso recomendados"
+    ],
+    "vocabulary": [
+      {
+        "word": "Expand table",
+        "translation": "Expandir tabela",
+        "definition": "UI action or label indicating that a table can be expanded to show more details.",
+        "examples": [
+          "Expand table"
+        ],
+        "pronunciation": "/ɪkˈspænd ˈteɪbəl/",
+        "partOfSpeech": "verb phrase / UI label",
+        "synonyms": [
+          "Show more",
+          "Expand view"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-02-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Criterion",
+        "translation": "Critério",
+        "definition": "A category or standard used for comparing or evaluating items.",
+        "examples": [
+          "Criterion"
+        ],
+        "pronunciation": "/kraɪˈtɪəriən/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "standard",
+          "measure"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-02-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Event Grid",
+        "translation": "Event Grid",
+        "definition": "A reactive event-routing service that delivers discrete notifications to subscribers (Azure product name).",
+        "examples": [
+          "Event Grid"
+        ],
+        "pronunciation": "/ɪˈvɛnt ɡrɪd/",
+        "partOfSpeech": "proper noun",
+        "synonyms": [
+          "event router",
+          "eventing service"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Event Hubs",
+        "translation": "Event Hubs",
+        "definition": "A big-data streaming and ingestion service optimized for high-throughput event streams (Azure product name).",
+        "examples": [
+          "Event Hubs"
+        ],
+        "pronunciation": "/ɪˈvɛnt hʌbz/",
+        "partOfSpeech": "proper noun",
+        "synonyms": [
+          "streaming ingestion",
+          "event ingestion service"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Service Bus",
+        "translation": "Service Bus",
+        "definition": "An enterprise messaging service for reliable, transactional messaging and workflows (Azure product name).",
+        "examples": [
+          "Service Bus"
+        ],
+        "pronunciation": "/ˈsɜːrvɪs bʌs/",
+        "partOfSpeech": "proper noun",
+        "synonyms": [
+          "message broker",
+          "enterprise messaging"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Primary purpose",
+        "translation": "Propósito principal",
+        "definition": "The main intended use or goal of a service or component.",
+        "examples": [
+          "Primary purpose"
+        ],
+        "pronunciation": "/ˈpraɪməri ˈpɜːrpəs/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "main purpose",
+          "primary function"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-02-1-5",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Reactive event routing",
+        "translation": "Roteamento reativo de eventos",
+        "definition": "Delivering events to subscribers in response to occurrences or triggers, often used in event-driven architectures.",
+        "examples": [
+          "Reactive event routing"
+        ],
+        "pronunciation": "/riˈæktɪv ɪˈvɛnt ˈruːtɪŋ/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "event routing",
+          "event-driven routing"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-6",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Big data streaming and ingestion",
+        "translation": "Streaming e ingestão de big data",
+        "definition": "The capture and continuous flow of large volumes of data (events) for processing and analytics.",
+        "examples": [
+          "Big data streaming and ingestion"
+        ],
+        "pronunciation": "/bɪɡ ˈdeɪtə ˈstriːmɪŋ ənd ɪnˈdʒɛstʃən/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "data ingestion",
+          "stream processing"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-02-1-7",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Enterprise transactional messaging",
+        "translation": "Mensageria transacional empresarial",
+        "definition": "Messaging designed for transactional integrity in enterprise systems (e.g., ordered, durable, sometimes exactly-once).",
+        "examples": [
+          "Enterprise transactional messaging"
+        ],
+        "pronunciation": "/ˌɛntərˈpraɪz trænˈzækʃənəl ˈmɛsɪdʒɪŋ/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "enterprise messaging",
+          "transactional messaging"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-02-1-8",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Data model",
+        "translation": "Modelo de dados",
+        "definition": "The structure and format in which data (events/messages/streams) is represented and processed.",
+        "examples": [
+          "Data model"
+        ],
+        "pronunciation": "/ˈdeɪtə ˈmɒdəl/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "schema",
+          "data structure"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-02-1-9",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Events (discrete notifications)",
+        "translation": "Eventos (notificações discretas)",
+        "definition": "Individual notifications that something has happened; typically small, lightweight payloads.",
+        "examples": [
+          "Events (discrete notifications)"
+        ],
+        "pronunciation": "/ɪˈvɛnts (dɪsˈkriːt ˌnoʊtɪfɪˈkeɪʃənz)/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "notifications",
+          "event messages"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-10",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Event streams (time-ordered series)",
+        "translation": "Fluxos de eventos (séries ordenadas no tempo)",
+        "definition": "A continuous, time-ordered sequence of events used for analytics and processing (high-throughput).",
+        "examples": [
+          "Event streams (time-ordered series)"
+        ],
+        "pronunciation": "/ɪˈvɛnt striːmz (taɪm-ˈɔːrdərd ˈsɪriz)/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "streams",
+          "event logs"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-11",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Messages (high-value payloads)",
+        "translation": "Mensagens (payloads de alto valor)",
+        "definition": "Structured units of data carrying important information, often requiring transactional guarantees and ordering.",
+        "examples": [
+          "Messages (high-value payloads)"
+        ],
+        "pronunciation": "/ˈmɛsɪdʒɪz (haɪ-ˈvæljuː ˈpeɪloʊdz)/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "packets",
+          "records"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-12",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Delivery guarantee",
+        "translation": "Garantia de entrega",
+        "definition": "A promise about how often and in what manner messages/events will be delivered (e.g., at least once, exactly once).",
+        "examples": [
+          "Delivery guarantee"
+        ],
+        "pronunciation": "/dɪˈlɪvəri ˌɡærənˈtiː/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "delivery semantics",
+          "message guarantee"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-13",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "At least once",
+        "translation": "Pelo menos uma vez",
+        "definition": "A delivery semantic meaning the system will attempt delivery one or more times; duplicates are possible.",
+        "examples": [
+          "At least once"
+        ],
+        "pronunciation": "/ət liːst wʌns/",
+        "partOfSpeech": "adverbial phrase",
+        "synonyms": [
+          "at-least-once delivery"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-14",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Exactly once",
+        "translation": "Exatamente uma vez",
+        "definition": "A delivery semantic meaning each message is delivered only once (no duplicates); typically harder to guarantee.",
+        "examples": [
+          "exactly once"
+        ],
+        "pronunciation": "/ɪɡˈzæktli wʌns/",
+        "partOfSpeech": "adverbial phrase",
+        "synonyms": [
+          "exactly-once delivery"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-02-1-15",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "ordered",
+        "translation": "ordenado",
+        "definition": "Delivered in a specific sequence; ordering guarantees ensure messages are processed in the order sent.",
+        "examples": [
+          "optional ordered"
+        ],
+        "pronunciation": "/ˈɔːrdərd/",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "sequenced",
+          "in order"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-16",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "sessions",
+        "translation": "sessões",
+        "definition": "A mechanism to group and maintain state for ordered or related messages, enabling features like exactly-once processing.",
+        "examples": [
+          "sessions"
+        ],
+        "pronunciation": "/ˈsɛʃənz/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "message groups",
+          "stateful sessions"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-02-1-17",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "When to use",
+        "translation": "Quando usar",
+        "definition": "Guidance on appropriate scenarios or contexts for using a particular tool or service.",
+        "examples": [
+          "When to use"
+        ],
+        "pronunciation": "/wɛn tuː juːz/",
+        "partOfSpeech": "phrase",
+        "synonyms": [
+          "use cases",
+          "recommended scenarios"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-02-1-18",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "React to status changes, serverless architectures",
+        "translation": "Reagir a mudanças de status, arquiteturas serverless",
+        "definition": "A use-case phrase: Event Grid is suitable for reacting to changes and integrating with serverless functions or workflows.",
+        "examples": [
+          "React to status changes, serverless architectures"
+        ],
+        "pronunciation": "/riˈækt tuː ˈsteɪtəs ˈtʃeɪndʒɪz, ˈsɜːrvərləs ˌɑːrkɪˈtɛktʃərz/",
+        "partOfSpeech": "verb phrase / noun phrase",
+        "synonyms": [
+          "trigger-based integration",
+          "event-driven serverless"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-19",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Telemetry, distributed data streaming, real-time analytics",
+        "translation": "Telemetria, streaming de dados distribuído, análises em tempo real",
+        "definition": "Use-case phrase describing scenarios for Event Hubs: collecting telemetry and processing streams for analytics with low latency.",
+        "examples": [
+          "Telemetry, distributed data streaming, real-time analytics"
+        ],
+        "pronunciation": "/tɪˈlɛmɪtri, dɪˈstrɪbjʊtɪd ˈdeɪtə ˈstriːmɪŋ, ˈriːəl taɪm ænəˈlɪtɪks/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "streaming analytics",
+          "telemetry ingestion"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-02-1-20",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Order processing, financial transactions, workflows",
+        "translation": "Processamento de pedidos, transações financeiras, fluxos de trabalho",
+        "definition": "Use-case phrase describing scenarios for Service Bus: systems that need transactional integrity, ordering and workflow orchestration.",
+        "examples": [
+          "Order processing, financial transactions, workflows"
+        ],
+        "pronunciation": "/ˈɔːrdər ˈproʊsɛsɪŋ, faɪˈnænʃəl trænˈzækʃənz, ˈwɜːrkfloʊz/",
+        "partOfSpeech": "noun phrase",
+        "synonyms": [
+          "transactional systems",
+          "business workflows"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-02-1-21",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Using gerunds and noun phrases in technical descriptions",
+        "explanation": "Technical documentation often uses gerunds (verb+ing) and compact noun phrases to describe functions and use cases (e.g., 'streaming and ingestion', 'order processing'). Gerunds act like nouns and summarize ongoing actions.",
+        "rules": [
+          "Use gerunds to name activities or processes: 'streaming', 'ingestion', 'processing'.",
+          "Combine gerunds with nouns to create concise descriptions: 'data streaming', 'order processing'.",
+          "When listing multiple items, separate with commas: 'Telemetry, distributed data streaming, real-time analytics.'"
+        ],
+        "examples": [
+          "Big data streaming and ingestion",
+          "Order processing, financial transactions, workflows"
+        ],
+        "commonMistakes": [
+          "Using infinitives where a gerund sounds more natural: 'to stream and ingest' vs 'streaming and ingestion' in headings.",
+          "Missing hyphenation in compound adjectives: write 'time-ordered series' (hyphen helps clarity)."
+        ],
+        "id": "grammar-lesson-2026-07-02-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "topic": "Prepositional phrases and verb patterns: 'React to' + noun",
+        "explanation": "'React to' is a verb + preposition pattern commonly followed by a noun phrase (React to status changes). In technical English, 'react to' is used for event-driven behavior.",
+        "rules": [
+          "'React to' must be followed by the thing you respond to (a noun or noun phrase): 'React to status changes'.",
+          "Do not use 'react' alone when specifying a target: wrong: 'React status changes'; correct: 'React to status changes'."
+        ],
+        "examples": [
+          "React to status changes, serverless architectures"
+        ],
+        "commonMistakes": [
+          "Omitting 'to' after 'react' when indicating the object of reaction.",
+          "Using 'react on' instead of 'react to' (incorrect in most contexts)."
+        ],
+        "id": "grammar-lesson-2026-07-02-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "topic": "Short adjective phrases for guarantees: 'At least once' vs 'Exactly once'",
+        "explanation": "Delivery guarantees are expressed with short adverbial phrases. These modify how delivery behaves and are fixed expressions in technical writing.",
+        "rules": [
+          "Use 'at least once' to indicate possible duplicates.",
+          "Use 'exactly once' to indicate no duplicates (stronger guarantee).",
+          "Include qualifiers where needed: 'At least once (optional ordered, exactly once with sessions)'."
+        ],
+        "examples": [
+          "At least once",
+          "At least once (optional ordered, exactly once with sessions)"
+        ],
+        "commonMistakes": [
+          "Confusing 'at least once' with 'exactly once' — they are different guarantees.",
+          "Saying 'once at least' — incorrect word order for the fixed expression."
+        ],
+        "id": "grammar-lesson-2026-07-02-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [
+      {
+        "expression": "React to",
+        "meaning": "Responder a; to take action after an event or change.",
+        "usage": "Used to describe event-driven responses in architectures.",
+        "examples": [
+          "React to status changes, serverless architectures"
+        ]
+      },
+      {
+        "expression": "At least once",
+        "meaning": "Pelo menos uma vez — delivery semantic meaning delivery may occur multiple times.",
+        "usage": "Used when duplicates are acceptable or mitigated by the consumer.",
+        "examples": [
+          "At least once"
+        ]
+      },
+      {
+        "expression": "Exactly once",
+        "meaning": "Exatamente uma vez — delivery semantic guaranteeing no duplicates.",
+        "usage": "Used in high-integrity transactional contexts where duplicates are unacceptable.",
+        "examples": [
+          "exactly once"
+        ]
+      },
+      {
+        "expression": "time-ordered",
+        "meaning": "Ordenado no tempo — events are kept in the order they occurred.",
+        "usage": "Describes streams where event sequence matters.",
+        "examples": [
+          "Event streams (time-ordered series)"
+        ]
+      }
+    ],
+    "practiceQuestions": [
+      {
+        "question": "Which service is best suited for telemetry and high-throughput streaming?",
+        "answer": "Event Hubs",
+        "explanation": "Event Hubs is designed for big data streaming and ingestion, making it ideal for telemetry and real-time analytics.",
+        "type": "multiple-choice",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-02-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Which service provides enterprise transactional messaging and supports features like ordering and exactly-once with sessions?",
+        "answer": "Service Bus",
+        "explanation": "Service Bus targets enterprise scenarios that require transactional guarantees, ordering and advanced features (sessions can enable exactly-once semantics).",
+        "type": "multiple-choice",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-02-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Fill in the blank: Event Grid is primarily used to _______.",
+        "answer": "React to status changes",
+        "explanation": "Event Grid's primary purpose is reactive event routing, commonly used to trigger serverless functions on status changes.",
+        "type": "fill-in-blank",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-02-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "True or False: 'At least once' guarantees no duplicate deliveries.",
+        "answer": "False",
+        "explanation": "'At least once' means messages may be delivered more than once; duplicates are possible and must be handled by consumers.",
+        "type": "true-false",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-02-1-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Match the data model to the service: Events (discrete notifications) — ?",
+        "answer": "Event Grid",
+        "explanation": "Event Grid uses discrete event notifications as its data model, unlike Event Hubs (streams) or Service Bus (messages).",
+        "type": "matching",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-02-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "These terms are commonly used in cloud computing documentation (especially Azure). Knowing product names (Event Grid, Event Hubs, Service Bus) helps when reading technical docs and architecture diagrams.",
+      "Technical English often favors concise noun phrases and gerunds (e.g., 'data streaming', 'order processing'). Becoming comfortable with these constructions improves comprehension of architecture descriptions."
+    ],
+    "studyTips": [
+      "Crie flashcards com os termos (Event Grid, Event Hubs, Service Bus) e associe cada um ao 'Primary purpose' para memorização rápida.",
+      "Compare serviços em pares (Event Grid vs Event Hubs; Event Hubs vs Service Bus) para entender diferenças práticas.",
+      "Pratique frases usando 'react to', 'at least once' e 'exactly once' em contextos técnicos para fixar o uso."
+    ],
+    "originalExamples": [
+      "Expand table (Expandir tabela)",
+      "Criterion (Critério)",
+      "Event Grid (Event Grid)",
+      "Event Hubs (Event Hubs)",
+      "Service Bus (Service Bus)",
+      "Primary purpose (Propósito principal)",
+      "Reactive event routing (Roteamento reativo de eventos)",
+      "Big data streaming and ingestion (Streaming e ingestão de big data)",
+      "Enterprise transactional messaging (Mensageria transacional empresarial)",
+      "Data model (Modelo de dados)",
+      "Events (discrete notifications) (Eventos (notificações discretas))",
+      "Event streams (time-ordered series) (Fluxos de eventos (séries ordenadas no tempo))",
+      "Messages (high-value payloads) (Mensagens (payloads de alto valor))",
+      "Delivery guarantee (Garantia de entrega)",
+      "At least once (Pelo menos uma vez)",
+      "At least once (optional ordered, exactly once with sessions) (Pelo menos uma vez (ordenado opcional, exatamente uma vez com sessões))",
+      "When to use (Quando usar)",
+      "React to status changes, serverless architectures (Reagir a mudanças de status, arquiteturas serverless)",
+      "Telemetry, distributed data streaming, real-time analytics (Telemetria, streaming de dados distribuído, análises em tempo real)",
+      "Order processing, financial transactions, workflows (Processamento de pedidos, transações financeiras, fluxos de trabalho)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-07-02T19:07:58.066Z",
+  "updatedAt": "2026-07-02T19:14:08.402Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-02T19:09:19.146Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1783019648401",
+      "generatedContent": {
+        "title": "O que acontece ao criar assinatura de Event Grid num Storage Account — tipos de Event Grid e onde ver cada coisa",
+        "type": "explanation",
+        "content": "Resumo do que acontece e dos tipos de Event Grid (em português técnico)\n\nO que acontece quando você cria uma assinatura de eventos (event subscription) num Storage account\n- Quando você cria uma event subscription apontando para um Storage Account (ou outro recurso Azure suportado), o Azure cria recursos do Event Grid que representam essa ligação: normalmente aparece um System Topic (recurso ARM do tipo Microsoft.EventGrid/systemTopics) associado ao seu Storage Account e a(s) Event Subscription(s) ligadas a ele. É por isso que você vê entradas no painel \"Event Grid -> System topics\" como na imagem.\n- Estrutura prática criada:\n  - System Topic: recurso gerado automaticamente que representa a fonte de eventos (o Storage Account) no escopo do Event Grid.\n  - Event Subscription: objeto que contém destino (endpoint), filtros, esquema de evento, retry policy, etc. A subscription é a configuração que diz para onde os eventos devem ser entregues.\n- Fluxo de eventos: o Storage gera eventos (ex.: BlobCreated, BlobDeleted), o Event Grid recebe/rotea esses eventos através do System Topic e entrega para o endpoint definido na Event Subscription (Function, Logic App, WebHook, Event Hub, Queue, etc.).\n- Nome e aparência: o System Topic costuma ter um nome que combina o nome do recurso com um identificador; na coluna \"Topic Type\" você verá o tipo de recurso que originou o tópico (por exemplo, Microsoft.Storage.StorageAccounts para Storage).\n\nQuais tipos de Event Grid existem (visão prática e quando usar)\n1) System Topics\n- O que são: tópicos criados/gerenciados automaticamente pelo Azure quando você liga assinaturas para recursos Azure suportados (Storage, Event Hub, Service Bus namespaces, Resource Groups, Subscriptions, etc.).\n- Uso típico: ligar diretamente a eventos de recursos Azure gerenciados.\n- Exemplo: um system topic para um Storage Account que publica eventos como BlobCreated.\n\n2) Custom Topics (simplesmente \"Topics\")\n- O que são: endpoints que você cria quando quer publicar eventos a partir de fontes customizadas (seu aplicativo, dispositivos, serviços on‑premise).\n- Uso típico: quando você tem produtores fora do ecossistema Azure (ou quer um controle fino sobre autenticação/tenancy).\n- Como publicar: você envia eventos para o endpoint do Custom Topic (com chave/credenciais).\n\n3) Domains (Event Grid Domain)\n- O que são: uma abstração para gerenciar muitos tópicos lógicos com configuração centralizada (multi-tenant ou multi‑app). Um domínio expõe vários topics e permite escalonar ingressos para muitos publishers.\n- Uso típico: cenários com múltiplos produtores organizados (ex.: SaaS com muitos clientes que precisam publicar eventos isoladamente).\n\n4) Partner Topics / Partner Namespace (Event Grid Partner)\n- O que são: integrações com provedores parceiros (parceiros certificados). Permitem receber eventos de parceiros externos com governança e onboarding via Partner Namespace.\n- Uso típico: quando consome eventos de marketplaces/parceiros que usam o modelo de Partner Registration.\n\nObservações importantes sobre event subscriptions e schema\n- Schemas suportados ao criar a assinatura: normalmente você escolhe entre\n  - Event Grid schema (formato nativo da Azure Event Grid),\n  - CloudEvents (padrão CloudEvents v1.0 — recomendado para interoperabilidade),\n  - Custom input mapping (quando você precisa mapear/transformar um formato específico).\n- O schema não muda onde o System Topic é criado — ele apenas define o formato do payload que será enviado ao endpoint.\n\nExemplos práticos (Storage Account)\n- Eventos típicos do Storage: Microsoft.Storage.BlobCreated, Microsoft.Storage.BlobDeleted, Microsoft.Storage.DirectoryCreated, entre outros.\n- Depois de criar a subscription com schema Event Grid: o Storage passa a emitir eventos, o System Topic aparece na lista de System Topics e você verá a Event Subscription ligada a ele. Você pode abrir a subscription para ver o endpoint, filtros e testar a entrega.\n\nComo verificar no portal (passo a passo curto)\n1. Portal Azure > Event Grid > System topics — veja o system topic criado automaticamente para o seu Storage (coluna Topic Type mostra o tipo de recurso, ex.: Microsoft.Storage.StorageAccounts).\n2. Clique no System Topic > Event Subscriptions — veja ou edite a(s) subscriptions associadas (endpoint, schema, filtros).\n3. Alternativamente, vá ao Storage Account > Events / Event Subscriptions para ver subscriptions criadas diretamente no recurso.\n\nDicas e melhores práticas\n- Se precisar publicar eventos de aplicações próprias fora do Azure, use Custom Topics; para recursos Azure use System Topics.\n- Prefira CloudEvents quando houver consumidores que esperam um padrão aberto; use Event Grid schema quando todos os consumidores forem compatíveis com o formato nativo.\n- Verifique os tipos de evento disponíveis por recurso (cada resource provider documenta os event types — ex.: docs.microsoft.com para Storage events).\n\nSe quiser, eu posso:\n- Listar os event types específicos de um Storage Account (por região/nome do recurso) se você me enviar o nome do recurso ou a captura do blade de event types;\n- Mostrar exemplos de payload em Event Grid schema vs CloudEvents;\n- Gerar um checklist de verificação para garantir que a Event Subscription entregue corretamente (endpoints, permissões, retry, dead-letter).\n"
+      },
+      "generatedAt": "2026-07-02T19:14:08.401Z",
+      "userPrompt": "Quando eu crio um Storage account e Crio uma assinatura com schema do evengrid, o que acontece no Azure eu vi que aparenetemente um event grid system topic é criado,  quais os tipos de event grid que existem?"
+    }
+  ]
+}

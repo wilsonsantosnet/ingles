@@ -40,7 +40,17 @@ Quando solicitado:
 ```powershell
 # Configure sua chave do Azure OpenAI
 azd env set AZURE_OPENAI_KEY "sua-chave-aqui"
+
+# Se quiser usar Foundry apenas no deploy (local continua Azure OpenAI atual)
+azd env set LLM_PROVIDER "foundry"
+azd env set FOUNDRY_OPENAI_ENDPOINT "https://foundryws.services.ai.azure.com/openai/v1"
+azd env set FOUNDRY_OPENAI_DEPLOYMENT "gpt-5-mini"
+azd env set FOUNDRY_OPENAI_KEY "sua-chave-foundry"
 ```
+
+Observação:
+- Local (desenvolvimento): mantenha `LLM_PROVIDER` ausente ou `azure_openai`.
+- Azure (deploy): defina `LLM_PROVIDER=foundry` no ambiente do `azd`.
 
 ### 5. Deploy
 

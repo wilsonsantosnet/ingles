@@ -174,9 +174,23 @@
       "title": "Configuração de Application Security Groups (ASG) no Azure",
       "status": "enriched",
       "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-3",
+      "date": "2026-06-25",
+      "title": "Gerenciamento de Alertas no Azure Monitor",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-4",
+      "date": "2026-06-25",
+      "title": "Configuração de conectividade entre redes no Azure com VPN e Peering",
+      "status": "enriched",
+      "file": "manual"
     }
   ],
-  "totalLessons": 25,
-  "processedAt": "2026-06-25T13:05:15.371Z",
+  "totalLessons": 27,
+  "processedAt": "2026-06-25T13:55:49.797Z",
   "categoryId": "az104"
 }

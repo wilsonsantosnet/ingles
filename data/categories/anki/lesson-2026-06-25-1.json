@@ -33,6 +33,31 @@
           "lastReview": null,
           "reviews": []
         }
+      },
+      {
+        "word": "Every other day",
+        "translation": "Dia sim, dia não",
+        "definition": "Happening on alternate days",
+        "examples": [
+          "I go to the gym every other day.",
+          "She waters the plants every other day.",
+          "We call our grandparents every other day.",
+          "The medication should be taken every other day.",
+          "He checks his emails every other day."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-25-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-25",
+          "lastReview": null,
+          "reviews": []
+        }
       }
     ],
     "practiceQuestions": [],
@@ -42,6 +67,6 @@
     "supportMaterials": []
   },
   "createdAt": "2026-06-25T13:20:14.423Z",
-  "updatedAt": "2026-06-25T13:20:14.429Z",
+  "updatedAt": "2026-06-25T13:34:50.324Z",
   "status": "created"
 }

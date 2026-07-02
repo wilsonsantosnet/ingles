@@ -1,0 +1,224 @@
+{
+  "date": "2025-06-25",
+  "title": "Apresentações em Inglês: Expressões e Estrutura",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONPRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? ",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONPRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? "
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONPRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? "
+      ]
+    }
+  ],
+  "source": "docx",
+  "sourceFile": "Wilson dos Santos - 25June2025.docx",
+  "id": "lesson-2025-06-25-5",
+  "enriched": {
+    "title": "Apresentações em Inglês: Expressões e Estrutura",
+    "summary": "A aula aborda como iniciar, organizar e encerrar apresentações em inglês, utilizando vocabulário e expressões-chave. Também inclui dicas de gramática, pronúncia e referência a recursos visuais.",
+    "mainTopics": [
+      "Estrutura de apresentações",
+      "Expressões úteis para apresentações",
+      "Vocabulário relacionado a apresentações"
+    ],
+    "vocabulary": [
+      {
+        "word": "presentation",
+        "translation": "apresentação",
+        "definition": "A talk or speech given to an audience to share information or ideas.",
+        "examples": [
+          "My presentation is about company goals.",
+          "He gave a presentation on climate change."
+        ],
+        "pronunciation": "/ˌprɛzənˈteɪʃən/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "speech",
+          "lecture",
+          "talk"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-06-25-5-presentation",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "visual",
+        "translation": "visual",
+        "definition": "Something that can be seen, such as images, charts, or graphs used in presentations.",
+        "examples": [
+          "Let's look at the visual on the screen.",
+          "This visual helps explain the data better."
+        ],
+        "pronunciation": "/ˈvɪʒuəl/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "graphic",
+          "image",
+          "illustration"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-06-25-5-visual",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "emphasis",
+        "translation": "ênfase",
+        "definition": "Special importance or attention given to something.",
+        "examples": [
+          "Adding emphasis to key points can make your presentation more engaging.",
+          "The emphasis is on the main idea of the project."
+        ],
+        "pronunciation": "/ˈɛmfəsɪs/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "stress",
+          "focus",
+          "importance"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-06-25-5-emphasis",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Gerúndio após expressões introdutórias",
+        "explanation": "Ao iniciar uma apresentação, é comum usar o gerúndio após verbos ou expressões como 'I'd like to begin by...'.",
+        "rules": [
+          "Use 'I'd like to begin by' seguido de um verbo no gerúndio para apresentar uma ideia inicial.",
+          "Exemplo de estrutura: 'I'd like to begin by explaining the process.'"
+        ],
+        "examples": [
+          "I'd like to begin by introducing myself.",
+          "I'd like to begin by thanking everyone."
+        ],
+        "commonMistakes": [
+          "Usar infinitivo ao invés de gerúndio: 'I'd like to begin by explain the process.'",
+          "Omitir 'by': 'I'd like to begin explaining the process.'"
+        ],
+        "id": "grammar-lesson-2025-06-25-5-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [
+      {
+        "expression": "Good morning and thanks for coming.",
+        "meaning": "Saudação de boas-vindas ao público.",
+        "usage": "Usada no início de apresentações para cumprimentar e agradecer aos participantes.",
+        "examples": [
+          "Good morning and thanks for coming. I'm here today to discuss our new project."
+        ]
+      },
+      {
+        "expression": "Feel free to ask questions.",
+        "meaning": "Permissão para fazer perguntas.",
+        "usage": "Usada para encorajar os participantes a interagirem durante ou após a apresentação.",
+        "examples": [
+          "Please feel free to ask questions during the presentation."
+        ]
+      },
+      {
+        "expression": "That brings me to the end of my presentation.",
+        "meaning": "Frase para encerrar uma apresentação.",
+        "usage": "Usada para indicar que o conteúdo foi concluído e abrir espaço para perguntas ou comentários.",
+        "examples": [
+          "That brings me to the end of my presentation. Are there any questions?"
+        ]
+      }
+    ],
+    "practiceQuestions": [
+      {
+        "question": "Complete the sentence: '___ morning and thanks for coming.'",
+        "answer": "Good",
+        "explanation": "A palavra 'Good' é usada para saudar o público no início da apresentação.",
+        "type": "fill-in-blank",
+        "tense": "Present Simple",
+        "id": "question-lesson-2025-06-25-5-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Translate to English: 'Sinta-se à vontade para fazer perguntas.'",
+        "answer": "Feel free to ask questions.",
+        "explanation": "A expressão 'Feel free to ask questions' é usada para encorajar perguntas durante a apresentação.",
+        "type": "translation",
+        "tense": "Imperative",
+        "id": "question-lesson-2025-06-25-5-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "Nas culturas de língua inglesa, é comum começar apresentações com uma saudação e agradecimento pela presença dos participantes.",
+      "Usar recursos visuais, como slides ou gráficos, é uma prática comum em apresentações empresariais e acadêmicas."
+    ],
+    "studyTips": [
+      "Pratique as expressões em voz alta para melhorar sua pronúncia e confiança.",
+      "Crie uma apresentação fictícia sobre um tema simples e inclua as expressões e estrutura estudadas.",
+      "Grave sua apresentação e revise para identificar pontos de melhoria na pronúncia e fluidez."
+    ],
+    "originalExamples": [
+      "Good morning and thanks for coming. (Bom dia e obrigado por vir.)",
+      "I'm here today to talk about our new project. (Estou aqui hoje para falar sobre nosso novo projeto.)",
+      "Let's look at this chart. (Vamos olhar para este gráfico.)",
+      "Feel free to ask questions. (Sinta-se à vontade para fazer perguntas.)",
+      "That brings me to the end of my presentation. (Isso me leva ao fim da minha apresentação.)",
+      "Are there any more questions? (Há mais perguntas?)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "enrichedAt": "2026-07-02T15:13:46.649Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": [
+      "practiceQuestions tem apenas 2 item(ns), recomendado mínimo de 3"
+    ]
+  }
+}

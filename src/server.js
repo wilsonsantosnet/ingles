@@ -7,7 +7,7 @@ import { config } from './config.js';
 import { SpacedRepetitionSystem } from './spacedRepetition.js';
 import { CategoryManager } from './categoryManager.js';
 import { LessonManager } from './lessonManager.js';
-import { enrichWithLLM, generateWithPrompt, generateQuickVocabulary } from './llmEnricher.js';
+import { enrichWithLLM, generateWithPrompt, generateQuickVocabulary, generateSentenceVocabulary } from './llmEnricher.js';
 import { imageProcessor } from './imageProcessor.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,6 +36,34 @@ const upload = multer({
 const srs = new SpacedRepetitionSystem();
 const categoryManager = new CategoryManager();
 const lessonManager = new LessonManager();
+
+function normalizeToken(value) {
+  return String(value || '')
+    .toLocaleLowerCase('pt-BR')
+    .replace(/[^a-z0-9\s'-]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getAnkiInputType(text) {
+  const normalized = String(text || '').trim();
+  if (!normalized) {
+    return 'unknown';
+  }
+
+  const wordCount = normalized.split(/\s+/).filter(Boolean).length;
+  const hasSentencePunctuation = /[.!?]$/.test(normalized);
+
+  if (wordCount === 1) {
+    return 'word';
+  }
+
+  if (wordCount <= 5 && !hasSentencePunctuation) {
+    return 'chunk';
+  }
+
+  return 'sentence';
+}
 
 function ensureAnkiCategory() {
   const existing = categoryManager.getCategory('anki');
@@ -85,15 +113,16 @@ app.post('/api/anki/preview', async (req, res) => {
   try {
     const word = (req.body?.word || '').trim();
     if (!word) {
-      return res.status(400).json({ error: 'Palavra é obrigatória' });
+      return res.status(400).json({ error: 'Termo ou frase é obrigatório' });
     }
 
-    if (word.length > 120) {
-      return res.status(400).json({ error: 'Palavra muito longa (máximo 120 caracteres)' });
+    if (word.length > 500) {
+      return res.status(400).json({ error: 'Texto muito longo (máximo 500 caracteres)' });
     }
 
     const preview = await generateQuickVocabulary(word);
-    res.json({ preview });
+    const inputType = getAnkiInputType(word);
+    res.json({ preview, inputType });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -102,7 +131,7 @@ app.post('/api/anki/preview', async (req, res) => {
 /**
  * POST /api/anki/save - Salva palavra em aula existente ou cria nova aula
  */
-app.post('/api/anki/save', (req, res) => {
+app.post('/api/anki/save', async (req, res) => {
   try {
     ensureAnkiCategory();
 
@@ -110,6 +139,7 @@ app.post('/api/anki/save', (req, res) => {
     const preview = payload.preview || {};
     const word = (preview.word || '').trim();
     const translation = (preview.translation || '').trim();
+    const inputType = getAnkiInputType(word);
 
     if (!word || !translation) {
       return res.status(400).json({ error: 'word e translation são obrigatórios' });
@@ -137,36 +167,99 @@ app.post('/api/anki/save', (req, res) => {
       return res.status(404).json({ error: 'Aula não encontrada' });
     }
 
-    const normalizedWord = word.toLocaleLowerCase('pt-BR');
-    const hasDuplicateWord = (existingLesson.enriched?.vocabulary || []).some((item) => {
-      const existingWord = (item?.word || '').trim().toLocaleLowerCase('pt-BR');
-      return existingWord === normalizedWord;
-    });
+    const existingVocab = existingLesson.enriched?.vocabulary || [];
+    const existingQuestions = existingLesson.enriched?.practiceQuestions || [];
+    const existingVocabularyMap = new Map(
+      existingVocab.map((item) => [normalizeToken(item.word), true])
+    );
 
-    if (hasDuplicateWord) {
-      return res.status(409).json({
-        error: `A palavra "${word}" já existe nesta aula.`,
-        code: 'DUPLICATE_WORD',
-        lessonId
+    let updatedLesson = existingLesson;
+    let addedVocabularyCount = 0;
+    let addedQuestion = false;
+
+    if (inputType === 'sentence') {
+      const normalizedSentence = normalizeToken(word);
+      const hasDuplicateQuestion = existingQuestions.some((q) => normalizeToken(q.question) === normalizedSentence);
+
+      if (!hasDuplicateQuestion) {
+        updatedLesson = lessonManager.addQuestion('anki', lessonId, {
+          type: 'translation',
+          question: word,
+          answer: translation,
+          explanation: preview.definition || '',
+          sourceType: 'sentence',
+          sourceText: word
+        });
+        addedQuestion = true;
+      }
+
+      // Derivar vocabulário da frase e inserir apenas itens inéditos.
+      const derivedVocabulary = [];
+      try {
+        const aiDerived = await generateSentenceVocabulary(word, 8);
+        derivedVocabulary.push(...aiDerived);
+      } catch (error) {
+        console.warn('Falha ao derivar vocabulário da frase via IA:', error.message);
+      }
+
+      for (const item of derivedVocabulary) {
+        const normalizedItemWord = normalizeToken(item.word);
+        if (!normalizedItemWord || existingVocabularyMap.has(normalizedItemWord)) {
+          continue;
+        }
+
+        updatedLesson = lessonManager.addVocabulary('anki', lessonId, {
+          ...item,
+          sourceType: 'derived-from-sentence',
+          sourceText: word
+        });
+        existingVocabularyMap.set(normalizedItemWord, true);
+        addedVocabularyCount++;
+      }
+
+      if (!addedQuestion && addedVocabularyCount === 0) {
+        return res.status(409).json({
+          error: 'A frase e as palavras derivadas já existem nesta aula.',
+          code: 'DUPLICATE_SENTENCE',
+          lessonId
+        });
+      }
+    } else {
+      const normalizedWord = normalizeToken(word);
+      const hasDuplicateWord = existingVocabularyMap.has(normalizedWord);
+
+      if (hasDuplicateWord) {
+        return res.status(409).json({
+          error: `O termo "${word}" já existe nesta aula.`,
+          code: 'DUPLICATE_WORD',
+          lessonId
+        });
+      }
+
+      updatedLesson = lessonManager.addVocabulary('anki', lessonId, {
+        word,
+        translation,
+        definition: preview.definition || '',
+        examples: Array.isArray(preview.examples) ? preview.examples : [],
+        pronunciation: preview.pronunciation || '',
+        partOfSpeech: preview.partOfSpeech || (inputType === 'chunk' ? 'expression' : 'other'),
+        synonyms: Array.isArray(preview.synonyms) ? preview.synonyms : [],
+        difficulty: preview.difficulty || 'intermediate',
+        sourceType: inputType,
+        sourceText: word
       });
+      addedVocabularyCount = 1;
     }
-
-    const savedLesson = lessonManager.addVocabulary('anki', lessonId, {
-      word,
-      translation,
-      definition: preview.definition || '',
-      examples: Array.isArray(preview.examples) ? preview.examples : [],
-      pronunciation: preview.pronunciation || '',
-      partOfSpeech: preview.partOfSpeech || 'other',
-      synonyms: Array.isArray(preview.synonyms) ? preview.synonyms : [],
-      difficulty: preview.difficulty || 'intermediate'
-    });
 
     res.status(201).json({
       success: true,
       lessonId,
       createdLesson: shouldCreateLesson,
-      totalVocabulary: savedLesson.enriched?.vocabulary?.length || 0
+      inputType,
+      addedQuestion,
+      addedVocabularyCount,
+      totalVocabulary: updatedLesson.enriched?.vocabulary?.length || 0,
+      totalQuestions: updatedLesson.enriched?.practiceQuestions?.length || 0
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -213,6 +306,30 @@ app.get('/api/categories/:id', (req, res) => {
     res.json(category);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+/**
+ * GET /api/categories/:categoryId/tips - Retorna dicas cadastradas da categoria
+ */
+app.get('/api/categories/:categoryId/tips', (req, res) => {
+  try {
+    const category = categoryManager.getCategory(req.params.categoryId);
+    if (!category) {
+      return res.status(404).json({ error: 'Categoria não encontrada' });
+    }
+
+    const tipsPath = join(config.getCategoryPaths(req.params.categoryId).processed, 'tips.json');
+
+    if (!existsSync(tipsPath)) {
+      return res.json({ categoryId: req.params.categoryId, tips: {} });
+    }
+
+    const rawData = readFileSync(tipsPath, 'utf-8');
+    const tips = JSON.parse(rawData);
+    res.json({ categoryId: req.params.categoryId, tips });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao carregar dicas da categoria' });
   }
 });
 
@@ -438,6 +555,8 @@ app.post('/api/categories/:categoryId/ocr', upload.array('images', 10), async (r
       const allLines = [];
       let totalConfidence = 0;
       let worstQuality = 'excellent';
+      let ocrModel = null;
+      let ocrProvider = null;
       const qualityOrder = { excellent: 3, good: 2, fair: 1, poor: 0 };
 
       for (let i = 0; i < tempFiles.length; i++) {
@@ -452,6 +571,8 @@ app.post('/api/categories/:categoryId/ocr', upload.array('images', 10), async (r
         allTexts.push(ocrResult.text);
         allLines.push(...ocrResult.lines);
         totalConfidence += ocrResult.confidence;
+        ocrModel = ocrResult.metadata?.model || ocrModel;
+        ocrProvider = ocrResult.metadata?.provider || ocrProvider;
 
         if (qualityOrder[ocrResult.quality] < qualityOrder[worstQuality]) {
           worstQuality = ocrResult.quality;
@@ -480,7 +601,8 @@ app.post('/api/categories/:categoryId/ocr', upload.array('images', 10), async (r
         metadata: {
           lineCount: allLines.length,
           characterCount: combinedText.length,
-          model: 'gpt-4o'
+          model: ocrModel || (config.llm.provider === 'foundry' ? config.foundryOpenAI.deployment : config.azureOpenAI.deployment),
+          provider: ocrProvider || config.llm.provider
         }
       });
 

@@ -1,0 +1,14 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-2026-07-02-1",
+      "date": "2026-07-02",
+      "title": "Comparando Event Grid, Event Hubs e Service Bus",
+      "status": "enriched",
+      "file": "manual"
+    }
+  ],
+  "totalLessons": 1,
+  "processedAt": "2026-07-02T19:14:08.404Z",
+  "categoryId": "dia-a-dia"
+}

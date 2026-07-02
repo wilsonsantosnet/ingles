@@ -250,6 +250,32 @@
           "lastReview": null,
           "reviews": []
         }
+      },
+      {
+        "word": "cowork",
+        "translation": "colaborar; trabalhar junto",
+        "definition": "to work together with someone on a task or project",
+        "examples": [
+          "I often cowork with the design team.",
+          "They cowork remotely from different cities.",
+          "Would you like to cowork on this presentation?",
+          "We decided to cowork on the new proposal."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word",
+        "sourceText": "cowork",
+        "id": "vocab-lesson-2026-06-19-1-8",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
       }
     ],
     "practiceQuestions": [],
@@ -259,6 +285,6 @@
     "supportMaterials": []
   },
   "createdAt": "2026-06-19T12:41:25.446Z",
-  "updatedAt": "2026-06-25T13:04:41.803Z",
-  "status": "created"
+  "updatedAt": "2026-07-02T17:55:06.282Z",
+  "status": "enriched"
 }

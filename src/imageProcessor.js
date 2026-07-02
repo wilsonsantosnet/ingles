@@ -1,8 +1,32 @@
-import { AzureOpenAI } from 'openai';
+import OpenAI, { AzureOpenAI } from 'openai';
 import { DefaultAzureCredential } from '@azure/identity';
 import { readFileSync, writeFileSync, statSync } from 'fs';
 import sharp from 'sharp';
 import { config } from './config.js';
+
+function getLlmProvider() {
+  return (config.llm?.provider || 'azure_openai').toLowerCase();
+}
+
+function createFoundryClient() {
+  const { endpoint, apiKey } = config.foundryOpenAI;
+
+  if (!endpoint) {
+    throw new Error('FOUNDRY_OPENAI_ENDPOINT não configurado');
+  }
+
+  if (!apiKey) {
+    throw new Error('FOUNDRY_OPENAI_KEY não configurado');
+  }
+
+  return new OpenAI({
+    baseURL: endpoint,
+    apiKey,
+    defaultHeaders: {
+      'api-key': apiKey
+    }
+  });
+}
 
 /**
  * Processador de imagens com OCR usando Azure OpenAI GPT-4o Vision
@@ -18,6 +42,15 @@ export class ImageProcessor {
    */
   async initializeClient() {
     if (this.initialized) return;
+
+    const provider = getLlmProvider();
+
+    if (provider === 'foundry') {
+      this.client = createFoundryClient();
+      this.initialized = true;
+      console.log('✅ Foundry OpenAI configurado (autenticação via API Key)');
+      return;
+    }
 
     try {
       // Tentar usar DefaultAzureCredential primeiro
@@ -154,6 +187,7 @@ export class ImageProcessor {
    */
   async extractTextFromImage(imagePath) {
     await this.initializeClient();
+    const provider = getLlmProvider();
 
     console.log(`🔍 Validando imagem: ${imagePath}`);
 
@@ -176,8 +210,12 @@ export class ImageProcessor {
     try {
       const { base64, mimeType } = await this.imageToBase64(tempPath);
 
-      // Chamar GPT-4o Vision
-      console.log('📖 Iniciando OCR via GPT-4o Vision...');
+      // Chamar Vision model
+      if (provider === 'foundry') {
+        console.log('📖 Iniciando OCR via Foundry Vision...');
+      } else {
+        console.log('📖 Iniciando OCR via GPT-4o Vision...');
+      }
       
       const prompt = `Você é um assistente especializado em extrair texto de imagens.
 
@@ -195,25 +233,32 @@ INSTRUÇÕES:
 FORMATO DE RESPOSTA:
 Retorne APENAS o texto extraído, sem comentários ou análises adicionais.`;
 
-      const response = await this.client.chat.completions.create({
-        model: config.azureOpenAI.deployment,
+      const requestBody = {
+        model: provider === 'foundry' ? config.foundryOpenAI.deployment : config.azureOpenAI.deployment,
         messages: [
           {
-            role: "user",
+            role: 'user',
             content: [
-              { type: "text", text: prompt },
+              { type: 'text', text: prompt },
               {
-                type: "image_url",
+                type: 'image_url',
                 image_url: {
                   url: `data:${mimeType};base64,${base64}`
                 }
               }
             ]
           }
-        ],
-        max_tokens: 4000,
-        temperature: 0.1 // Baixa temperatura para maior precisão
-      });
+        ]
+      };
+
+      if (provider === 'foundry') {
+        requestBody.max_completion_tokens = 4000;
+      } else {
+        requestBody.max_tokens = 4000;
+        requestBody.temperature = 0.1; // Baixa temperatura para maior precisão
+      }
+
+      const response = await this.client.chat.completions.create(requestBody);
 
       const extractedText = response.choices[0]?.message?.content || '';
       
@@ -241,7 +286,8 @@ Retorne APENAS o texto extraído, sem comentários ou análises adicionais.`;
           ...validation.metadata,
           lineCount: lines.length,
           characterCount: extractedText.length,
-          model: config.azureOpenAI.deployment
+          model: provider === 'foundry' ? config.foundryOpenAI.deployment : config.azureOpenAI.deployment,
+          provider
         }
       };
       

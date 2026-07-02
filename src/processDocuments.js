@@ -1,5 +1,6 @@
 import { readdir, readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, extname } from 'path';
+import { createHash } from 'crypto';
 import { config } from './config.js';
 import { extractWordContent, parseLesson } from './wordExtractor.js';
 import { enrichWithLLM } from './llmEnricher.js';
@@ -7,6 +8,163 @@ import { SpacedRepetitionSystem } from './spacedRepetition.js';
 import { CategoryManager } from './categoryManager.js';
 import { LessonManager } from './lessonManager.js';
 import { imageProcessor } from './imageProcessor.js';
+
+/**
+ * Carrega o índice existente da categoria.
+ * @param {string} indexPath - Caminho do arquivo index.json
+ * @returns {{lessons: Array}} Estrutura do índice
+ */
+function loadExistingIndex(indexPath) {
+  if (!existsSync(indexPath)) {
+    return { lessons: [] };
+  }
+
+  try {
+    const indexData = JSON.parse(readFileSync(indexPath, 'utf-8'));
+    return {
+      ...indexData,
+      lessons: Array.isArray(indexData.lessons) ? indexData.lessons : []
+    };
+  } catch {
+    return { lessons: [] };
+  }
+}
+
+/**
+ * Constrói lookup de aulas já processadas por nome de arquivo de origem.
+ * @param {Array} lessons - Itens do índice atual
+ * @param {string} processedPath - Pasta das aulas processadas
+ * @returns {Map<string, Object>} Mapa por sourceFile normalizado (lowercase)
+ */
+function buildSourceFileLookup(lessons, processedPath) {
+  const sourceLookup = new Map();
+
+  for (const item of lessons) {
+    if (!item?.sourceFile) {
+      continue;
+    }
+
+    sourceLookup.set(item.sourceFile.toLowerCase(), {
+      id: item.id,
+      date: item.date,
+      title: item.title,
+      file: item.file,
+      status: item.status,
+      sourceFile: item.sourceFile
+    });
+  }
+
+  // Compatibilidade com dados antigos: tenta hidratar sourceFile lendo as aulas já salvas.
+  for (const item of lessons) {
+    if (!item?.id || item.sourceFile) {
+      continue;
+    }
+
+    const lessonPath = join(processedPath, `${item.id}.json`);
+    if (!existsSync(lessonPath)) {
+      continue;
+    }
+
+    try {
+      const lessonData = JSON.parse(readFileSync(lessonPath, 'utf-8'));
+      if (!lessonData?.sourceFile) {
+        continue;
+      }
+
+      sourceLookup.set(lessonData.sourceFile.toLowerCase(), {
+        id: item.id,
+        date: item.date,
+        title: item.title,
+        file: item.file,
+        status: item.status,
+        sourceFile: lessonData.sourceFile
+      });
+    } catch {
+      // Ignora item inválido e segue processamento.
+    }
+  }
+
+  return sourceLookup;
+}
+
+/**
+ * Gera hash estável de texto para comparação de conteúdo.
+ * @param {string} text - Texto para gerar hash
+ * @returns {string} Hash SHA-1 em hexadecimal
+ */
+function hashText(text) {
+  return createHash('sha1').update(text || '', 'utf-8').digest('hex');
+}
+
+/**
+ * Constrói lookup por hash do rawContent para compatibilidade com dados legados.
+ * @param {Array} lessons - Itens do índice atual
+ * @param {string} processedPath - Pasta das aulas processadas
+ * @returns {Map<string, Object>} Mapa por hash de conteúdo
+ */
+function buildContentHashLookup(lessons, processedPath) {
+  const contentLookup = new Map();
+
+  for (const item of lessons) {
+    if (!item?.id) {
+      continue;
+    }
+
+    const lessonPath = join(processedPath, `${item.id}.json`);
+    if (!existsSync(lessonPath)) {
+      continue;
+    }
+
+    try {
+      const lessonData = JSON.parse(readFileSync(lessonPath, 'utf-8'));
+      if (!lessonData?.rawContent) {
+        continue;
+      }
+
+      const contentHash = hashText(lessonData.rawContent);
+      if (!contentLookup.has(contentHash)) {
+        contentLookup.set(contentHash, {
+          id: item.id,
+          date: item.date,
+          title: item.title,
+          file: item.file,
+          status: item.status,
+          sourceFile: item.sourceFile || lessonData.sourceFile,
+          isLegacy: !item.sourceFile && !lessonData.sourceFile
+        });
+      }
+    } catch {
+      // Ignora item inválido e segue processamento.
+    }
+  }
+
+  return contentLookup;
+}
+
+/**
+ * Atualiza uma aula legada com sourceFile para acelerar próximos processamentos incrementais.
+ * @param {string} processedPath - Pasta das aulas processadas
+ * @param {string} lessonId - ID da aula
+ * @param {string} sourceFile - Nome do arquivo de origem
+ */
+function attachSourceFileToLesson(processedPath, lessonId, sourceFile) {
+  const lessonPath = join(processedPath, `${lessonId}.json`);
+  if (!existsSync(lessonPath)) {
+    return;
+  }
+
+  try {
+    const lessonData = JSON.parse(readFileSync(lessonPath, 'utf-8'));
+    if (lessonData.sourceFile === sourceFile) {
+      return;
+    }
+
+    lessonData.sourceFile = sourceFile;
+    writeFileSync(lessonPath, JSON.stringify(lessonData, null, 2), 'utf-8');
+  } catch {
+    // Se falhar atualização, mantém comportamento principal sem interromper o processamento.
+  }
+}
 
 /**
  * Processa documentos Word na pasta docs de uma categoria
@@ -72,6 +230,9 @@ async function processAllDocuments(categoryId = 'ingles', force = false) {
 
   const srs = new SpacedRepetitionSystem();
   const lessonManager = new LessonManager();
+  const existingIndex = loadExistingIndex(paths.index);
+  const processedBySourceFile = buildSourceFileLookup(existingIndex.lessons, paths.processed);
+  const processedByContentHash = buildContentHashLookup(existingIndex.lessons, paths.processed);
   const processedLessons = [];
   let skipped = 0;
 
@@ -79,6 +240,24 @@ async function processAllDocuments(categoryId = 'ingles', force = false) {
     const filePath = join(paths.docs, file);
     const fileExt = extname(file).toLowerCase();
     const isImage = ['.jpg', '.jpeg', '.png'].includes(fileExt);
+    const normalizedSourceFile = file.toLowerCase();
+
+    // Modo incremental real: usa nome do arquivo de origem como referência.
+    if (!force && processedBySourceFile.has(normalizedSourceFile)) {
+      const existingLesson = processedBySourceFile.get(normalizedSourceFile);
+      console.log(`⏭️  Pulando ${file} (já processado como ${existingLesson.id})`);
+      skipped++;
+
+      processedLessons.push({
+        id: existingLesson.id,
+        date: existingLesson.date,
+        title: existingLesson.title,
+        file: existingLesson.file || (isImage ? 'image' : 'docx'),
+        status: existingLesson.status || 'enriched',
+        sourceFile: existingLesson.sourceFile || file
+      });
+      continue;
+    }
     
     // 1. Extrair conteúdo (Word ou Imagem)
     let extracted;
@@ -137,36 +316,42 @@ async function processAllDocuments(categoryId = 'ingles', force = false) {
     // 2. Parsear para obter ID e verificar se já foi processado
     const lesson = parseLesson(extracted.text, file);
     lesson.source = source; // Adicionar fonte
+    lesson.sourceFile = file; // Vincular ao arquivo original para processamento incremental
+
+    // Fallback para dados legados: identifica arquivo já processado pelo conteúdo.
+    const rawContentHash = hashText(extracted.text);
+    if (!force && processedByContentHash.has(rawContentHash)) {
+      const existingLesson = processedByContentHash.get(rawContentHash);
+      if (!existingLesson.isLegacy) {
+        // Conteúdo repetido com sourceFile já conhecido: mantém processamento normal.
+        // Isso permite aulas diferentes com texto igual, desde que sejam arquivos distintos.
+      } else {
+      console.log(`⏭️  Pulando ${file} (conteúdo já processado como ${existingLesson.id})`);
+      skipped++;
+
+      // Migração transparente: salva sourceFile na aula legada para próximos ciclos incrementais.
+      attachSourceFileToLesson(paths.processed, existingLesson.id, file);
+
+      processedBySourceFile.set(normalizedSourceFile, {
+        ...existingLesson,
+        sourceFile: file
+      });
+
+      processedLessons.push({
+        id: existingLesson.id,
+        date: existingLesson.date,
+        title: existingLesson.title,
+        file: existingLesson.file || source,
+        status: existingLesson.status || 'enriched',
+        sourceFile: file
+      });
+      continue;
+      }
+    }
     
     // Gerar ID único com indexador para múltiplas aulas no mesmo dia
     lesson.id = lessonManager.generateNextLessonId(categoryId, lesson.date);
     const outputPath = join(paths.processed, `${lesson.id}.json`);
-    
-    // Verificar se já foi processado (somente se não for modo force)
-    if (!force && existsSync(outputPath)) {
-      console.log(`⏭️  Pulando ${file} (já processado)`);
-      skipped++;
-
-      let existingTitle = lesson.title;
-      try {
-        const existingLesson = JSON.parse(readFileSync(outputPath, 'utf-8'));
-        if (existingLesson?.title) {
-          existingTitle = existingLesson.title;
-        }
-      } catch {
-        // Mantém fallback do título atual se não conseguir ler o arquivo existente.
-      }
-      
-      // Ainda assim adicionar ao índice
-      processedLessons.push({
-        id: lesson.id,
-        date: lesson.date,
-        title: existingTitle,
-        file: source,
-        status: 'enriched'
-      });
-      continue;
-    }
 
     // 3. Analisar estrutura
     console.log('2️⃣  Analisando estrutura...');
@@ -188,7 +373,26 @@ async function processAllDocuments(categoryId = 'ingles', force = false) {
       date: lessonWithSRS.date,
       title: lessonWithSRS.title,
       file: source,
-      status: enrichedLesson.status
+      status: enrichedLesson.status,
+      sourceFile: file
+    });
+
+    processedBySourceFile.set(normalizedSourceFile, {
+      id: lessonWithSRS.id,
+      date: lessonWithSRS.date,
+      title: lessonWithSRS.title,
+      file: source,
+      status: enrichedLesson.status,
+      sourceFile: file
+    });
+    processedByContentHash.set(rawContentHash, {
+      id: lessonWithSRS.id,
+      date: lessonWithSRS.date,
+      title: lessonWithSRS.title,
+      file: source,
+      status: enrichedLesson.status,
+      sourceFile: file,
+      isLegacy: false
     });
   }
 

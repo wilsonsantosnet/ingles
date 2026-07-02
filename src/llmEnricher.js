@@ -1,9 +1,307 @@
-import { AzureOpenAI } from 'openai';
+import OpenAI, { AzureOpenAI } from 'openai';
 import { DefaultAzureCredential } from '@azure/identity';
 import { config } from './config.js';
 import { validateContent } from './schemas/schemaValidator.js';
 import validateLanguageStructure from './schemas/languageSchema.js';
 import validateTechnologyStructure from './schemas/technologySchema.js';
+
+function getLlmProvider() {
+  return (config.llm?.provider || 'azure_openai').toLowerCase();
+}
+
+function parseJsonFromLlmContent(content) {
+  const cleanedContent = String(content || '').replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+  try {
+    return JSON.parse(cleanedContent);
+  } catch {
+    // Fallback: tenta extrair apenas o bloco JSON quando o modelo inclui texto extra.
+    const objectStart = cleanedContent.indexOf('{');
+    const objectEnd = cleanedContent.lastIndexOf('}');
+    if (objectStart >= 0 && objectEnd > objectStart) {
+      const objectCandidate = cleanedContent.slice(objectStart, objectEnd + 1);
+      const repairedObject = attemptJsonRepair(objectCandidate);
+      if (repairedObject) {
+        return repairedObject;
+      }
+    }
+
+    const arrayStart = cleanedContent.indexOf('[');
+    const arrayEnd = cleanedContent.lastIndexOf(']');
+    if (arrayStart >= 0 && arrayEnd > arrayStart) {
+      const arrayCandidate = cleanedContent.slice(arrayStart, arrayEnd + 1);
+      const repairedArray = attemptJsonRepair(arrayCandidate);
+      if (repairedArray) {
+        return repairedArray;
+      }
+    }
+
+    throw new Error('Resposta da IA não contém JSON parseável');
+  }
+}
+
+function tryParseJson(candidate) {
+  try {
+    return JSON.parse(candidate);
+  } catch {
+    return null;
+  }
+}
+
+function attemptJsonRepair(rawJson) {
+  const candidates = [];
+
+  // Candidato original
+  candidates.push(rawJson);
+
+  // Remove caracteres de controle ilegais (mantendo \n, \r, \t)
+  candidates.push(rawJson.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''));
+
+  // Remove trailing commas antes de } ou ]
+  candidates.push(rawJson.replace(/,\s*([}\]])/g, '$1'));
+
+  // Combinação: controle + trailing comma
+  candidates.push(
+    rawJson
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '')
+      .replace(/,\s*([}\]])/g, '$1')
+  );
+
+  // Normaliza aspas “smart quotes”
+  candidates.push(
+    rawJson
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/,\s*([}\]])/g, '$1')
+  );
+
+  for (const candidate of candidates) {
+    const parsed = tryParseJson(candidate);
+    if (parsed !== null) {
+      return parsed;
+    }
+  }
+
+  return null;
+}
+
+function safeJsonPreview(value, maxLength = 2500) {
+  try {
+    const serialized = JSON.stringify(value, null, 2);
+    if (!serialized) return '';
+    return serialized.length > maxLength ? `${serialized.slice(0, maxLength)}... [truncated]` : serialized;
+  } catch {
+    return '[unserializable]';
+  }
+}
+
+function logFoundryRawResponse(label, response) {
+  const preview = {
+    id: response?.id,
+    model: response?.model,
+    object: response?.object,
+    usage: response?.usage,
+    choices: response?.choices?.map(choice => ({
+      index: choice?.index,
+      finish_reason: choice?.finish_reason,
+      message: choice?.message
+    })),
+    output: response?.output,
+    output_text: response?.output_text
+  };
+
+  console.warn(`🧾 Raw Foundry response (${label}):`);
+  console.warn(safeJsonPreview(preview));
+}
+
+function extractContentFromFoundryResponse(response) {
+  const choice = response?.choices?.[0];
+  const message = choice?.message;
+
+  if (typeof message?.content === 'string' && message.content.trim()) {
+    return message.content.trim();
+  }
+
+  if (Array.isArray(message?.content)) {
+    const parts = message.content
+      .map(part => {
+        if (typeof part === 'string') return part;
+        if (typeof part?.text === 'string') return part.text;
+        if (typeof part?.content === 'string') return part.content;
+        return '';
+      })
+      .filter(Boolean)
+      .join('\n')
+      .trim();
+
+    if (parts) {
+      return parts;
+    }
+  }
+
+  if (typeof message?.refusal === 'string' && message.refusal.trim()) {
+    return message.refusal.trim();
+  }
+
+  if (typeof response?.output_text === 'string' && response.output_text.trim()) {
+    return response.output_text.trim();
+  }
+
+  return '';
+}
+
+function extractContentFromResponsesApi(response) {
+  if (typeof response?.output_text === 'string' && response.output_text.trim()) {
+    return response.output_text.trim();
+  }
+
+  if (Array.isArray(response?.output)) {
+    const outputText = response.output
+      .flatMap(item => (Array.isArray(item?.content) ? item.content : []))
+      .map(part => {
+        if (typeof part === 'string') return part;
+        if (typeof part?.text === 'string') return part.text;
+        if (typeof part?.content === 'string') return part.content;
+        return '';
+      })
+      .filter(Boolean)
+      .join('\n')
+      .trim();
+
+    if (outputText) {
+      return outputText;
+    }
+  }
+
+  return '';
+}
+
+function createFoundryClient() {
+  const { endpoint, apiKey } = config.foundryOpenAI;
+
+  if (!endpoint) {
+    throw new Error('FOUNDRY_OPENAI_ENDPOINT não configurado');
+  }
+
+  if (!apiKey) {
+    throw new Error('FOUNDRY_OPENAI_KEY não configurado');
+  }
+
+  // Define também api-key em header para compatibilidade com endpoints OpenAI-compat do Azure.
+  return new OpenAI({
+    baseURL: endpoint,
+    apiKey,
+    defaultHeaders: {
+      'api-key': apiKey
+    }
+  });
+}
+
+function getFoundryCompletionConfig() {
+  const rawTokens = Number(config.foundryOpenAI?.maxCompletionTokens);
+  const maxCompletionTokens = Number.isFinite(rawTokens) && rawTokens > 0 ? Math.floor(rawTokens) : 16384;
+
+  const effortRaw = String(config.foundryOpenAI?.reasoningEffort || '').toLowerCase().trim();
+  const allowedEfforts = new Set(['low', 'medium', 'high']);
+  const reasoningEffort = allowedEfforts.has(effortRaw) ? effortRaw : null;
+
+  return {
+    maxCompletionTokens,
+    reasoningEffort
+  };
+}
+
+function isReasoningEffortUnsupported(error) {
+  const message = String(error?.message || '').toLowerCase();
+  return message.includes('reasoning_effort') || message.includes('reasoning.effort') || message.includes('unknown parameter');
+}
+
+async function createFoundryChatCompletion(client, payload) {
+  const { maxCompletionTokens, reasoningEffort } = getFoundryCompletionConfig();
+  const request = {
+    ...payload,
+    max_completion_tokens: maxCompletionTokens
+  };
+
+  if (reasoningEffort) {
+    request.reasoning_effort = reasoningEffort;
+  }
+
+  try {
+    return await client.chat.completions.create(request);
+  } catch (error) {
+    if (!reasoningEffort || !isReasoningEffortUnsupported(error)) {
+      throw error;
+    }
+
+    console.warn('⚠️ Endpoint não aceitou reasoning_effort em chat.completions; retry sem esse parâmetro.');
+    const fallbackRequest = { ...request };
+    delete fallbackRequest.reasoning_effort;
+    return await client.chat.completions.create(fallbackRequest);
+  }
+}
+
+async function createFoundryResponse(client, payload) {
+  const { maxCompletionTokens, reasoningEffort } = getFoundryCompletionConfig();
+  const request = {
+    ...payload,
+    max_output_tokens: maxCompletionTokens
+  };
+
+  if (reasoningEffort) {
+    request.reasoning = { effort: reasoningEffort };
+  }
+
+  try {
+    return await client.responses.create(request);
+  } catch (error) {
+    if (!reasoningEffort || !isReasoningEffortUnsupported(error)) {
+      throw error;
+    }
+
+    console.warn('⚠️ Endpoint não aceitou reasoning.effort em responses.create; retry sem esse parâmetro.');
+    const fallbackRequest = { ...request };
+    delete fallbackRequest.reasoning;
+    return await client.responses.create(fallbackRequest);
+  }
+}
+
+async function repairJsonWithFoundry(client, deployment, rawContent) {
+  const snippet = String(rawContent || '').trim();
+  if (!snippet) return null;
+
+  const repairPrompt = `Você é um corretor de JSON.
+
+TAREFA:
+Corrigir o conteúdo abaixo para JSON VÁLIDO.
+
+REGRAS:
+- Retorne APENAS JSON válido
+- Não use markdown
+- Não adicione explicações
+- Preserve ao máximo a estrutura e os campos originais
+
+CONTEÚDO:
+${snippet}`;
+
+  const repairResponse = await createFoundryResponse(client, {
+    model: deployment,
+    input: repairPrompt
+  });
+
+  const repairedText = extractContentFromResponsesApi(repairResponse) || extractContentFromFoundryResponse(repairResponse);
+  if (!repairedText) {
+    logFoundryRawResponse('responses.create:json-repair-empty', repairResponse);
+    return null;
+  }
+
+  try {
+    return parseJsonFromLlmContent(repairedText);
+  } catch (error) {
+    console.warn('⚠️ Falha ao parsear JSON reparado via Foundry:', error.message);
+    return null;
+  }
+}
 
 /**
  * Enriquece o conteúdo da aula usando Azure OpenAI
@@ -100,7 +398,8 @@ async function enrichLanguageContent(lesson, category) {
   console.log('🌐 Usando prompt de idiomas...');
   
   const prompt = createLanguagePrompt(lesson);
-  const enrichedContent = await callAzureOpenAI(prompt);
+  const rawEnrichedContent = await callAzureOpenAI(prompt);
+  const enrichedContent = normalizeLanguageEnrichedContent(rawEnrichedContent);
   
   // Extrair links do conteúdo bruto (determinístico)
   const extractedLinks = extractLinksFromRawContent(lesson.rawContent);
@@ -224,6 +523,37 @@ function logValidationResults(validation) {
     console.warn('⚠️  Avisos:');
     validation.warnings.forEach(warn => console.warn(`   - ${warn}`));
   }
+}
+
+function ensureArray(value) {
+  if (Array.isArray(value)) return value;
+  if (value === null || value === undefined) return [];
+  return [value];
+}
+
+function normalizeLanguageEnrichedContent(rawContent) {
+  const normalized = (rawContent && typeof rawContent === 'object') ? { ...rawContent } : {};
+
+  // Alguns modelos retornam "exercises" para idioma; convertemos para o contrato esperado.
+  if (!normalized.practiceQuestions && normalized.exercises) {
+    normalized.practiceQuestions = normalized.exercises;
+  }
+
+  normalized.vocabulary = ensureArray(normalized.vocabulary);
+  normalized.grammar = ensureArray(normalized.grammar);
+  normalized.expressions = ensureArray(normalized.expressions);
+  normalized.practiceQuestions = ensureArray(normalized.practiceQuestions);
+  normalized.culturalNotes = ensureArray(normalized.culturalNotes);
+
+  if ('studyTips' in normalized) {
+    normalized.studyTips = ensureArray(normalized.studyTips);
+  }
+
+  if ('mainTopics' in normalized) {
+    normalized.mainTopics = ensureArray(normalized.mainTopics);
+  }
+
+  return normalized;
 }
 
 /**
@@ -563,8 +893,8 @@ ${imageBase64 ? '- Analise o conteúdo da imagem e use as informações nela com
 }
 
 /**
- * Gera preview rápido de vocabulário para cadastro manual de palavra
- * @param {string} word - Palavra em inglês
+ * Gera preview rápido de vocabulário para cadastro manual de termo/frase
+ * @param {string} word - Termo ou frase em inglês
  * @returns {Promise<Object>} Estrutura de vocabulário pronta para salvar
  */
 export async function generateQuickVocabulary(word) {
@@ -577,9 +907,9 @@ export async function generateQuickVocabulary(word) {
   const prompt = `Você é um assistente de ensino de inglês.
 
 TAREFA:
-Gerar um JSON para a palavra abaixo, com foco em estudo rápido para flashcards.
+Gerar um JSON para o termo/frase abaixo, com foco em estudo rápido para flashcards.
 
-PALAVRA:
+TERMO_OU_FRASE:
 ${normalizedWord}
 
 FORMATO DE SAÍDA (retorne APENAS JSON):
@@ -602,7 +932,8 @@ REGRAS:
 - Máximo de 5 exemplos
 - Exemplos devem ser curtos e naturais
 - Não inclua markdown
-- Não inclua explicações fora do JSON`;
+- Não inclua explicações fora do JSON
+- Se for uma frase completa, mantenha a frase completa no campo word e escolha partOfSpeech="expression" ou "other"`;
 
   const generated = await callAzureOpenAI(prompt);
 
@@ -619,6 +950,66 @@ REGRAS:
 }
 
 /**
+ * Gera vocabulário derivado de uma frase completa
+ * @param {string} sentence - Frase em inglês
+ * @param {number} maxWords - Limite de palavras derivadas
+ * @returns {Promise<Array>} Lista de itens de vocabulário
+ */
+export async function generateSentenceVocabulary(sentence, maxWords = 8) {
+  const normalizedSentence = (sentence || '').trim();
+
+  if (!normalizedSentence) {
+    return [];
+  }
+
+  const prompt = `Você é um assistente de ensino de inglês.
+
+TAREFA:
+Extrair as palavras mais importantes da frase abaixo e retornar vocabulário útil para estudo.
+
+FRASE:
+${normalizedSentence}
+
+FORMATO DE SAÍDA (retorne APENAS JSON):
+{
+  "vocabulary": [
+    {
+      "word": "palavra base em inglês",
+      "translation": "tradução em português brasileiro",
+      "definition": "definição curta em inglês",
+      "examples": ["um exemplo curto em inglês"],
+      "partOfSpeech": "noun|verb|adjective|adverb|expression|other",
+      "difficulty": "basic|intermediate|advanced"
+    }
+  ]
+}
+
+REGRAS:
+- Retorne no máximo ${maxWords} palavras
+- Não inclua nomes próprios, artigos isolados, ou pronomes simples sem valor de estudo
+- Não inclua a frase inteira como palavra
+- Não inclua markdown
+- Não inclua explicações fora do JSON`;
+
+  const generated = await callAzureOpenAI(prompt);
+  const items = Array.isArray(generated.vocabulary) ? generated.vocabulary : [];
+
+  return items
+    .filter(item => item?.word && item?.translation)
+    .slice(0, maxWords)
+    .map(item => ({
+      word: String(item.word).trim(),
+      translation: String(item.translation || '').trim(),
+      definition: String(item.definition || '').trim(),
+      examples: Array.isArray(item.examples) ? item.examples.slice(0, 3) : [],
+      pronunciation: '',
+      partOfSpeech: item.partOfSpeech || 'other',
+      synonyms: [],
+      difficulty: item.difficulty || 'intermediate'
+    }));
+}
+
+/**
  * Chama a API do Azure OpenAI com imagem (GPT-4o Vision)
  * @param {string} prompt - Prompt a enviar
  * @param {string} imageBase64 - Imagem em base64
@@ -626,6 +1017,63 @@ REGRAS:
  * @returns {Promise<Object>} Resposta processada
  */
 async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
+  const provider = getLlmProvider();
+
+  if (provider === 'foundry') {
+    const { endpoint, deployment } = config.foundryOpenAI;
+
+    console.log('📡 Enviando requisição com imagem para Foundry OpenAI...');
+    console.log('🔍 Endpoint:', endpoint);
+    console.log('🎯 Deployment:', deployment);
+    console.log('🔐 Autenticação: API Key (Foundry)');
+
+    try {
+      const client = createFoundryClient();
+
+      const response = await createFoundryChatCompletion(client, {
+        model: deployment,
+        messages: [
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: prompt },
+              {
+                type: 'image_url',
+                image_url: {
+                  url: `data:${mimeType};base64,${imageBase64}`
+                }
+              }
+            ]
+          }
+        ]
+      });
+
+      const content = extractContentFromFoundryResponse(response);
+      if (!content) {
+        const finishReason = response?.choices?.[0]?.finish_reason || 'unknown';
+        console.error('⚠️ Foundry sem conteúdo (imagem). finish_reason:', finishReason);
+        logFoundryRawResponse('chat.completions:image-empty', response);
+        throw new Error('Resposta vazia da API (Foundry)');
+      }
+
+      console.log('✅ Resposta com imagem recebida com sucesso (Foundry)');
+      try {
+        return parseJsonFromLlmContent(content);
+      } catch (parseError) {
+        console.warn('⚠️ JSON inválido no Foundry (imagem), tentando autocorreção...');
+        const repaired = await repairJsonWithFoundry(client, deployment, content);
+        if (repaired) {
+          console.log('✅ JSON reparado com sucesso (Foundry)');
+          return repaired;
+        }
+        throw parseError;
+      }
+    } catch (error) {
+      console.error('❌ Erro na chamada Foundry com imagem:', error.message);
+      throw error;
+    }
+  }
+
   const { endpoint, deployment, modelName, apiVersion } = config.azureOpenAI;
 
   if (!endpoint) {
@@ -678,8 +1126,7 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
     console.log('✅ Resposta com imagem recebida com sucesso');
 
     try {
-      const cleanedContent = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-      return JSON.parse(cleanedContent);
+      return parseJsonFromLlmContent(content);
     } catch (parseError) {
       console.error('⚠️ Erro ao parsear JSON:', parseError.message);
       throw new Error('Resposta da API não está em formato JSON válido');
@@ -696,6 +1143,78 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
  * @returns {Promise<Object>} Resposta processada
  */
 async function callAzureOpenAI(prompt) {
+  const provider = getLlmProvider();
+
+  if (provider === 'foundry') {
+    const { endpoint, deployment } = config.foundryOpenAI;
+
+    console.log('📡 Enviando requisição para Foundry OpenAI...');
+    console.log('🔍 Endpoint:', endpoint);
+    console.log('🎯 Deployment:', deployment);
+    console.log('🔐 Autenticação: API Key (Foundry)');
+
+    try {
+      const client = createFoundryClient();
+      const response = await createFoundryChatCompletion(client, {
+        model: deployment,
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ]
+      });
+
+      const content = extractContentFromFoundryResponse(response);
+      if (!content) {
+        const finishReason = response?.choices?.[0]?.finish_reason || 'unknown';
+        console.warn('⚠️ Foundry sem conteúdo via chat.completions. finish_reason:', finishReason);
+        logFoundryRawResponse('chat.completions:text-empty', response);
+        console.warn('🔁 Tentando fallback via responses.create...');
+
+        const responsesResult = await createFoundryResponse(client, {
+          model: deployment,
+          input: prompt
+        });
+
+        const fallbackContent = extractContentFromResponsesApi(responsesResult);
+        if (!fallbackContent) {
+          logFoundryRawResponse('responses.create:text-empty', responsesResult);
+          throw new Error('Resposta vazia da API (Foundry)');
+        }
+
+        console.log('✅ Resposta recebida com sucesso (Foundry responses.create)');
+        try {
+          return parseJsonFromLlmContent(fallbackContent);
+        } catch (parseError) {
+          console.warn('⚠️ JSON inválido no fallback Foundry, tentando autocorreção...');
+          const repaired = await repairJsonWithFoundry(client, deployment, fallbackContent);
+          if (repaired) {
+            console.log('✅ JSON reparado com sucesso (Foundry)');
+            return repaired;
+          }
+          throw parseError;
+        }
+      }
+
+      console.log('✅ Resposta recebida com sucesso (Foundry)');
+      try {
+        return parseJsonFromLlmContent(content);
+      } catch (parseError) {
+        console.warn('⚠️ JSON inválido no Foundry, tentando autocorreção...');
+        const repaired = await repairJsonWithFoundry(client, deployment, content);
+        if (repaired) {
+          console.log('✅ JSON reparado com sucesso (Foundry)');
+          return repaired;
+        }
+        throw parseError;
+      }
+    } catch (error) {
+      console.error('❌ Erro na chamada Foundry:', error.message);
+      throw error;
+    }
+  }
+
   const { endpoint, deployment, modelName, apiVersion } = config.azureOpenAI;
 
   if (!endpoint) {
@@ -756,8 +1275,7 @@ async function callAzureOpenAI(prompt) {
     // Tentar parsear JSON da resposta
     try {
       // Remover markdown code blocks se existirem
-      const cleanedContent = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-      return JSON.parse(cleanedContent);
+      return parseJsonFromLlmContent(content);
     } catch (parseError) {
       console.error('⚠️ Erro ao parsear JSON:', parseError.message);
       console.log('📄 Conteúdo recebido (primeiros 500 chars):', content.substring(0, 500));

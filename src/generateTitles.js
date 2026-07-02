@@ -1,12 +1,51 @@
 import fs from 'fs';
 import path from 'path';
-import { AzureOpenAI } from 'openai';
+import OpenAI, { AzureOpenAI } from 'openai';
 import { DefaultAzureCredential } from '@azure/identity';
 import { config } from './config.js';
 
 const LESSONS_DIR = path.join(process.cwd(), 'data', 'categories', 'ingles');
 
+function getLlmProvider() {
+  return (config.llm?.provider || 'azure_openai').toLowerCase();
+}
+
+function createFoundryClient() {
+  const { endpoint, apiKey } = config.foundryOpenAI;
+
+  if (!endpoint) {
+    throw new Error('FOUNDRY_OPENAI_ENDPOINT não configurado');
+  }
+
+  if (!apiKey) {
+    throw new Error('FOUNDRY_OPENAI_KEY não configurado');
+  }
+
+  return new OpenAI({
+    baseURL: endpoint,
+    apiKey,
+    defaultHeaders: {
+      'api-key': apiKey
+    }
+  });
+}
+
 async function callAzureOpenAI(prompt) {
+  const provider = getLlmProvider();
+
+  if (provider === 'foundry') {
+    const { deployment } = config.foundryOpenAI;
+    const client = createFoundryClient();
+
+    const response = await client.chat.completions.create({
+      messages: [{ role: 'user', content: prompt }],
+      max_completion_tokens: 200,
+      model: deployment
+    });
+
+    return response.choices?.[0]?.message?.content?.trim();
+  }
+
   const { endpoint, deployment, modelName, apiVersion } = config.azureOpenAI;
   const credential = new DefaultAzureCredential();
   const client = new AzureOpenAI({
@@ -20,7 +59,7 @@ async function callAzureOpenAI(prompt) {
   });
 
   const response = await client.chat.completions.create({
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: 'user', content: prompt }],
     max_tokens: 200,
     temperature: 0.5,
     model: modelName

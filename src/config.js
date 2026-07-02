@@ -26,12 +26,23 @@ function loadEnv() {
 loadEnv();
 
 export const config = {
+  llm: {
+    provider: process.env.LLM_PROVIDER || 'azure_openai' // azure_openai | foundry
+  },
   azureOpenAI: {
     endpoint: process.env.AZURE_OPENAI_ENDPOINT || "https://openaiws01.openai.azure.com/",
     apiKey: process.env.AZURE_OPENAI_KEY || "",
     deployment: process.env.AZURE_OPENAI_DEPLOYMENT || "gpt-4o",
     modelName: process.env.AZURE_OPENAI_DEPLOYMENT || "gpt-4o",
     apiVersion: process.env.AZURE_OPENAI_API_VERSION || "2024-04-01-preview"
+  },
+  foundryOpenAI: {
+    endpoint: process.env.FOUNDRY_OPENAI_ENDPOINT || "",
+    apiKey: process.env.FOUNDRY_OPENAI_KEY || "",
+    deployment: process.env.FOUNDRY_OPENAI_DEPLOYMENT || "gpt-5-mini",
+    apiVersion: process.env.FOUNDRY_OPENAI_API_VERSION || "v1",
+    maxCompletionTokens: parseInt(process.env.FOUNDRY_MAX_COMPLETION_TOKENS || '16384', 10),
+    reasoningEffort: process.env.FOUNDRY_REASONING_EFFORT || 'medium'
   },
   port: process.env.PORT || 3000,
   paths: {

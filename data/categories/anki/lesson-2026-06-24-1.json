@@ -1,12 +1,12 @@
 {
   "id": "lesson-2026-06-24-1",
   "date": "2026-06-24",
-  "title": "even",
+  "title": "Esquecimentos",
   "categoryId": "anki",
   "source": "manual",
   "rawContent": "Cadastro rápido via Anki",
   "enriched": {
-    "summary": "",
+    "summary": "São as palavras que eu esqueço durante as práticas dos exercicios",
     "mainTopics": [],
     "vocabulary": [
       {
@@ -120,15 +120,364 @@
           "lastReview": null,
           "reviews": []
         }
+      },
+      {
+        "word": "afford",
+        "translation": "permitir-se",
+        "definition": "to be able to pay for or do something",
+        "examples": [
+          "I can't afford a new car.",
+          "She can afford to travel abroad every year.",
+          "We can't afford to waste time.",
+          "He couldn't afford the luxury hotel.",
+          "Can you afford this expensive gift?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-24-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "abroad",
+        "translation": "no exterior",
+        "definition": "in or to a foreign country",
+        "examples": [
+          "She studied abroad for a year.",
+          "They want to travel abroad next summer.",
+          "Many students dream of working abroad.",
+          "The news quickly spread abroad.",
+          "He moved abroad after retiring."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-5",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "ongoing",
+        "translation": "contínuo",
+        "definition": "continuing to happen or develop",
+        "examples": [
+          "The project is ongoing.",
+          "There is an ongoing investigation.",
+          "Her support has been ongoing.",
+          "The ongoing debate is intense.",
+          "We must address the ongoing issues."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-24-1-6",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "hail",
+        "translation": "saudar; granizo",
+        "definition": "to greet or call out to someone; frozen rain drops",
+        "examples": [
+          "The crowd hailed the hero.",
+          "She hailed a taxi after the party.",
+          "Hail covered the streets after the storm.",
+          "They hailed the new policy as a success.",
+          "The farmer feared the hail would damage the crops."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun|verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-24-1-7",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "moon landing",
+        "translation": "pouso na lua",
+        "definition": "The act of landing a spacecraft on the moon.",
+        "examples": [
+          "The first moon landing happened in 1969.",
+          "Scientists studied the effects of the moon landing.",
+          "The moon landing was broadcast worldwide.",
+          "Astronauts trained for the moon landing mission.",
+          "The moon landing marked a new era in space exploration."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-24-1-8",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "aim",
+        "translation": "objetivo",
+        "definition": "to direct or point towards a target or goal",
+        "examples": [
+          "She aimed at the target.",
+          "His aim is to become a doctor.",
+          "You should aim for success.",
+          "They aimed the camera at the stage.",
+          "Our aim is to improve education."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun|verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-9",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "soon",
+        "translation": "em breve",
+        "definition": "in a short time; shortly",
+        "examples": [
+          "I will call you soon.",
+          "The movie starts soon.",
+          "She'll be here soon.",
+          "We hope to visit you soon.",
+          "Soon, everything will be ready."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-10",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "son",
+        "translation": "filho",
+        "definition": "a male child of parents",
+        "examples": [
+          "His son is very talented.",
+          "They named their son John.",
+          "She is proud of her son.",
+          "The father hugged his son tightly.",
+          "Their son is studying abroad."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-11",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "warm",
+        "translation": "quente",
+        "definition": "having a moderate degree of heat; not cold.",
+        "examples": [
+          "The soup is warm.",
+          "She gave me a warm smile.",
+          "The weather is warm today.",
+          "Please keep the room warm.",
+          "He enjoys warm tea in the evening."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-12",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "thick",
+        "translation": "espesso",
+        "definition": "having a large distance between opposite sides.",
+        "examples": [
+          "The book has thick pages.",
+          "She wore a thick coat to stay warm.",
+          "The fog was so thick they couldn't see ahead.",
+          "He sliced the bread into thick pieces.",
+          "The forest is thick with trees."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-13",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "syrup",
+        "translation": "xarope",
+        "definition": "a thick, sweet liquid made by dissolving sugar in water, often flavored.",
+        "examples": [
+          "She poured syrup over her pancakes.",
+          "The medicine comes in a syrup form.",
+          "Maple syrup is a popular topping for waffles.",
+          "Add some chocolate syrup to the milk.",
+          "The recipe calls for sugar syrup."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-14",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "baking",
+        "translation": "assar",
+        "definition": "the process of cooking food using dry heat, typically in an oven.",
+        "examples": [
+          "She enjoys baking cakes on weekends.",
+          "Baking bread takes patience and skill.",
+          "I'm baking cookies for the party.",
+          "He started a baking business from home.",
+          "Baking can be a relaxing hobby."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-15",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "grow",
+        "translation": "crescer",
+        "definition": "to increase in size, amount, or develop",
+        "examples": [
+          "Plants grow with sunlight.",
+          "He wants to grow his business.",
+          "Children grow quickly.",
+          "Her confidence grew over time.",
+          "They grow vegetables in their garden."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-24-1-16",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "issued",
+        "translation": "emitido",
+        "definition": "officially given or distributed",
+        "examples": [
+          "The government issued new guidelines.",
+          "She issued a statement to the press.",
+          "A warning was issued to residents.",
+          "The bank issued him a new credit card.",
+          "The company issued a refund for the faulty product."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-24-1-17",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
       }
     ],
-    "practiceQuestions": [],
     "grammar": [],
     "expressions": [],
-    "culturalNotes": [],
+    "practiceQuestions": [],
     "supportMaterials": []
   },
   "createdAt": "2026-06-24T15:01:26.690Z",
-  "updatedAt": "2026-06-24T15:20:28.898Z",
-  "status": "created"
+  "updatedAt": "2026-07-02T14:19:53.634Z",
+  "status": "enriched"
 }

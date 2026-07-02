@@ -132,6 +132,7 @@ let currentItems = [];
 let currentIndex = 0;
 let stats = {};
 let categories = [];
+let currentTips = [];
 
 // Inicializar aplicação
 document.addEventListener('DOMContentLoaded', () => {
@@ -199,6 +200,11 @@ function displayCategories() {
       <button class="btn btn-secondary" onclick="event.stopPropagation(); window.location.href='/manage.html?category=${cat.id}'" style="width: 100%; margin-top: 10px;">
         🛠️ Gerenciar Aulas
       </button>
+      ${cat.id === 'anki' ? `
+        <button class="btn btn-primary" onclick="event.stopPropagation(); window.location.href='/anki.html'" style="width: 100%; margin-top: 10px;">
+          ⚡ Anki Rápido
+        </button>
+      ` : ''}
     </div>
   `).join('');
 }
@@ -218,6 +224,7 @@ async function selectCategory(categoryId) {
   document.getElementById('lessons-section').style.display = 'block';
   
   // Carregar dados da categoria
+  await loadCategoryTips(categoryId);
   await loadStats(categoryId);
   await loadLessons(categoryId);
   await loadStudySession(categoryId);
@@ -228,6 +235,9 @@ function changeCategory() {
   categoryAdapter = null;
   currentItems = [];
   currentIndex = 0;
+  currentTips = [];
+  closeTipsPanel();
+  updateTipsButton();
   
   // Mostrar seletor
   document.getElementById('category-section').style.display = 'block';
@@ -284,9 +294,28 @@ async function loadStudySession(categoryId) {
       document.getElementById('study-area').style.display = 'block';
       showCurrentCard();
     }
+
+    const studyHeader = document.getElementById('study-section-title');
+    if (studyHeader) {
+      studyHeader.textContent = '🎯 Revisão de Hoje';
+    }
   } catch (error) {
     console.error('Erro ao carregar sessão de estudo:', error);
   }
+}
+
+async function loadCategoryTips(categoryId) {
+  try {
+    const response = await fetch(`/api/categories/${categoryId}/tips`);
+    const data = await response.json();
+    currentTips = normalizeTips(data.tips);
+  } catch (error) {
+    console.error('Erro ao carregar dicas da categoria:', error);
+    currentTips = [];
+  }
+
+  updateTipsButton();
+  renderTipsPanel();
 }
 
 // Carregar aula específica para prática (não baseada em SRS)
@@ -311,11 +340,11 @@ async function startLessonPractice(categoryId, lessonId) {
     document.getElementById('study-area').style.display = 'block';
     
     // Atualizar título da sessão
-    const studyHeader = document.querySelector('#study-section h2');
+    const studyHeader = document.getElementById('study-section-title');
     if (studyHeader) {
       studyHeader.innerHTML = `🎯 Praticando: ${data.lessonTitle || lessonId}`;
     }
-    
+
     showCurrentCard();
   } catch (error) {
     console.error('Erro ao carregar aula para prática:', error);
@@ -351,7 +380,7 @@ function displayLessons(lessons, categoryId) {
       <div class="lesson-item">
         <div class="lesson-header">
           <div>
-            <h3>📖 ${lesson.title || 'Aula de ' + formatDate(lesson.date)}</h3>
+            <h3>📖 ${formatDate(lesson.date)} · ${lesson.title || 'Aula sem título'}</h3>
             <p class="lesson-meta">📄 ${lesson.file} • ${lesson.status === 'enriched' ? '✅ Enriquecida' : '❌ Erro'}</p>
           </div>
           <button class="btn-expand" onclick="toggleLesson('${lesson.id}', '${categoryId}')">
@@ -498,6 +527,7 @@ function showCurrentCard() {
   document.getElementById('show-answer-btn').style.display = 'block';
   document.getElementById('rating-buttons').style.display = 'none';
   answerEl.style.display = 'none';
+  updateTipsButton();
 }
 
 async function submitRating(quality) {
@@ -543,6 +573,14 @@ function setupEventListeners() {
     document.getElementById('show-answer-btn').style.display = 'none';
     document.getElementById('rating-buttons').style.display = 'block';
   });
+
+  document.getElementById('tips-toggle-btn')?.addEventListener('click', toggleTipsPanel);
+  document.getElementById('tips-maximize-btn')?.addEventListener('click', toggleTipsMaximize);
+  document.getElementById('tips-close-btn')?.addEventListener('click', closeTipsPanel);
+  document.getElementById('tips-panel-backdrop')?.addEventListener('click', closeTipsPanel);
+  document.getElementById('back-to-manager-top-btn')?.addEventListener('click', () => {
+    window.location.href = '/?manager';
+  });
   
   document.querySelectorAll('.btn-rating').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -566,6 +604,263 @@ function getCategoryLabel(category) {
 }
 
 function formatDate(dateString) {
+  // Evita deslocamento de fuso: strings YYYY-MM-DD devem ser tratadas como data local.
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  }
+
   const date = new Date(dateString);
   return date.toLocaleDateString('pt-BR');
+}
+
+function normalizeTips(tips) {
+  if (!tips || typeof tips !== 'object' || Array.isArray(tips)) {
+    return [];
+  }
+
+  return Object.entries(tips).map(([title, content], index) => ({
+    id: `tip-${index + 1}`,
+    title,
+    content: typeof content === 'string' ? content : ''
+  })).filter(tip => tip.title && tip.content);
+}
+
+function updateTipsButton() {
+  const tipsButton = document.getElementById('tips-toggle-btn');
+  if (!tipsButton) {
+    return;
+  }
+
+  const hasStudyItems = currentItems.length > 0 && currentIndex < currentItems.length;
+  const hasTips = currentTips.length > 0;
+  tipsButton.style.display = hasStudyItems && hasTips ? 'inline-flex' : 'none';
+
+  if (!hasStudyItems || !hasTips) {
+    closeTipsPanel();
+  }
+}
+
+function renderTipsPanel() {
+  const titleEl = document.getElementById('tips-panel-title');
+  const contentEl = document.getElementById('tips-panel-content');
+
+  if (!titleEl || !contentEl) {
+    return;
+  }
+
+  titleEl.textContent = currentCategory ? `Dicas de ${currentCategory.name}` : 'Dicas de estudo';
+
+  if (currentTips.length === 0) {
+    contentEl.innerHTML = '<p class="tips-empty">Nenhuma dica cadastrada para esta categoria.</p>';
+    return;
+  }
+
+  contentEl.innerHTML = currentTips.map((tip, index) => `
+    <article class="tip-card tip-accordion-item ${index === 0 ? 'expanded' : ''}">
+      <button class="tip-accordion-trigger" type="button" data-tip-id="${tip.id}" aria-expanded="${index === 0 ? 'true' : 'false'}">
+        <span class="tip-accordion-title">${escapeHtml(tip.title)}</span>
+        <span class="tip-accordion-icon">▾</span>
+      </button>
+      <div class="tip-card-body" data-tip-panel="${tip.id}" style="display: ${index === 0 ? 'block' : 'none'};">${renderTipContent(tip.content)}</div>
+    </article>
+  `).join('');
+
+  contentEl.querySelectorAll('.tip-accordion-trigger').forEach(button => {
+    button.addEventListener('click', () => toggleTipAccordion(button.dataset.tipId));
+  });
+}
+
+function toggleTipsPanel() {
+  const panel = document.getElementById('tips-panel');
+  if (!panel || currentTips.length === 0) {
+    return;
+  }
+
+  const isOpen = panel.classList.contains('open');
+  if (isOpen) {
+    closeTipsPanel();
+    return;
+  }
+
+  renderTipsPanel();
+  updateTipsMaximizeButton();
+  panel.style.display = 'flex';
+  document.getElementById('tips-panel-backdrop').style.display = 'block';
+  requestAnimationFrame(() => {
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+  });
+}
+
+function closeTipsPanel() {
+  const panel = document.getElementById('tips-panel');
+  const backdrop = document.getElementById('tips-panel-backdrop');
+  if (!panel || !backdrop) {
+    return;
+  }
+
+  panel.classList.remove('open');
+  panel.setAttribute('aria-hidden', 'true');
+  backdrop.style.display = 'none';
+  panel.style.display = 'none';
+}
+
+function toggleTipsMaximize() {
+  const panel = document.getElementById('tips-panel');
+  if (!panel) {
+    return;
+  }
+
+  panel.classList.toggle('maximized');
+  updateTipsMaximizeButton();
+}
+
+function updateTipsMaximizeButton() {
+  const panel = document.getElementById('tips-panel');
+  const maximizeBtn = document.getElementById('tips-maximize-btn');
+  if (!panel || !maximizeBtn) {
+    return;
+  }
+
+  const isMaximized = panel.classList.contains('maximized');
+  maximizeBtn.textContent = isMaximized ? '🗗' : '⛶';
+  maximizeBtn.title = isMaximized ? 'Restaurar tamanho original' : 'Maximizar dicas';
+  maximizeBtn.setAttribute('aria-label', maximizeBtn.title);
+}
+
+function toggleTipAccordion(tipId) {
+  const container = document.getElementById('tips-panel-content');
+  if (!container) {
+    return;
+  }
+
+  container.querySelectorAll('.tip-accordion-trigger').forEach(trigger => {
+    const isCurrent = trigger.dataset.tipId === tipId;
+    const panel = container.querySelector(`[data-tip-panel="${trigger.dataset.tipId}"]`);
+    const card = trigger.closest('.tip-accordion-item');
+    const shouldOpen = isCurrent ? trigger.getAttribute('aria-expanded') !== 'true' : false;
+
+    trigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+
+    if (panel) {
+      panel.style.display = shouldOpen ? 'block' : 'none';
+    }
+
+    if (card) {
+      card.classList.toggle('expanded', shouldOpen);
+    }
+  });
+}
+
+function renderTipContent(content) {
+  if (isLikelyHtml(content)) {
+    return wrapTablesForScroll(content);
+  }
+
+  return wrapTablesForScroll(markdownToHtml(content));
+}
+
+function isLikelyHtml(content) {
+  return /<\/?[a-z][\s\S]*>/i.test(content);
+}
+
+function wrapTablesForScroll(content) {
+  return String(content || '')
+    .replace(/<table/gi, '<div class="tip-table-scroll"><table')
+    .replace(/<\/table>/gi, '</table></div>');
+}
+
+function markdownToHtml(markdown) {
+  const lines = String(markdown || '').replace(/\r/g, '').split('\n');
+  const html = [];
+  let paragraphLines = [];
+  let listType = null;
+
+  const flushParagraph = () => {
+    if (paragraphLines.length === 0) {
+      return;
+    }
+
+    html.push(`<p>${renderInlineMarkdown(paragraphLines.join('<br>'))}</p>`);
+    paragraphLines = [];
+  };
+
+  const closeList = () => {
+    if (!listType) {
+      return;
+    }
+
+    html.push(listType === 'ol' ? '</ol>' : '</ul>');
+    listType = null;
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) {
+      flushParagraph();
+      closeList();
+      continue;
+    }
+
+    const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+    if (headingMatch) {
+      flushParagraph();
+      closeList();
+      const level = headingMatch[1].length;
+      html.push(`<h${level + 3}>${renderInlineMarkdown(headingMatch[2])}</h${level + 3}>`);
+      continue;
+    }
+
+    const unorderedMatch = line.match(/^[-*]\s+(.*)$/);
+    if (unorderedMatch) {
+      flushParagraph();
+      if (listType !== 'ul') {
+        closeList();
+        html.push('<ul>');
+        listType = 'ul';
+      }
+      html.push(`<li>${renderInlineMarkdown(unorderedMatch[1])}</li>`);
+      continue;
+    }
+
+    const orderedMatch = line.match(/^\d+\.\s+(.*)$/);
+    if (orderedMatch) {
+      flushParagraph();
+      if (listType !== 'ol') {
+        closeList();
+        html.push('<ol>');
+        listType = 'ol';
+      }
+      html.push(`<li>${renderInlineMarkdown(orderedMatch[1])}</li>`);
+      continue;
+    }
+
+    closeList();
+    paragraphLines.push(escapeHtml(line));
+  }
+
+  flushParagraph();
+  closeList();
+
+  return html.join('');
+}
+
+function renderInlineMarkdown(text) {
+  return String(text)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/_([^_]+)_/g, '<em>$1</em>');
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
