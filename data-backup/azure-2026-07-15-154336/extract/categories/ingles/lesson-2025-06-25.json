@@ -1,0 +1,376 @@
+{
+  "id": "lesson-2025-06-25",
+  "date": "2025-06-25",
+  "title": "Presenting new ideas, Using AI in software migrations, Grammar for presentations",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONOn PythonInteract with each otherThe code doesn’t support production at scale.I’m planning to do / carry out this migration in the second week of next month.Totally functionalBecause of the large scale of this projectProcessProcessesBusinessBusinessesExecuteMigrateMigrationCalledMultiBecause - /bikóz/PRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? Opening & Greetings“Good [morning/afternoon], everyone.My name is Wilson Dos Santos, and I’m a Cloud Solution Architect based in São Paulo.Today, I’m excited to share a project that’s been making a real difference in how we handle Java adapter migrations.”🎯 Purpose of the Presentation“The goal of this session is to introduce a tool we developed using .NET 8.0.This tool automates the migration of small Java adapters, helping us save time and reduce manual errors.”🧩 Setting the Context“Let me give you a bit of background.We have a number of legacy Java adapters that need to be migrated to a new architecture.Doing this manually is repetitive, time-consuming, and prone to mistakes.That’s why we built this tool—to streamline and standardize the migration process.”⚙️ How the Tool Works“Here’s how the tool works, step by step:Step 1: Configuration LoadingIt starts by reading configuration files like appsettings.json, extracting the API key and endpoint from the OpenIA41 section.Step 2: Structure DefinitionThen it defines folder and file names—like adapterFolderName and dtoPath.Step 3: Template CloningIt clones a Git repository with a base project and renames folders and files to match the new project—for example, SICTM.BFF.Conta.Step 4: AI-Powered MigrationThis is where it gets exciting.The tool uses AI to migrate resource files, configuration files like adapter.xml, and DTOs.It even generates a README.md file based on the migrated content.”🚀 Key Benefits“So, what do we gain from this?A significant reduction in migration time.Standardized, consistent code output.AI integration to assist with file transformation.And automatic documentation generation.”🔭 What’s Next“Looking ahead, we’re taking this even further:1. Rewriting the Migrator in PythonWe’re transitioning from .NET 8.0 to Python, using the Semantic Kernel SDK to orchestrate AI agents.2. Multi-Agent ArchitectureEach migration step—resources, DTOs, adapter.xml—will be handled by a specialized agent.This allows for parallel processing and scalability, handling multiple requests per second.3. Performance ImprovementsWe expect even faster migrations and better responsiveness for simultaneous adapter requests.”🙏 Closing“That’s the journey so far—and where we’re headed.Thank you so much for your time and attention.I’m happy to take any questions you might have.”",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONOn PythonInteract with each otherThe code doesn’t support production at scale.I’m planning to do / carry out this migration in the second week of next month.Totally functionalBecause of the large scale of this projectProcessProcessesBusinessBusinessesExecuteMigrateMigrationCalledMultiBecause - /bikóz/PRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? Opening & Greetings“Good [morning/afternoon], everyone.My name is Wilson Dos Santos, and I’m a Cloud Solution Architect based in São Paulo.Today, I’m excited to share a project that’s been making a real difference in how we handle Java adapter migrations.”🎯 Purpose of the Presentation“The goal of this session is to introduce a tool we developed using .NET 8.0.This tool automates the migration of small Java adapters, helping us save time and reduce manual errors.”🧩 Setting the Context“Let me give you a bit of background.We have a number of legacy Java adapters that need to be migrated to a new architecture.Doing this manually is repetitive, time-consuming, and prone to mistakes.That’s why we built this tool—to streamline and standardize the migration process.”⚙️ How the Tool Works“Here’s how the tool works, step by step:Step 1: Configuration LoadingIt starts by reading configuration files like appsettings.json, extracting the API key and endpoint from the OpenIA41 section.Step 2: Structure DefinitionThen it defines folder and file names—like adapterFolderName and dtoPath.Step 3: Template CloningIt clones a Git repository with a base project and renames folders and files to match the new project—for example, SICTM.BFF.Conta.Step 4: AI-Powered MigrationThis is where it gets exciting.The tool uses AI to migrate resource files, configuration files like adapter.xml, and DTOs.It even generates a README.md file based on the migrated content.”🚀 Key Benefits“So, what do we gain from this?A significant reduction in migration time.Standardized, consistent code output.AI integration to assist with file transformation.And automatic documentation generation.”🔭 What’s Next“Looking ahead, we’re taking this even further:1. Rewriting the Migrator in PythonWe’re transitioning from .NET 8.0 to Python, using the Semantic Kernel SDK to orchestrate AI agents.2. Multi-Agent ArchitectureEach migration step—resources, DTOs, adapter.xml—will be handled by a specialized agent.This allows for parallel processing and scalability, handling multiple requests per second.3. Performance ImprovementsWe expect even faster migrations and better responsiveness for simultaneous adapter requests.”🙏 Closing“That’s the journey so far—and where we’re headed.Thank you so much for your time and attention.I’m happy to take any questions you might have.”"
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONOn PythonInteract with each otherThe code doesn’t support production at scale.I’m planning to do / carry out this migration in the second week of next month.Totally functionalBecause of the large scale of this projectProcessProcessesBusinessBusinessesExecuteMigrateMigrationCalledMultiBecause - /bikóz/PRESENTING NEW IDEAS  Key expressions Starting Good morning and thanks for coming. l'm here today to... Let's start. My name's ..... and l'm going to tell you about...l'd like to begin by... (+ verb + ing)Previewing First, I'll... Then, we'll...And finally...Feel free to ask questions. l'll take questions at the end. Adding emphasis The main reason for this is... The best thing about this is... We think it's a good idea because...Referring to visuals Let's look at this...As you can see,... You'll notice that... Closing That's everything I want to say.That brings me to the end of my presentation. Thanks for listening.Are there any (more) questions? Opening & Greetings“Good [morning/afternoon], everyone.My name is Wilson Dos Santos, and I’m a Cloud Solution Architect based in São Paulo.Today, I’m excited to share a project that’s been making a real difference in how we handle Java adapter migrations.”🎯 Purpose of the Presentation“The goal of this session is to introduce a tool we developed using .NET 8.0.This tool automates the migration of small Java adapters, helping us save time and reduce manual errors.”🧩 Setting the Context“Let me give you a bit of background.We have a number of legacy Java adapters that need to be migrated to a new architecture.Doing this manually is repetitive, time-consuming, and prone to mistakes.That’s why we built this tool—to streamline and standardize the migration process.”⚙️ How the Tool Works“Here’s how the tool works, step by step:Step 1: Configuration LoadingIt starts by reading configuration files like appsettings.json, extracting the API key and endpoint from the OpenIA41 section.Step 2: Structure DefinitionThen it defines folder and file names—like adapterFolderName and dtoPath.Step 3: Template CloningIt clones a Git repository with a base project and renames folders and files to match the new project—for example, SICTM.BFF.Conta.Step 4: AI-Powered MigrationThis is where it gets exciting.The tool uses AI to migrate resource files, configuration files like adapter.xml, and DTOs.It even generates a README.md file based on the migrated content.”🚀 Key Benefits“So, what do we gain from this?A significant reduction in migration time.Standardized, consistent code output.AI integration to assist with file transformation.And automatic documentation generation.”🔭 What’s Next“Looking ahead, we’re taking this even further:1. Rewriting the Migrator in PythonWe’re transitioning from .NET 8.0 to Python, using the Semantic Kernel SDK to orchestrate AI agents.2. Multi-Agent ArchitectureEach migration step—resources, DTOs, adapter.xml—will be handled by a specialized agent.This allows for parallel processing and scalability, handling multiple requests per second.3. Performance ImprovementsWe expect even faster migrations and better responsiveness for simultaneous adapter requests.”🙏 Closing“That’s the journey so far—and where we’re headed.Thank you so much for your time and attention.I’m happy to take any questions you might have.”"
+      ]
+    }
+  ],
+  "enriched": {
+    "summary": "This lesson focuses on presenting ideas effectively in English, introducing a migration tool developed using .NET 8.0. It covers grammar, vocabulary, pronunciation, and expressions for delivering professional presentations.",
+    "mainTopics": [
+      "Presenting new ideas",
+      "Using AI in software migrations",
+      "Grammar for presentations",
+      "Vocabulary and pronunciation tips"
+    ],
+    "vocabulary": [
+      {
+        "word": "execute",
+        "translation": "executar",
+        "definition": "To carry out or put into effect.",
+        "examples": [
+          "The code doesn’t support production at scale.",
+          "I’m planning to execute this migration in the second week of next month."
+        ],
+        "pronunciation": "/ˈɛksəˌkjut/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "implement",
+          "carry out"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-06-25-execute",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:35:23.946Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:12.864Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "migrate",
+        "translation": "migrar",
+        "definition": "To move from one system or environment to another.",
+        "examples": [
+          "I’m planning to do / carry out this migration in the second week of next month.",
+          "This tool automates the migration of small Java adapters."
+        ],
+        "pronunciation": "/ˈmaɪɡreɪt/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "transfer",
+          "move"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-06-25-migrate",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:35:26.561Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:16.247Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "migration",
+        "translation": "migração",
+        "definition": "The process of moving from one system or environment to another.",
+        "examples": [
+          "Because of the large scale of this project, migration requires AI integration.",
+          "The migration of resources is handled by specialized agents."
+        ],
+        "pronunciation": "/maɪˈɡreɪʃən/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "relocation",
+          "transfer"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-06-25-migration",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:35:29.287Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:18.323Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "scale",
+        "translation": "escala",
+        "definition": "The size, level, or scope of something.",
+        "examples": [
+          "The code doesn’t support production at scale.",
+          "Because of the large scale of this project, we need AI integration."
+        ],
+        "pronunciation": "/skeɪl/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "extent",
+          "size"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2025-06-25-scale",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:35:32.639Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:20.042Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "functional",
+        "translation": "funcional",
+        "definition": "Working properly and efficiently.",
+        "examples": [
+          "Totally functional Java adapters were created.",
+          "This tool is now functional for migrations."
+        ],
+        "pronunciation": "/ˈfʌŋkʃənəl/",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "operative",
+          "usable"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-06-25-functional",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:35:48.642Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:21.807Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Using gerunds for introductions",
+        "explanation": "Gerunds (verb + ing) are used to introduce ideas or topics during presentations.",
+        "rules": [
+          "Use gerunds to describe actions or activities (e.g., 'I'd like to begin by introducing...').",
+          "Always follow 'I'd like to begin by' with a gerund."
+        ],
+        "examples": [
+          "I'd like to begin by explaining the project.",
+          "I'm planning to do / carry out this migration in the second week of next month."
+        ],
+        "commonMistakes": [
+          "Using infinitives instead of gerunds (e.g., 'I'd like to begin by introduce' is incorrect)."
+        ],
+        "id": "grammar-lesson-2025-06-25-0",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:22.097Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:11.237Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "topic": "Future tense for planning",
+        "explanation": "Use 'will' or 'going to' for talking about future plans.",
+        "rules": [
+          "Use 'will' for decisions made at the moment of speaking.",
+          "Use 'going to' for plans that are already decided."
+        ],
+        "examples": [
+          "First, I'll explain the tool.",
+          "Then, we'll review the migration process."
+        ],
+        "commonMistakes": [
+          "Mixing 'will' and 'going to' without context."
+        ],
+        "id": "grammar-lesson-2025-06-25-1",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:35.016Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:13.442Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      }
+    ],
+    "expressions": [
+      {
+        "expression": "Let’s look at this",
+        "meaning": "Introducing a visual or example for explanation.",
+        "usage": "Used to draw attention to a visual aid during a presentation.",
+        "examples": [
+          "Let’s look at this diagram to understand the tool’s functionality.",
+          "Let’s look at this chart for migration statistics."
+        ]
+      },
+      {
+        "expression": "Feel free to ask questions",
+        "meaning": "Encouraging the audience to ask questions.",
+        "usage": "Used to invite interaction during or after a presentation.",
+        "examples": [
+          "Feel free to ask questions at any time.",
+          "Feel free to ask questions at the end of the session."
+        ]
+      }
+    ],
+    "practiceQuestions": [
+      {
+        "question": "Which tool automates the migration of Java adapters?",
+        "answer": "A tool developed using .NET 8.0.",
+        "explanation": "The presentation mentions a tool designed to automate Java adapter migrations using .NET 8.0.",
+        "type": "multiple-choice",
+        "id": "question-lesson-2025-06-25-0",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:04.285Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:13:51.282Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        },
+        "tense": "Simple Past"
+      },
+      {
+        "question": "Translate: 'The code doesn’t support production at scale.'",
+        "answer": "O código não suporta produção em larga escala.",
+        "explanation": "The phrase uses 'scale' to refer to the size of production.",
+        "type": "translation",
+        "id": "question-lesson-2025-06-25-1",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-03-29",
+          "lastReview": "2026-03-23",
+          "reviews": [
+            {
+              "date": "2026-02-26T01:36:12.551Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-23T13:14:05.693Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        },
+        "tense": "Simple Present"
+      }
+    ],
+    "culturalNotes": [
+      "Using AI tools for software development is becoming increasingly popular in global tech industries.",
+      "Professional presentations often include structured introductions, visual aids, and Q&A sessions to engage the audience."
+    ],
+    "studyTips": [
+      "Practice delivering presentations in English to improve fluency and confidence.",
+      "Use tools like flashcards to memorize key vocabulary and expressions.",
+      "Record yourself practicing pronunciation and compare with native speakers for accuracy."
+    ],
+    "originalExamples": [
+      "The code doesn’t support production at scale. (O código não suporta produção em larga escala.)",
+      "I’m planning to do / carry out this migration in the second week of next month. (Eu estou planejando fazer / realizar esta migração na segunda semana do próximo mês.)",
+      "Totally functional. (Totalmente funcional.)",
+      "Because of the large scale of this project. (Por causa da grande escala deste projeto.)",
+      "Let’s look at this diagram to understand the tool’s functionality. (Vamos olhar para este diagrama para entender a funcionalidade da ferramenta.)",
+      "Feel free to ask questions at any time. (Sinta-se à vontade para fazer perguntas a qualquer momento.)"
+    ]
+  },
+  "enrichedAt": "2026-02-26T01:25:56.097Z",
+  "status": "enriched"
+}

@@ -1,0 +1,159 @@
+{
+  "id": "lesson-2026-05-03-3",
+  "date": "2026-05-03",
+  "title": "Criação e Configuração de Recovery Services Vault no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:  \nTo create a vault to protect virtual machines, the vault must be in the same region as the virtual machines. If you have virtual machines in several regions, create a Recovery Services vault in each region.  \n\nReference:  \nhttps://docs.microsoft.com/bs-cyrl-ba/azure/backup/backup-create-rs-vault",
+  "enriched": {
+    "title": "Criação e Configuração de Recovery Services Vault no Azure",
+    "summary": "Esta aula aborda como criar um Recovery Services vault para proteger máquinas virtuais no Azure. É essencial que o vault esteja na mesma região das máquinas virtuais que ele protege, e múltiplos vaults podem ser necessários para diferentes regiões.",
+    "topics": [
+      {
+        "title": "Recovery Services Vault",
+        "description": "Serviço no Azure que armazena dados de backup e configurações de recuperação de desastres.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Regiões no Azure",
+        "description": "Regiões geográficas específicas onde os recursos do Azure são implantados.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Recovery Services Vault",
+        "definition": "Um contêiner lógico no Azure usado para armazenar dados de backup e pontos de restauração.",
+        "examples": [
+          "Backup de máquinas virtuais",
+          "Restauração de dados em caso de falhas"
+        ],
+        "relatedConcepts": [
+          "Backup Policy",
+          "Disaster Recovery"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Região do Azure",
+        "definition": "Localização geográfica onde os data centers do Azure estão localizados.",
+        "examples": [
+          "East US",
+          "West Europe"
+        ],
+        "relatedConcepts": [
+          "Zonas de Disponibilidade",
+          "Latência"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Backup Policy",
+        "definition": "Conjunto de regras que definem a frequência e retenção de backups.",
+        "examples": [
+          "Backup diário",
+          "Restauração em até 30 dias"
+        ],
+        "relatedConcepts": [
+          "Recovery Services Vault",
+          "RPO (Recovery Point Objective)"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Backup de máquinas virtuais em diferentes regiões",
+        "problem": "Você possui máquinas virtuais em duas regiões do Azure e deseja configurar backups para ambas.",
+        "solution": "Crie dois Recovery Services vaults, um em cada região, e configure políticas de backup específicas para cada vault.",
+        "explanation": "Cada vault deve estar na mesma região das máquinas que ele protege para garantir baixa latência e conformidade com as políticas de recuperação de desastres."
+      },
+      {
+        "scenario": "Erro ao criar um Recovery Services Vault em região diferente",
+        "problem": "Um usuário tenta criar um vault em uma região diferente das máquinas virtuais que deseja proteger.",
+        "solution": "Verifique a região das máquinas virtuais e crie o vault na mesma região.",
+        "explanation": "O Azure exige que os dados de backup sejam armazenados na mesma região para otimizar o desempenho e atender aos requisitos de conformidade."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Por que o Recovery Services vault deve estar na mesma região das máquinas virtuais protegidas?",
+        "answer": "Para otimizar o desempenho e atender aos requisitos de conformidade.",
+        "hint": "Considere latência e políticas de recuperação de desastres.",
+        "topic": "Recovery Services Vault"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você configuraria backups para máquinas virtuais localizadas em várias regiões?",
+        "answer": "Criando Recovery Services vaults em cada região e aplicando políticas de backup específicas.",
+        "hint": "Considere a limitação de regiões no Azure.",
+        "topic": "Recovery Services Vault"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "O que fazer se o backup falhar devido a uma configuração de região incorreta?",
+        "answer": "Verifique se o Recovery Services vault está na mesma região das máquinas virtuais e recrie-o, se necessário.",
+        "hint": "Revise as informações de região.",
+        "topic": "Regiões no Azure"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando você usaria para listar as regiões disponíveis no Azure?",
+        "answer": "az account list-locations",
+        "hint": "Use a CLI do Azure para consultar regiões.",
+        "topic": "Regiões no Azure"
+      },
+      {
+        "type": "concept",
+        "question": "O que é uma política de backup no Azure?",
+        "answer": "Um conjunto de regras que define a frequência e a retenção de backups.",
+        "hint": "Pense em como os backups são programados.",
+        "topic": "Backup Policy"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre confirme que o Recovery Services vault está na mesma região das máquinas virtuais protegidas.",
+        "relevance": "Essa é uma configuração obrigatória e frequentemente cobrada em exames.",
+        "topic": "Recovery Services Vault"
+      },
+      {
+        "tip": "Entenda a diferença entre regiões e zonas de disponibilidade no Azure.",
+        "relevance": "Esses conceitos são frequentemente confundidos em questões de certificação.",
+        "topic": "Regiões no Azure"
+      },
+      {
+        "tip": "Estude como criar e configurar políticas de backup no Azure.",
+        "relevance": "Isso é essencial para configurar backups eficazes e atender aos RPOs.",
+        "topic": "Backup Policy"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre Recovery Services Vault",
+        "url": "https://docs.microsoft.com/bs-cyrl-ba/azure/backup/backup-create-rs-vault",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre Recovery Services Vault",
+        "url": "https://docs.microsoft.com/bs-cyrl-ba/azure/backup/backup-create-rs-vault",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T19:17:32.095Z",
+  "updatedAt": "2026-05-03T19:17:58.498Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T19:17:58.497Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

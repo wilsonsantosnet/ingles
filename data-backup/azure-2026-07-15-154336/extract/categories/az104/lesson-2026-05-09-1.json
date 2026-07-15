@@ -1,0 +1,160 @@
+{
+  "id": "lesson-2026-05-09-1",
+  "date": "2026-05-09",
+  "title": "Configuração de VPN Point-to-Site com Certificados no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have a computer named Computer1 that has a point-to-site VPN connection to an Azure virtual network named VNet1. The point-to-site connection uses a self-signed certificate.\n\nFrom Azure, you download and install the VPN client configuration package on a computer named Computer2.\n\nYou need to ensure that you can establish a point-to-site VPN connection to VNet1 from Computer2.\n\nSolution: You join Computer2 to Microsoft Entra ID.\n\nDoes this meet the goal?\n\n---\n\nA. Yes  \nB. No  \n\nAnswer: B  \n\nExplanation:  \nInstead export the client certificate from Computer1 and install the certificate on Computer2.  \n\nA client computer that connects to a VNet using Point-to-Site must have a client certificate installed.  \n\nReference:  \nhttps://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site",
+  "enriched": {
+    "title": "Configuração de VPN Point-to-Site com Certificados no Azure",
+    "summary": "Este conteúdo aborda a configuração de uma conexão VPN Point-to-Site no Azure, requerendo certificados para autenticação. Foca na solução de problemas envolvendo exportação e instalação de certificados entre dispositivos.",
+    "topics": [
+      {
+        "title": "VPN Point-to-Site",
+        "description": "Configuração de conexões seguras de dispositivos individuais para redes virtuais no Azure.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Certificados de Cliente",
+        "description": "Uso de certificados para autenticação em conexões VPN Point-to-Site.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Microsoft Entra ID",
+        "description": "Gestão de identidade e acesso para recursos do Azure.",
+        "category": "Identity",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Point-to-Site VPN",
+        "definition": "Conexão VPN que permite dispositivos individuais se conectarem a uma rede virtual no Azure de forma segura.",
+        "examples": [
+          "Usar um laptop pessoal para se conectar a uma VNet do Azure",
+          "Prover acesso remoto seguro a desenvolvedores"
+        ],
+        "relatedConcepts": [
+          "Site-to-Site VPN",
+          "ExpressRoute"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Certificado de Cliente",
+        "definition": "Certificado usado para autenticar dispositivos clientes em conexões VPN Point-to-Site.",
+        "examples": [
+          "Certificado autoassinado criado no Computer1",
+          "Certificado exportado e instalado em outro dispositivo"
+        ],
+        "relatedConcepts": [
+          "Certificado Raiz",
+          "Autenticação baseada em certificado"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Microsoft Entra ID",
+        "definition": "Serviço de identidade e acesso da Microsoft usado para gerenciar usuários e dispositivos.",
+        "examples": [
+          "Autenticação de usuários no Azure",
+          "Gerenciamento de dispositivos corporativos"
+        ],
+        "relatedConcepts": [
+          "Azure AD",
+          "Identidade Híbrida"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Conexão VPN Point-to-Site falha em novo dispositivo",
+        "problem": "Um novo dispositivo (Computer2) não consegue estabelecer uma conexão VPN Point-to-Site com a VNet1.",
+        "solution": "Exportar o certificado de cliente do Computer1 e instalá-lo no Computer2. Configurar o cliente VPN com os arquivos de configuração baixados do Azure.",
+        "explanation": "A autenticação da conexão Point-to-Site requer a instalação de um certificado de cliente válido no dispositivo. Sem isso, a conexão será rejeitada."
+      },
+      {
+        "scenario": "Erro de autenticação ao tentar conectar à VPN",
+        "problem": "O dispositivo exibe erro de autenticação ao tentar conectar à VPN.",
+        "solution": "Verificar se o certificado correto foi instalado e se corresponde ao certificado raiz configurado na VNet.",
+        "explanation": "A conexão só será permitida se o certificado instalado no cliente for derivado do certificado raiz configurado no Azure."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é uma conexão VPN Point-to-Site e como ela difere de uma Site-to-Site?",
+        "answer": "Uma VPN Point-to-Site permite que dispositivos individuais se conectem a uma VNet, enquanto uma Site-to-Site conecta redes inteiras.",
+        "hint": "Considere o escopo de dispositivos conectados em cada tipo de VPN.",
+        "topic": "VPN Point-to-Site"
+      },
+      {
+        "type": "command",
+        "question": "Qual é o requisito fundamental para autenticar um dispositivo em uma VPN Point-to-Site?",
+        "answer": "O dispositivo deve ter um certificado de cliente válido instalado.",
+        "hint": "Pense na autenticação baseada em certificados.",
+        "topic": "Certificados de Cliente"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Um usuário baixou o pacote de configuração VPN do Azure, mas não consegue conectar à VNet. O que pode estar faltando?",
+        "answer": "O certificado de cliente pode não ter sido instalado no dispositivo.",
+        "hint": "Verifique os pré-requisitos para autenticação.",
+        "topic": "Certificados de Cliente"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Como você corrigiria um erro de autenticação ao conectar-se a uma VPN Point-to-Site?",
+        "answer": "Certifique-se de que o certificado de cliente está instalado e corresponde ao certificado raiz configurado no Azure.",
+        "hint": "Considere os requisitos de certificados para autenticação.",
+        "topic": "VPN Point-to-Site"
+      },
+      {
+        "type": "concept",
+        "question": "O Microsoft Entra ID é necessário para configurar uma VPN Point-to-Site?",
+        "answer": "Não, o Microsoft Entra ID não é necessário para configurar VPN Point-to-Site usando certificados.",
+        "hint": "Pense nos métodos de autenticação suportados.",
+        "topic": "Microsoft Entra ID"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Certifique-se de entender como exportar e instalar certificados de cliente para conexões VPN Point-to-Site.",
+        "relevance": "Questões sobre autenticação baseada em certificados são frequentes.",
+        "topic": "Certificados de Cliente"
+      },
+      {
+        "tip": "Saiba diferenciar os métodos de autenticação suportados por VPN Point-to-Site (certificados e Azure AD).",
+        "relevance": "Perguntas podem testar a diferença entre os métodos de autenticação.",
+        "topic": "VPN Point-to-Site"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial do Azure sobre VPN Point-to-Site",
+        "url": "https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial do Azure sobre VPN Point-to-Site",
+        "url": "https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-09T23:26:37.745Z",
+  "updatedAt": "2026-05-09T23:27:07.104Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-09T23:27:07.102Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

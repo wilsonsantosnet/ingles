@@ -1,0 +1,221 @@
+{
+  "id": "lesson-2026-06-15-1",
+  "date": "2026-06-15",
+  "title": "Configuração de Roles Personalizadas no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You configure the custom role shown in the following exhibit.\n\n{\n  \"properties\": {\n    \"roleName\": \"role1\",\n    \"description\": \"\",\n    \"roletype\": \"true\",\n    \"assignableScopes\": [\n      \"/subscriptions/3d6209d5-c714-4440-9556e-d6342086c2d7/\"\n    ],\n    \"permissions\": [\n      {\n        \"actions\": [\n          \"Microsoft.Authorization/*/read\",\n          \"Microsoft.Compute/availabilitySets/*\",\n          \"Microsoft.Compute/locations/*\",\n          \"Microsoft.Compute/virtualMachines/*\",\n          \"Microsoft.Compute/virtualMachineScaleSets/*\"\n        ]\n      }\n    ]\n  }\n}\n\n---\n\n```\n\"Microsoft.Compute/disks/write\",\n\"Microsoft.Compute/disks/read\",\n\"Microsoft.Compute/disks/delete\",\n\"Microsoft.Network/locations/*\",\n\"Microsoft.Network/networkInterfaces/*\",\n\"Microsoft.Network/networkSecurityGroups/join/action\",\n\"Microsoft.Network/networkSecurityGroups/read\",\n\"Microsoft.Network/publicIPAddresses/join/action\",\n\"Microsoft.Network/publicIPAddresses/read\",\n\"Microsoft.Network/virtualNetworks/read\",\n\"Microsoft.Network/virtualNetworks/subnets/join/action\",\n\"Microsoft.Resources/deployments/*\",\n\"Microsoft.Resources/subscriptions/resourceGroups/read\",\n\"Microsoft.Support/*\"\n],\n\"notActions\": [],\n\"dataActions\": [],\n```\n\n---\n\n```\n\"Microsoft.Resources/deployments/*\",\n\"Microsoft.Resources/subscriptions/resourceGroups/read\",\n\"Microsoft.Support/*\"\n],\n\"notActions\": [],\n\"dataActions\": [],\n\"notDataActions\": []\n}\n]\n```\n\n---\n\nTo ensure that users can sign in to virtual machines that are assigned role1, modify the [answer choice] section\n\nactions  \nroletype  \nnotActions  \ndataActions  \nnotDataActions  \nassignableScopes  \n\nTo ensure that role1 can be assigned only to a resource group named RG1, modify the [answer choice] section\n\nactions  \nroletype  \nnotActions  \ndataActions  \nnotDataActions  \nassignableScopes",
+  "enriched": {
+    "title": "Configuração de Roles Personalizadas no Azure",
+    "summary": "Esta aula aborda a criação e configuração de roles personalizadas no Azure, incluindo permissões, escopos atribuíveis e ações necessárias para acessar recursos específicos. Também detalha alterações necessárias para atender a requisitos específicos, como acesso a VMs e restrição de escopo a um grupo de recursos.",
+    "topics": [
+      {
+        "title": "Roles Personalizadas no Azure",
+        "description": "Configuração e uso de roles personalizadas para gerenciar permissões detalhadas em recursos do Azure.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Permissões e Ações no Azure RBAC",
+        "description": "Definição de ações, notActions, dataActions e notDataActions para controle granular de permissões.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Uso de Assignable Scopes",
+        "description": "Configuração de escopos atribuíveis para limitar roles a determinados recursos ou grupos de recursos.",
+        "category": "Identity",
+        "importance": "medium"
+      },
+      {
+        "title": "Gerenciamento de Recursos no Azure",
+        "description": "Controle de acesso a recursos como VMs, discos, redes e grupos de recursos no Azure.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Role-Based Access Control (RBAC)",
+        "definition": "Sistema de controle de acesso que permite gerenciar permissões para usuários, grupos e aplicativos no Azure.",
+        "examples": [
+          "Configurar permissões para acessar VMs",
+          "Restringir acesso a um grupo de recursos específico"
+        ],
+        "relatedConcepts": [
+          "Assignable Scopes",
+          "Custom Roles"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Assignable Scopes",
+        "definition": "Escopos onde uma role pode ser atribuída, como assinaturas, grupos de recursos ou recursos específicos.",
+        "examples": [
+          "/subscriptions/{id}",
+          "/resourceGroups/{RG1}"
+        ],
+        "relatedConcepts": [
+          "Custom Roles",
+          "RBAC"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Custom Roles",
+        "definition": "Roles criadas pelo usuário para atender a requisitos específicos de acesso e segurança no Azure.",
+        "examples": [
+          "Configurar role para leitura de VMs e discos",
+          "Criar role com acesso limitado a redes"
+        ],
+        "relatedConcepts": [
+          "RBAC",
+          "Assignable Scopes"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "concept": "Actions",
+        "definition": "Conjunto de operações permitidas por uma role no Azure, como leitura, gravação e exclusão de recursos.",
+        "examples": [
+          "Microsoft.Compute/virtualMachines/read",
+          "Microsoft.Network/networkInterfaces/write"
+        ],
+        "relatedConcepts": [
+          "notActions",
+          "dataActions"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configurar uma role personalizada para acessar VMs",
+        "problem": "Os usuários precisam de acesso para fazer login e gerenciar VMs, mas sem permissões fora do necessário.",
+        "solution": "Adicione as ações necessárias para VMs na seção 'actions' da role e garanta que 'notActions' esteja vazio.",
+        "explanation": "Adicionar ações como 'Microsoft.Compute/virtualMachines/*' permite gerenciar VMs enquanto mantém um controle granular sobre as permissões."
+      },
+      {
+        "scenario": "Restringir uma role personalizada a um grupo de recursos",
+        "problem": "A role atual pode ser atribuída em toda a assinatura, mas precisa ser limitada ao grupo de recursos RG1.",
+        "solution": "Modifique a seção 'assignableScopes' para incluir somente o escopo '/resourceGroups/RG1'.",
+        "explanation": "Isso limita onde a role pode ser atribuída, garantindo que o acesso seja restrito ao grupo de recursos especificado."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual é a função da seção 'actions' em uma role personalizada no Azure?",
+        "answer": "Definir as operações permitidas para os recursos associados à role.",
+        "hint": "Considere ações como leitura, gravação e exclusão.",
+        "topic": "Permissões e Ações no Azure RBAC"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como garantir que uma role personalizada seja limitada ao grupo de recursos RG1?",
+        "answer": "Modifique a seção 'assignableScopes' para incluir '/resourceGroups/RG1'.",
+        "hint": "Verifique onde a role pode ser atribuída.",
+        "topic": "Uso de Assignable Scopes"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um usuário com a role personalizada não consegue excluir discos?",
+        "answer": "A ação 'Microsoft.Compute/disks/delete' não está incluída na seção 'actions' da role.",
+        "hint": "Revise as permissões configuradas na role.",
+        "topic": "Permissões e Ações no Azure RBAC"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando CLI você usaria para criar uma role personalizada no Azure?",
+        "answer": "az role definition create --role-definition 'roleDefinition.json'",
+        "hint": "Considere o uso de arquivos JSON para definir roles.",
+        "topic": "Roles Personalizadas no Azure"
+      },
+      {
+        "type": "concept",
+        "question": "O que acontece se a seção 'notActions' incluir 'Microsoft.Network/*'?",
+        "answer": "A role impedirá explicitamente todas as ações relacionadas a recursos de rede.",
+        "hint": "Considere o impacto de 'notActions' sobre permissões.",
+        "topic": "Permissões e Ações no Azure RBAC"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda a diferença entre 'actions', 'notActions', 'dataActions' e 'notDataActions'.",
+        "relevance": "Esses conceitos são frequentemente cobrados nas provas de certificação.",
+        "topic": "Permissões e Ações no Azure RBAC"
+      },
+      {
+        "tip": "Saiba como configurar 'assignableScopes' para restringir roles a escopos específicos.",
+        "relevance": "Perguntas sobre escopos atribuíveis são comuns em exames.",
+        "topic": "Uso de Assignable Scopes"
+      },
+      {
+        "tip": "Revise o impacto de incluir ou excluir permissões críticas, como 'Microsoft.Compute/disks/*'.",
+        "relevance": "Permissões específicas são frequentemente testadas nos cenários de prova.",
+        "topic": "Roles Personalizadas no Azure"
+      },
+      {
+        "tip": "Fique atento a cenários com múltiplas roles e sobreposição de permissões.",
+        "relevance": "Isso pode aparecer em questões práticas e teóricas.",
+        "topic": "Roles Personalizadas no Azure"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre RBAC no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/",
+        "type": "documentation"
+      },
+      {
+        "title": "Criar e gerenciar roles personalizadas no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles",
+        "type": "tutorial"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre RBAC no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/",
+        "type": "documentation"
+      },
+      {
+        "title": "Criar e gerenciar roles personalizadas no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles",
+        "type": "tutorial"
+      }
+    ]
+  },
+  "createdAt": "2026-06-15T02:12:36.862Z",
+  "updatedAt": "2026-06-15T02:20:37.925Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-15T02:13:12.753Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1781489890218",
+      "generatedContent": {
+        "title": "Modificação no JSON da Custom Role para Permitir Login em Máquinas Virtuais",
+        "type": "explanation",
+        "content": "Para permitir que um usuário consiga logar em uma máquina virtual usando a custom role, é necessário adicionar permissões específicas na seção `actions` da configuração da role. As permissões relacionadas ao login em máquinas virtuais incluem:\n\n1. **Microsoft.Compute/virtualMachines/login/action** - Essa permissão é necessária para permitir que o usuário se conecte às máquinas virtuais.\n2. **Microsoft.Compute/virtualMachines/read** - Essa permissão garante que o usuário possa visualizar as informações da máquina virtual.\n3. **Microsoft.Network/networkInterfaces/read** - Essa permissão permite que o usuário visualize as interfaces de rede associadas à máquina virtual.\n\nO JSON atualizado da custom role incluiria essas permissões na lista de `actions`, conforme o exemplo abaixo:\n\n\n{\n  \"properties\": {\n    \"roleName\": \"role1\",\n    \"description\": \"Permissão para login em máquinas virtuais\",\n    \"roletype\": \"true\",\n    \"assignableScopes\": [\n      \"/subscriptions/3d6209d5-c714-4440-9556e-d6342086c2d7/\"\n    ],\n    \"permissions\": [\n      {\n        \"actions\": [\n          \"Microsoft.Authorization/*/read\",\n          \"Microsoft.Compute/availabilitySets/*\",\n          \"Microsoft.Compute/locations/*\",\n          \"Microsoft.Compute/virtualMachines/*\",\n          \"Microsoft.Compute/virtualMachines/login/action\",\n          \"Microsoft.Network/networkInterfaces/read\"\n        ],\n        \"notActions\": [],\n        \"dataActions\": [],\n        \"notDataActions\": []\n      }\n    ]\n  }\n}\n\n\nAssim, ao adicionar as permissões acima, o usuário com essa role personalizada poderá logar nas máquinas virtuais dentro do escopo definido em `assignableScopes`."
+      },
+      "generatedAt": "2026-06-15T02:18:10.218Z",
+      "userPrompt": "O que eu deveria altera no json da custom Role para permitir que o usuário possa logar na maquina virtual?"
+    },
+    {
+      "id": "gen-1781490037924",
+      "generatedContent": {
+        "title": "Alteração no JSON para Restringir a Custom Role a um Grupo de Recursos Específico",
+        "type": "explanation",
+        "content": "Para garantir que a custom role possa ser atribuída apenas a um grupo de recursos específico, é necessário ajustar a seção `assignableScopes` no JSON da role personalizada. O valor dessa seção deve ser alterado para incluir somente o escopo do grupo de recursos desejado. Por exemplo, se o grupo de recursos for denominado `RG1`, o valor de `assignableScopes` deve ser configurado como segue:\n\n\n{\n  \"properties\": {\n    \"roleName\": \"role1\",\n    \"description\": \"Permissão restrita ao grupo de recursos RG1\",\n    \"roletype\": \"true\",\n    \"assignableScopes\": [\n      \"/subscriptions/{subscriptionId}/resourceGroups/RG1\"\n    ],\n    \"permissions\": [\n      {\n        \"actions\": [\n          \"Microsoft.Authorization/*/read\",\n          \"Microsoft.Compute/availabilitySets/*\",\n          \"Microsoft.Compute/locations/*\",\n          \"Microsoft.Compute/virtualMachines/*\",\n          \"Microsoft.Compute/virtualMachineScaleSets/*\"\n        ],\n        \"notActions\": [],\n        \"dataActions\": [],\n        \"notDataActions\": []\n      }\n    ]\n  }\n}\n\n\nSubstitua `{subscriptionId}` pelo ID da assinatura na qual o grupo de recursos `RG1` está localizado. Essa alteração limita a atribuição da role apenas ao grupo de recursos especificado, garantindo que ela não possa ser usada em outro escopo, como a assinatura completa ou outros grupos de recursos. Assim, a role será aplicada exclusivamente aos recursos dentro de `RG1`."
+      },
+      "generatedAt": "2026-06-15T02:20:37.924Z",
+      "userPrompt": "E qual seria a alteração necessária no json para garatir que a custom role seja atribuida apenas para o RG?"
+    }
+  ]
+}

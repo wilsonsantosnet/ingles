@@ -950,6 +950,91 @@ REGRAS:
 }
 
 /**
+ * Gera preview de vocabulário para uma lista de termos
+ * @param {string[]} terms - Lista de termos/frases em inglês
+ * @returns {Promise<Array>} Lista de estruturas de vocabulário prontas para salvar
+ */
+export async function generateQuickVocabularyBatch(terms) {
+  const normalizedTerms = Array.isArray(terms)
+    ? terms.map((item) => String(item || '').trim()).filter(Boolean)
+    : [];
+
+  if (!normalizedTerms.length) {
+    return [];
+  }
+
+  const prompt = `Você é um assistente de ensino de inglês.
+
+TAREFA:
+Para cada termo/frase abaixo, gerar um item de vocabulário em JSON.
+
+TERMOS:
+${normalizedTerms.map((term, index) => `${index + 1}. ${term}`).join('\n')}
+
+FORMATO DE SAÍDA (retorne APENAS JSON):
+{
+  "items": [
+    {
+      "word": "palavra/frase original em inglês",
+      "translation": "tradução principal em português brasileiro",
+      "definition": "definição curta em inglês",
+      "examples": ["exemplo 1", "exemplo 2"],
+      "pronunciation": "pronúncia simples ou IPA",
+      "partOfSpeech": "noun|verb|adjective|adverb|expression|other",
+      "synonyms": ["sinônimo 1", "sinônimo 2"],
+      "difficulty": "basic|intermediate|advanced"
+    }
+  ]
+}
+
+REGRAS:
+- Retorne exatamente um item para cada termo enviado
+- Preserve o termo original no campo "word"
+- Sempre preencha "translation"
+- Máximo de 3 exemplos por item
+- Não inclua markdown
+- Não inclua explicações fora do JSON`;
+
+  const generated = await callAzureOpenAI(prompt);
+  const rawItems = Array.isArray(generated?.items) ? generated.items : [];
+
+  const normalizedItems = rawItems
+    .map((item) => ({
+      word: String(item?.word || '').trim(),
+      translation: String(item?.translation || '').trim(),
+      definition: String(item?.definition || '').trim(),
+      examples: Array.isArray(item?.examples) ? item.examples.slice(0, 3).map((example) => String(example || '').trim()).filter(Boolean) : [],
+      pronunciation: String(item?.pronunciation || '').trim(),
+      partOfSpeech: String(item?.partOfSpeech || 'other').trim() || 'other',
+      synonyms: Array.isArray(item?.synonyms) ? item.synonyms.map((synonym) => String(synonym || '').trim()).filter(Boolean) : [],
+      difficulty: String(item?.difficulty || 'intermediate').trim() || 'intermediate'
+    }))
+    .filter((item) => item.word && item.translation);
+
+  // Fallback para garantir saída útil mesmo quando a IA retorna menos itens do que o solicitado.
+  if (normalizedItems.length < normalizedTerms.length) {
+    const byWord = new Map(normalizedItems.map((item) => [item.word.toLocaleLowerCase('pt-BR'), item]));
+    const completedItems = [];
+
+    for (const term of normalizedTerms) {
+      const key = term.toLocaleLowerCase('pt-BR');
+      const existing = byWord.get(key);
+      if (existing) {
+        completedItems.push(existing);
+        continue;
+      }
+
+      const single = await generateQuickVocabulary(term);
+      completedItems.push(single);
+    }
+
+    return completedItems;
+  }
+
+  return normalizedItems.slice(0, normalizedTerms.length);
+}
+
+/**
  * Gera vocabulário derivado de uma frase completa
  * @param {string} sentence - Frase em inglês
  * @param {number} maxWords - Limite de palavras derivadas

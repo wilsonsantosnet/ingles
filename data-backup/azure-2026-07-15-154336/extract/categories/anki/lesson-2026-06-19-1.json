@@ -1,0 +1,616 @@
+{
+  "id": "lesson-2026-06-19-1",
+  "date": "2026-06-19",
+  "title": "Microsoft",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "tailored",
+        "translation": "sob medida",
+        "definition": "customized or adapted for a specific purpose or person",
+        "examples": [
+          "The program is tailored to beginners.",
+          "She wore a perfectly tailored suit.",
+          "Our services are tailored to your needs.",
+          "The course is tailored for professionals.",
+          "Each lesson is tailored to the student's level."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-0",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:30.459Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:28:24.597Z",
+              "quality": 0,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "gathering",
+        "translation": "reunião",
+        "definition": "a meeting or assembly of people",
+        "examples": [
+          "She attended a family gathering last weekend.",
+          "The gathering was held in the park.",
+          "They are hosting a gathering to celebrate the holiday.",
+          "Everyone enjoyed the gathering at his house.",
+          "The gathering started at 7 PM."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:39.103Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:26:21.189Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "readiness",
+        "translation": "prontidão",
+        "definition": "the state of being prepared or ready",
+        "examples": [
+          "She showed readiness to help.",
+          "The troops are in a state of readiness.",
+          "His readiness to learn impressed the teacher.",
+          "We admired her readiness to take on challenges.",
+          "The team’s readiness ensured their success."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-2",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:43.802Z",
+              "quality": 4,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:28:30.302Z",
+              "quality": 0,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "assessed",
+        "translation": "avaliado",
+        "definition": "evaluated or determined the value, quality, or importance of something",
+        "examples": [
+          "The teacher assessed the students' essays.",
+          "The damage to the house was assessed after the storm.",
+          "She was assessed for her eligibility for the program.",
+          "The company assessed the risks before making a decision.",
+          "They assessed the situation carefully."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-3",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:53.703Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:26:40.231Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "unify",
+        "translation": "unificar",
+        "definition": "to bring together into one unit or group",
+        "examples": [
+          "The new leader aims to unify the country.",
+          "The goal is to unify the two departments.",
+          "They worked to unify their efforts.",
+          "This treaty will unify the nations.",
+          "The project helped unify the community."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-5",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:59:05.105Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:27:38.752Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "smooth",
+        "translation": "suave",
+        "definition": "having an even and regular surface; not rough or bumpy",
+        "examples": [
+          "The table has a smooth surface.",
+          "His voice is very smooth and calming.",
+          "Apply the cream for smooth skin.",
+          "The road is finally smooth after repairs.",
+          "She made a smooth transition to her new job."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-19-1-6",
+        "spacedRepetition": {
+          "easeFactor": 1.3800000000000001,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:59:14.010Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:27:49.878Z",
+              "quality": 2,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "exhibit",
+        "translation": "exibir, exposição",
+        "definition": "to show something publicly or to display an item.",
+        "examples": [
+          "The museum will exhibit rare paintings.",
+          "She likes to exhibit confidence in meetings.",
+          "The artist's work was exhibited in Paris.",
+          "He exhibited no signs of fear.",
+          "The zoo exhibits exotic animals."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb, noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-19-1-7",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:01.835Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "cowork",
+        "translation": "colaborar; trabalhar junto",
+        "definition": "to work together with someone on a task or project",
+        "examples": [
+          "I often cowork with the design team.",
+          "They cowork remotely from different cities.",
+          "Would you like to cowork on this presentation?",
+          "We decided to cowork on the new proposal."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word",
+        "sourceText": "cowork",
+        "id": "vocab-lesson-2026-06-19-1-8",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:16.630Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "at least",
+        "translation": "pelo menos",
+        "definition": "used to indicate a minimum amount or to introduce a consolation",
+        "examples": [
+          "You need at least five dollars.",
+          "She studies at least one hour a day.",
+          "At least we tried.",
+          "Wait at least ten minutes.",
+          "He arrived at least an hour late."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "at least",
+        "id": "vocab-lesson-2026-06-19-1-8",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:16.630Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "be",
+        "translation": "ser / estar",
+        "definition": "A basic verb used to describe existence, identity, or state.",
+        "examples": [
+          "They are happy."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "derived-from-sentence",
+        "sourceText": "These are our figure.",
+        "id": "vocab-lesson-2026-06-19-1-10",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "figure",
+        "translation": "figura / número",
+        "definition": "A shape, illustration, or a number/statistic; also a notable person.",
+        "examples": [
+          "The figure on the chart has increased."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "derived-from-sentence",
+        "sourceText": "These are our figure.",
+        "id": "vocab-lesson-2026-06-19-1-11",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "this is why",
+        "translation": "é por isso",
+        "definition": "Used to introduce the reason for something just mentioned.",
+        "examples": [
+          "This is why I didn't call you.",
+          "The engine failed; this is why we stopped.",
+          "This is why you should save money.",
+          "He lied to her; this is why she's upset."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "this is why",
+        "id": "vocab-lesson-2026-06-19-1-12",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "so many",
+        "translation": "tantos/tantas (muitos)",
+        "definition": "a large number of (countable)",
+        "examples": [
+          "There are so many books on the shelf.",
+          "I've told you so many times.",
+          "So many people came to the party.",
+          "Why are there so many emails?",
+          "So many choices make it hard to decide."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "so many",
+        "id": "vocab-lesson-2026-06-19-1-13",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "stuff",
+        "translation": "coisa(s); material",
+        "definition": "Informal word for unspecified things, belongings, or substance; also a verb meaning to fill or cram.",
+        "examples": [
+          "I need to pack my stuff.",
+          "Put your stuff on the table.",
+          "He's got all sorts of interesting stuff.",
+          "She keeps her stuff in a box.",
+          "Don't stuff the bag too full."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "stuff",
+        "id": "vocab-lesson-2026-06-19-1-14",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "go ahead",
+        "translation": "vá em frente / pode prosseguir",
+        "definition": "to give permission to start or continue; to proceed",
+        "examples": [
+          "Go ahead and start without me.",
+          "If you want the last piece, go ahead.",
+          "Go ahead—ask your question.",
+          "They decided to go ahead with the project.",
+          "Go ahead, I'll wait here."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "go ahead",
+        "id": "vocab-lesson-2026-06-19-1-14",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-09",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "on behalf of",
+        "translation": "em nome de; em favor de",
+        "definition": "as a representative of or for the benefit of someone",
+        "examples": [
+          "She accepted the award on behalf of the team."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "derived-from-sentence",
+        "sourceText": "this on behalf of someone else?",
+        "id": "vocab-lesson-2026-06-19-1-15",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-14",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "behalf",
+        "translation": "interesse; favor; nome",
+        "definition": "the interest, benefit, or representation of someone (used especially in the phrase 'on behalf of')",
+        "examples": [
+          "He spoke on behalf of the organization."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "derived-from-sentence",
+        "sourceText": "this on behalf of someone else?",
+        "id": "vocab-lesson-2026-06-19-1-16",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-14",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "else",
+        "translation": "outro; mais",
+        "definition": "in addition; different or additional person or thing",
+        "examples": [
+          "Is there anyone else coming?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "derived-from-sentence",
+        "sourceText": "this on behalf of someone else?",
+        "id": "vocab-lesson-2026-06-19-1-17",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-14",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Desired",
+        "translation": "desejado",
+        "definition": "Wanted or wished for",
+        "examples": [
+          "Is this the desired size?",
+          "They reached the desired outcome.",
+          "She got the desired result.",
+          "Choose the desired option."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word",
+        "sourceText": "Desired",
+        "id": "vocab-lesson-2026-06-19-1-18",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-14",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [],
+    "expressions": [],
+    "practiceQuestions": [
+      {
+        "type": "translation",
+        "question": "These are our figure.",
+        "answer": "Estas são as nossas figuras.",
+        "explanation": "A (often incorrect) sentence used to present items or data belonging to a group.",
+        "sourceType": "sentence",
+        "sourceText": "These are our figure.",
+        "id": "question-lesson-2026-06-19-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "translation",
+        "question": "this on behalf of someone else?",
+        "answer": "isso em nome de outra pessoa?",
+        "explanation": "Asking whether an action or message is done as a representative of, or for the benefit of, another person.",
+        "sourceType": "sentence",
+        "sourceText": "this on behalf of someone else?",
+        "id": "question-lesson-2026-06-19-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-14",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-19T12:41:25.446Z",
+  "updatedAt": "2026-07-14T14:33:20.946Z",
+  "status": "enriched"
+}

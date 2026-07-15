@@ -1,0 +1,58 @@
+{
+  "id": "lesson-2026-06-17-1",
+  "date": "2026-06-17",
+  "title": "How was the night sky key to our survival?",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "rely",
+        "translation": "confiar",
+        "definition": "to depend on someone or something with trust",
+        "examples": [
+          "You can rely on me.",
+          "They rely on public transportation.",
+          "She relies on her friends for support.",
+          "We rely heavily on technology.",
+          "He relied on his instincts."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-17-1-0",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-06-20T20:58:24.206Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:26:14.155Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      }
+    ],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-17T22:59:20.482Z",
+  "updatedAt": "2026-06-17T22:59:20.493Z",
+  "status": "created"
+}

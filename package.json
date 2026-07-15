@@ -13,7 +13,8 @@
     "categories": "node src/manageCategories.js",
     "categories:list": "node src/manageCategories.js list",
     "categories:create": "node src/manageCategories.js create",
-    "clean:titles": "node src/cleanTitles.js"
+    "clean:titles": "node src/cleanTitles.js",
+    "azure:json:pull": "pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/pull-azure-json.ps1"
   },
   "keywords": [
     "english",

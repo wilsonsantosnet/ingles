@@ -1,0 +1,42 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-2026-06-14-1",
+      "date": "2026-06-14",
+      "title": "az 104 Termos em inglês",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-17-1",
+      "date": "2026-06-17",
+      "title": "How was the night sky key to our survival?",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-19-1",
+      "date": "2026-06-19",
+      "title": "Microsoft",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-24-1",
+      "date": "2026-06-24",
+      "title": "Esquecimentos",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-1",
+      "date": "2026-06-25",
+      "title": "Redes Sociais",
+      "status": "enriched",
+      "file": "manual"
+    }
+  ],
+  "totalLessons": 5,
+  "processedAt": "2026-07-14T14:33:20.976Z",
+  "categoryId": "anki"
+}

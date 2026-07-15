@@ -1,0 +1,359 @@
+{
+  "categoryId": "ingles",
+  "processedAt": "2026-07-02T12:17:28.3575947-03:00",
+  "totalLessons": 44,
+  "lessons": [
+    {
+      "id": "lesson-2025-06-18-4",
+      "date": "2025-06-18",
+      "title": "Vocabulário, Gramática e Pronúncia em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 18June2025.docx"
+    },
+    {
+      "id": "lesson-2025-06-25-5",
+      "date": "2025-06-25",
+      "title": "Apresentações em Inglês: Expressões e Estrutura",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 25June2025.docx"
+    },
+    {
+      "id": "lesson-2025-07-02-4",
+      "date": "2025-07-02",
+      "title": "Simple Past e Vocabulário sobre Problemas Técnicos",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 02July2025.docx"
+    },
+    {
+      "id": "lesson-2025-07-30-1",
+      "date": "2025-07-30",
+      "title": "Gramática e Vocabulário do Cotidiano em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 30July2025.docx"
+    },
+    {
+      "id": "lesson-2025-08-06-1",
+      "date": "2025-08-06",
+      "title": "Verbos Irregulares e Vocabulário Diversificado",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 06August2025.docx"
+    },
+    {
+      "id": "lesson-2025-08-20-1",
+      "date": "2025-08-20",
+      "title": "Presente Contínuo e Vocabulário de Rotinas e Eventos",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 20August2025.docx"
+    },
+    {
+      "id": "lesson-2025-08-27-1",
+      "date": "2025-08-27",
+      "title": "Perguntas em Inglês no Presente Simples e Vocabulário Familiar",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 27August2025.docx"
+    },
+    {
+      "id": "lesson-2025-09-03-1",
+      "date": "2025-09-03",
+      "title": "Gramática e Vocabulário do Dia a Dia em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 03September2025.docx"
+    },
+    {
+      "id": "lesson-2025-09-10-1",
+      "date": "2025-09-10",
+      "title": "Presente e Passado Simples com Vocabulário de Relações e Rotinas",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 10September2025.docx"
+    },
+    {
+      "id": "lesson-2025-09-17-1",
+      "date": "2025-09-17",
+      "title": "Futuro com Going to e Will + Vocabulário Básico",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 17September2025.docx"
+    },
+    {
+      "id": "lesson-2025-09-24-1",
+      "date": "2025-09-24",
+      "title": "Simple Past e Vocabulário de Frequência e Tratamento",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 24September2025.docx"
+    },
+    {
+      "id": "lesson-2025-10-01-4",
+      "date": "2025-10-01",
+      "title": "Vocabulário e Gramática: Perguntas e Condicionais",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 01October2025.docx"
+    },
+    {
+      "id": "lesson-2025-10-08-4",
+      "date": "2025-10-08",
+      "title": "Past Continuous e Vocabulário de Situações Cotidianas",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 08October2025.docx"
+    },
+    {
+      "id": "lesson-2025-10-15-4",
+      "date": "2025-10-15",
+      "title": "Verbos Irregulares e Comparativos em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 15October2025.docx"
+    },
+    {
+      "id": "lesson-2025-10-22-4",
+      "date": "2025-10-22",
+      "title": "Estruturas Gramaticais e Vocabulário do Cotidiano em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 22October2025.docx"
+    },
+    {
+      "id": "lesson-2025-11-19-4",
+      "date": "2025-11-19",
+      "title": "Present Simple: Afirmativo, Negativo e Interrogativo",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 19November2025.docx"
+    },
+    {
+      "id": "lesson-2025-11-26-4",
+      "date": "2025-11-26",
+      "title": "Expressões, Vocabulário e Gramática no Presente",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 26November2025.docx"
+    },
+    {
+      "id": "lesson-2025-12-03-4",
+      "date": "2025-12-03",
+      "title": "Gramática e Vocabulário com Verbos Irregulares",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 03December2025.docx"
+    },
+    {
+      "id": "lesson-2025-12-10-4",
+      "date": "2025-12-10",
+      "title": "Present Continuous e Vocabulário de Aposentadoria",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 10December2025.docx"
+    },
+    {
+      "id": "lesson-2025-12-17-4",
+      "date": "2025-12-17",
+      "title": "Presente Contínuo e Respostas Curtas em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 17December2025.docx"
+    },
+    {
+      "id": "lesson-2026-01-07-4",
+      "date": "2026-01-07",
+      "title": "Presente Contínuo e Vocabulário Cotidiano",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 07January2026.docx"
+    },
+    {
+      "id": "lesson-2026-01-14-1",
+      "date": "2026-01-14",
+      "title": "Vocabulário e Respostas Curtas no Present Simple e Continuous",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 14January2026.docx"
+    },
+    {
+      "id": "lesson-2026-01-21-1",
+      "date": "2026-01-21",
+      "title": "Gramática e Vocabulário para Contrastando Vidas em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 21January2026.docx"
+    },
+    {
+      "id": "lesson-2026-01-28-1",
+      "date": "2026-01-28",
+      "title": "Verbos Irregulares e Vocabulário de Negócios",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 28January2026.docx"
+    },
+    {
+      "id": "lesson-2026-02-04-1",
+      "date": "2026-02-04",
+      "title": "Números Ordinais e Frases sobre Prazos",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 04February2026.docx"
+    },
+    {
+      "id": "lesson-2026-02-18-4",
+      "date": "2026-02-18",
+      "title": "Past Simple e Past Continuous com Vocabulário Cotidiano",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos -18February2026.docx"
+    },
+    {
+      "id": "lesson-2026-02-25-4",
+      "date": "2026-02-25",
+      "title": "Simple Past e Verb To Be no Passado",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 25February2026.docx"
+    },
+    {
+      "id": "lesson-2026-03-04-4",
+      "date": "2026-03-04",
+      "title": "Vocabulário de Negócios e Termos Econômicos em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 04March2026.docx"
+    },
+    {
+      "id": "lesson-2026-03-11-4",
+      "date": "2026-03-11",
+      "title": "Passado Simples e Contínuo com Vocabulário de Verbos Irregulares",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 11March2026.docx"
+    },
+    {
+      "id": "lesson-2026-03-18-4",
+      "date": "2026-03-18",
+      "title": "Passado Simples e Contínuo com Verbos Irregulares",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 18March2026.docx"
+    },
+    {
+      "id": "lesson-2026-03-25-3",
+      "date": "2026-03-25",
+      "title": "Passado Simples, Contínuo e Vocabulário Telefônico",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 25March2026.docx"
+    },
+    {
+      "id": "lesson-2026-04-01-3",
+      "date": "2026-04-01",
+      "title": "Present Perfect e Vocabulário do Cotidiano",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 01April2026.docx"
+    },
+    {
+      "id": "lesson-2026-04-15-3",
+      "date": "2026-04-15",
+      "title": "Present Perfect e Vocabulário do Cotidiano",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 15April2026.docx"
+    },
+    {
+      "id": "lesson-2026-04-22-3",
+      "date": "2026-04-22",
+      "title": "Present Perfect e Situações do Dia a Dia",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 22April2026.docx"
+    },
+    {
+      "id": "lesson-2026-04-29-3",
+      "date": "2026-04-29",
+      "title": "Present Perfect e Verbos em Contexto Diário",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 29April2026.docx"
+    },
+    {
+      "id": "lesson-2026-05-06-1",
+      "date": "2026-05-06",
+      "title": "Vocabulário e Expressões para Trabalho e Situações Cotidianas",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 06May2026.docx"
+    },
+    {
+      "id": "lesson-2026-05-20-2",
+      "date": "2026-05-20",
+      "title": "Vocabulário e Conceitos Gramaticais: Seres Vivos e Perseverança",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 20May2026.docx"
+    },
+    {
+      "id": "lesson-2026-05-26-2",
+      "date": "2026-05-26",
+      "title": "Present Perfect e Vocabulário de Física e Ações Cotidianas",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 26May2026.docx"
+    },
+    {
+      "id": "lesson-2026-05-27-2",
+      "date": "2026-05-27",
+      "title": "Pronomes Demonstrativos e Mundo das Ideias de Platão",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 27May2026.docx"
+    },
+    {
+      "id": "lesson-2026-06-03-2",
+      "date": "2026-06-03",
+      "title": "Vocabulário, Gramática e Filosofia de Platão em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 03June2026.docx"
+    },
+    {
+      "id": "lesson-2026-06-10-2",
+      "date": "2026-06-10",
+      "title": "Present Perfect e Vocabulário de Cozinha",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 10June2026.docx"
+    },
+    {
+      "id": "lesson-2026-06-17-1",
+      "date": "2026-06-17",
+      "title": "Present Continuous e Vocabulário Variado",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson dos Santos - 17June2026.docx"
+    },
+    {
+      "id": "lesson-2026-06-30-1",
+      "date": "2026-06-30",
+      "title": "Present Perfect, Verbos Irregulares e Vocabulário de Tecnologia",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 30June2026.docx"
+    },
+    {
+      "id": "lesson-2026-07-01-1",
+      "date": "2026-07-01",
+      "title": "Tempos Verbais e Pronúncia em Inglês",
+      "file": "docx",
+      "status": "enriched",
+      "sourceFile": "Wilson Santos - 01July2026.docx"
+    }
+  ]
+}

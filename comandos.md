@@ -95,7 +95,30 @@ Invoke-WebRequest https://app-fa2ulr5w2fiwk.azurewebsites.net/ -UseBasicParsing 
 Invoke-WebRequest https://app-fa2ulr5w2fiwk.azurewebsites.net/api/categories/ingles/lessons -UseBasicParsing | Select-Object -ExpandProperty Content
 ```
 
-## 9. Solucao rapida para indice de aulas vazio
+## 9. Baixar JSONs do Azure para local
+
+Use o script para baixar snapshot da pasta `data/` do App Service (via Kudu) e salvar em backup local com timestamp.
+
+```powershell
+# Execucao simplificada (usa defaults do ambiente azd local)
+npm run azure:json:pull
+
+# Apenas backup local com parametros explicitos
+npm run azure:json:pull -- -ResourceGroup <RG> -WebAppName <APP_SERVICE_NAME>
+
+# Definindo subscription
+npm run azure:json:pull -- -ResourceGroup <RG> -WebAppName <APP_SERVICE_NAME> -SubscriptionId <SUBSCRIPTION_ID>
+
+# Backup + sincronizar para pasta local data/
+npm run azure:json:pull -- -ResourceGroup <RG> -WebAppName <APP_SERVICE_NAME> -SyncToData
+```
+
+Saidas:
+- Backup em `data-backup/azure-YYYY-MM-DD-HHMMSS/`
+- Contagem total de arquivos `.json` baixados
+- Opcional: copia para `data/` quando usar `-SyncToData`
+
+## 10. Solucao rapida para indice de aulas vazio
 
 Se as aulas sumirem na UI, reconstrua o indice com base nos arquivos `lesson-*.json`:
 

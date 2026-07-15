@@ -1,0 +1,197 @@
+{
+  "id": "lesson-2026-06-15-2",
+  "date": "2026-06-15",
+  "title": "Configuração de Regras de Ciclo de Vida no Azure Storage",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains a storage account named storage1. The storage1 account contains a container named container1.\n\nYou create a blob lifecycle rule named rule1.\n\nYou need to configure rule1 to automatically move blobs that were NOT updated for 45 days from contained to the Cool access tier.\n\nHow should you complete the rule? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\n---\n\n```\n\"rules\": [\n    {\n        \"enabled\": true,\n        \"name\": \"rule1\",\n        \"type\": \"Lifecycle\",\n        \"definition\": {\n            \"actions\": {\n                \"baseBlob\": {\n                    \"tierToCool\": {\n                        \"daysAfterCreationGreaterThan\": 45\n                    }\n                }\n            }\n        },\n        \"filters\": {\n            \"blobTypes\": [\n                \"AppendBlob\",\n                \"BlockBlob\",\n                \"PageBlob\"\n            ],\n            \"prefixMatch\": []\n        }\n    }\n]\n```",
+  "enriched": {
+    "title": "Configuração de Regras de Ciclo de Vida no Azure Storage",
+    "summary": "Nesta aula, você aprenderá a configurar regras de ciclo de vida para mover blobs entre camadas de acesso no Azure Storage. O foco está em automatizar a migração de blobs para a camada Cool com base no tempo de inatividade.",
+    "topics": [
+      {
+        "title": "Azure Blob Storage Lifecycle Management",
+        "description": "Gerenciamento de ciclo de vida de blobs para otimização de custos e organização de dados.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Camadas de acesso no Azure Blob Storage",
+        "description": "Descrição das camadas Hot, Cool e Archive no Azure Storage e como utilizá-las.",
+        "category": "Storage",
+        "importance": "medium"
+      },
+      {
+        "title": "Automação de gerenciamento de dados",
+        "description": "Configuração de regras para automatizar movimentações e exclusões de blobs.",
+        "category": "Storage",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Blob Lifecycle Management",
+        "definition": "Um recurso do Azure Storage que permite configurar regras para gerenciar automaticamente os dados armazenados em blobs.",
+        "examples": [
+          "Mover blobs inativos para a camada Cool após 45 dias.",
+          "Excluir blobs após 90 dias."
+        ],
+        "relatedConcepts": [
+          "Azure Storage Account",
+          "Blob Access Tiers"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Blob Access Tiers",
+        "definition": "Camadas de acesso no Azure Storage que otimizam os custos de armazenamento com base na frequência de acesso.",
+        "examples": [
+          "Hot para dados acessados frequentemente.",
+          "Cool para dados acessados raramente."
+        ],
+        "relatedConcepts": [
+          "Lifecycle Management",
+          "Data Retention"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure Storage Account",
+        "definition": "Um recurso do Azure que fornece armazenamento escalável e confiável para vários tipos de dados.",
+        "examples": [
+          "Criar uma conta de armazenamento para armazenar blobs, filas, tabelas e discos.",
+          "Configurar regras de ciclo de vida em uma conta de armazenamento."
+        ],
+        "relatedConcepts": [
+          "Blob Storage",
+          "Lifecycle Policies"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Mover blobs inativos para a camada Cool",
+        "problem": "Você precisa reduzir os custos de armazenamento movendo blobs que não foram atualizados nos últimos 45 dias para a camada Cool.",
+        "solution": "Crie uma regra de ciclo de vida no Azure Storage configurando o parâmetro 'tierToCool' com 'daysAfterCreationGreaterThan' igual a 45.",
+        "explanation": "A camada Cool é ideal para dados que não são acessados frequentemente, reduzindo os custos de armazenamento. A regra automatiza o processo, eliminando a necessidade de monitoramento manual."
+      },
+      {
+        "scenario": "Filtro por tipo de blob",
+        "problem": "Você deseja aplicar a regra de ciclo de vida apenas a blobs do tipo BlockBlob.",
+        "solution": "Adicione 'BlockBlob' ao campo 'blobTypes' na configuração da regra.",
+        "explanation": "Ao especificar o tipo de blob, a regra será aplicada apenas aos blobs que correspondem ao filtro, garantindo precisão na aplicação das políticas."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "scenario-based",
+        "question": "Como configurar uma regra para mover blobs não acessados por 30 dias para a camada Archive?",
+        "answer": "Configure o parâmetro 'tierToArchive' com 'daysAfterModificationGreaterThan' igual a 30.",
+        "hint": "Verifique a documentação sobre as propriedades de Lifecycle Rules.",
+        "topic": "Blob Lifecycle Management"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a camada mais econômica para armazenamento de longo prazo?",
+        "answer": "Archive.",
+        "hint": "Considere o custo por GB e a frequência de acesso.",
+        "topic": "Blob Access Tiers"
+      },
+      {
+        "type": "command",
+        "question": "Como criar uma regra de ciclo de vida usando o Azure CLI?",
+        "answer": "Use o comando 'az storage account management-policy create' com a definição da regra em formato JSON.",
+        "hint": "Consulte a sintaxe do comando no Azure CLI.",
+        "topic": "Blob Lifecycle Management"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que uma regra de ciclo de vida não está movendo blobs para a camada Cool?",
+        "answer": "Pode haver um problema na configuração do filtro ou os blobs não atendem aos critérios definidos.",
+        "hint": "Revise as condições de filtro como 'prefixMatch' e 'daysAfterCreationGreaterThan'.",
+        "topic": "Blob Lifecycle Management"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar uma regra para excluir blobs após 365 dias?",
+        "answer": "Adicione uma ação 'delete' com 'daysAfterCreationGreaterThan' igual a 365 na definição da regra.",
+        "hint": "Consulte as opções de ação disponíveis em Lifecycle Management.",
+        "topic": "Blob Lifecycle Management"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda como configurar as ações 'tierToCool', 'tierToArchive' e 'delete' nas regras de ciclo de vida.",
+        "relevance": "Esses conceitos são frequentemente cobrados em exames de certificação relacionados ao Azure Storage.",
+        "topic": "Blob Lifecycle Management"
+      },
+      {
+        "tip": "Saiba diferenciar entre as camadas Hot, Cool e Archive e quando utilizá-las.",
+        "relevance": "Perguntas relacionadas ao custo de armazenamento e frequência de acesso são comuns em provas.",
+        "topic": "Blob Access Tiers"
+      },
+      {
+        "tip": "Revise a sintaxe JSON de uma regra de ciclo de vida para identificar erros de configuração.",
+        "relevance": "Exames podem incluir perguntas para corrigir configurações erradas.",
+        "topic": "Blob Lifecycle Management"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre Azure Blob Storage Lifecycle Management",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Visão geral das camadas de acesso no Azure Storage",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/access-tiers-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Tutorial: Configure policies for Azure Blob Storage lifecycle",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/tutorial-blob-lifecycle-management",
+        "type": "tutorial"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre Azure Blob Storage Lifecycle Management",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Visão geral das camadas de acesso no Azure Storage",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/access-tiers-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Tutorial: Configure policies for Azure Blob Storage lifecycle",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/tutorial-blob-lifecycle-management",
+        "type": "tutorial"
+      }
+    ]
+  },
+  "createdAt": "2026-06-15T02:33:39.829Z",
+  "updatedAt": "2026-06-15T02:39:13.651Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-15T02:34:29.265Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1781491153649",
+      "generatedContent": {
+        "title": "Escolha do tipo de blob para filtros em regras de ciclo de vida",
+        "type": "explanation",
+        "content": "No contexto da configuração de regras de ciclo de vida no Azure Storage, a escolha de um único tipo de blob no campo 'filters.blobTypes' é recomendada quando você deseja aplicar a regra de maneira específica a um tipo de blob, como 'AppendBlob', 'BlockBlob' ou 'PageBlob'.\n\nPor exemplo, se a intenção é mover apenas blobs do tipo 'BlockBlob' para a camada Cool, o filtro deve ser configurado como:\n\n\n\"filters\": {\n    \"blobTypes\": [\n        \"BlockBlob\"\n    ],\n    \"prefixMatch\": []\n}\n\n\nAo restringir o filtro a 'BlockBlob', a regra será aplicada somente a este tipo de blob, garantindo que outros tipos, como 'AppendBlob' ou 'PageBlob', não sejam afetados. Essa abordagem é útil para cenários em que diferentes tipos de blob possuem requisitos distintos de retenção ou movimentação entre camadas de acesso.\n\nEscolher apenas um tipo no filtro promove maior precisão na aplicação das políticas e ajuda a evitar resultados inesperados, como a movimentação ou exclusão de blobs que não deveriam ser impactados pela regra. Certifique-se de revisar os requisitos do seu cenário para determinar qual tipo de blob deve ser filtrado."
+      },
+      "generatedAt": "2026-06-15T02:39:13.649Z",
+      "userPrompt": "nesse json \"        \"filters\": {\n            \"blobTypes\": [\n                \"AppendBlob\",\n                \"BlockBlob\",\n                \"PageBlob\"\n            ],\" nos deveriamos escolher apenas uma opção"
+    }
+  ]
+}

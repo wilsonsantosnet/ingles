@@ -1,0 +1,240 @@
+{
+  "id": "lesson-2026-05-03-1",
+  "date": "2026-05-03",
+  "title": "Funções de acesso no Azure RBAC e permissões detalhadas",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:  \nContributor: Grants full access to manage all resources, but does not allow you to assign roles in Azure RBAC  \n\nIncorrect answers:  \nA: Owner: Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.  \nD: Virtual Machine Administrator Login: View Virtual Machines in the portal and login as administrator.  \nB: Virtual Machine Contributor: Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they’re connected to.  \n\nReference:  \nhttps://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+  "enriched": {
+    "title": "Funções de acesso no Azure RBAC e permissões detalhadas",
+    "summary": "A aula aborda as funções de acesso no Azure RBAC, destacando permissões específicas como Contributor, Owner e funções relacionadas a máquinas virtuais. Inclui explicações sobre as diferenças entre as funções e suas aplicações práticas.",
+    "topics": [
+      {
+        "title": "Azure RBAC (Role-Based Access Control)",
+        "description": "Controle de acesso baseado em funções para gerenciar recursos no Azure.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Função Contributor no Azure",
+        "description": "Permissões para gerenciar todos os recursos sem atribuir funções no RBAC.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Função Owner no Azure",
+        "description": "Permissões completas para gerenciar recursos e atribuir funções no RBAC.",
+        "category": "Identity",
+        "importance": "medium"
+      },
+      {
+        "title": "Funções relacionadas a máquinas virtuais",
+        "description": "Permissões específicas para gerenciar e acessar máquinas virtuais no Azure.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure RBAC",
+        "definition": "Sistema de controle de acesso baseado em funções que permite gerenciar permissões de usuários em recursos do Azure.",
+        "examples": [
+          "Atribuir função de Contributor a um usuário",
+          "Configurar RBAC para um grupo de recursos"
+        ],
+        "relatedConcepts": [
+          "IAM",
+          "Azure AD"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Contributor",
+        "definition": "Função que permite gerenciar todos os recursos, mas não atribuir funções no RBAC.",
+        "examples": [
+          "Criar e excluir recursos",
+          "Modificar configurações de um recurso"
+        ],
+        "relatedConcepts": [
+          "Owner",
+          "Reader"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Owner",
+        "definition": "Função que concede controle total sobre recursos, incluindo a capacidade de atribuir funções no RBAC.",
+        "examples": [
+          "Atribuir função Contributor a outro usuário",
+          "Gerenciar políticas de acesso"
+        ],
+        "relatedConcepts": [
+          "Contributor",
+          "Administrator"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Virtual Machine Contributor",
+        "definition": "Função que permite gerenciar máquinas virtuais sem acessar diretamente as máquinas ou redes associadas.",
+        "examples": [
+          "Criar uma VM no Azure",
+          "Excluir uma VM existente"
+        ],
+        "relatedConcepts": [
+          "Virtual Machine Administrator Login",
+          "Compute"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Virtual Machine Administrator Login",
+        "definition": "Função que permite visualizar VMs no portal e fazer login como administrador.",
+        "examples": [
+          "Acessar a VM via RDP ou SSH",
+          "Visualizar detalhes da VM no Azure Portal"
+        ],
+        "relatedConcepts": [
+          "Virtual Machine Contributor",
+          "Compute"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Gerenciar recursos com a função Contributor",
+        "problem": "Um usuário precisa gerenciar todos os recursos de um grupo sem a permissão de atribuir funções.",
+        "solution": "Atribuir a função Contributor ao usuário no grupo de recursos.",
+        "explanation": "A função Contributor permite gerenciar totalmente os recursos, mas restringe ações relacionadas ao RBAC, garantindo segurança."
+      },
+      {
+        "scenario": "Atribuir funções usando a função Owner",
+        "problem": "Um administrador precisa conceder permissões específicas a outro usuário para gerenciar máquinas virtuais.",
+        "solution": "Atribuir a função Owner ao administrador para permitir a configuração de permissões no RBAC.",
+        "explanation": "A função Owner oferece controle total sobre recursos e permissões, permitindo delegar funções específicas."
+      },
+      {
+        "scenario": "Login em uma VM com a função Virtual Machine Administrator Login",
+        "problem": "Um usuário precisa acessar uma VM como administrador para realizar manutenção.",
+        "solution": "Atribuir a função Virtual Machine Administrator Login ao usuário no escopo da VM.",
+        "explanation": "Essa função fornece acesso administrativo à VM sem expor outras funções de gerenciamento."
+      },
+      {
+        "scenario": "Gerenciar VMs sem acesso à rede ou armazenamento",
+        "problem": "Um operador precisa criar e gerenciar VMs sem acessar redes ou contas de armazenamento associadas.",
+        "solution": "Atribuir a função Virtual Machine Contributor ao operador.",
+        "explanation": "Essa função restringe o acesso a componentes externos, garantindo segurança enquanto permite gerenciar VMs."
+      },
+      {
+        "scenario": "Visualizar detalhes de VMs no portal",
+        "problem": "Um auditor precisa monitorar as configurações de VMs no portal sem alterar recursos.",
+        "solution": "Atribuir a função Reader ao auditor.",
+        "explanation": "A função Reader permite visualizar recursos sem modificar ou acessar diretamente."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual a principal diferença entre as funções Owner e Contributor no Azure RBAC?",
+        "answer": "A função Owner permite atribuir funções no RBAC, enquanto a função Contributor não.",
+        "hint": "Considere responsabilidades adicionais relacionadas ao RBAC.",
+        "topic": "Azure RBAC"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Um operador precisa gerenciar VMs sem acesso à rede ou armazenamento. Qual função deve ser atribuída?",
+        "answer": "Virtual Machine Contributor",
+        "hint": "Foque na função que limita o acesso a componentes externos.",
+        "topic": "Funções relacionadas a máquinas virtuais"
+      },
+      {
+        "type": "concept",
+        "question": "O que permite a função Virtual Machine Administrator Login?",
+        "answer": "Visualizar VMs no portal e fazer login como administrador.",
+        "hint": "Pense em permissões de acesso direto à máquina.",
+        "topic": "Funções relacionadas a máquinas virtuais"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Um usuário com função Contributor tenta atribuir outra função no RBAC e recebe um erro. Por quê?",
+        "answer": "A função Contributor não tem permissão para atribuir funções no RBAC.",
+        "hint": "Revise as permissões específicas do Contributor.",
+        "topic": "Azure RBAC"
+      },
+      {
+        "type": "command",
+        "question": "Qual função deve ser usada para conceder controle total sobre recursos e permissões no Azure?",
+        "answer": "Owner",
+        "hint": "Considere funções que incluem gerenciamento de RBAC.",
+        "topic": "Azure RBAC"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda as diferenças entre Owner, Contributor e Reader.",
+        "relevance": "Essas funções frequentemente aparecem em questões de exame sobre RBAC.",
+        "topic": "Azure RBAC"
+      },
+      {
+        "tip": "Virtual Machine Contributor não permite acesso à rede ou armazenamento associado.",
+        "relevance": "Essa limitação pode ser usada em perguntas sobre cenários específicos.",
+        "topic": "Funções relacionadas a máquinas virtuais"
+      },
+      {
+        "tip": "Funções administrativas podem ser atribuídas apenas por usuários com permissões apropriadas.",
+        "relevance": "Questões de exame podem abordar erros ao tentar atribuir funções.",
+        "topic": "Azure RBAC"
+      },
+      {
+        "tip": "Virtual Machine Administrator Login permite login direto na VM, mas não gerencia outros recursos.",
+        "relevance": "Certifique-se de diferenciar essa função de outras relacionadas a VMs.",
+        "topic": "Funções relacionadas a máquinas virtuais"
+      },
+      {
+        "tip": "Use sempre a documentação oficial para revisar permissões detalhadas de cada função.",
+        "relevance": "Referências podem ser usadas para validar respostas em questões de múltipla escolha.",
+        "topic": "Azure RBAC"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial das funções RBAC no Azure",
+        "url": "https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T18:59:20.247Z",
+  "updatedAt": "2026-05-09T22:04:43.196Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T18:59:43.258Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1778364146241",
+      "generatedContent": {
+        "title": "Criando uma função personalizada (Custom RBAC) no Azure",
+        "type": "explanation",
+        "content": "Para criar uma função personalizada (Custom RBAC) no Azure, você precisa definir as permissões específicas que deseja conceder e associá-las a uma função personalizada. Esse processo é realizado usando o Azure Portal, Azure PowerShell, ou Azure CLI. Seguem os passos gerais:\n\n1. **Identifique as permissões necessárias**:\n   - Determine quais ações (como leitura, gravação ou exclusão) e em quais recursos a função personalizada terá acesso. Use a documentação das permissões disponíveis no Azure para identificar os detalhes específicos.\n\n2. **Defina a função personalizada**:\n   - No Azure Portal:\n     1. Acesse 'Controle de Acesso (IAM)' no recurso ou escopo desejado.\n     2. Clique em 'Funções personalizadas' e selecione 'Adicionar' para criar uma nova função personalizada.\n     3. Preencha os detalhes, como nome, descrição e permissões específicas no formato JSON.\n   - Usando Azure PowerShell:\n     1. Use o comando `New-AzRoleDefinition` para definir a nova função.\n     2. Forneça o JSON com as permissões e configurações da função.\n   - Usando Azure CLI:\n     1. Use o comando `az role definition create` com o arquivo JSON que define a função personalizada.\n\n3. **Teste a função personalizada**:\n   - Atribua a função a um usuário ou grupo no escopo adequado (subscrição, grupo de recursos ou recurso específico).\n   - Valide se as permissões estão funcionando conforme esperado.\n\n4. **Gerencie atualizações futuras**:\n   - Caso precise ajustar a função, edite o JSON da definição e use os comandos ou opções do portal para atualizar a função existente.\n\nExemplo de estrutura JSON de uma função personalizada:\n\n{\n  \"Name\": \"CustomContributor\",\n  \"IsCustom\": true,\n  \"Description\": \"Permissões personalizadas para gerenciar recursos específicos.\",\n  \"Actions\": [\n    \"Microsoft.Compute/virtualMachines/*\",\n    \"Microsoft.Network/virtualNetworks/read\"\n  ],\n  \"NotActions\": [\n    \"Microsoft.Compute/virtualMachines/delete\"\n  ],\n  \"AssignableScopes\": [\n    \"/subscriptions/{subscriptionId}\"\n  ]\n}\n\n\nDocumentação oficial: [https://docs.microsoft.com/en-us/azure/role-based-access-control/custom-roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/custom-roles)"
+      },
+      "generatedAt": "2026-05-09T22:02:26.240Z",
+      "userPrompt": "qual a forma de criar um custom RBAC?"
+    },
+    {
+      "id": "gen-1778364283194",
+      "generatedContent": {
+        "title": "Atribuir função RBAC a uma subscription para gerenciar recursos de um grupo sem permissões de RBAC",
+        "type": "explanation",
+        "content": "Para atribuir uma função RBAC que permita alterar recursos de um grupo de recursos (Resource Group) sem gerenciar permissões, você pode usar a função predefinida `Contributor`. Essa função concede controle total sobre os recursos do grupo, mas não permite atribuir funções no Azure RBAC. A atribuição pode ser feita via JSON em conjunto com Azure CLI ou PowerShell.\n\n### Exemplo de JSON para atribuir a função Contributor a um grupo de recursos:\n\n\n{\n  \"properties\": {\n    \"roleDefinitionId\": \"/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}\",\n    \"principalId\": \"{principalId}\",\n    \"scope\": \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}\"\n  }\n}\n\n\n#### Explicação dos campos:\n- **`roleDefinitionId`**: O ID da função que deseja atribuir. No caso da função Contributor, você pode obter o ID executando o comando `az role definition list --name Contributor` ou consultando a documentação.\n- **`principalId`**: O ID do usuário, grupo ou entidade de serviço ao qual a função será atribuída. Você pode obter esse ID usando o comando `az ad user show --id {email}` para um usuário ou `az ad sp show --id {appId}` para uma entidade de serviço.\n- **`scope`**: Define o escopo onde a função será aplicada. O escopo pode ser definido no nível de uma subscription, grupo de recursos ou recurso individual. Neste caso, o escopo é limitado ao grupo de recursos (Resource Group).\n\n#### Etapas para aplicar o JSON:\n1. Use o Azure CLI ou PowerShell para aplicar o JSON.\n\n   **Usando Azure CLI:**\n   bash\n   az role assignment create --assignee {principalId} --role Contributor --scope /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}\n   \n\n   **Usando Azure PowerShell:**\n   powershell\n   New-AzRoleAssignment -ObjectId {principalId} -RoleDefinitionName Contributor -Scope \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}\"\n   \n\n2. Substitua os placeholders no JSON e nos comandos pelos valores reais:\n   - `{subscriptionId}`: O ID da subscription onde o grupo de recursos está localizado.\n   - `{resourceGroupName}`: O nome do grupo de recursos.\n   - `{roleDefinitionId}`: O ID da função Contributor.\n   - `{principalId}`: O ID do usuário, grupo ou entidade de serviço.\n\n3. Execute o comando para aplicar a atribuição e verifique no Azure Portal ou CLI se a função foi atribuída corretamente.\n\n### Observação:\nCertifique-se de que o usuário que está executando o comando tenha permissões suficientes (geralmente função Owner ou User Access Administrator) no escopo definido."
+      },
+      "generatedAt": "2026-05-09T22:04:43.194Z",
+      "userPrompt": "como atribuir uma função RBAC em uma subscription que só pode alterar recursos de um rg mas não pode gerenciar permissões, usando json?"
+    }
+  ]
+}

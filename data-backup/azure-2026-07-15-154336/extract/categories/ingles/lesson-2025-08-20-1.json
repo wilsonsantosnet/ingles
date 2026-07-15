@@ -1,0 +1,277 @@
+{
+  "date": "2025-08-20",
+  "title": "Presente Contínuo e Vocabulário de Rotinas e Eventos",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONneighborhood – bairro, vizinhançaIn the photo, there's a young guy who is playing the guitar. He's wearing a hat. His name is Jonathan. He usually plays the guitar at home in his bedroom to relax after a day at university.Near Jonathan, a group of other young people are sitting. They are smiling and having a good time. They're all Jonathan's friends. They attend/go to the same church as him and are part of the church's youth group, which promotes regular gatherings like the one in the photo. They aren't only having fun, they are also planning an event for children. My son plays volleyball every Thursday afternoon. Today is Thursday, 3.00 pm. My son is playing volleyball.What are you doing now?What’s mummy/mom cooking?Where are your parents living?What’s that man saying?We’re preparing an event.How many apples are you putting in the box?Do you work near here?Does your father work near here?She buys flowers every Saturday. We don’t like going to the mall on weekends / on the weekend.I hate waking up / to wake up early.How often does the governor visit the countryside?",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONneighborhood – bairro, vizinhançaIn the photo, there's a young guy who is playing the guitar. He's wearing a hat. His name is Jonathan. He usually plays the guitar at home in his bedroom to relax after a day at university.Near Jonathan, a group of other young people are sitting. They are smiling and having a good time. They're all Jonathan's friends. They attend/go to the same church as him and are part of the church's youth group, which promotes regular gatherings like the one in the photo. They aren't only having fun, they are also planning an event for children. My son plays volleyball every Thursday afternoon. Today is Thursday, 3.00 pm. My son is playing volleyball.What are you doing now?What’s mummy/mom cooking?Where are your parents living?What’s that man saying?We’re preparing an event.How many apples are you putting in the box?Do you work near here?Does your father work near here?She buys flowers every Saturday. We don’t like going to the mall on weekends / on the weekend.I hate waking up / to wake up early.How often does the governor visit the countryside?"
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONneighborhood – bairro, vizinhançaIn the photo, there's a young guy who is playing the guitar. He's wearing a hat. His name is Jonathan. He usually plays the guitar at home in his bedroom to relax after a day at university.Near Jonathan, a group of other young people are sitting. They are smiling and having a good time. They're all Jonathan's friends. They attend/go to the same church as him and are part of the church's youth group, which promotes regular gatherings like the one in the photo. They aren't only having fun, they are also planning an event for children. My son plays volleyball every Thursday afternoon. Today is Thursday, 3.00 pm. My son is playing volleyball.What are you doing now?What’s mummy/mom cooking?Where are your parents living?What’s that man saying?We’re preparing an event.How many apples are you putting in the box?Do you work near here?Does your father work near here?She buys flowers every Saturday. We don’t like going to the mall on weekends / on the weekend.I hate waking up / to wake up early.How often does the governor visit the countryside?"
+      ]
+    }
+  ],
+  "source": "docx",
+  "sourceFile": "Wilson dos Santos - 20August2025.docx",
+  "id": "lesson-2025-08-20-1",
+  "enriched": {
+    "title": "Presente Contínuo e Vocabulário de Rotinas e Eventos",
+    "summary": "A aula aborda o uso do Presente Contínuo para ações em andamento e o vocabulário relacionado a rotinas, vizinhança e eventos sociais. Exemplos práticos e perguntas ajudam a fixar o conteúdo.",
+    "mainTopics": [
+      "Presente Contínuo",
+      "Vocabulário de rotinas e vizinhança",
+      "Estruturas de perguntas"
+    ],
+    "vocabulary": [
+      {
+        "word": "neighborhood",
+        "translation": "bairro, vizinhança",
+        "definition": "An area of a town or city where people live.",
+        "examples": [
+          "Jonathan lives in a quiet neighborhood.",
+          "Do you like your neighborhood?"
+        ],
+        "pronunciation": "/ˈneɪ.bɚ.hʊd/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "area",
+          "community"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-08-20-1-neighborhood",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "guitar",
+        "translation": "violão, guitarra",
+        "definition": "A musical instrument with strings played by plucking or strumming.",
+        "examples": [
+          "He's playing the guitar in the photo.",
+          "I want to learn how to play the guitar."
+        ],
+        "pronunciation": "/ɡɪˈtɑːr/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "string instrument"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-08-20-1-guitar",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "relax",
+        "translation": "relaxar",
+        "definition": "To rest and feel calm.",
+        "examples": [
+          "Jonathan plays the guitar to relax.",
+          "You should relax after work."
+        ],
+        "pronunciation": "/rɪˈlæks/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "unwind",
+          "rest"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-08-20-1-relax",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "event",
+        "translation": "evento",
+        "definition": "An organized occasion such as a meeting, party, or performance.",
+        "examples": [
+          "They are planning an event for children.",
+          "The event will take place next week."
+        ],
+        "pronunciation": "/ɪˈvent/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "occasion",
+          "gathering"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-08-20-1-event",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "volleyball",
+        "translation": "vôlei",
+        "definition": "A sport where two teams hit a ball over a net.",
+        "examples": [
+          "My son plays volleyball every Thursday afternoon.",
+          "Do you play volleyball?"
+        ],
+        "pronunciation": "/ˈvɑː.li.bɔːl/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "sport"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2025-08-20-1-volleyball",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Presente Contínuo",
+        "explanation": "O Presente Contínuo é usado para ações que estão acontecendo no momento da fala ou para ações temporárias.",
+        "rules": [
+          "Forme o Presente Contínuo com o verbo 'to be' no presente (am/is/are) + o verbo principal com '-ing'.",
+          "Use 'not' para formar frases negativas.",
+          "Inverta 'to be' e o sujeito para formar perguntas."
+        ],
+        "examples": [
+          "He is playing the guitar.",
+          "They are planning an event for children.",
+          "What are you doing now?"
+        ],
+        "commonMistakes": [
+          "Esquecer de adicionar '-ing' no verbo principal.",
+          "Usar 'am/is/are' incorretamente de acordo com o sujeito.",
+          "Confundir com o Presente Simples para ações habituais."
+        ],
+        "id": "grammar-lesson-2025-08-20-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [],
+    "practiceQuestions": [
+      {
+        "question": "What is Jonathan doing in the photo?",
+        "answer": "He is playing the guitar.",
+        "explanation": "A frase descreve uma ação que está acontecendo no momento, usando o Presente Contínuo.",
+        "type": "translation",
+        "tense": "Present Continuous",
+        "id": "question-lesson-2025-08-20-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Translate: 'Meu filho está jogando vôlei agora.'",
+        "answer": "My son is playing volleyball now.",
+        "explanation": "A tradução aplica o Presente Contínuo para ações em progresso no momento da fala.",
+        "type": "translation",
+        "tense": "Present Continuous",
+        "id": "question-lesson-2025-08-20-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Complete: 'They _____ (plan) an event for children.'",
+        "answer": "are planning",
+        "explanation": "Como o sujeito é 'they', usamos 'are' + o verbo com '-ing'.",
+        "type": "fill-in-blank",
+        "tense": "Present Continuous",
+        "id": "question-lesson-2025-08-20-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "Nos Estados Unidos, é comum que igrejas organizem grupos de jovens com atividades sociais, como eventos para a comunidade.",
+      "O vôlei é um esporte popular em muitos países, especialmente entre jovens."
+    ],
+    "studyTips": [
+      "Pratique formar frases no Presente Contínuo descrevendo pessoas ao seu redor.",
+      "Use perguntas do tipo 'What are you doing now?' para interagir e treinar o conteúdo.",
+      "Ouça músicas em inglês com letras que usem o Presente Contínuo para reforçar o aprendizado."
+    ],
+    "originalExamples": [
+      "In the photo, there's a young guy who is playing the guitar. (Na foto, há um jovem que está tocando violão.)",
+      "He's wearing a hat. (Ele está usando um chapéu.)",
+      "He usually plays the guitar at home in his bedroom to relax after a day at university. (Ele geralmente toca violão em casa no quarto para relaxar depois de um dia na universidade.)",
+      "Near Jonathan, a group of other young people are sitting. (Perto de Jonathan, um grupo de outros jovens está sentado.)",
+      "They are smiling and having a good time. (Eles estão sorrindo e se divertindo.)",
+      "They're all Jonathan's friends. (Todos são amigos de Jonathan.)",
+      "They attend/go to the same church as him and are part of the church's youth group, which promotes regular gatherings like the one in the photo. (Eles frequentam a mesma igreja que ele e fazem parte do grupo de jovens da igreja, que promove encontros regulares como o da foto.)",
+      "They aren't only having fun, they are also planning an event for children. (Eles não estão apenas se divertindo, estão também planejando um evento para crianças.)",
+      "My son plays volleyball every Thursday afternoon. (Meu filho joga vôlei toda quinta-feira à tarde.)",
+      "Today is Thursday, 3.00 pm. My son is playing volleyball. (Hoje é quinta-feira, 15h. Meu filho está jogando vôlei.)",
+      "What are you doing now? (O que você está fazendo agora?)",
+      "What’s mummy/mom cooking? (O que a mamãe está cozinhando?)",
+      "Where are your parents living? (Onde seus pais estão morando?)",
+      "What’s that man saying? (O que aquele homem está dizendo?)",
+      "We’re preparing an event. (Estamos preparando um evento.)",
+      "How many apples are you putting in the box? (Quantas maçãs você está colocando na caixa?)",
+      "Do you work near here? (Você trabalha perto daqui?)",
+      "Does your father work near here? (Seu pai trabalha perto daqui?)",
+      "She buys flowers every Saturday. (Ela compra flores todo sábado.)",
+      "We don’t like going to the mall on weekends / on the weekend. (Nós não gostamos de ir ao shopping nos fins de semana.)",
+      "I hate waking up / to wake up early. (Eu odeio acordar cedo.)",
+      "How often does the governor visit the countryside? (Com que frequência o governador visita o interior?)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "enrichedAt": "2026-07-02T15:12:24.107Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

@@ -26,12 +26,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-25-1-0",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-06-25",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-03",
+          "lastReview": "2026-07-02",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:05.279Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -51,10 +57,159 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-25-1-1",
         "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-03",
+          "lastReview": "2026-07-02",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:08.306Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "wonder",
+        "translation": "perguntar-se",
+        "definition": "to feel curiosity or doubt about something; to ask oneself",
+        "examples": [
+          "I wonder what time the meeting starts.",
+          "She wondered if she should call him back.",
+          "Sometimes I wonder about the meaning of a dream."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-03",
+          "lastReview": "2026-07-02",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:11.999Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "assume",
+        "translation": "supor",
+        "definition": "to accept something as true without proof; to suppose",
+        "examples": [
+          "Don't assume he's guilty without evidence.",
+          "I assumed you were coming to the party.",
+          "Let's assume the train is late and make another plan."
+        ],
+        "pronunciation": "/əˈsum/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "suppose",
+          "presume"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-3",
+        "spacedRepetition": {
           "easeFactor": 2.5,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-06-25",
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "require",
+        "translation": "exigir",
+        "definition": "to need something or make it necessary",
+        "examples": [
+          "This job requires previous experience.",
+          "The form requires your full name and address.",
+          "Some plants require a lot of sunlight to grow."
+        ],
+        "pronunciation": "/rɪˈkwaɪər/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "need",
+          "demand"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "manage",
+        "translation": "administrar",
+        "definition": "to be in charge of; to succeed in doing something, especially with difficulty",
+        "examples": [
+          "She manages the sales team at the office.",
+          "I can manage the report by tomorrow.",
+          "He managed to finish the project despite the delays."
+        ],
+        "pronunciation": "/ˈmænɪdʒ/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "oversee",
+          "cope"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-5",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "handle",
+        "translation": "lidar com",
+        "definition": "to deal with or be responsible for something; to touch or hold carefully",
+        "examples": [
+          "Can you handle this customer complaint?",
+          "She handled the fragile package with care.",
+          "He knows how to handle difficult situations calmly."
+        ],
+        "pronunciation": "/ˈhændəl/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "deal with",
+          "manage"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-6",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
           "lastReview": null,
           "reviews": []
         }
@@ -67,6 +222,6 @@
     "supportMaterials": []
   },
   "createdAt": "2026-06-25T13:20:14.423Z",
-  "updatedAt": "2026-06-25T13:34:50.324Z",
-  "status": "created"
+  "updatedAt": "2026-07-02T21:23:28.213Z",
+  "status": "enriched"
 }

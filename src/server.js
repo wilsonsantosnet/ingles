@@ -7,7 +7,7 @@ import { config } from './config.js';
 import { SpacedRepetitionSystem } from './spacedRepetition.js';
 import { CategoryManager } from './categoryManager.js';
 import { LessonManager } from './lessonManager.js';
-import { enrichWithLLM, generateWithPrompt, generateQuickVocabulary, generateSentenceVocabulary } from './llmEnricher.js';
+import { enrichWithLLM, generateWithPrompt, generateQuickVocabulary, generateQuickVocabularyBatch, generateSentenceVocabulary } from './llmEnricher.js';
 import { imageProcessor } from './imageProcessor.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -65,6 +65,34 @@ function getAnkiInputType(text) {
   return 'sentence';
 }
 
+function parseAnkiTermsInput(text) {
+  const rawText = String(text || '').trim();
+  if (!rawText) {
+    return [];
+  }
+
+  const terms = rawText
+    .split(/[\n,;]+/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => item.replace(/^[-*\s]+/, '').trim())
+    .filter(Boolean);
+
+  const seen = new Set();
+  const unique = [];
+
+  for (const term of terms) {
+    const normalized = normalizeToken(term);
+    if (!normalized || seen.has(normalized)) {
+      continue;
+    }
+    seen.add(normalized);
+    unique.push(term);
+  }
+
+  return unique;
+}
+
 function ensureAnkiCategory() {
   const existing = categoryManager.getCategory('anki');
   if (existing) {
@@ -120,9 +148,30 @@ app.post('/api/anki/preview', async (req, res) => {
       return res.status(400).json({ error: 'Texto muito longo (máximo 500 caracteres)' });
     }
 
+    const parsedTerms = parseAnkiTermsInput(word);
+
+    if (parsedTerms.length > 1) {
+      const batchItems = await generateQuickVocabularyBatch(parsedTerms);
+      if (!batchItems.length) {
+        return res.status(422).json({ error: 'Não foi possível gerar conteúdo para os termos informados.' });
+      }
+
+      const preview = {
+        ...batchItems[0],
+        batchItems,
+        sourceInput: word
+      };
+
+      return res.json({
+        preview,
+        inputType: 'word-list',
+        batchSize: batchItems.length
+      });
+    }
+
     const preview = await generateQuickVocabulary(word);
     const inputType = getAnkiInputType(word);
-    res.json({ preview, inputType });
+    res.json({ preview, inputType, batchSize: 1 });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -139,9 +188,25 @@ app.post('/api/anki/save', async (req, res) => {
     const preview = payload.preview || {};
     const word = (preview.word || '').trim();
     const translation = (preview.translation || '').trim();
-    const inputType = getAnkiInputType(word);
+    const batchItems = Array.isArray(preview.batchItems)
+      ? preview.batchItems
+          .filter((item) => item?.word)
+          .map((item) => ({
+            word: String(item.word || '').trim(),
+            translation: String(item.translation || '').trim(),
+            definition: String(item.definition || '').trim(),
+            examples: Array.isArray(item.examples) ? item.examples : [],
+            pronunciation: String(item.pronunciation || '').trim(),
+            partOfSpeech: String(item.partOfSpeech || 'other').trim() || 'other',
+            synonyms: Array.isArray(item.synonyms) ? item.synonyms : [],
+            difficulty: String(item.difficulty || 'intermediate').trim() || 'intermediate'
+          }))
+          .filter((item) => item.word && item.translation)
+      : [];
+    const isBatchInput = batchItems.length > 1;
+    const inputType = isBatchInput ? 'word-list' : getAnkiInputType(word);
 
-    if (!word || !translation) {
+    if (!isBatchInput && (!word || !translation)) {
       return res.status(400).json({ error: 'word e translation são obrigatórios' });
     }
 
@@ -224,6 +289,60 @@ app.post('/api/anki/save', async (req, res) => {
           lessonId
         });
       }
+    } else if (isBatchInput) {
+      const addedWords = [];
+      const skippedWords = [];
+
+      for (const item of batchItems) {
+        const normalizedWord = normalizeToken(item.word);
+        if (!normalizedWord) {
+          continue;
+        }
+
+        if (existingVocabularyMap.has(normalizedWord)) {
+          skippedWords.push(item.word);
+          continue;
+        }
+
+        updatedLesson = lessonManager.addVocabulary('anki', lessonId, {
+          word: item.word,
+          translation: item.translation,
+          definition: item.definition || '',
+          examples: Array.isArray(item.examples) ? item.examples : [],
+          pronunciation: item.pronunciation || '',
+          partOfSpeech: item.partOfSpeech || 'other',
+          synonyms: Array.isArray(item.synonyms) ? item.synonyms : [],
+          difficulty: item.difficulty || 'intermediate',
+          sourceType: 'word-list',
+          sourceText: preview.sourceInput || batchItems.map((entry) => entry.word).join(', ')
+        });
+
+        existingVocabularyMap.set(normalizedWord, true);
+        addedWords.push(item.word);
+        addedVocabularyCount++;
+      }
+
+      if (addedVocabularyCount === 0) {
+        return res.status(409).json({
+          error: 'Nenhum termo novo foi salvo: todos já existem nesta aula.',
+          code: 'DUPLICATE_WORD_LIST',
+          lessonId,
+          skippedWords
+        });
+      }
+
+      return res.status(201).json({
+        success: true,
+        lessonId,
+        createdLesson: shouldCreateLesson,
+        inputType,
+        addedQuestion,
+        addedVocabularyCount,
+        addedWords,
+        skippedWords,
+        totalVocabulary: updatedLesson.enriched?.vocabulary?.length || 0,
+        totalQuestions: updatedLesson.enriched?.practiceQuestions?.length || 0
+      });
     } else {
       const normalizedWord = normalizeToken(word);
       const hasDuplicateWord = existingVocabularyMap.has(normalizedWord);

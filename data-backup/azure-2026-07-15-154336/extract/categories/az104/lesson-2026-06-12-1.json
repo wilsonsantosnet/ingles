@@ -1,0 +1,264 @@
+{
+  "id": "lesson-2026-06-12-1",
+  "date": "2026-06-12",
+  "title": "Configuração de Regras de Segurança em Máquinas Virtuais no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription named Subscription1. Subscription1 contains a virtual machine named VM1.  \n\nYou install and configure a web server and a DNS server on VM1.  \n\nVM1 has the effective network security rules shown in the following exhibit:  \n\n---\n\n**Network Interface: vm1441**  \nEffective security rules | Topology  \nVirtual network/subnet: VNET1/default  \nNIC Public IP: 52.160.123.200  \nNIC Private IP: 10.0.6.4  \nAccelerated networking: Disabled  \n\n---\n\n**Inbound port rules**  \n\n| Priority | Name                                | Port   | Protocol | Source              | Destination       | Action |\n|----------|-------------------------------------|--------|----------|---------------------|-------------------|--------|\n| 100      | Rule2                               | 50-60  | Any      | Any                 | Any               | Deny   |\n| 300      | RDP                                 | 3389   | TCP      | Any                 | Any               | Allow  |\n| 400      | Rule1                               | 50-80  | Any      | Any                 | Any               | Allow  |\n| 65000    | AllowVnetInBound                    | Any    | Any      | VirtualNetwork      | VirtualNetwork    | Allow  |\n| 65001    | AllowAzureLoadBalancerInBound       | Any    | Any      | AzureLoadBalancer   | Any               | Allow  |\n| 65500    | DenyAllInBound                      | Any    | Any      | Any                 | Any               | Deny   |\n\n---\n\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.  \n\n**NOTE:** Each correct selection is worth one point.\n\n---\n\nAnswer:  \nAnswer Area  \n\nInternet users [answer choice].  \n- can connect to only the DNS server on VM1  \n- can connect to only the web server on VM1  \n- can connect to the web server and the DNS server on VM1  \n- cannot connect to the web server and the DNS server on VM1  \n\nIf you delete Rule2, Internet users [answer choice].  \n- can connect to only the DNS server on VM1  \n- can connect to only the web server on VM1  \n- can connect to the web server and the DNS server on VM1  \n- cannot connect to the web server and the DNS server on VM1",
+  "enriched": {
+    "summary": "A aula aborda como configurar e interpretar regras de segurança de rede em máquinas virtuais no Azure. Inclui análise de regras de entrada, resolução de cenários práticos e impacto das regras na conectividade de serviços como web server e DNS.",
+    "mainTopics": [
+      "Network Security Group (NSG) e regras de segurança",
+      "Virtual Machines (VMs) e conectividade de rede",
+      "Serviços de rede: Web server e DNS"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Network Security Group (NSG) e regras de segurança",
+        "description": "Configuração, prioridade e impacto das regras de segurança em grupos de segurança de rede (NSGs).",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Machines (VMs) e conectividade de rede",
+        "description": "Configuração de VMs no Azure, incluindo endereços IP públicos e privados.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Serviços de rede: Web server e DNS",
+        "description": "Configuração e controle do acesso a serviços como web server e DNS em VMs.",
+        "category": "Network",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "NSG (Network Security Group)",
+        "definition": "Um recurso do Azure que contém regras de segurança para controlar o tráfego de entrada e saída em recursos de rede.",
+        "examples": [
+          "Bloquear tráfego em determinadas portas",
+          "Permitir acesso apenas de IPs específicos"
+        ],
+        "relatedConcepts": [
+          "VM (Virtual Machine)",
+          "Subnets"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Prioridade de regras de segurança",
+        "definition": "Determina a ordem de aplicação das regras em um NSG; números menores têm maior prioridade.",
+        "examples": [
+          "Regra com prioridade 100 será aplicada antes da regra com prioridade 400"
+        ],
+        "relatedConcepts": [
+          "NSG",
+          "Tráfego de rede"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Tráfego de entrada e saída",
+        "definition": "Tráfego de entrada refere-se ao tráfego para um recurso, enquanto tráfego de saída refere-se ao tráfego enviado por um recurso.",
+        "examples": [
+          "Permitir tráfego TCP na porta 3389 para RDP",
+          "Bloquear todas as conexões de entrada por padrão"
+        ],
+        "relatedConcepts": [
+          "Protocolos de rede",
+          "Firewalls"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Endereço IP público e privado",
+        "definition": "Endereços IP usados para identificar recursos de maneira pública ou dentro de uma rede privada.",
+        "examples": [
+          "52.160.123.200 (IP público)",
+          "10.0.6.4 (IP privado)"
+        ],
+        "relatedConcepts": [
+          "VM",
+          "Virtual Network"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Permitir acesso a um web server e DNS na VM",
+        "problem": "Internet users não conseguem acessar o web server e DNS configurados em uma VM devido às regras de NSG.",
+        "solution": "Adicionar ou ajustar regras de NSG para permitir tráfego nas portas utilizadas pelo web server (80) e DNS (53).",
+        "explanation": "As regras de NSG controlam o tráfego de entrada e saída; sem regras de permissão explícitas, o tráfego será bloqueado pela regra de negação padrão."
+      },
+      {
+        "scenario": "Impacto da remoção de uma regra de segurança",
+        "problem": "Remover a regra 'Rule2' e avaliar como isso afeta a conectividade de serviços na VM.",
+        "solution": "Após a remoção, revise as regras restantes para garantir que portas necessárias estejam liberadas.",
+        "explanation": "A remoção de uma regra pode expor serviços ou bloquear completamente o acesso, dependendo das configurações restantes."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "scenario-based",
+        "question": "O que acontece se a regra 'Rule2' for removida do NSG?",
+        "answer": "Internet users podem acessar tanto o web server quanto o DNS server na VM.",
+        "hint": "Analise o impacto da ausência da regra de bloqueio para as portas 50-60.",
+        "topic": "Network Security Group (NSG)"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a função da regra padrão 'DenyAllInBound' em um NSG?",
+        "answer": "Bloquear todo o tráfego de entrada que não seja explicitamente permitido por outras regras.",
+        "hint": "Considere as regras de prioridade no NSG.",
+        "topic": "NSG e regras de segurança"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que o web server na VM não está acessível pela internet?",
+        "answer": "Pode ser devido à ausência de uma regra de NSG permitindo tráfego na porta 80.",
+        "hint": "Revise as regras de entrada do NSG.",
+        "topic": "Serviços de rede: Web server e DNS"
+      },
+      {
+        "type": "command",
+        "question": "Como você adicionaria uma regra ao NSG usando Azure CLI?",
+        "answer": "az network nsg rule create --nsg-name <NSG_NAME> --priority 200 --name AllowHTTP --protocol Tcp --destination-port-ranges 80 --access Allow",
+        "hint": "Veja os parâmetros necessários para criar uma regra no NSG.",
+        "topic": "Network Security Group (NSG)"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é o impacto de uma regra com prioridade mais alta?",
+        "answer": "Ela será avaliada antes de regras com prioridades mais baixas.",
+        "hint": "Pense na ordem de aplicação de regras no NSG.",
+        "topic": "Prioridade de regras de segurança"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre revise a prioridade das regras em um NSG; regras com números menores têm maior precedência.",
+        "relevance": "Erros ao configurar prioridades podem bloquear ou permitir tráfego inesperado.",
+        "topic": "Network Security Group (NSG)"
+      },
+      {
+        "tip": "Lembre-se de que regras padrão como 'DenyAllInBound' bloqueiam todo o tráfego não explicitamente permitido.",
+        "relevance": "Compreender as regras padrão é crucial para resolver problemas de conectividade.",
+        "topic": "Regras padrão do NSG"
+      },
+      {
+        "tip": "Certifique-se de que as portas necessárias para serviços como web server (80) e DNS (53) estejam liberadas.",
+        "relevance": "Configurações incorretas de porta são uma causa comum de falhas na conectividade.",
+        "topic": "Serviços de rede: Web server e DNS"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "scenario-based",
+        "question": "O que acontece se a regra 'Rule2' for removida do NSG?",
+        "answer": "Internet users podem acessar tanto o web server quanto o DNS server na VM.",
+        "hint": "Analise o impacto da ausência da regra de bloqueio para as portas 50-60.",
+        "topic": "Network Security Group (NSG)",
+        "id": "question-lesson-2026-06-12-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-12",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a função da regra padrão 'DenyAllInBound' em um NSG?",
+        "answer": "Bloquear todo o tráfego de entrada que não seja explicitamente permitido por outras regras.",
+        "hint": "Considere as regras de prioridade no NSG.",
+        "topic": "NSG e regras de segurança",
+        "id": "question-lesson-2026-06-12-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-12",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que o web server na VM não está acessível pela internet?",
+        "answer": "Pode ser devido à ausência de uma regra de NSG permitindo tráfego na porta 80.",
+        "hint": "Revise as regras de entrada do NSG.",
+        "topic": "Serviços de rede: Web server e DNS",
+        "id": "question-lesson-2026-06-12-1-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-12",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Como você adicionaria uma regra ao NSG usando Azure CLI?",
+        "answer": "az network nsg rule create --nsg-name <NSG_NAME> --priority 200 --name AllowHTTP --protocol Tcp --destination-port-ranges 80 --access Allow",
+        "hint": "Veja os parâmetros necessários para criar uma regra no NSG.",
+        "topic": "Network Security Group (NSG)",
+        "id": "question-lesson-2026-06-12-1-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-12",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "concept",
+        "question": "Qual é o impacto de uma regra com prioridade mais alta?",
+        "answer": "Ela será avaliada antes de regras com prioridades mais baixas.",
+        "hint": "Pense na ordem de aplicação de regras no NSG.",
+        "topic": "Prioridade de regras de segurança",
+        "id": "question-lesson-2026-06-12-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-06-12",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-12T13:33:31.318Z",
+  "updatedAt": "2026-06-12T14:11:00.118Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-12T13:34:24.658Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1781271589190",
+      "generatedContent": {
+        "title": "Explicação sobre o impacto da exclusão da Regra 2 no acesso ao web server e DNS",
+        "type": "explanation",
+        "content": "A exclusão da Regra 2 (prioridade 100) no Network Security Group (NSG) altera a forma como as regras são aplicadas, permitindo o acesso ao web server e ao servidor DNS. Vamos analisar os pontos mencionados:\n\n1. **Impacto da Regra 2 (prioridade 100):**\n   - A Regra 2 bloqueia tráfego para as portas **50-60**, independentemente do protocolo, origem ou destino. Isso inclui a porta 53, que é usada por servidores DNS para tráfego UDP e TCP.\n   - Com a Regra 2 ativa, o tráfego para o servidor DNS (porta 53) é explicitamente bloqueado, mesmo que outras regras permitam o tráfego em faixas mais amplas de portas.\n\n2. **Regra 1 (prioridade 400):**\n   - A Regra 1 permite tráfego para as portas **50-80** de qualquer origem para qualquer destino, independentemente do protocolo.\n   - Isso inclui a porta 80 (HTTP) para o web server, mas não inclui a porta 443 (HTTPS), que está fora do intervalo permitido por essa regra.\n   - No entanto, enquanto a Regra 2 estiver ativa, o tráfego nas portas **50-60** será bloqueado devido à maior prioridade da Regra 2. Isso inclui a porta 53 (DNS).\n\n3. **Regra de RDP (prioridade 300):**\n   - A Regra de RDP permite tráfego na porta **3389** (TCP), usada para acesso remoto à VM. Essa regra não é afetada pela exclusão da Regra 2.\n\n4. **Regras padrão 'DenyAllInBound' (prioridade 65500):**\n   - A regra padrão 'DenyAllInBound' bloqueia todo o tráfego de entrada que não seja explicitamente permitido por regras anteriores no NSG.\n   - Isso significa que apenas o tráfego permitido por regras como a Regra 1 e a Regra de RDP será aceito.\n\n5. **O que acontece ao excluir a Regra 2?**\n   - Quando a Regra 2 é excluída, o bloqueio explícito das portas **50-60** é removido.\n   - Isso permite que a Regra 1, com prioridade 400, seja aplicada sem interferência. Como a Regra 1 cobre as portas **50-80**, o tráfego para o web server (porta 80) e para o servidor DNS (porta 53) passa a ser permitido.\n   - A porta 443 (HTTPS) não será acessível, pois está fora do intervalo permitido pela Regra 1.\n\n**Conclusão:**\n- A Regra 2 bloqueava o acesso ao servidor DNS porque a porta 53 está no intervalo **50-60**.\n- A exclusão da Regra 2 permite o tráfego para a porta 53 (DNS) e para a porta 80 (HTTP) devido à permissão da Regra 1.\n- A porta 443 (HTTPS) não é afetada diretamente pela Regra 2, mas também não é permitida pela Regra 1.\n- A Regra de RDP continua permitindo acesso remoto na porta 3389.\n\nSe precisar de mais informações ou exemplos práticos, estou à disposição!"
+      },
+      "generatedAt": "2026-06-12T13:39:49.190Z",
+      "userPrompt": "Eu não entendi o pq quando eu excluo a regra 2 eu posso acessar o webserver e o servidor DNS, por exemplo a regra1 de prioridade 400 permite da porta 50 até a 500 ou seja porta 80 e 443 estão disponiveis permitindo acesso http, a regra RDP permite acesso remoto na VM1, a regra dois proibe acesso nas portas 50 até 60, os servidores de DNS estão nesse range? pode me explicar mlehor todos esses pontos e validar se estão certos?"
+    }
+  ]
+}

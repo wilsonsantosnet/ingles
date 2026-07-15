@@ -1,0 +1,283 @@
+{
+  "id": "lesson-2026-05-02-2",
+  "date": "2026-05-02",
+  "title": "Azure Load Balancer Basic and Standard",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Explanation:\n\nAnswer Area\n\nThe virtual machines that will be load balanced by using LB1 must:\n- be connected to the same virtual network\n- be created in the same resource group\n- be created in the same availability set or virtual machine scale set\n- run the same operating system\n\nThe virtual machines that will be load balanced by using LB2 must:\n- be connected to the same virtual network\n- be created in the same resource group\n- be created in the same availability set or virtual machine scale set\n- run the same operating system\n\nBox 1: be created in the same availability set or virtual machine scale set.\nThe Basic tier is quite restrictive. A load balancer is restricted to a single availability set, virtual machine scale set, or a single machine.\n\nBox 2: be connected to the same virtual network.\nThe Standard tier can span any virtual machine in a single virtual network, including blends of scale sets, availability sets, and machines.\n\nReference:\nhttps://www.petri.com/comparing-basic-standard-azure-load-balancers",
+  "enriched": {
+    "summary": "Esta aula aborda os requisitos técnicos para configurar máquinas virtuais em conjuntos de disponibilidade ou conjuntos de escala de máquinas virtuais, garantindo conectividade em redes virtuais e balanceamento de carga utilizando os tiers Basic e Standard do Azure Load Balancer.",
+    "mainTopics": [
+      "Azure Load Balancer",
+      "Availability Sets e Virtual Machine Scale Sets",
+      "Virtual Networks no Azure",
+      "Tiers Basic e Standard do Azure Load Balancer"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Azure Load Balancer",
+        "description": "Serviço de balanceamento de carga para distribuir tráfego em máquinas virtuais e garantir alta disponibilidade.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Availability Sets e Virtual Machine Scale Sets",
+        "description": "Estruturas que garantem redundância e escalabilidade de máquinas virtuais dentro de um ambiente Azure.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Networks no Azure",
+        "description": "Rede lógica que conecta recursos do Azure, como máquinas virtuais e balanceadores de carga.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Tiers Basic e Standard do Azure Load Balancer",
+        "description": "Diferenças entre os tiers Basic e Standard em termos de abrangência e restrições de configuração.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure Load Balancer",
+        "definition": "Serviço de balanceamento de carga que distribui tráfego entre máquinas virtuais para garantir alta disponibilidade e escalabilidade.",
+        "examples": [
+          "Distribuir tráfego HTTP entre VMs em um site",
+          "Balancear cargas TCP em múltiplas VMs"
+        ],
+        "relatedConcepts": [
+          "Azure Virtual Network",
+          "Availability Sets"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Availability Set",
+        "definition": "Agrupamento lógico de máquinas virtuais que garante alta disponibilidade ao separar recursos em domínios de falha e atualização.",
+        "examples": [
+          "Configuração de VMs para evitar downtime durante atualizações",
+          "Separação de VMs em diferentes racks físicos"
+        ],
+        "relatedConcepts": [
+          "Virtual Machine Scale Set",
+          "Azure Load Balancer"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Virtual Machine Scale Set",
+        "definition": "Conjunto de máquinas virtuais idênticas configuradas para escalar automaticamente com base na demanda.",
+        "examples": [
+          "Escalar VMs para lidar com aumento de tráfego de um aplicativo web",
+          "Reduzir VMs durante períodos de baixa demanda"
+        ],
+        "relatedConcepts": [
+          "Availability Set",
+          "Azure Load Balancer"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "concept": "Virtual Network",
+        "definition": "Rede lógica no Azure que conecta recursos como VMs, balanceadores de carga e gateways de rede.",
+        "examples": [
+          "Configuração de subnets para isolar serviços",
+          "Conexão de VMs em diferentes regiões via VPN"
+        ],
+        "relatedConcepts": [
+          "Azure Load Balancer",
+          "Network Security Groups"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Basic e Standard Load Balancer",
+        "definition": "Tiers do Azure Load Balancer que definem recursos e restrições de balanceamento de carga.",
+        "examples": [
+          "Uso do Basic tier para VMs em um único Availability Set",
+          "Uso do Standard tier para balancear cargas em múltiplos tipos de VMs em uma rede virtual"
+        ],
+        "relatedConcepts": [
+          "Azure Load Balancer",
+          "Availability Sets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configuração de Balanceamento de Carga com Azure Load Balancer",
+        "problem": "Como configurar um balanceador de carga para distribuir tráfego entre máquinas virtuais em um Availability Set.",
+        "solution": "1. Crie um Availability Set. 2. Configure as VMs dentro do Availability Set. 3. Configure o Azure Load Balancer no tier Basic, vinculando-o ao Availability Set. 4. Teste o balanceamento de carga com tráfego simulado.",
+        "explanation": "O tier Basic do Azure Load Balancer requer que todas as VMs estejam em um único Availability Set para garantir consistência no balanceamento de carga."
+      },
+      {
+        "scenario": "Uso de Standard Load Balancer para múltiplas VMs em uma Virtual Network",
+        "problem": "Como configurar um Standard Load Balancer para balancear cargas em diferentes VMs conectadas à mesma Virtual Network.",
+        "solution": "1. Crie uma Virtual Network e configure subnets. 2. Configure VMs em diferentes subnets. 3. Vincule o Standard Load Balancer às VMs dentro da Virtual Network. 4. Configure regras de balanceamento e teste a conectividade.",
+        "explanation": "O tier Standard permite maior flexibilidade ao balancear cargas entre VMs em diferentes subnets dentro de uma Virtual Network."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual a diferença entre Availability Sets e Virtual Machine Scale Sets?",
+        "answer": "Availability Sets são usados para garantir alta disponibilidade, enquanto Virtual Machine Scale Sets permitem escalabilidade automática.",
+        "hint": "Considere a finalidade de redundância versus escalabilidade.",
+        "topic": "Availability Sets e Virtual Machine Scale Sets"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um Azure Load Balancer para balancear tráfego entre VMs em uma Virtual Network?",
+        "answer": "Configure um Standard Load Balancer, conecte-o às VMs na mesma Virtual Network e configure regras de balanceamento.",
+        "hint": "Considere os requisitos de conectividade da rede.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando pode ser usado para criar um Availability Set no Azure CLI?",
+        "answer": "az vm availability-set create",
+        "hint": "Pesquise sobre comandos de VM no Azure CLI.",
+        "topic": "Availability Sets"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um Basic Load Balancer não está funcionando com VMs em diferentes Availability Sets?",
+        "answer": "O Basic Load Balancer só funciona com VMs em um único Availability Set.",
+        "hint": "Revise as restrições do tier Basic.",
+        "topic": "Tiers Basic e Standard do Azure Load Balancer"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é o principal benefício do tier Standard do Azure Load Balancer?",
+        "answer": "Permite balanceamento de carga em VMs de diferentes tipos dentro de uma Virtual Network.",
+        "hint": "Considere a flexibilidade do tier Standard.",
+        "topic": "Tiers Basic e Standard do Azure Load Balancer"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda as diferenças entre os tiers Basic e Standard do Azure Load Balancer.",
+        "relevance": "Essa é uma área frequentemente testada, especialmente em perguntas sobre limitações e casos de uso.",
+        "topic": "Tiers Basic e Standard do Azure Load Balancer"
+      },
+      {
+        "tip": "Lembre-se de que o Basic Load Balancer é restrito a um único Availability Set.",
+        "relevance": "Pode aparecer como pegadinha em perguntas sobre configuração de balanceamento.",
+        "topic": "Availability Sets"
+      },
+      {
+        "tip": "Saiba configurar um Standard Load Balancer para VMs em diferentes subnets dentro de uma Virtual Network.",
+        "relevance": "Testes podem abordar cenários avançados de rede.",
+        "topic": "Virtual Networks no Azure"
+      },
+      {
+        "tip": "Domine os comandos Azure CLI relacionados a Availability Sets e Load Balancers.",
+        "relevance": "Muitas questões práticas envolvem execução de comandos específicos.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "tip": "Revise os fundamentos de alta disponibilidade e escalabilidade no Azure.",
+        "relevance": "Esses conceitos são centrais para entender a arquitetura de soluções Azure.",
+        "topic": "Availability Sets e Virtual Machine Scale Sets"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "concept",
+        "question": "Qual a diferença entre Availability Sets e Virtual Machine Scale Sets?",
+        "answer": "Availability Sets são usados para garantir alta disponibilidade, enquanto Virtual Machine Scale Sets permitem escalabilidade automática.",
+        "hint": "Considere a finalidade de redundância versus escalabilidade.",
+        "topic": "Availability Sets e Virtual Machine Scale Sets",
+        "id": "question-lesson-2026-05-02-2-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-05-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um Azure Load Balancer para balancear tráfego entre VMs em uma Virtual Network?",
+        "answer": "Configure um Standard Load Balancer, conecte-o às VMs na mesma Virtual Network e configure regras de balanceamento.",
+        "hint": "Considere os requisitos de conectividade da rede.",
+        "topic": "Azure Load Balancer",
+        "id": "question-lesson-2026-05-02-2-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-05-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Qual comando pode ser usado para criar um Availability Set no Azure CLI?",
+        "answer": "az vm availability-set create",
+        "hint": "Pesquise sobre comandos de VM no Azure CLI.",
+        "topic": "Availability Sets",
+        "id": "question-lesson-2026-05-02-2-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-05-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um Basic Load Balancer não está funcionando com VMs em diferentes Availability Sets?",
+        "answer": "O Basic Load Balancer só funciona com VMs em um único Availability Set.",
+        "hint": "Revise as restrições do tier Basic.",
+        "topic": "Tiers Basic e Standard do Azure Load Balancer",
+        "id": "question-lesson-2026-05-02-2-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-05-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "concept",
+        "question": "Qual é o principal benefício do tier Standard do Azure Load Balancer?",
+        "answer": "Permite balanceamento de carga em VMs de diferentes tipos dentro de uma Virtual Network.",
+        "hint": "Considere a flexibilidade do tier Standard.",
+        "topic": "Tiers Basic e Standard do Azure Load Balancer",
+        "id": "question-lesson-2026-05-02-2-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-05-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-05-02T20:24:15.366Z",
+  "updatedAt": "2026-05-02T20:26:11.432Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-02T20:24:38.708Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

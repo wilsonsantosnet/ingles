@@ -1,0 +1,178 @@
+{
+  "id": "lesson-2026-05-03-7",
+  "date": "2026-05-03",
+  "title": "Gerenciamento de Usuários e Permissões no Microsoft Entra ID",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the following users in a Microsoft Entra tenant named contoso.onmicrosoft.com:\n\n| Name  | Role                 | Scope                  |\n|-------|----------------------|------------------------|\n| User1 | Global administrator | Microsoft Entra ID    |\n| User2 | Global administrator | Microsoft Entra ID    |\n| User3 | User administrator   | Microsoft Entra ID    |\n| User4 | Owner                | Azure Subscription    |\n\nUser1 creates a new Microsoft Entra tenant named external.contoso.onmicrosoft.com.\n\nYou need to create new user accounts in external.contoso.onmicrosoft.com.\n\nSolution: You instruct User4 to create the user accounts.\n\nDoes that meet the goal?\n\nA. Yes  \nB. No  \n\nAnswer: B  \n\nExplanation:  \nOnly a global administrator can add users to this tenant.  \n\nReference:  \nhttps://docs.microsoft.com/en-us/azure/devops/organizations/accounts/add-users-to-azure-ad",
+  "enriched": {
+    "title": "Gerenciamento de Usuários e Permissões no Microsoft Entra ID",
+    "summary": "A aula aborda a criação de usuários em um tenant do Microsoft Entra ID, destacando as permissões necessárias e os papéis que podem realizar esta tarefa. O objetivo é entender a hierarquia de permissões e como aplicar na prática.",
+    "topics": [
+      {
+        "title": "Papéis no Microsoft Entra ID",
+        "description": "Descrição dos papéis administrativos, como Global Administrator e User Administrator, e suas capacidades dentro do tenant.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Criação de usuários no Microsoft Entra ID",
+        "description": "Processo necessário para adicionar novos usuários a um tenant.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Permissões e Escopo no Azure",
+        "description": "Entendimento das diferenças entre permissões no Microsoft Entra ID e no Azure Subscription, como Global Administrator e Owner.",
+        "category": "Identity",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Microsoft Entra ID",
+        "definition": "Serviço de identidade e gerenciamento de acesso do Azure, anteriormente conhecido como Azure Active Directory.",
+        "examples": [
+          "Gerenciamento de usuários e grupos",
+          "Autenticação e autorização"
+        ],
+        "relatedConcepts": [
+          "Azure Subscription",
+          "Papéis Administrativos"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Global Administrator",
+        "definition": "Papel administrativo com permissões completas dentro do Microsoft Entra ID, incluindo a capacidade de criar usuários.",
+        "examples": [
+          "Adicionar usuários ao tenant",
+          "Gerenciar configurações globais"
+        ],
+        "relatedConcepts": [
+          "User Administrator",
+          "Owner"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "User Administrator",
+        "definition": "Papel administrativo que permite gerenciar usuários e grupos, mas com escopo limitado em relação ao Global Administrator.",
+        "examples": [
+          "Redefinir senhas de usuários",
+          "Gerenciar associações de grupo"
+        ],
+        "relatedConcepts": [
+          "Global Administrator",
+          "Owner"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Owner",
+        "definition": "Papel com permissões administrativas em um recurso do Azure Subscription, mas sem controle no Microsoft Entra ID.",
+        "examples": [
+          "Gerenciar recursos dentro de uma assinatura",
+          "Atribuir acesso a outros usuários no Azure"
+        ],
+        "relatedConcepts": [
+          "Azure Subscription",
+          "Global Administrator"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Criação de usuários no tenant externo",
+        "problem": "Um novo tenant foi criado no Microsoft Entra ID, e é necessário adicionar usuários ao tenant.",
+        "solution": "Somente um Global Administrator pode realizar essa ação. Instrua User1 ou User2 para criar os usuários no tenant externo.",
+        "explanation": "A criação de usuários em um tenant requer permissões específicas que apenas o Global Administrator possui no Microsoft Entra ID."
+      },
+      {
+        "scenario": "Confusão entre permissões de Owner e Global Administrator",
+        "problem": "User4, que é Owner no Azure Subscription, tenta criar usuários no Microsoft Entra ID e não consegue.",
+        "solution": "Explique que o papel de Owner é limitado à assinatura do Azure e que não concede permissões no Microsoft Entra ID. Solicite que um Global Administrator realize a tarefa.",
+        "explanation": "O papel de Owner é restrito ao gerenciamento de recursos no Azure Subscription e não tem influência direta no Microsoft Entra ID."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual papel é necessário para criar usuários em um tenant do Microsoft Entra ID?",
+        "answer": "Global Administrator",
+        "hint": "Considere qual papel tem permissões administrativas completas no Microsoft Entra ID.",
+        "topic": "Papéis no Microsoft Entra ID"
+      },
+      {
+        "type": "scenario-based",
+        "question": "User4, que possui o papel Owner no Azure Subscription, pode criar usuários em um tenant do Microsoft Entra ID?",
+        "answer": "Não, somente o Global Administrator pode criar usuários no Microsoft Entra ID.",
+        "hint": "Pense nas diferenças de escopo entre o papel Owner e o Global Administrator.",
+        "topic": "Permissões e Escopo no Azure"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a principal diferença entre os papéis Global Administrator e User Administrator no Microsoft Entra ID?",
+        "answer": "O Global Administrator tem permissões completas no tenant, enquanto o User Administrator tem um escopo limitado à gestão de usuários e grupos.",
+        "hint": "Analise as capacidades de cada papel em relação ao tenant.",
+        "topic": "Papéis no Microsoft Entra ID"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Um usuário com o papel User Administrator está tentando criar novos usuários no tenant, mas não consegue. Qual pode ser o problema?",
+        "answer": "O papel User Administrator não tem permissão para criar novos usuários no tenant.",
+        "hint": "Considere as limitações do papel User Administrator.",
+        "topic": "Papéis no Microsoft Entra ID"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa adicionar usuários ao tenant externo criado por User1. Qual papel deve ser atribuído a você para realizar essa tarefa?",
+        "answer": "Global Administrator",
+        "hint": "Pense no papel com permissões administrativas completas no Microsoft Entra ID.",
+        "topic": "Criação de usuários no Microsoft Entra ID"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que apenas um Global Administrator pode criar usuários em um tenant do Microsoft Entra ID.",
+        "relevance": "Perguntas relacionadas a papéis e permissões são comuns em certificações.",
+        "topic": "Papéis no Microsoft Entra ID"
+      },
+      {
+        "tip": "Entenda a diferença entre papéis do Microsoft Entra ID e permissões no Azure Subscription.",
+        "relevance": "Confusões entre escopos são frequentemente exploradas em questões de certificação.",
+        "topic": "Permissões e Escopo no Azure"
+      },
+      {
+        "tip": "Conheça as limitações de cada papel administrativo, como User Administrator e Owner.",
+        "relevance": "Questões sobre cenários práticos frequentemente exploram essas diferenças.",
+        "topic": "Papéis no Microsoft Entra ID"
+      }
+    ],
+    "references": [
+      {
+        "title": "Adicionar usuários ao Microsoft Entra ID",
+        "url": "https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/add-users-to-azure-ad",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Adicionar usuários ao Microsoft Entra ID",
+        "url": "https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/add-users-to-azure-ad",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T20:08:55.128Z",
+  "updatedAt": "2026-05-03T20:09:20.018Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T20:09:20.017Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

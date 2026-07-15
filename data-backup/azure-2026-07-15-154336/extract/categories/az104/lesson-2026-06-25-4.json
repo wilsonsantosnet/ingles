@@ -1,0 +1,211 @@
+{
+  "id": "lesson-2026-06-25-4",
+  "date": "2026-06-25",
+  "title": "Configuração de conectividade entre redes no Azure com VPN e Peering",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription named Subscription1 that contains two Azure virtual networks named VNet1 and VNet2. VNet1 contains a VPN gateway named VPNGW1 that uses static routing. There is a site-to-site VPN connection between your on-premises network and VNet1.\n\nOn a computer named Client1 that runs Windows 10, you configure a point-to-site VPN connection to VNet1.\n\nYou configure virtual network peering between VNet1 and VNet2. You verify that you can connect to VNet2 from the on-premises network. Client1 is unable to connect to VNet2.\n\nYou need to ensure that you can connect Client1 to VNet2.\n\nWhat should you do?\n\nA. Select Use the remote virtual network's gateway or Route Server on VNet1 to VNet2 peering.\n\nB. Select Use the remote virtual network's gateway or Route Server on VNet2 to VNet1 peering.\n\nC. Download and re-install the VPN client configuration package on Client1.\n\nD. Enable BGP on VPNGW1.",
+  "enriched": {
+    "title": "Configuração de conectividade entre redes no Azure com VPN e Peering",
+    "summary": "A aula aborda os conceitos de VPN Gateway, Point-to-Site VPN e Virtual Network Peering no Azure, além de como configurar conectividade entre redes virtuais e resolver problemas de acesso. O foco está na solução de conectividade híbrida e integração entre redes virtuais.",
+    "topics": [
+      {
+        "title": "VPN Gateway",
+        "description": "Serviço do Azure que permite conexão de redes locais com redes virtuais no Azure usando VPNs.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Point-to-Site VPN",
+        "description": "Conexão VPN que permite que dispositivos individuais se conectem a uma rede virtual no Azure.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Network Peering",
+        "description": "Conexão entre duas redes virtuais no Azure para permitir o tráfego de rede entre elas.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Configuração de Rotas",
+        "description": "Definição de como o tráfego é roteado entre redes, incluindo rotas estáticas e dinâmicas.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Protocolo BGP (Border Gateway Protocol)",
+        "description": "Protocolo usado para troca de informações de roteamento entre redes autônomas.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "VPN Gateway",
+        "definition": "Recurso do Azure que fornece conectividade de rede criptografada entre redes virtuais e locais ou outras redes virtuais.",
+        "examples": [
+          "Conexão híbrida entre rede local e Azure",
+          "Conexão entre duas redes virtuais no Azure"
+        ],
+        "relatedConcepts": [
+          "Point-to-Site VPN",
+          "Site-to-Site VPN",
+          "BGP"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Point-to-Site VPN",
+        "definition": "Tipo de conexão VPN que permite que dispositivos individuais se conectem a uma rede virtual do Azure.",
+        "examples": [
+          "Usuário remoto conectado a uma rede virtual do Azure",
+          "Trabalho remoto com acesso a recursos no Azure"
+        ],
+        "relatedConcepts": [
+          "VPN Gateway",
+          "Virtual Network Peering"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Virtual Network Peering",
+        "definition": "Conexão direta entre duas redes virtuais no Azure que permite que elas se comuniquem.",
+        "examples": [
+          "Conexão entre VNet1 e VNet2",
+          "Integração de redes virtuais em diferentes regiões"
+        ],
+        "relatedConcepts": [
+          "VPN Gateway",
+          "Rotas"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "BGP",
+        "definition": "Protocolo usado para troca de informações de roteamento entre sistemas autônomos.",
+        "examples": [
+          "Habilitação de BGP em VPN Gateway para roteamento dinâmico",
+          "Troca de rotas entre redes interconectadas"
+        ],
+        "relatedConcepts": [
+          "VPN Gateway",
+          "Rotas"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Conexão de um cliente remoto a uma VNet pareada",
+        "problem": "O cliente remoto conectado a VNet1 via Point-to-Site VPN não consegue acessar recursos em VNet2.",
+        "solution": "Habilitar a opção 'Use the remote virtual network's gateway or Route Server' no peering entre VNet1 e VNet2.",
+        "explanation": "Essa configuração permite que VNet2 utilize o gateway VPN de VNet1 para rotear o tráfego do cliente remoto, garantindo conectividade."
+      },
+      {
+        "scenario": "Habilitação de BGP para roteamento dinâmico",
+        "problem": "A conectividade entre redes locais e o Azure precisa de rotas dinâmicas.",
+        "solution": "Habilitar o BGP no VPN Gateway configurado.",
+        "explanation": "O BGP permite a troca de informações de roteamento dinâmico, eliminando a necessidade de configurar rotas estáticas manualmente."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "scenario-based",
+        "question": "Um cliente conectado a VNet1 via Point-to-Site VPN não consegue acessar VNet2. O que deve ser configurado?",
+        "answer": "Habilitar a opção 'Use the remote virtual network's gateway or Route Server' no peering entre VNet1 e VNet2.",
+        "hint": "Verifique a configuração de peering entre as VNets.",
+        "topic": "Virtual Network Peering"
+      },
+      {
+        "type": "concept",
+        "question": "O que é um VPN Gateway no Azure?",
+        "answer": "É um recurso que permite conectividade criptografada entre redes virtuais e locais ou outras redes virtuais.",
+        "hint": "Pense em conectividade híbrida.",
+        "topic": "VPN Gateway"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um cliente remoto conectado via VPN não consegue acessar uma VNet pareada?",
+        "answer": "O peering entre as VNets não está configurado para usar o gateway remoto.",
+        "hint": "Verifique as opções de gateway no peering.",
+        "topic": "Virtual Network Peering"
+      },
+      {
+        "type": "command",
+        "question": "Qual é o comando para habilitar BGP em um VPN Gateway usando Azure CLI?",
+        "answer": "az network vnet-gateway update --name <gateway-name> --resource-group <resource-group> --enable-bgp true",
+        "hint": "Use o parâmetro --enable-bgp.",
+        "topic": "BGP"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a diferença entre Point-to-Site e Site-to-Site VPN?",
+        "answer": "Point-to-Site conecta dispositivos individuais, enquanto Site-to-Site conecta redes inteiras.",
+        "hint": "Pense no escopo da conexão.",
+        "topic": "Point-to-Site VPN"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de configurar o peering entre VNets para usar o gateway remoto, se necessário.",
+        "relevance": "Esse detalhe é frequentemente cobrado em questões sobre conectividade entre VNets.",
+        "topic": "Virtual Network Peering"
+      },
+      {
+        "tip": "Entenda as diferenças entre Point-to-Site e Site-to-Site VPN e quando usar cada uma.",
+        "relevance": "Perguntas sobre tipos de VPN são comuns em certificações de Azure.",
+        "topic": "VPN Gateway"
+      },
+      {
+        "tip": "Saiba como habilitar o BGP em um VPN Gateway e quais cenários ele resolve.",
+        "relevance": "O BGP é um conceito avançado frequentemente cobrado em questões sobre redes.",
+        "topic": "BGP"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial de Virtual Network Peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Configuração de VPN Gateway no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways",
+        "type": "documentation"
+      },
+      {
+        "title": "Habilitação de BGP no Azure VPN Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-bgp-overview",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial de Virtual Network Peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Configuração de VPN Gateway no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways",
+        "type": "documentation"
+      },
+      {
+        "title": "Habilitação de BGP no Azure VPN Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-bgp-overview",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-06-25T13:54:30.341Z",
+  "updatedAt": "2026-06-25T13:55:49.794Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-25T13:55:49.792Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

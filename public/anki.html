@@ -26,6 +26,7 @@
         <button id="preview-btn" class="btn btn-primary">Gerar com IA</button>
       </div>
       <p id="preview-error" class="error" hidden></p>
+      <p id="preview-note" class="feedback" hidden></p>
     </section>
 
     <section class="panel" id="preview-panel" hidden>
@@ -59,6 +60,12 @@
           <label>Exemplos (1 por linha)</label>
           <textarea id="preview-examples" rows="4"></textarea>
         </div>
+      </div>
+
+      <div id="batch-panel" class="batch-panel" hidden>
+        <h3>Termos adicionais detectados</h3>
+        <p class="batch-hint">Revise as traduções abaixo. Esses termos também serão salvos.</p>
+        <div class="batch-list" id="batch-items-body"></div>
       </div>
     </section>
 

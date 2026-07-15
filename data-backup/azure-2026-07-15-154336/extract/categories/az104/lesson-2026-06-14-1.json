@@ -1,0 +1,190 @@
+{
+  "id": "lesson-2026-06-14-1",
+  "date": "2026-06-14",
+  "title": "Integração de Redes Virtuais e Azure App Services",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the virtual networks shown in the following table.\n\n| Name  | Subnet   | Subnet-associated network security group (NSG) | Peered with |\n|-------|----------|-----------------------------------------------|-------------|\n| VNet1 | Subnet1  | NSG1                                          | VNet2       |\n| VNet2 | Subnet2  | NSG2                                          | VNet1       |\n\nThe subscription contains the virtual machines shown in the following table.\n\n| Name | Connected to |\n|------|--------------|\n| VM1  | Subnet1      |\n| VM2  | Subnet2      |\n\nThe subscription contains the Azure App Service web apps shown in the following table.\n\n| Name    | Description                                                                 |\n|---------|-----------------------------------------------------------------------------|\n| WebApp1 | Uses the Premium pricing tier and has virtual network integration with VNet1 |\n| WebApp2 | Uses the Isolated pricing tier and is deployed to Subnet2                   |\n\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\n\nNOTE: Each correct selection is worth one point.\n\n---\n\nBox 1: Yes  \nYes - WebApp1 can communicate with VM2.  \n\nWebApp1 uses the Premium pricing tier and has virtual network integration with VNet1.  \nVNet1 is peered with VNet2.  \nVNet2 contains VM2.  \n\nNote:  \nVirtual network integration supports connecting to a virtual network in the same region. Using virtual network integration enables your app to access:  \n\n*-> Resources in virtual networks peered to the virtual network your app is integrated with including global peering connections.  \nResources across Azure ExpressRoute connections.  \nService endpoint-secured services.  \nPrivate endpoint-enabled services.  \n\n---\n\nBox 2: No  \nNo - NSG1 controls inbound traffic to WebApp1.  \n\nNSG1 is associated with Subnet1 in VNet1.  \n\nNote: When you use virtual network integration, you can use the following Azure networking features:  \n\n*-> Network security groups (NSGs): You can block outbound traffic with an NSG that's placed on your integration subnet. The inbound rules don't apply because you can't use virtual network integration to provide inbound access to your app.  \n* Route tables (UDRs)  \n* NAT gateway  \n\n---\n\nBox 3: No  \nNo - WebApp2 can communicate with VM1.  \n\nWebApp2 uses the Isolated pricing tier and is deployed to Subnet2.  \nVM2, but not VM1, is in Subnet2.  \n\nNote:  \nThere are some limitations with using virtual network integration:  \n* The feature isn't available for Isolated plan apps in an App Service Environment.  \n* Etc.  \n\nReference:  \nhttps://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration\n\n---\n\nAnswer Area  \nStatements  \n\nWebApp1 can communicate with VM2.  \nYes ⃝   No ⃝  \n\nNSG1 controls inbound traffic to WebApp1.  \nYes ⃝   No ⃝  \n\nWebApp2 can communicate with VM1.  \nYes ⃝   No ⃝",
+  "enriched": {
+    "title": "Integração de Redes Virtuais e Azure App Services",
+    "summary": "A aula aborda a integração de redes virtuais no Azure com máquinas virtuais e App Services, destacando configurações de NSGs, peering de VNets e restrições de integração para diferentes tiers de serviços.",
+    "topics": [
+      {
+        "title": "Virtual Network Peering",
+        "description": "Configuração de peering entre redes virtuais para permitir comunicação entre recursos.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Network Security Groups (NSGs)",
+        "description": "Uso de NSGs para controle de tráfego de entrada e saída em sub-redes e interfaces de rede.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Network Integration em App Services",
+        "description": "Configurações de integração de redes virtuais para permitir que Web Apps acessem recursos em VNets.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "App Service Pricing Tiers",
+        "description": "Diferenças entre os tiers Premium e Isolated para integração com redes virtuais.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Virtual Network Peering",
+        "definition": "Conexão entre duas redes virtuais para que possam se comunicar como se estivessem na mesma rede.",
+        "examples": [
+          "Peering entre VNet1 e VNet2",
+          "Comunicação entre recursos através de peering"
+        ],
+        "relatedConcepts": [
+          "Azure Virtual Network",
+          "Subnets"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Network Security Group (NSG)",
+        "definition": "Recurso usado para filtrar o tráfego de rede para e de recursos do Azure em uma rede virtual.",
+        "examples": [
+          "Configurar regras de NSG para Subnet1",
+          "Bloquear tráfego de saída em uma sub-rede"
+        ],
+        "relatedConcepts": [
+          "Subnets",
+          "Virtual Network"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Virtual Network Integration",
+        "definition": "Funcionalidade que permite que um App Service acesse recursos em uma rede virtual.",
+        "examples": [
+          "WebApp1 integrado com VNet1",
+          "Acesso a uma VM em uma VNet peered"
+        ],
+        "relatedConcepts": [
+          "Azure App Service",
+          "Virtual Network Peering"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "concept": "App Service Pricing Tiers",
+        "definition": "Níveis de preços que determinam as capacidades e restrições de um App Service.",
+        "examples": [
+          "Premium tier suporta integração VNet",
+          "Isolated tier requer Subnet dedicada"
+        ],
+        "relatedConcepts": [
+          "Azure App Service",
+          "Networking"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configuração de comunicação entre WebApp1 e VM2",
+        "problem": "WebApp1, integrado a VNet1, precisa se comunicar com VM2, localizada em VNet2.",
+        "solution": "Configurar peering entre VNet1 e VNet2. Garantir que as regras de NSG permitam o tráfego necessário.",
+        "explanation": "O peering permite a comunicação entre VNets. Como WebApp1 está integrado à VNet1 e VM2 está na VNet2, o peering é essencial para estabelecer a conectividade."
+      },
+      {
+        "scenario": "Bloqueio de tráfego de saída de Subnet1",
+        "problem": "É necessário bloquear o tráfego de saída de Subnet1 onde WebApp1 está integrado.",
+        "solution": "Configurar uma regra de NSG em Subnet1 para negar o tráfego de saída.",
+        "explanation": "As regras de NSG aplicadas à sub-rede integrada controlam o tráfego de saída para Web Apps integrados à VNet."
+      },
+      {
+        "scenario": "Restrições de comunicação para WebApp2 no tier Isolated",
+        "problem": "WebApp2, no tier Isolated, não consegue se comunicar com VM1.",
+        "solution": "Verificar que WebApp2 está na mesma sub-rede que VM2 e que o tier Isolated não suporta integração direta com outras VNets.",
+        "explanation": "O tier Isolated exige que o App Service esteja em uma sub-rede dedicada e não suporta integração direta com VNets fora dessa sub-rede."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual é o propósito do Virtual Network Peering?",
+        "answer": "Permitir a comunicação entre duas redes virtuais como se estivessem na mesma rede.",
+        "hint": "Considere como os recursos de diferentes VNets podem compartilhar dados.",
+        "topic": "Virtual Network Peering"
+      },
+      {
+        "type": "scenario-based",
+        "question": "WebApp1 consegue acessar VM2 com as configurações atuais?",
+        "answer": "Sim, pois WebApp1 está integrado à VNet1, que está emparelhada com VNet2, onde VM2 está localizada.",
+        "hint": "Verifique a estrutura de peering entre VNets.",
+        "topic": "Virtual Network Integration"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que WebApp2 não consegue acessar VM1?",
+        "answer": "Porque WebApp2 está no tier Isolated e na Subnet2, enquanto VM1 está na Subnet1.",
+        "hint": "Considere as restrições do tier Isolated para comunicação entre sub-redes.",
+        "topic": "App Service Pricing Tiers"
+      },
+      {
+        "type": "command",
+        "question": "Como bloquear tráfego de saída de uma sub-rede usando um NSG?",
+        "answer": "Criar uma regra de NSG que negue o tráfego de saída para destinos específicos.",
+        "hint": "Explore as opções de regras de tráfego em NSGs.",
+        "topic": "Network Security Groups (NSGs)"
+      },
+      {
+        "type": "concept",
+        "question": "Quais são os benefícios da integração de redes virtuais no Azure App Service?",
+        "answer": "Permitir que o App Service acesse recursos em redes virtuais integradas ou peered.",
+        "hint": "Pense em como a integração facilita o acesso a VMs e bancos de dados.",
+        "topic": "Virtual Network Integration"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se de que o tier Isolated do App Service requer uma sub-rede dedicada.",
+        "relevance": "Questões frequentemente cobram as diferenças entre os tiers de preços.",
+        "topic": "App Service Pricing Tiers"
+      },
+      {
+        "tip": "Virtual Network Integration não suporta tráfego de entrada para o App Service.",
+        "relevance": "Questões podem testar limitações específicas da integração.",
+        "topic": "Virtual Network Integration"
+      },
+      {
+        "tip": "NSGs controlam apenas tráfego de entrada e saída em sub-redes e NICs.",
+        "relevance": "Importante para configurar corretamente regras de segurança.",
+        "topic": "Network Security Groups (NSGs)"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre integração de redes virtuais no App Service",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre integração de redes virtuais no App Service",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-06-14T20:26:32.102Z",
+  "updatedAt": "2026-06-14T20:26:55.408Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-14T20:26:55.405Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

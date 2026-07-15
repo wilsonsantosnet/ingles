@@ -1,0 +1,312 @@
+{
+  "date": "2026-05-06",
+  "title": "Vocabulário e Expressões para Trabalho e Situações Cotidianas",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONbecause of thisheadache: dor de cabeçamigraine: enxaquecaback-to-back: um atrás do outrorepetitivecorporate acting out or corporate farce (very negative)savior: salvador (pessoa)customer solution architectsupport: apoiarI can’t stand this anymore – Não aguento mais isso.pull requestall day long: o dia todoweak: fracoThis information wasn’t taught – Essa informação não foi ensinada.annoying: irritantepressureroleprocessanswercoaches",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONbecause of thisheadache: dor de cabeçamigraine: enxaquecaback-to-back: um atrás do outrorepetitivecorporate acting out or corporate farce (very negative)savior: salvador (pessoa)customer solution architectsupport: apoiarI can’t stand this anymore – Não aguento mais isso.pull requestall day long: o dia todoweak: fracoThis information wasn’t taught – Essa informação não foi ensinada.annoying: irritantepressureroleprocessanswercoaches"
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONbecause of thisheadache: dor de cabeçamigraine: enxaquecaback-to-back: um atrás do outrorepetitivecorporate acting out or corporate farce (very negative)savior: salvador (pessoa)customer solution architectsupport: apoiarI can’t stand this anymore – Não aguento mais isso.pull requestall day long: o dia todoweak: fracoThis information wasn’t taught – Essa informação não foi ensinada.annoying: irritantepressureroleprocessanswercoaches"
+      ]
+    }
+  ],
+  "source": "docx",
+  "sourceFile": "Wilson dos Santos - 06May2026.docx",
+  "id": "lesson-2026-05-06-1",
+  "enriched": {
+    "title": "Vocabulário e Expressões para Trabalho e Situações Cotidianas",
+    "summary": "A aula aborda vocabulário relacionado a trabalho e situações do dia a dia, incluindo termos como 'headache', 'support' e expressões como 'I can’t stand this anymore'. Também foca na pronúncia e utilizações práticas dos termos apresentados.",
+    "mainTopics": [
+      "Vocabulário de trabalho e saúde",
+      "Expressões úteis para o dia a dia",
+      "Pronúncia e uso em contexto"
+    ],
+    "vocabulary": [
+      {
+        "word": "headache",
+        "translation": "dor de cabeça",
+        "definition": "Pain or discomfort in the head or upper neck area.",
+        "examples": [
+          "I have a terrible headache today.",
+          "She took a pill for her headache."
+        ],
+        "pronunciation": "/ˈhɛdeɪk/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "migraine",
+          "tension headache"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-05-06-1-headache",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "migraine",
+        "translation": "enxaqueca",
+        "definition": "A severe headache, often accompanied by nausea and sensitivity to light and sound.",
+        "examples": [
+          "He can't work today because of a migraine.",
+          "Migraines can be triggered by stress."
+        ],
+        "pronunciation": "/ˈmaɪɡreɪn/ ou /ˈmiːɡreɪn/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "severe headache",
+          "cluster headache"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-05-06-1-migraine",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "back-to-back",
+        "translation": "um atrás do outro",
+        "definition": "Happening one after another without a break.",
+        "examples": [
+          "We have back-to-back meetings today.",
+          "The team won back-to-back games."
+        ],
+        "pronunciation": "/ˌbæk tə ˈbæk/",
+        "partOfSpeech": "adjective/adverb",
+        "synonyms": [
+          "consecutive",
+          "sequential"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-05-06-1-back-to-back",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "savior",
+        "translation": "salvador",
+        "definition": "A person who rescues someone or something from danger or difficulty.",
+        "examples": [
+          "He was seen as the savior of the company.",
+          "She thanked her savior for helping during the crisis."
+        ],
+        "pronunciation": "/ˈseɪvjər/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "rescuer",
+          "helper"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-05-06-1-savior",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "support",
+        "translation": "apoiar",
+        "definition": "To give assistance or encouragement to someone or something.",
+        "examples": [
+          "I support your decision.",
+          "They need financial support to continue the project."
+        ],
+        "pronunciation": "/səˈpɔːrt/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "help",
+          "assist"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-05-06-1-support",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "annoying",
+        "translation": "irritante",
+        "definition": "Causing irritation or annoyance.",
+        "examples": [
+          "The constant noise was very annoying.",
+          "He has an annoying habit of interrupting."
+        ],
+        "pronunciation": "/əˈnɔɪɪŋ/",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "irritating",
+          "bothersome"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-05-06-1-annoying",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "weak",
+        "translation": "fraco",
+        "definition": "Lacking strength or power.",
+        "examples": [
+          "She felt weak after the long workout.",
+          "The argument was weak and unconvincing."
+        ],
+        "pronunciation": "/wiːk/",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "fragile",
+          "feeble"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-05-06-1-weak",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Use of 'because of'",
+        "explanation": "Use 'because of' to indicate the reason for something.",
+        "rules": [
+          "'Because of' is followed by a noun or pronoun.",
+          "It cannot be followed by a complete clause."
+        ],
+        "examples": [
+          "He missed the meeting because of a headache.",
+          "Because of the rain, the event was canceled."
+        ],
+        "commonMistakes": [
+          "Using 'because of' with a full clause (e.g., 'because of it was raining' is incorrect).",
+          "Confusing 'because' with 'because of'."
+        ],
+        "id": "grammar-lesson-2026-05-06-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [
+      {
+        "expression": "I can’t stand this anymore",
+        "meaning": "Não aguento mais isso",
+        "usage": "Used to express frustration or inability to tolerate something.",
+        "examples": [
+          "I can't stand this heat anymore!",
+          "She can't stand his behavior anymore."
+        ]
+      },
+      {
+        "expression": "all day long",
+        "meaning": "o dia todo",
+        "usage": "Used to describe something happening continuously throughout the day.",
+        "examples": [
+          "He worked all day long to finish the project.",
+          "They played video games all day long."
+        ]
+      }
+    ],
+    "practiceQuestions": [
+      {
+        "question": "Complete the sentence: I missed the meeting ______ a headache.",
+        "answer": "because of",
+        "explanation": "'Because of' is used to indicate the reason for missing the meeting.",
+        "type": "fill-in-blank",
+        "tense": "none",
+        "id": "question-lesson-2026-05-06-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Translate to English: 'Eu não aguento mais isso.'",
+        "answer": "I can’t stand this anymore.",
+        "explanation": "This is a direct translation of the expression taught in class.",
+        "type": "translation",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-05-06-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "Expressing frustration like 'I can't stand this anymore' is common in informal conversations.",
+      "Work-related terms like 'corporate farce' are often used critically in professional settings."
+    ],
+    "studyTips": [
+      "Practice pronouncing new vocabulary in front of a mirror to improve fluency.",
+      "Use flashcards to memorize the vocabulary and expressions presented in the class."
+    ],
+    "originalExamples": [
+      "I can’t stand this anymore. (Não aguento mais isso.)",
+      "All day long. (O dia todo.)",
+      "This information wasn’t taught. (Essa informação não foi ensinada.)",
+      "He missed the meeting because of a headache. (Ele perdeu a reunião por causa de uma dor de cabeça.)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "enrichedAt": "2026-07-02T15:10:37.235Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": [
+      "practiceQuestions tem apenas 2 item(ns), recomendado mínimo de 3"
+    ]
+  }
+}

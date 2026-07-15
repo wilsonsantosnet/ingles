@@ -1,0 +1,724 @@
+{
+  "id": "lesson-2026-06-25-1",
+  "date": "2026-06-25",
+  "title": "Redes Sociais",
+  "categoryId": "anki",
+  "source": "manual",
+  "rawContent": "Cadastro rápido via Anki",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [
+      {
+        "word": "worth",
+        "translation": "valor; que vale a pena",
+        "definition": "having value or importance",
+        "examples": [
+          "This book is worth reading.",
+          "The painting is worth a fortune.",
+          "Is it worth the effort?",
+          "Every second of the trip was worth it.",
+          "The idea is worth considering."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adjective",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-06-25-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-07-21",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:05.279Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-03T02:49:38.483Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-05T12:22:27.966Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "Every other day",
+        "translation": "Dia sim, dia não",
+        "definition": "Happening on alternate days",
+        "examples": [
+          "I go to the gym every other day.",
+          "She waters the plants every other day.",
+          "We call our grandparents every other day.",
+          "The medication should be taken every other day.",
+          "He checks his emails every other day."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-06-25-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:08.306Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-03T02:49:54.553Z",
+              "quality": 0,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-05T12:22:33.452Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "wonder",
+        "translation": "perguntar-se",
+        "definition": "to feel curiosity or doubt about something; to ask oneself",
+        "examples": [
+          "I wonder what time the meeting starts.",
+          "She wondered if she should call him back.",
+          "Sometimes I wonder about the meaning of a dream."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-2",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-02T21:24:11.999Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-03T02:50:05.407Z",
+              "quality": 0,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-05T12:22:55.649Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "assume",
+        "translation": "supor",
+        "definition": "to accept something as true without proof; to suppose",
+        "examples": [
+          "Don't assume he's guilty without evidence.",
+          "I assumed you were coming to the party.",
+          "Let's assume the train is late and make another plan."
+        ],
+        "pronunciation": "/əˈsum/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "suppose",
+          "presume"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-3",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:50:13.397Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:23:15.290Z",
+              "quality": 0,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "require",
+        "translation": "exigir",
+        "definition": "to need something or make it necessary",
+        "examples": [
+          "This job requires previous experience.",
+          "The form requires your full name and address.",
+          "Some plants require a lot of sunlight to grow."
+        ],
+        "pronunciation": "/rɪˈkwaɪər/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "need",
+          "demand"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-4",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-07-11",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:50:20.102Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:23:23.697Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "manage",
+        "translation": "administrar",
+        "definition": "to be in charge of; to succeed in doing something, especially with difficulty",
+        "examples": [
+          "She manages the sales team at the office.",
+          "I can manage the report by tomorrow.",
+          "He managed to finish the project despite the delays."
+        ],
+        "pronunciation": "/ˈmænɪdʒ/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "oversee",
+          "cope"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-5",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:50:33.019Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:23:28.728Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "handle",
+        "translation": "lidar com",
+        "definition": "to deal with or be responsible for something; to touch or hold carefully",
+        "examples": [
+          "Can you handle this customer complaint?",
+          "She handled the fragile package with care.",
+          "He knows how to handle difficult situations calmly."
+        ],
+        "pronunciation": "/ˈhændəl/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "deal with",
+          "manage"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "wonder,assume, require,manage, handle",
+        "id": "vocab-lesson-2026-06-25-1-6",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-07-11",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:50:40.517Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:23:32.335Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "Came up",
+        "translation": "surgiu",
+        "definition": "Past tense of 'come up': to appear, arise, or be mentioned",
+        "examples": [
+          "A problem came up during the meeting.",
+          "Her name came up in conversation.",
+          "A good idea came up yesterday.",
+          "The issue came up unexpectedly."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "chunk",
+        "sourceText": "Came up",
+        "id": "vocab-lesson-2026-06-25-1-7",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:50:48.251Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:23:45.069Z",
+              "quality": 0,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "He approached",
+        "translation": "Ele se aproximou",
+        "definition": "He moved closer to someone or something.",
+        "examples": [
+          "He approached the old house.",
+          "He approached me quietly.",
+          "He approached the subject carefully.",
+          "He approached the coach after practice."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "He approached",
+        "id": "vocab-lesson-2026-06-25-1-8",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:51:04.909Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:24:01.241Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "Otherwise",
+        "translation": "caso contrário",
+        "definition": "If not; in a different way.",
+        "examples": [
+          "Hurry up, otherwise you'll miss the bus.",
+          "You must study; otherwise you won't pass.",
+          "Keep the receipt; otherwise you can't get a refund.",
+          "She seemed calm, but otherwise she was nervous."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "Otherwise",
+        "id": "vocab-lesson-2026-06-25-1-9",
+        "spacedRepetition": {
+          "easeFactor": 2.7,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-07-11",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-03T02:51:08.864Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:24:07.868Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "word": "Long story short",
+        "translation": "Resumindo",
+        "definition": "Used to give a brief summary of a longer story or explanation.",
+        "examples": [
+          "Long story short, we missed the train.",
+          "I tried everything; long story short, it worked.",
+          "Long story short, she decided to stay.",
+          "Long story short, we agreed to postpone the meeting."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "chunk",
+        "sourceText": "Long story short",
+        "id": "vocab-lesson-2026-06-25-1-10",
+        "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:24:18.118Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "Believe It or not",
+        "translation": "Acredite ou não",
+        "definition": "Expression used to introduce a surprising or hard-to-believe fact.",
+        "examples": [
+          "Believe it or not, I met her in Paris.",
+          "Believe it or not, he can juggle six balls.",
+          "Believe it or not, they arrived early.",
+          "Believe it or not, the dog opened the door."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "chunk",
+        "sourceText": "Believe It or not",
+        "id": "vocab-lesson-2026-06-25-1-11",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:24:22.880Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "Come to think of it",
+        "translation": "Agora que penso nisso",
+        "definition": "Used when a new thought or realization occurs to the speaker",
+        "examples": [
+          "Come to think of it, I left my keys in the car.",
+          "Come to think of it, she did say something like that.",
+          "Come to think of it, we never paid the bill.",
+          "Come to think of it, he might be right."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "chunk",
+        "sourceText": "Come to think of it",
+        "id": "vocab-lesson-2026-06-25-1-12",
+        "spacedRepetition": {
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:24:32.062Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "hang out",
+        "translation": "sair; passar tempo com alguém (relaxando)",
+        "definition": "to spend time relaxing or socializing",
+        "examples": [
+          "Do you want to hang out this weekend?",
+          "We usually hang out at the mall.",
+          "She hangs out with her friends after class.",
+          "He's just hanging out at home.",
+          "They hung out all afternoon."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "chunk",
+        "sourceText": "hang out",
+        "id": "vocab-lesson-2026-06-25-1-13",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "kind of",
+        "translation": "mais ou menos",
+        "definition": "a phrase used to soften a statement or indicate approximation or hesitation",
+        "examples": [
+          "I'm kind of tired today.",
+          "That movie was kind of boring.",
+          "It's kind of expensive."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "kind of, kinda, sort of",
+        "id": "vocab-lesson-2026-06-25-1-14",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "kinda",
+        "translation": "meio (informal)",
+        "definition": "informal contraction of 'kind of', used to show approximation or mild emphasis",
+        "examples": [
+          "I'm kinda busy right now.",
+          "She's kinda funny.",
+          "I kinda like that idea."
+        ],
+        "pronunciation": "/ˈkaɪndə/",
+        "partOfSpeech": "expression",
+        "synonyms": [
+          "kind of",
+          "sort of",
+          "a bit"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "kind of, kinda, sort of",
+        "id": "vocab-lesson-2026-06-25-1-15",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "sort of",
+        "translation": "mais ou menos",
+        "definition": "used to express a vague degree, approximation, or uncertainty",
+        "examples": [
+          "I'm sort of hungry.",
+          "He's sort of the leader of the group.",
+          "She sort of agreed to help."
+        ],
+        "pronunciation": "/ˈsɔːrt əv/",
+        "partOfSpeech": "expression",
+        "synonyms": [
+          "kind of",
+          "kinda",
+          "rather"
+        ],
+        "difficulty": "intermediate",
+        "sourceType": "word-list",
+        "sourceText": "kind of, kinda, sort of",
+        "id": "vocab-lesson-2026-06-25-1-16",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-08",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Do you mind",
+        "translation": "Você se importa?",
+        "definition": "A polite way to ask for permission or to ask if something bothers someone.",
+        "examples": [
+          "Do you mind if I open the window?",
+          "Do you mind waiting here?",
+          "Do you mind closing the door?",
+          "Do you mind if we sit here?",
+          "Do you mind?"
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "expression",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "chunk",
+        "sourceText": "Do you mind",
+        "id": "vocab-lesson-2026-06-25-1-17",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-09",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Staring",
+        "translation": "olhando fixamente",
+        "definition": "Looking at someone or something for a long time with intensity.",
+        "examples": [
+          "She kept staring out the window.",
+          "He was staring at his phone.",
+          "Stop staring at me!",
+          "They stood staring in silence.",
+          "The cat sat staring at the bird."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "Staring",
+        "id": "vocab-lesson-2026-06-25-1-18",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-09",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Against",
+        "translation": "contra",
+        "definition": "indicating opposition, contact, or being unfavorable to something",
+        "examples": [
+          "I'm against the proposal.",
+          "She leaned against the wall.",
+          "They voted against the law.",
+          "The evidence is against him."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "other",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "Against",
+        "id": "vocab-lesson-2026-06-25-1-19",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-09",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "Borrow",
+        "translation": "pegar emprestado",
+        "definition": "To take and use something belonging to someone else with the intention of returning it.",
+        "examples": [
+          "Can I borrow your pen?",
+          "She borrowed a book from the library.",
+          "He borrowed money to buy a car.",
+          "You can borrow my laptop for the meeting."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "Borrow",
+        "id": "vocab-lesson-2026-06-25-1-20",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-09",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-06-25T13:20:14.423Z",
+  "updatedAt": "2026-07-09T14:58:33.995Z",
+  "status": "enriched"
+}

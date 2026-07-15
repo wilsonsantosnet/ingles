@@ -1,0 +1,210 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-2026-03-20-1774033318118",
+      "date": "2026-03-20",
+      "title": "Endpoint policies",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-03-23-1774274188556",
+      "date": "2026-03-23",
+      "title": "Azure Load Balancer",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-03-23-1774275425107",
+      "date": "2026-03-23",
+      "title": "You have a Microsoft Entra tenant.",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-03-23-1774275425108",
+      "date": "2026-03-23",
+      "title": "Azure Availability Set",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-02-1",
+      "date": "2026-05-02",
+      "title": "IP Publico",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-02-2",
+      "date": "2026-05-02",
+      "title": "Azure Load Balancer Basic and Standard",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-02-3",
+      "date": "2026-05-02",
+      "title": "Azure Subscription Alerts",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-1",
+      "date": "2026-05-03",
+      "title": "Funções de acesso no Azure RBAC e permissões detalhadas",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-2",
+      "date": "2026-05-03",
+      "title": "Backup de VMs e Blob Storage no Azure com DPM e Azure Backup Vault",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-3",
+      "date": "2026-05-03",
+      "title": "Criação e Configuração de Recovery Services Vault no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-4",
+      "date": "2026-05-03",
+      "title": "Gerenciamento de Blobs e File Shares no Azure Storage Explorer",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-5",
+      "date": "2026-05-03",
+      "title": "Movendo Recursos entre Grupos no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-6",
+      "date": "2026-05-03",
+      "title": "Configuração de funções e conversão de dados no Azure PowerShell",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-03-7",
+      "date": "2026-05-03",
+      "title": "Gerenciamento de Usuários e Permissões no Microsoft Entra ID",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-05-09-1",
+      "date": "2026-05-09",
+      "title": "Configuração de VPN Point-to-Site com Certificados no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-04-1",
+      "date": "2026-06-04",
+      "title": "Backup e Restauração no Azure Recovery Services Vault",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-12-1",
+      "date": "2026-06-12",
+      "title": "Configuração de Regras de Segurança em Máquinas Virtuais no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-12-2",
+      "date": "2026-06-12",
+      "title": "Configuração de DNS e Resolução de Nomes em Redes Virtuais no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-14-1",
+      "date": "2026-06-14",
+      "title": "Integração de Redes Virtuais e Azure App Services",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-15-1",
+      "date": "2026-06-15",
+      "title": "Configuração de Roles Personalizadas no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-15-2",
+      "date": "2026-06-15",
+      "title": "Configuração de Regras de Ciclo de Vida no Azure Storage",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-15-3",
+      "date": "2026-06-15",
+      "title": "Automação de Endpoints Privados no Azure com ARM Templates",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-22-1",
+      "date": "2026-06-22",
+      "title": "Configuração de Redes Virtuais e Subnets para Container Apps no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-1",
+      "date": "2026-06-25",
+      "title": "Gerenciamento de Permissões e Funções no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-2",
+      "date": "2026-06-25",
+      "title": "Configuração de Application Security Groups (ASG) no Azure",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-3",
+      "date": "2026-06-25",
+      "title": "Gerenciamento de Alertas no Azure Monitor",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-06-25-4",
+      "date": "2026-06-25",
+      "title": "Configuração de conectividade entre redes no Azure com VPN e Peering",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-14-1",
+      "date": "2026-07-14",
+      "title": "Proteção de Azure VMs com Recovery Services Vault",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-14-2",
+      "date": "2026-07-14",
+      "title": "VPN Gateway S2S: SKU de IP Público e Atribuição",
+      "status": "enriched",
+      "file": "manual"
+    }
+  ],
+  "totalLessons": 29,
+  "processedAt": "2026-07-14T15:40:05.388Z",
+  "categoryId": "az104"
+}

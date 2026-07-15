@@ -1,0 +1,271 @@
+{
+  "id": "lesson-2026-03-23-1774274188556",
+  "date": "2026-03-23",
+  "title": "Azure Load Balancer",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the resources shown in the following table.  \n\n| Name | Type                        | Description                              |  \n|------|-----------------------------|------------------------------------------|  \n| vm1  | Virtual machine             | Uses a basic public IP address           |  \n| vm2  | Virtual machine             | Uses a basic public IP address           |  \n| nsg1 | Network security group (NSG)| Allows incoming traffic from port 443    |  \n| lb1  | Azure Standard Load Balancer| Not applicable                           |  \n\nYou need to load balance HTTPS connections to vm1 and vm2 by using lb1.  \n\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+  "enriched": {
+    "summary": "A aula aborda como configurar o balanceamento de carga para conexões HTTPS utilizando um Azure Standard Load Balancer (lb1) e duas máquinas virtuais (vm1 e vm2). Inclui conceitos de rede, como segurança e tráfego de entrada, e a configuração de recursos no Azure.",
+    "mainTopics": [
+      "Azure Load Balancer",
+      "Network Security Group (NSG)",
+      "Virtual Machine (VM)"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Azure Load Balancer",
+        "description": "Serviço que distribui tráfego de rede entre múltiplos recursos para alta disponibilidade e escalabilidade.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Network Security Group (NSG)",
+        "description": "Recurso que controla o tráfego de entrada e saída para redes virtuais e sub-redes.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Virtual Machine (VM)",
+        "description": "Máquina virtual que executa sistemas operacionais e aplicativos no Azure.",
+        "category": "Compute",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Standard Load Balancer",
+        "definition": "Um balanceador de carga que opera na camada de rede (L4) e distribui tráfego baseado em regras configuradas.",
+        "examples": [
+          "Distribuir tráfego HTTP entre múltiplos servidores web",
+          "Balancear conexões HTTPS para máquinas virtuais em uma rede virtual"
+        ],
+        "relatedConcepts": [
+          "Azure Front Door",
+          "Application Gateway"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Network Security Group (NSG)",
+        "definition": "Grupo de segurança que contém regras de acesso para controlar o tráfego de entrada e saída em sub-redes ou interfaces de rede.",
+        "examples": [
+          "Permitir tráfego HTTPS por padrão",
+          "Bloquear tráfego de todas as portas exceto 443"
+        ],
+        "relatedConcepts": [
+          "Firewall",
+          "VNet"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Virtual Machine (VM)",
+        "definition": "Instância de computação virtual que executa aplicativos em um ambiente isolado no Azure.",
+        "examples": [
+          "VM para hosting de aplicativos",
+          "VM para teste de desenvolvimento"
+        ],
+        "relatedConcepts": [
+          "Container",
+          "App Service"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [
+      {
+        "command": "az network lb create",
+        "description": "Cria um Azure Load Balancer.",
+        "syntax": "az network lb create --resource-group <resource-group> --name <lb-name> --sku Standard --frontend-ip-name <frontend-name> --backend-pool-name <backend-pool-name>",
+        "examples": [
+          "az network lb create --resource-group MyRG --name MyLB --sku Standard --frontend-ip-name Frontend --backend-pool-name BackendPool"
+        ],
+        "platform": "Azure CLI"
+      },
+      {
+        "command": "az network lb rule create",
+        "description": "Cria uma regra de balanceamento de carga para mapear o tráfego entre portas.",
+        "syntax": "az network lb rule create --resource-group <resource-group> --lb-name <lb-name> --name <rule-name> --protocol Tcp --frontend-port 443 --backend-port 443 --backend-pool-name <backend-pool-name> --probe-name <probe-name>",
+        "examples": [
+          "az network lb rule create --resource-group MyRG --lb-name MyLB --name HTTPSRule --protocol Tcp --frontend-port 443 --backend-port 443 --backend-pool-name BackendPool --probe-name HTTPSProbe"
+        ],
+        "platform": "Azure CLI"
+      },
+      {
+        "command": "az network nic ip-config address-pool add",
+        "description": "Associa uma interface de rede à pool de backend do Load Balancer.",
+        "syntax": "az network nic ip-config address-pool add --resource-group <resource-group> --lb-name <lb-name> --address-pool <backend-pool-name> --nic-name <nic-name> --ip-config-name <ip-config-name>",
+        "examples": [
+          "az network nic ip-config address-pool add --resource-group MyRG --lb-name MyLB --address-pool BackendPool --nic-name VM1NIC --ip-config-name ipconfig1"
+        ],
+        "platform": "Azure CLI"
+      }
+    ],
+    "scenarios": [
+      {
+        "scenario": "Configuração de Load Balancer para HTTPS",
+        "problem": "Você precisa balancear conexões HTTPS entre vm1 e vm2 utilizando lb1, garantindo alta disponibilidade.",
+        "solution": "1. Crie uma regra de balanceamento de carga no lb1 para mapear tráfego HTTPS entre portas frontend e backend. 2. Associe as interfaces de rede das VMs à pool de backend do lb1. 3. Configure um Network Security Group para permitir tráfego na porta 443.",
+        "explanation": "A regra de balanceamento de carga distribui o tráfego entre os recursos backend configurados, enquanto o NSG garante que o tráfego HTTPS seja permitido."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um Load Balancer para distribuir tráfego HTTPS entre duas máquinas virtuais?",
+        "answer": "Criar uma regra de balanceamento de carga, configurar uma pool de backend e associar as VMs à pool.",
+        "hint": "Use as opções do Azure CLI para configurar regras e pools no Standard Load Balancer.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando adiciona uma interface de rede à pool de backend de um Load Balancer?",
+        "answer": "az network nic ip-config address-pool add",
+        "hint": "Certifique-se de especificar o nome do backend pool na sintaxe.",
+        "topic": "Azure CLI"
+      },
+      {
+        "type": "concept",
+        "question": "O que é um Network Security Group (NSG)?",
+        "answer": "É um recurso que contém regras para controlar o tráfego de entrada e saída em redes virtuais.",
+        "hint": "Considere como o NSG interage com portas específicas e sub-redes.",
+        "topic": "Network Security Group"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que o tráfego HTTPS não está sendo distribuído entre as VMs, mesmo após configurar o Load Balancer?",
+        "answer": "Pode ser necessário verificar se as interfaces de rede das VMs estão associadas à pool de backend e se o NSG permite tráfego na porta 443.",
+        "hint": "Verifique a configuração do NSG e a associação das VMs à pool.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "type": "scenario-based",
+        "question": "O que acontece se um NSG não permitir tráfego na porta 443?",
+        "answer": "O tráfego HTTPS será bloqueado e o Load Balancer não conseguirá distribuir conexões.",
+        "hint": "Lembre-se de verificar as regras de entrada no NSG.",
+        "topic": "Network Security Group"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Certifique-se de entender como configurar regras de balanceamento de carga no Azure Standard Load Balancer, incluindo protocolo e portas.",
+        "relevance": "Essas configurações são frequentemente cobradas em exames de certificação.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "tip": "Lembre-se de verificar as regras de entrada e saída de NSGs ao configurar recursos de rede.",
+        "relevance": "Configurações incorretas de NSG podem bloquear tráfego e causar falhas nos cenários de rede.",
+        "topic": "Network Security Group"
+      },
+      {
+        "tip": "Entenda a diferença entre Load Balancer Standard e Basic, especialmente em relação ao suporte a alta disponibilidade.",
+        "relevance": "Pegadinhas sobre SKU são comuns em exames.",
+        "topic": "Azure Load Balancer"
+      },
+      {
+        "tip": "Pratique o uso do Azure CLI para configurar recursos de rede, como Load Balancers e NSGs.",
+        "relevance": "Comandos CLI são frequentemente abordados em provas práticas.",
+        "topic": "Azure CLI"
+      },
+      {
+        "tip": "Revise cenários de troubleshooting relacionados a tráfego bloqueado e configurações incorretas de backend pool.",
+        "relevance": "Questões de troubleshooting são comuns em certificações avançadas.",
+        "topic": "Azure Load Balancer"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um Load Balancer para distribuir tráfego HTTPS entre duas máquinas virtuais?",
+        "answer": "Criar uma regra de balanceamento de carga, configurar uma pool de backend e associar as VMs à pool.",
+        "hint": "Use as opções do Azure CLI para configurar regras e pools no Standard Load Balancer.",
+        "topic": "Azure Load Balancer",
+        "id": "question-lesson-2026-03-23-1774274188556-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Qual comando adiciona uma interface de rede à pool de backend de um Load Balancer?",
+        "answer": "az network nic ip-config address-pool add",
+        "hint": "Certifique-se de especificar o nome do backend pool na sintaxe.",
+        "topic": "Azure CLI",
+        "id": "question-lesson-2026-03-23-1774274188556-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "concept",
+        "question": "O que é um Network Security Group (NSG)?",
+        "answer": "É um recurso que contém regras para controlar o tráfego de entrada e saída em redes virtuais.",
+        "hint": "Considere como o NSG interage com portas específicas e sub-redes.",
+        "topic": "Network Security Group",
+        "id": "question-lesson-2026-03-23-1774274188556-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que o tráfego HTTPS não está sendo distribuído entre as VMs, mesmo após configurar o Load Balancer?",
+        "answer": "Pode ser necessário verificar se as interfaces de rede das VMs estão associadas à pool de backend e se o NSG permite tráfego na porta 443.",
+        "hint": "Verifique a configuração do NSG e a associação das VMs à pool.",
+        "topic": "Azure Load Balancer",
+        "id": "question-lesson-2026-03-23-1774274188556-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "O que acontece se um NSG não permitir tráfego na porta 443?",
+        "answer": "O tráfego HTTPS será bloqueado e o Load Balancer não conseguirá distribuir conexões.",
+        "hint": "Lembre-se de verificar as regras de entrada no NSG.",
+        "topic": "Network Security Group",
+        "id": "question-lesson-2026-03-23-1774274188556-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ]
+  },
+  "createdAt": "2026-03-23T13:56:28.556Z",
+  "updatedAt": "2026-03-23T14:00:46.092Z",
+  "status": "enriched",
+  "enrichedAt": "2026-03-23T13:57:42.908Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

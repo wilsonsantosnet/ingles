@@ -1,0 +1,208 @@
+{
+  "id": "lesson-2026-06-22-1",
+  "date": "2026-06-22",
+  "title": "Configuração de Redes Virtuais e Subnets para Container Apps no Azure",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the virtual networks shown in the following table.\n\n| Name   | Location | IP address space | Subnet               |\n|--------|----------|------------------|----------------------|\n| VNet1  | East US  | 10.1.128.0/23    | Subnet1              |\n| VNet2  | East US  | 192.168.0.0/16   | Subnet21, Subnet23   |\n| VNet3  | East US  | 172.16.0.0/16    | Subnet3              |\n\nThe subnets have the IP address spaces shown in the following table.\n\n| Name     | IP address space   |\n|----------|--------------------|\n| Subnet1  | 10.1.128.0/24      |\n| Subnet21 | 192.168.0.0/17     |\n| Subnet22 | 192.168.128.0/17   |\n| Subnet3  | 172.16.1.0/24      |\n\nYou plan to create a container app named contapp1 in the East US Azure region.\n\nYou need to create a container app environment named con-env1 that meets the following requirements:\n\n- Uses its own (and existing) virtual network.\n- Uses its own (and new) subnet.\n- Is connected to the smallest possible subnet.\n\nTo which virtual networks can you connect con-env1, and which subnet mask should you use? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\n---\n\nAnswer Area  \n\nVirtual network:  \nVNet1 only  \nVNet2 only  \nVNet3 only  \nVNet1 or VNet2 only  \nVNet2 or VNet3 only  \nVNet1 or VNet3 only  \nVNet1, VNet2, or VNet3  \n\nSubnet mask:  \n/16  \n/23  \n/24  \n/26  \n/28\n\n---\n\nBox 1: VNet1, VNet2, or VNet3  \nAll three have large enough subnets, and Subnet Address Range Restrictions does not apply.  \n\nNote 1: Custom VNet configuration  \nAs you create a custom VNet, keep in mind the following situations:  \n\nIf you want your container app to restrict all outside access, create an internal Container Apps environment.  \n\nWhen you provide your own VNet, you need to provide a subnet that is dedicated to the Container App environment you deploy. This subnet isn't available to other services.  \n\nNetwork addresses are assigned from a subnet range you define as the environment is created.  \n\nYou can define the subnet range used by the Container Apps environment.  \nYou can restrict inbound requests to the environment exclusively to the VNet by deploying the environment as internal.  \n\nNote 2: Subnet Address Range Restrictions  \nSubnet address ranges can't overlap with the following ranges reserved by AKS:  \n\n169.254.0.0/16  \n172.30.0.0/16  \n172.31.0.0/16  \n192.0.2.0/24  \n\nBox 2: /26  \n/26 is the smallest smaller than /27.  \n\nNote: Environment Selection  \nThere are two environments in Container Apps: the Consumption only environment supports only the Consumption plan (GA) and the workload profiles environment that supports both the Consumption + Dedicated plan structure (preview).  \nThe two environments share many of the same networking characteristics. However, there are some key differences.  \n\n* Workload profiles environment (preview) Supports user defined routes (UDR) and egress through NAT Gateway. The minimum required subnet size is /27.  \n\nAs workload profiles are currently in preview, the number of supported regions is limited.  \n\n* Consumption only environment  \nDoesn't support user defined routes (UDR) and egress through NAT Gateway. The minimum required subnet size is /23.  \n\nReference:  \nhttps://learn.microsoft.com/en-us/azure/container-apps/networking",
+  "enriched": {
+    "title": "Configuração de Redes Virtuais e Subnets para Container Apps no Azure",
+    "summary": "A aula aborda a configuração de redes virtuais e subnets no Azure para suportar ambientes de Container Apps, incluindo requisitos de subnet, restrições de endereço IP e práticas recomendadas para implantação de ambientes dedicados ou internos.",
+    "topics": [
+      {
+        "title": "Redes Virtuais no Azure (VNet)",
+        "description": "Configuração e gerenciamento de redes virtuais no Azure, incluindo subnets e seu papel em soluções de container.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Subnets e Máscaras de Rede",
+        "description": "Como definir subnets, escolher máscaras de rede apropriadas e entender restrições de IP para Container Apps.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Ambientes de Container Apps no Azure",
+        "description": "Configuração de ambientes de Container Apps, incluindo consumo e planos dedicados, e integração com VNets.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Restrições de Faixa de Endereços IP",
+        "description": "Faixas de IP reservadas e como evitá-las ao configurar subnets para Container Apps.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "VNet (Virtual Network)",
+        "definition": "Uma rede virtual no Azure que permite isolar e segmentar recursos em um ambiente controlado.",
+        "examples": [
+          "Configurar redes para VMs",
+          "Criar VNets para Container Apps"
+        ],
+        "relatedConcepts": [
+          "Subnet",
+          "NSG (Network Security Group)"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Subnet",
+        "definition": "Uma subdivisão de uma VNet usada para segmentar e isolar recursos no Azure.",
+        "examples": [
+          "Definir Subnet1 em VNet1",
+          "Criar subnet para um ambiente de Container Apps"
+        ],
+        "relatedConcepts": [
+          "VNet",
+          "CIDR"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Máscara de Subnet (CIDR)",
+        "definition": "Uma representação do tamanho da subnet, usada para determinar o número de endereços IP disponíveis.",
+        "examples": [
+          "/24 para 256 endereços",
+          "/26 para 64 endereços"
+        ],
+        "relatedConcepts": [
+          "Subnet",
+          "Endereçamento IP"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Container Apps",
+        "definition": "Serviço gerenciado do Azure para executar aplicações em containers em um ambiente de nuvem escalável.",
+        "examples": [
+          "Criar contapp1 em uma VNet",
+          "Configurar ambiente interno para Container Apps"
+        ],
+        "relatedConcepts": [
+          "AKS (Azure Kubernetes Service)",
+          "App Service"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Faixas de IP Reservadas",
+        "definition": "Intervalos de endereços IP que não podem ser usados em subnets configuradas para Container Apps.",
+        "examples": [
+          "172.30.0.0/16",
+          "192.0.2.0/24"
+        ],
+        "relatedConcepts": [
+          "CIDR",
+          "Subnet"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Configurar uma Subnet para Container Apps",
+        "problem": "Você precisa configurar um ambiente de Container Apps em uma VNet existente com a menor subnet possível.",
+        "solution": "Identifique a VNet apropriada (com espaço de endereço suficiente), crie uma subnet dedicada com máscara /26 e configure o ambiente para usá-la.",
+        "explanation": "A máscara /26 permite até 64 endereços IP, atendendo ao requisito de menor subnet possível, e a subnet dedicada evita conflitos de uso com outros serviços."
+      },
+      {
+        "scenario": "Evitar Faixas de IP Reservadas",
+        "problem": "A subnet configurada entra em conflito com faixas de IP reservadas pelo AKS.",
+        "solution": "Verifique as faixas reservadas (como 172.30.0.0/16) e ajuste o intervalo de IPs da subnet para evitar sobreposição.",
+        "explanation": "As faixas reservadas não podem ser usadas, e ajustar o intervalo garante que o ambiente seja configurado corretamente."
+      },
+      {
+        "scenario": "Escolha da Menor Subnet Possível",
+        "problem": "Qual máscara de subnet usar para atender ao requisito de menor espaço possível para o ambiente?",
+        "solution": "Use a máscara /26, que fornece 64 endereços IP, conforme exigido pelos requisitos de Container Apps.",
+        "explanation": "A máscara /26 é a menor disponível para ambientes de Container Apps em um plano de consumo."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que é uma VNet no Azure?",
+        "answer": "Uma rede virtual que permite isolar e segmentar recursos em um ambiente controlado.",
+        "hint": "Considere como redes são configuradas em nuvem.",
+        "topic": "Redes Virtuais no Azure (VNet)"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a menor máscara de subnet que pode ser usada para um ambiente de Container Apps no modo de consumo?",
+        "answer": "/26",
+        "hint": "Considere o tamanho mínimo necessário para suportar os requisitos de endereçamento IP.",
+        "topic": "Subnets e Máscaras de Rede"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como evitar conflitos de IP ao configurar subnets para Container Apps?",
+        "answer": "Evite faixas reservadas, como 172.30.0.0/16, e ajuste o intervalo de IPs da subnet.",
+        "hint": "Consulte as restrições de faixas reservadas.",
+        "topic": "Restrições de Faixa de Endereços IP"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um ambiente de Container Apps não pode ser criado em uma subnet com máscara /28?",
+        "answer": "A máscara /28 não atende ao requisito mínimo de endereçamento IP (mínimo /26 para consumo).",
+        "hint": "Verifique o requisito de subnet para Container Apps.",
+        "topic": "Ambientes de Container Apps no Azure"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando pode ser usado para criar uma subnet no Azure CLI?",
+        "answer": "az network vnet subnet create",
+        "hint": "Consulte os comandos relacionados a redes virtuais.",
+        "topic": "Subnets e Máscaras de Rede"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre-se das faixas de IP reservadas (ex.: 172.30.0.0/16) ao configurar subnets.",
+        "relevance": "Evitar conflitos de configuração em perguntas práticas.",
+        "topic": "Restrições de Faixa de Endereços IP"
+      },
+      {
+        "tip": "Saiba diferenciar os tamanhos mínimos de subnet para ambientes de Container Apps (consumo vs. dedicado).",
+        "relevance": "Essa diferença é frequentemente cobrada em exames.",
+        "topic": "Ambientes de Container Apps no Azure"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial sobre redes virtuais no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação sobre ambientes de Container Apps",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial sobre redes virtuais no Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação sobre ambientes de Container Apps",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-06-22T14:05:08.769Z",
+  "updatedAt": "2026-06-22T14:08:20.005Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-22T14:08:20.003Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

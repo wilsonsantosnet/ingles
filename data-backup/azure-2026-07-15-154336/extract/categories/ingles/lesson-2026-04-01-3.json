@@ -1,0 +1,290 @@
+{
+  "date": "2026-04-01",
+  "title": "Present Perfect e Vocabulário do Cotidiano",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. ",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. "
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. "
+      ]
+    }
+  ],
+  "source": "docx",
+  "id": "lesson-2026-04-01-3",
+  "enriched": {
+    "title": "Present Perfect e Vocabulário do Cotidiano",
+    "summary": "A aula aborda o uso do Present Perfect com foco em situações cotidianas, como mudanças e eventos recentes. Além disso, inclui vocabulário relacionado e prática de pronúncia. A tarefa envolve relatar uma notícia, reforçando o uso do tempo verbal.",
+    "mainTopics": [
+      "Uso do Present Perfect",
+      "Vocabulário do dia a dia",
+      "Pronúncia de palavras e frases"
+    ],
+    "vocabulary": [
+      {
+        "word": "broken",
+        "translation": "quebrada(o)",
+        "definition": "Damaged or in pieces, not functioning as intended.",
+        "examples": [
+          "Lisa has broken her leg.",
+          "The window is broken."
+        ],
+        "pronunciation": "/ˈbroʊ.kən/",
+        "partOfSpeech": "adjective",
+        "synonyms": [
+          "damaged",
+          "shattered"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-3-broken",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "fare",
+        "translation": "tarifa",
+        "definition": "The money paid for a journey on public transportation.",
+        "examples": [
+          "The bus fare has gone up.",
+          "He paid the fare for the train ride."
+        ],
+        "pronunciation": "/feər/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "ticket price",
+          "charge"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-3-fare",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "improved",
+        "translation": "melhorado",
+        "definition": "Made better or more effective.",
+        "examples": [
+          "Her English has improved.",
+          "The team has improved its performance."
+        ],
+        "pronunciation": "/ɪmˈpruːvd/",
+        "partOfSpeech": "verb (past participle)",
+        "synonyms": [
+          "enhanced",
+          "developed"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-3-improved",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "grown",
+        "translation": "crescido",
+        "definition": "Increased in size, maturity, or amount.",
+        "examples": [
+          "Dan has grown a beard.",
+          "The plant has grown rapidly."
+        ],
+        "pronunciation": "/ɡroʊn/",
+        "partOfSpeech": "verb (past participle)",
+        "synonyms": [
+          "developed",
+          "expanded"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-3-grown",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "arrived",
+        "translation": "chegado",
+        "definition": "Reached a destination or place.",
+        "examples": [
+          "The letter has arrived.",
+          "She has finally arrived home."
+        ],
+        "pronunciation": "/əˈraɪvd/",
+        "partOfSpeech": "verb (past participle)",
+        "synonyms": [
+          "reached",
+          "landed"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-3-arrived",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "fallen",
+        "translation": "caído",
+        "definition": "Moved downward, typically rapidly and freely without control.",
+        "examples": [
+          "The temperature has fallen.",
+          "Leaves have fallen from the trees."
+        ],
+        "pronunciation": "/ˈfɔː.lən/",
+        "partOfSpeech": "verb (past participle)",
+        "synonyms": [
+          "dropped",
+          "descended"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-3-fallen",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Present Perfect",
+        "explanation": "O Present Perfect é usado para falar sobre ações ou eventos que ocorreram em algum momento no passado com relevância para o presente.",
+        "rules": [
+          "Formação: sujeito + have/has + past participle.",
+          "Usado para ações completadas em um tempo não especificado no passado.",
+          "Usado para falar sobre mudanças ao longo do tempo."
+        ],
+        "examples": [
+          "Lisa has broken her leg.",
+          "The bus fare has gone up.",
+          "Her English has improved.",
+          "Dan has grown a beard.",
+          "The letter has arrived.",
+          "The temperature has fallen."
+        ],
+        "commonMistakes": [
+          "Usar o Simple Past em vez do Present Perfect para ações sem um tempo específico: 'Lisa broke her leg' (incorreto neste contexto).",
+          "Esquecer de usar 'has' ou 'have': 'Lisa broken her leg' (incorreto)."
+        ],
+        "id": "grammar-lesson-2026-04-01-3-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [],
+    "practiceQuestions": [
+      {
+        "question": "Complete a frase: Lisa ___ broken her leg.",
+        "answer": "has",
+        "explanation": "No Present Perfect, usamos 'has' para sujeitos na terceira pessoa do singular.",
+        "type": "fill-in-blank",
+        "tense": "Present Perfect",
+        "id": "question-lesson-2026-04-01-3-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Traduza para inglês: A tarifa do ônibus aumentou.",
+        "answer": "The bus fare has gone up.",
+        "explanation": "O verbo 'aumentar' é traduzido como 'go up', e no Present Perfect, conjugamos como 'has gone up'.",
+        "type": "translation",
+        "tense": "Present Perfect",
+        "id": "question-lesson-2026-04-01-3-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Escolha a opção correta: Dan ___ a beard. (grow)",
+        "answer": "has grown",
+        "explanation": "O verbo 'grow' no Present Perfect é conjugado como 'has grown' para a terceira pessoa do singular.",
+        "type": "multiple-choice",
+        "tense": "Present Perfect",
+        "id": "question-lesson-2026-04-01-3-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-02",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "O uso do Present Perfect é muito comum em inglês britânico para falar de ações recentes, mas pode ser menos frequente em inglês americano, onde o Simple Past é mais usado em alguns casos.",
+      "Exemplos de eventos cotidianos mencionados na aula, como 'Dan has grown a beard', refletem situações comuns na vida diária."
+    ],
+    "studyTips": [
+      "Pratique o Present Perfect com situações do seu dia a dia, como mudanças e eventos recentes.",
+      "Tente identificar o uso do Present Perfect em notícias online para entender como ele é usado em contextos reais.",
+      "Grave sua voz lendo as frases de exemplo para melhorar sua pronúncia."
+    ],
+    "originalExamples": [
+      "Lisa has broken her leg. (Lisa quebrou sua perna.)",
+      "The bus fare has gone up. (A tarifa do ônibus aumentou.)",
+      "Her English has improved. (O inglês dela melhorou.)",
+      "Dan has grown a beard. (Dan deixou a barba crescer.)",
+      "The letter has arrived. (A carta chegou.)",
+      "The temperature has fallen. (A temperatura caiu.)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "enrichedAt": "2026-07-02T00:06:21.481Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "sourceFile": "Wilson dos Santos - 01April2026.docx"
+}

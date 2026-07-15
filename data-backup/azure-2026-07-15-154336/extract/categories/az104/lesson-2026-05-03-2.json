@@ -1,0 +1,195 @@
+{
+  "id": "lesson-2026-05-03-2",
+  "date": "2026-05-03",
+  "title": "Backup de VMs e Blob Storage no Azure com DPM e Azure Backup Vault",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "Answer Area  \n\nFor VM1:  \n- An Azure Backup vault  \n- Microsoft System Center Data Protection Manager (DPM)  \n- A Recovery Services vault  \n\nFor blob1:  \n- An Azure Backup vault  \n- Microsoft System Center Data Protection Manager (DPM)  \n- A Recovery Services vault  \n\nBox 1: Microsoft System Center Data Protection Manager (DPM)  \nFor VM1  \n\nMicrosoft System Center Data Protection Manager (DPM) is a software product that provides centralized backup and recovery for enterprise-class workloads in a Microsoft Windows environment. It helps businesses with their BCDR (Business Continuity and Disaster Recovery) strategy by backing up and restoring data, and ensuring application consistency.  \n\nApplication-Aware Protection:  \nDPM can back up and recover Microsoft applications like SQL Server, Exchange, and SharePoint, ensuring data consistency.  \n\nVirtual Machine Backup:  \nDPM supports backing up Hyper-V and VMware virtual machines, including entire VMs or individual application components.  \n\nBox 2: An Azure Backup vault  \nFor blob1  \n\n* An Azure Backup vault  \nTo backup an Azure Blob Storage container, you can use Azure Backup to perform operational or vaulted backups. For operational backups, you can enable the backup within the storage account's data protection settings, associating a backup vault and policy. For vaulted backups, you can retain data for up to 10 years and restore it to a different storage account.  \n\nPurpose:  \nDesigned for Azure Backup, offering streamlined backup management for specific workloads.  \n\nSupports:  \nAzure Backup for newer workloads like Azure Blob, Azure Database for PostgreSQL, and other workloads that Azure Backup will support.  \n\nIncorrect:  \n* A Recovery Services vault  \nPurpose:  \nProvides a central hub for managing both backup and disaster recovery for various workloads.  \n\nSupports:  \nAzure Backup (VMs, SQL, SAP HANA, Files), and Azure Site Recovery (replication and failover of VMs and workloads).  \n\nReference:  \nhttps://learn.microsoft.com/en-us/system-center/dpm/dpm-overview",
+  "enriched": {
+    "title": "Backup de VMs e Blob Storage no Azure com DPM e Azure Backup Vault",
+    "summary": "A aula aborda o uso do Microsoft System Center Data Protection Manager (DPM) para backups de máquinas virtuais e a utilização do Azure Backup Vault para proteger dados de Blob Storage. Apresenta cenários práticos, conceitos fundamentais e melhores práticas para implementar estratégias de backup e recuperação no Azure.",
+    "topics": [
+      {
+        "title": "Microsoft System Center Data Protection Manager (DPM)",
+        "description": "Ferramenta para backup e recuperação centralizada de workloads empresariais no Windows.",
+        "category": "Backup",
+        "importance": "high"
+      },
+      {
+        "title": "Azure Backup Vault",
+        "description": "Solução para realizar backup operacional e longo prazo de dados no Azure, como Blob Storage.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Recovery Services Vault",
+        "description": "Central para gerenciamento de backups e recuperação de desastres de múltiplos workloads.",
+        "category": "Backup",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Microsoft System Center Data Protection Manager (DPM)",
+        "definition": "Software para backup e recuperação de workloads críticos, garantindo consistência de aplicações e proteção de VMs.",
+        "examples": [
+          "Backup de SQL Server com consistência de aplicação",
+          "Recuperação de VMs Hyper-V"
+        ],
+        "relatedConcepts": [
+          "Azure Site Recovery",
+          "Backup operacional"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Azure Backup Vault",
+        "definition": "Recurso do Azure para armazenar backups de dados, incluindo retenção de longo prazo e restauração em diferentes contas.",
+        "examples": [
+          "Backup de Blob Storage operacional",
+          "Retenção de dados por 10 anos"
+        ],
+        "relatedConcepts": [
+          "Recovery Services Vault",
+          "Data Protection"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Recovery Services Vault",
+        "definition": "Central no Azure que gerencia backups e recuperação de desastres para múltiplos workloads.",
+        "examples": [
+          "Gerenciamento de backups de VMs e SQL",
+          "Configuração de Azure Site Recovery"
+        ],
+        "relatedConcepts": [
+          "Azure Backup Vault",
+          "Azure Site Recovery"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Backup operacional",
+        "definition": "Método de backup no Azure para proteger dados e realizar restaurações rápidas de curto prazo.",
+        "examples": [
+          "Backup habilitado em uma conta de storage",
+          "Restauração de blobs específicos"
+        ],
+        "relatedConcepts": [
+          "Vaulted Backup",
+          "Azure Blob Storage"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Vaulted Backup",
+        "definition": "Backup de longo prazo no Azure, com retenção de dados por até 10 anos.",
+        "examples": [
+          "Restauração de dados em conta separada",
+          "Configuração de políticas de retenção"
+        ],
+        "relatedConcepts": [
+          "Backup operacional",
+          "Azure Backup Vault"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Backup de uma VM com Microsoft DPM",
+        "problem": "Uma empresa precisa garantir backups consistentes de uma VM que hospeda um banco de dados SQL.",
+        "solution": "1. Instalar o Microsoft DPM no servidor. 2. Configurar políticas de backup específicas para a VM e o SQL Server. 3. Agendar backups regulares para a proteção contínua.",
+        "explanation": "O DPM garante consistência de aplicação e pode restaurar tanto a VM inteira quanto componentes individuais, como bancos de dados."
+      },
+      {
+        "scenario": "Configuração de backup operacional para Blob Storage",
+        "problem": "Proteger dados de um container de Blob Storage contra exclusões acidentais.",
+        "solution": "1. Habilitar backups operacionais nas configurações de 'Data Protection' da conta de Storage. 2. Associar um Azure Backup Vault e configurar uma política de retenção adequada.",
+        "explanation": "O backup operacional permite recuperação de curto prazo e é integrado diretamente ao Azure Backup Vault."
+      },
+      {
+        "scenario": "Retenção de longo prazo para Blob Storage",
+        "problem": "Uma empresa precisa manter backups de containers de Blob Storage por até 10 anos.",
+        "solution": "Configurar um Azure Backup Vault com políticas de retenção de longo prazo e realizar backups periódicos.",
+        "explanation": "O Azure Backup Vault oferece suporte para retenção estendida, permitindo atender requisitos de conformidade."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual a principal diferença entre Azure Backup Vault e Recovery Services Vault?",
+        "answer": "Azure Backup Vault é focado em workloads mais novos como Blob Storage, enquanto o Recovery Services Vault suporta workloads tradicionais como VMs e recuperação de desastres.",
+        "hint": "Considere os tipos de workloads suportados por cada vault.",
+        "topic": "Azure Backup Vault"
+      },
+      {
+        "type": "concept",
+        "question": "O que é um backup operacional no Azure?",
+        "answer": "É um método de backup que protege dados armazenados no Azure, como blobs, permitindo restaurações de curto prazo.",
+        "hint": "Pense em backups rápidos e recentes.",
+        "topic": "Backup operacional"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você configuraria um backup de longo prazo para arquivos em Blob Storage?",
+        "answer": "Configure um Azure Backup Vault com políticas de retenção de longo prazo e associe o container de Blob Storage ao vault.",
+        "hint": "Use um vault que suporte retenção de longo prazo.",
+        "topic": "Azure Backup Vault"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Por que um backup de Blob Storage pode falhar ao restaurar para outra conta?",
+        "answer": "A conta de destino pode não ter permissões adequadas ou não estar no mesmo tenant.",
+        "hint": "Verifique permissões e configurações de tenant.",
+        "topic": "Blob Storage"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando do Azure CLI você usaria para listar backups em um Azure Backup Vault?",
+        "answer": "az backup item list --resource-group <resource-group> --vault-name <vault-name>",
+        "hint": "Use o comando 'az backup item'.",
+        "topic": "Azure CLI"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Diferencie os casos de uso entre Azure Backup Vault e Recovery Services Vault.",
+        "relevance": "Essa distinção é frequentemente cobrada em questões sobre estratégias de backup no Azure.",
+        "topic": "Azure Backup Vault"
+      },
+      {
+        "tip": "Saiba como configurar backups operacionais em contas de Blob Storage.",
+        "relevance": "É um tópico recente e relevante para a proteção de dados no Azure.",
+        "topic": "Backup operacional"
+      },
+      {
+        "tip": "Familiarize-se com as políticas de retenção de longo prazo no Azure Backup Vault.",
+        "relevance": "Essas políticas são frequentemente cobradas para avaliar conformidade e retenção de dados.",
+        "topic": "Vaulted Backup"
+      }
+    ],
+    "references": [
+      {
+        "title": "Visão geral do Microsoft System Center Data Protection Manager (DPM)",
+        "url": "https://learn.microsoft.com/en-us/system-center/dpm/dpm-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Visão geral do Azure Backup Vault",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-05-03T19:09:32.224Z",
+  "updatedAt": "2026-05-03T19:09:59.147Z",
+  "status": "enriched",
+  "enrichedAt": "2026-05-03T19:09:59.145Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

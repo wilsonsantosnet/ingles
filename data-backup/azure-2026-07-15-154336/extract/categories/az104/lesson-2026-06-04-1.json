@@ -1,0 +1,251 @@
+{
+  "id": "lesson-2026-06-04-1",
+  "date": "2026-06-04",
+  "title": "Backup e Restauração no Azure Recovery Services Vault",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the resources shown in the following table.\n\n| Name   | Type                     | Resource group | Location |\n|--------|--------------------------|----------------|----------|\n| Vault1 | Recovery services vault | RG1            | East US  |\n| VM1    | Virtual machine          | RG1            | East US  |\n| VM2    | Virtual machine          | RG1            | West US  |\n\nAll virtual machines run Windows Server 2016.\n\nOn VM1, you back up a folder named Folder1 as shown in the following exhibit.\n\n---\n\n```\nSchedule Backup Wizard\n\nSpecify Backup Schedule (Files and Folders)\n\nGetting started  \nSelect Items to Backup  \nSpecify Backup Schedule...  \nSelect Retention Policy...  \nChoose Initial Backup T...  \nConfirmation  \nModify Backup Progress  \n\nDefine a schedule when you want to create a backup copy for selected files and folders  \n\nSchedule a backup every  \n○ Day   ○ Week  \n\nAt following times (Maximum allowed is three times a day)  \n[ 6:00 AM ▼ ]   [ 10:00 PM ▼ ]   [ None ▼ ]  \n\nYou plan to restore the backup to a different virtual machine.  \n\nYou need to restore the backup to VM2.  \n\nWhat should you do first?  \n\n○ A  From VM1, install the Windows Server Backup feature.  \n○ B  From VM2, install the Microsoft Azure Recovery Services Agent.  \n○ C  From VM1, install the Microsoft Azure Recovery Services Agent.  \n○ D  From VM2, install the Windows Server Backup feature.  \n```",
+  "enriched": {
+    "title": "Backup e Restauração no Azure Recovery Services Vault",
+    "summary": "A aula aborda como configurar backups no Azure Recovery Services Vault, incluindo agendamento e retenção, além de como restaurar backups para máquinas virtuais diferentes. O foco está em cenários práticos de recuperação de dados.",
+    "topics": [
+      {
+        "title": "Azure Recovery Services Vault",
+        "description": "Serviço usado para proteger dados e máquinas virtuais por meio de backup e recuperação no Azure.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Configuração de backup no Azure",
+        "description": "Processo de configurar agendamentos, políticas de retenção e backups iniciais para dados e VMs.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Restauração de backups em VMs",
+        "description": "Técnicas para restaurar backups em máquinas virtuais diferentes no Azure.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Microsoft Azure Recovery Services Agent",
+        "description": "Agente utilizado para realizar backups e restaurações no Azure Recovery Services Vault.",
+        "category": "Storage",
+        "importance": "medium"
+      },
+      {
+        "title": "Windows Server Backup",
+        "description": "Ferramenta nativa do Windows Server para realizar backups e restaurações locais.",
+        "category": "Storage",
+        "importance": "low"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure Recovery Services Vault",
+        "definition": "Recurso do Azure que permite o gerenciamento de backups e recuperação de desastres para dados e máquinas virtuais.",
+        "examples": [
+          "Backup de uma pasta em uma VM",
+          "Restauração de uma VM em outro local"
+        ],
+        "relatedConcepts": [
+          "Backup Policy",
+          "Retention Policy"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Microsoft Azure Recovery Services Agent",
+        "definition": "Agente instalado em máquinas virtuais ou servidores para gerenciar backups no Azure Recovery Services Vault.",
+        "examples": [
+          "Instalação em uma VM para backup de arquivos",
+          "Restauração de dados para outra VM"
+        ],
+        "relatedConcepts": [
+          "Azure Recovery Services Vault",
+          "Windows Server Backup"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Windows Server Backup",
+        "definition": "Ferramenta de backup integrada ao Windows Server para criar e restaurar cópias de segurança localmente ou remotamente.",
+        "examples": [
+          "Backup de arquivos locais",
+          "Restauração de arquivos para outro servidor"
+        ],
+        "relatedConcepts": [
+          "Azure Recovery Services Vault",
+          "Microsoft Azure Recovery Services Agent"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Retention Policy",
+        "definition": "Configuração que define por quanto tempo os backups devem ser mantidos no Azure Recovery Services Vault.",
+        "examples": [
+          "Manter backups por 30 dias",
+          "Configurar retenção semanal"
+        ],
+        "relatedConcepts": [
+          "Backup Policy",
+          "Azure Recovery Services Vault"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Backup Policy",
+        "definition": "Conjunto de regras que definem o agendamento e a frequência dos backups.",
+        "examples": [
+          "Backup diário às 6:00 AM",
+          "Backup semanal às 10:00 PM"
+        ],
+        "relatedConcepts": [
+          "Retention Policy",
+          "Azure Recovery Services Vault"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Restaurar backup de uma VM para outra",
+        "problem": "Você precisa restaurar os dados de uma pasta de uma VM para outra em uma região diferente.",
+        "solution": "1. Instale o Microsoft Azure Recovery Services Agent na VM de destino (VM2). 2. Conecte o agente ao Recovery Services Vault. 3. Localize o backup de Folder1 no Recovery Services Vault. 4. Restaure os dados na VM2.",
+        "explanation": "O agente permite que a VM de destino se conecte ao Recovery Services Vault, acesse os backups disponíveis e realize a restauração de dados."
+      },
+      {
+        "scenario": "Configuração de backup para uma VM",
+        "problem": "Configure um backup diário para uma pasta específica em uma máquina virtual usando o Azure Recovery Services Vault.",
+        "solution": "1. Instale o Microsoft Azure Recovery Services Agent na VM. 2. No Azure Portal, configure o Recovery Services Vault. 3. Defina a política de backup com frequência diária e horários específicos. 4. Inicie o backup inicial da pasta.",
+        "explanation": "O Azure Recovery Services Vault gerencia a política de backup enquanto o agente realiza as operações de backup na VM."
+      },
+      {
+        "scenario": "Configuração de políticas de retenção",
+        "problem": "Você precisa configurar uma política para manter backups por 30 dias.",
+        "solution": "1. Acesse o Recovery Services Vault no Azure Portal. 2. Edite ou crie uma nova política de backup. 3. Configure a retenção de 30 dias para os backups diários. 4. Salve a política e aplique-a ao backup desejado.",
+        "explanation": "A política de retenção garante que os backups sejam mantidos pelo período necessário, otimizando o uso de armazenamento."
+      },
+      {
+        "scenario": "Instalação do Microsoft Azure Recovery Services Agent",
+        "problem": "Uma VM precisa do agente instalado para realizar backups no Azure.",
+        "solution": "1. Baixe o agente do Recovery Services Vault no Azure Portal. 2. Instale o agente na VM. 3. Configure a chave de registro do Vault. 4. Inicie o serviço de backup na VM.",
+        "explanation": "O agente conecta a VM ao Vault para gerenciar backups e restaurações."
+      },
+      {
+        "scenario": "Configuração do Windows Server Backup",
+        "problem": "Utilizar o Windows Server Backup para realizar backups locais antes de configurar o Azure Recovery Services Vault.",
+        "solution": "1. Instale a feature Windows Server Backup na VM. 2. Configure um agendamento de backup local. 3. Realize o backup da pasta desejada. 4. Valide o backup local antes de migrar para o Azure.",
+        "explanation": "O Windows Server Backup é útil para backups locais rápidos e pode complementar os backups no Azure."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "scenario-based",
+        "question": "Como restaurar um backup de uma VM para outra em uma região diferente?",
+        "answer": "Instalar o Microsoft Azure Recovery Services Agent na VM de destino, conectar ao Vault e realizar a restauração.",
+        "hint": "Verifique se o agente está instalado na VM de destino.",
+        "topic": "Restauração de backups em VMs"
+      },
+      {
+        "type": "concept",
+        "question": "O que é uma política de retenção no Azure Recovery Services Vault?",
+        "answer": "É uma configuração que define por quanto tempo os backups devem ser mantidos.",
+        "hint": "Pense no tempo de armazenamento dos backups.",
+        "topic": "Retention Policy"
+      },
+      {
+        "type": "command",
+        "question": "Qual ferramenta você deve instalar para realizar backups no Azure?",
+        "answer": "Microsoft Azure Recovery Services Agent.",
+        "hint": "É um agente necessário para conectar ao Vault.",
+        "topic": "Microsoft Azure Recovery Services Agent"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "O que fazer se a VM de destino não estiver listando backups no Recovery Services Vault?",
+        "answer": "Verifique se o Microsoft Azure Recovery Services Agent está instalado e configurado corretamente.",
+        "hint": "Confirme a instalação e a chave de registro do Vault.",
+        "topic": "Microsoft Azure Recovery Services Agent"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como configurar um backup diário às 6:00 AM e 10:00 PM para uma pasta?",
+        "answer": "Configure a política de backup no Vault com os horários desejados.",
+        "hint": "Acesse as configurações do Vault no Azure Portal.",
+        "topic": "Configuração de backup no Azure"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre verifique se o Microsoft Azure Recovery Services Agent está instalado antes de iniciar backups ou restaurações.",
+        "relevance": "Essa é uma etapa crítica para conectar a VM ao Vault.",
+        "topic": "Microsoft Azure Recovery Services Agent"
+      },
+      {
+        "tip": "Entenda a diferença entre políticas de backup e políticas de retenção.",
+        "relevance": "Perguntas de prova frequentemente confundem esses dois conceitos.",
+        "topic": "Configuração de backup no Azure"
+      },
+      {
+        "tip": "Saiba como configurar o Recovery Services Vault no Azure Portal.",
+        "relevance": "A configuração do Vault é essencial para backups no Azure.",
+        "topic": "Azure Recovery Services Vault"
+      },
+      {
+        "tip": "Lembre-se de que o Recovery Services Vault pode gerenciar backups de múltiplas VMs.",
+        "relevance": "Isso é frequentemente abordado em cenários práticos na prova.",
+        "topic": "Azure Recovery Services Vault"
+      },
+      {
+        "tip": "O Windows Server Backup não é necessário para backups no Azure, mas pode ser útil para backups locais.",
+        "relevance": "Diferenciar o uso de ferramentas locais e no Azure é importante.",
+        "topic": "Windows Server Backup"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial do Azure Recovery Services Vault",
+        "url": "https://learn.microsoft.com/azure/backup/",
+        "type": "documentation"
+      },
+      {
+        "title": "Como instalar o Microsoft Azure Recovery Services Agent",
+        "url": "https://learn.microsoft.com/azure/backup/backup-configure-vault",
+        "type": "tutorial"
+      },
+      {
+        "title": "Configuração de políticas de retenção no Azure",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-retention",
+        "type": "reference"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial do Azure Recovery Services Vault",
+        "url": "https://learn.microsoft.com/azure/backup/",
+        "type": "documentation"
+      },
+      {
+        "title": "Como instalar o Microsoft Azure Recovery Services Agent",
+        "url": "https://learn.microsoft.com/azure/backup/backup-configure-vault",
+        "type": "tutorial"
+      },
+      {
+        "title": "Configuração de políticas de retenção no Azure",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-retention",
+        "type": "reference"
+      }
+    ]
+  },
+  "createdAt": "2026-06-04T20:54:00.226Z",
+  "updatedAt": "2026-06-04T20:54:42.452Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-04T20:54:42.450Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

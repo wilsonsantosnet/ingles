@@ -1,0 +1,191 @@
+{
+  "id": "lesson-2026-06-25-3",
+  "date": "2026-06-25",
+  "title": "Gerenciamento de Alertas no Azure Monitor",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the alerts shown in the following exhibit.\n\nSearch  \nAdd filter  \nMore (4)  \n\nTotal alerts  \nCritical: 0  \nError: 0  \nWarning: 0  \nInformational: 0  \nVerbose: 4  \n\nNo grouping  \n\nName ↑↓  \nSeverity ↑↓  \nAlert condition ↑↓  \nUser response ↑↓  \nFired time ↑↓  \n\nAlert2  \n4 - Verbose  \nFired  \nNew  \n4/29/2022, 2:09 PM  \n\nAlert2  \n4 - Verbose  \nFired  \nNew  \n4/29/2022, 2:09 PM  \n\nAlert1  \n4 - Verbose  \nFired  \nClosed  \n4/29/2022, 2:04 PM  \n\nAlert1  \n4 - Verbose  \nFired  \nClosed  \n4/29/2022, 2:04 PM  \n\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.  \n\nNOTE: Each correct selection is worth one point.\n\n---\n\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.\n\nNOTE: Each correct selection is worth one point.\n\nAnswer Area\n\nFor Alert1, User response [answer choice].\n- cannot be changed\n- can be changed to New only\n- can be changed to Acknowledged only\n- can be changed to New or Acknowledged\n\nFor Alert2, User response [answer choice].\n- cannot be changed\n- can be changed to Acknowledged only\n- can be changed to closed only\n- can be changed to Acknowledged or Closed",
+  "enriched": {
+    "title": "Gerenciamento de Alertas no Azure Monitor",
+    "summary": "A aula aborda o uso do Azure Monitor para gerenciar alertas, incluindo a análise de condições, severidade e estados de resposta. Foca em como modificar respostas de alertas no contexto de cenários práticos.",
+    "topics": [
+      {
+        "title": "Azure Monitor Alerts",
+        "description": "Configuração, visualização e gerenciamento de alertas no Azure Monitor.",
+        "category": "Monitoring",
+        "importance": "high"
+      },
+      {
+        "title": "User Response em Alertas",
+        "description": "Estados de resposta e modificações possíveis para alertas no Azure Monitor.",
+        "category": "Monitoring",
+        "importance": "high"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Azure Monitor",
+        "definition": "Serviço de monitoramento que fornece visibilidade de recursos e aplicativos no Azure.",
+        "examples": [
+          "Monitoramento de métricas de VMs",
+          "Configuração de alertas para recursos"
+        ],
+        "relatedConcepts": [
+          "Log Analytics",
+          "Application Insights"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Alert Severity",
+        "definition": "Nível de severidade associado a um alerta (Critical, Error, Warning, Informational, Verbose).",
+        "examples": [
+          "Um alerta 'Critical' para falhas em VMs",
+          "Um alerta 'Verbose' para logs informativos"
+        ],
+        "relatedConcepts": [
+          "Alert Rules",
+          "Azure Activity Logs"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "User Response",
+        "definition": "Estado de resposta do usuário a um alerta; pode ser New, Acknowledged ou Closed.",
+        "examples": [
+          "Alterar um alerta de 'New' para 'Acknowledged'",
+          "Fechar um alerta como 'Closed'"
+        ],
+        "relatedConcepts": [
+          "Alert Lifecycle",
+          "Azure Monitor Alerts"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Alteração de estado de User Response para Alert1",
+        "problem": "Um alerta (Alert1) foi fechado e o estado de User Response precisa ser alterado para refletir uma nova ação.",
+        "solution": "Acesse o Azure Monitor, localize Alert1 e altere o estado de User Response para 'New' ou 'Acknowledged'.",
+        "explanation": "O estado de um alerta fechado pode ser reaberto para indicar que ainda requer atenção ou ações adicionais."
+      },
+      {
+        "scenario": "Gerenciamento de Alert2",
+        "problem": "O alerta Alert2 está no estado 'New' e precisa ser atualizado para 'Acknowledged' ou 'Closed'.",
+        "solution": "No painel do Azure Monitor, selecione Alert2 e altere o estado de User Response para 'Acknowledged' ou 'Closed'.",
+        "explanation": "Modificar o estado de User Response ajuda a rastrear o progresso no gerenciamento de alertas."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Quais são os possíveis estados de User Response para alertas no Azure Monitor?",
+        "answer": "New, Acknowledged, Closed",
+        "hint": "Considere o ciclo de vida de um alerta.",
+        "topic": "User Response em Alertas"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você alteraria o estado de User Response de um alerta fechado no Azure Monitor?",
+        "answer": "Acesse o alerta no Azure Monitor e altere o User Response para 'New' ou 'Acknowledged'.",
+        "hint": "Alertas fechados podem ser reabertos para indicar ações pendentes.",
+        "topic": "User Response em Alertas"
+      },
+      {
+        "type": "concept",
+        "question": "O que caracteriza um alerta 'Verbose' no Azure Monitor?",
+        "answer": "Um alerta utilizado para fins informativos, com menor prioridade.",
+        "hint": "Pense na severidade do alerta.",
+        "topic": "Azure Monitor Alerts"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Um alerta importante foi configurado, mas não está disparando. O que verificar?",
+        "answer": "Verifique as condições da regra de alerta e os logs do Azure Monitor para garantir que os critérios sejam atendidos.",
+        "hint": "Considere os critérios configurados na regra de alerta.",
+        "topic": "Azure Monitor Alerts"
+      },
+      {
+        "type": "command",
+        "question": "Como visualizar alertas no Azure Monitor usando o Portal?",
+        "answer": "Acesse o Azure Monitor no Portal do Azure e vá para a seção 'Alerts'.",
+        "hint": "Use o painel de Monitoramento do Azure.",
+        "topic": "Azure Monitor Alerts"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda os estados de User Response (New, Acknowledged e Closed) e suas interações.",
+        "relevance": "Questões de certificação podem testar os estados possíveis e como eles se alteram.",
+        "topic": "User Response em Alertas"
+      },
+      {
+        "tip": "Conheça a diferença entre severidades de alerta (Critical, Error, Warning, Informational, Verbose).",
+        "relevance": "A severidade é frequentemente usada para priorizar ações em ambientes reais e em provas.",
+        "topic": "Azure Monitor Alerts"
+      },
+      {
+        "tip": "Aprenda a navegar pelo Azure Monitor e localizar alertas rapidamente.",
+        "relevance": "A navegação no portal é um tópico essencial para questões práticas.",
+        "topic": "Azure Monitor Alerts"
+      }
+    ],
+    "references": [
+      {
+        "title": "Documentação oficial do Azure Monitor",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/",
+        "type": "documentation"
+      },
+      {
+        "title": "Gerenciamento de alertas no Azure Monitor",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Estados de User Response em alertas",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-metric-overview",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Documentação oficial do Azure Monitor",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/",
+        "type": "documentation"
+      },
+      {
+        "title": "Gerenciamento de alertas no Azure Monitor",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Estados de User Response em alertas",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-metric-overview",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-06-25T13:39:33.215Z",
+  "updatedAt": "2026-06-25T13:46:45.909Z",
+  "status": "enriched",
+  "enrichedAt": "2026-06-25T13:40:23.216Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1782395205906",
+      "generatedContent": {
+        "title": "Transições não permitidas entre estados de User Response no Azure Monitor",
+        "type": "explanation",
+        "content": "No Azure Monitor, as transições de estados de User Response seguem um ciclo de vida lógico, mas existem restrições. Um alerta no estado 'Closed' não pode ser alterado diretamente para 'Acknowledged'. Isso ocorre porque o estado 'Acknowledged' pressupõe que o alerta ainda está em andamento, enquanto 'Closed' encerra o ciclo do alerta. Da mesma forma, um alerta em 'Acknowledged' não pode ser alterado diretamente para 'New', pois isso representaria um retrocesso no gerenciamento do alerta. Para alterar um estado, é necessário seguir as transições permitidas, como de 'Closed' para 'New', ou de 'New' para 'Acknowledged'. Essas regras garantem uma rastreabilidade adequada e evitam inconsistências no gerenciamento de alertas."
+      },
+      "generatedAt": "2026-06-25T13:46:45.906Z",
+      "userPrompt": "Sabendo que os possíveis estados de User Response para alertas no Azure Monitor são  New, Acknowledged, Closed existe alguma transição que não é permitida?"
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+{
+  "id": "lesson-2026-03-20-1774033318118",
+  "date": "2026-03-20",
+  "title": "Endpoint policies",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "```\nExplanation:\n\nAnswer Area\n\nStatements                              Yes    No\nPolicy1 can be applied to Subnet3.       ⬜      ⬜\nOnly storage1 and storage2 can be        ⬜      ⬜\naccessed from VNet2.                     \nOnly storage2 can be accessed from       ⬜      ⬜\nVNet3.                                   \n\nBox 1: Yes\nPolicy1 is a service endpoint policy in the South Central US Azure region.\nSubnet3 is in VNET3 with a Microsoft.Storage endpoint.\nVNet3 is in the South Central US region.\n\nNote: Virtual network service endpoint policies for Azure Storage\nVirtual Network service endpoint policies allow you to filter egress virtual network traffic to Azure Storage accounts over service endpoint, and allow data exfiltration to only specific Azure Storage accounts. Endpoint policies provide granular access control for virtual network traffic to Azure Storage when connecting over service endpoint.\n\nBox 2: No\nVNet2 is in the Southeast Asia region.\nStorage1 is in West Europe and is StorageV2.\nStorage2 is in South Central US and is BlobStorage.\nStorage3 is in Southeast Asia and is StorageV2.\n\nBox 3: Yes\nVNet3 is in the South Central US region.\nStorage2 is also in South Central US.\n\nReference:\nhttps://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies-overview\n```",
+  "enriched": {
+    "summary": "A aula aborda o uso de políticas de endpoint de serviço em redes virtuais do Azure para controlar o tráfego de saída para contas de armazenamento específicas. Também explora cenários práticos envolvendo a configuração de VNets e regiões do Azure.",
+    "mainTopics": [
+      "Virtual Network Service Endpoint Policies",
+      "Azure Regions and Resource Placement",
+      "Azure Storage Account Types"
+    ],
+    "keywords": [],
+    "topics": [
+      {
+        "title": "Virtual Network Service Endpoint Policies",
+        "description": "Políticas que permitem restringir o tráfego de saída das redes virtuais do Azure para contas de armazenamento específicas por meio de endpoints de serviço.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Azure Regions and Resource Placement",
+        "description": "A importância de alinhar regiões dos recursos do Azure para garantir conectividade e desempenho eficientes.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Azure Storage Account Types",
+        "description": "Diferentes tipos de contas de armazenamento no Azure, como StorageV2 e BlobStorage, e suas características.",
+        "category": "Storage",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Service Endpoint Policy",
+        "definition": "Uma política que permite filtrar o tráfego de saída de uma VNet para contas de armazenamento específicas usando endpoints de serviço.",
+        "examples": [
+          "Permitir acesso a apenas uma conta de armazenamento específica em uma VNet",
+          "Restringir a exfiltração de dados de uma VNet para múltiplas contas de armazenamento"
+        ],
+        "relatedConcepts": [
+          "Virtual Network",
+          "Azure Storage"
+        ],
+        "difficulty": "intermediate",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-20",
+          "lastReview": "2026-03-20",
+          "reviews": [
+            {
+              "date": "2026-03-20T19:20:45.802Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:00.123Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:20.993Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:35.619Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:56.644Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:22:23.306Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:23:44.911Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:03.629Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:19.368Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:31.682Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:52.230Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:07.772Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:20.041Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "concept": "Azure Regions",
+        "definition": "Áreas geográficas específicas onde os datacenters do Azure estão localizados, permitindo o provisionamento de recursos mais próximos ao usuário final.",
+        "examples": [
+          "South Central US",
+          "Southeast Asia"
+        ],
+        "relatedConcepts": [
+          "Latency",
+          "Resource Placement"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure Storage Account Types",
+        "definition": "Tipos de contas de armazenamento no Azure, como StorageV2 (Geral) e BlobStorage, cada uma com diferentes capacidades e casos de uso.",
+        "examples": [
+          "StorageV2 para armazenamento de objetos e blobs",
+          "BlobStorage para armazenamento somente de blobs"
+        ],
+        "relatedConcepts": [
+          "Blob Storage",
+          "Data Lake"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Subnet",
+        "definition": "Uma divisão lógica de uma rede maior no Azure, usada para isolar e organizar recursos.",
+        "examples": [
+          "Configurar uma subnet para isolar máquinas virtuais",
+          "Usar uma subnet para aplicar políticas de segurança específicas"
+        ],
+        "relatedConcepts": [
+          "VNet",
+          "Service Endpoint"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Data Exfiltration",
+        "definition": "Transferência não autorizada de dados para fora de uma rede segura.",
+        "examples": [
+          "Configurar políticas de endpoint para prevenir exfiltração de dados",
+          "Monitorar logs para detectar tentativas de exfiltração"
+        ],
+        "relatedConcepts": [
+          "Service Endpoint Policy",
+          "Data Security"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Aplicação de políticas de endpoint de serviço",
+        "problem": "Restringir o acesso de uma VNet para apenas uma conta de armazenamento específica no Azure.",
+        "solution": "Crie uma política de endpoint de serviço para a VNet e configure-a para permitir apenas o acesso à conta de armazenamento desejada.",
+        "explanation": "As políticas de endpoint de serviço permitem que você controle o tráfego de saída de sua VNet, garantindo que os dados só possam ser enviados para contas de armazenamento especificadas.",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-20",
+          "lastReview": "2026-03-20",
+          "reviews": [
+            {
+              "date": "2026-03-20T19:20:45.802Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:00.123Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:20.993Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:35.619Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:56.644Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:22:23.306Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:23:44.912Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:03.629Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:19.368Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:31.682Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:52.230Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:07.772Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:20.041Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "scenario": "Configuração de VNets em diferentes regiões",
+        "problem": "Os recursos em diferentes VNets não conseguem se comunicar devido à localização em regiões distintas.",
+        "solution": "Certifique-se de que os recursos estão na mesma região ou configure peering de rede entre as VNets.",
+        "explanation": "VNets em regiões diferentes exigem configurações específicas, como peering, para habilitar a conectividade entre elas."
+      },
+      {
+        "scenario": "Restringir acesso de VNets a contas de armazenamento",
+        "problem": "Uma VNet está acessando múltiplas contas de armazenamento, mas você deseja restringir o acesso a apenas uma delas.",
+        "solution": "Implemente uma política de endpoint de serviço para especificar a conta de armazenamento permitida.",
+        "explanation": "As políticas de endpoint de serviço permitem especificar quais contas de armazenamento podem ser acessadas de uma VNet, restringindo a exfiltração de dados."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "O que são políticas de endpoint de serviço no Azure e qual é sua principal utilidade?",
+        "answer": "São políticas que permitem filtrar o tráfego de saída de uma VNet para contas de armazenamento específicas, prevenindo a exfiltração de dados.",
+        "hint": "Pense em como restringir o acesso a contas de armazenamento específicas.",
+        "topic": "Virtual Network Service Endpoint Policies",
+        "spacedRepetition": {
+          "easeFactor": 1.3,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-20",
+          "lastReview": "2026-03-20",
+          "reviews": [
+            {
+              "date": "2026-03-20T19:20:45.802Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:00.123Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:20.993Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:35.619Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:21:56.644Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:22:23.306Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:23:44.912Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:03.629Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:19.368Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:31.682Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:24:52.230Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:07.772Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-03-20T19:25:20.041Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você configuraria uma política de endpoint para permitir acesso a apenas uma conta de armazenamento na mesma região de uma VNet?",
+        "answer": "Crie uma política de endpoint, defina a conta de armazenamento permitida e associe a política à VNet.",
+        "hint": "Verifique a documentação do Azure sobre políticas de endpoint.",
+        "topic": "Virtual Network Service Endpoint Policies"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Uma VNet em Southeast Asia não consegue acessar uma conta de armazenamento em South Central US. O que está errado?",
+        "answer": "Os recursos estão em regiões diferentes e não têm conectividade configurada.",
+        "hint": "Verifique as regiões dos recursos e considere usar peering de VNet.",
+        "topic": "Azure Regions and Resource Placement"
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a diferença entre os tipos de conta de armazenamento StorageV2 e BlobStorage?",
+        "answer": "StorageV2 suporta múltiplos serviços de armazenamento (blobs, filas, tabelas), enquanto BlobStorage é específico para armazenamento de blobs.",
+        "hint": "Foque nos serviços suportados por cada tipo de conta.",
+        "topic": "Azure Storage Account Types"
+      },
+      {
+        "type": "command",
+        "question": "Qual comando você utilizaria para criar uma política de endpoint de serviço no Azure CLI?",
+        "answer": "az network service-endpoint-policy create --name <policy-name> --resource-group <resource-group> --location <location>",
+        "hint": "Consulte a documentação da CLI do Azure para comandos de rede.",
+        "topic": "Virtual Network Service Endpoint Policies"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Certifique-se de compreender as diferenças entre regiões e como elas afetam a conectividade de rede.",
+        "relevance": "As questões de certificação frequentemente testam o entendimento de como a localização dos recursos afeta a conectividade.",
+        "topic": "Azure Regions and Resource Placement"
+      },
+      {
+        "tip": "Saiba como configurar políticas de endpoint de serviço para restringir acessos de VNets a contas de armazenamento específicas.",
+        "relevance": "Este é um tópico comum em exames, especialmente em questões relacionadas à segurança de dados.",
+        "topic": "Virtual Network Service Endpoint Policies"
+      },
+      {
+        "tip": "Fique atento às diferenças entre os tipos de contas de armazenamento (StorageV2, BlobStorage) e seus casos de uso.",
+        "relevance": "Compreender as características de cada tipo de conta é essencial para responder a perguntas sobre armazenamento no Azure.",
+        "topic": "Azure Storage Account Types"
+      }
+    ],
+    "resources": [],
+    "practiceQuestions": [
+      {
+        "type": "concept",
+        "question": "O que são políticas de endpoint de serviço no Azure e qual é sua principal utilidade?",
+        "answer": "São políticas que permitem filtrar o tráfego de saída de uma VNet para contas de armazenamento específicas, prevenindo a exfiltração de dados.",
+        "hint": "Pense em como restringir o acesso a contas de armazenamento específicas.",
+        "topic": "Virtual Network Service Endpoint Policies",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        },
+        "id": "question-lesson-2026-03-20-1774033318118-0"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Como você configuraria uma política de endpoint para permitir acesso a apenas uma conta de armazenamento na mesma região de uma VNet?",
+        "answer": "Crie uma política de endpoint, defina a conta de armazenamento permitida e associe a política à VNet.",
+        "hint": "Verifique a documentação do Azure sobre políticas de endpoint.",
+        "topic": "Virtual Network Service Endpoint Policies",
+        "id": "question-lesson-2026-03-20-1774033318118-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Uma VNet em Southeast Asia não consegue acessar uma conta de armazenamento em South Central US. O que está errado?",
+        "answer": "Os recursos estão em regiões diferentes e não têm conectividade configurada.",
+        "hint": "Verifique as regiões dos recursos e considere usar peering de VNet.",
+        "topic": "Azure Regions and Resource Placement",
+        "id": "question-lesson-2026-03-20-1774033318118-2",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "concept",
+        "question": "Qual é a diferença entre os tipos de conta de armazenamento StorageV2 e BlobStorage?",
+        "answer": "StorageV2 suporta múltiplos serviços de armazenamento (blobs, filas, tabelas), enquanto BlobStorage é específico para armazenamento de blobs.",
+        "hint": "Foque nos serviços suportados por cada tipo de conta.",
+        "topic": "Azure Storage Account Types",
+        "id": "question-lesson-2026-03-20-1774033318118-3",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "type": "command",
+        "question": "Qual comando você utilizaria para criar uma política de endpoint de serviço no Azure CLI?",
+        "answer": "az network service-endpoint-policy create --name <policy-name> --resource-group <resource-group> --location <location>",
+        "hint": "Consulte a documentação da CLI do Azure para comandos de rede.",
+        "topic": "Virtual Network Service Endpoint Policies",
+        "id": "question-lesson-2026-03-20-1774033318118-4",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-03-23",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ]
+  },
+  "createdAt": "2026-03-20T19:01:58.118Z",
+  "updatedAt": "2026-03-23T14:01:35.237Z",
+  "status": "enriched",
+  "enrichedAt": "2026-03-20T19:09:03.395Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}
