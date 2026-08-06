@@ -188,9 +188,72 @@
       "title": "Configuração de conectividade entre redes no Azure com VPN e Peering",
       "status": "enriched",
       "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-14-1",
+      "date": "2026-07-14",
+      "title": "Proteção de Azure VMs com Recovery Services Vault",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-14-2",
+      "date": "2026-07-14",
+      "title": "VPN Gateway S2S: SKU de IP Público e Atribuição",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-16-1",
+      "date": "2026-07-16",
+      "title": "DNS em Azure VNet: padrão por VNet e sobrescrita por VM",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-16-2",
+      "date": "2026-07-16",
+      "title": "Gerenciamento de ciclo de vida e tiers em Azure Blob Storage",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-16-3",
+      "date": "2026-07-16",
+      "title": "Azure Container Registry: Endpoints de dados dedicados e Networking",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-16-4",
+      "date": "2026-07-16",
+      "title": "Gerenciar atributos de usuários em implantação híbrida do Entra ID",
+      "status": "enriched",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-16-5",
+      "date": "2026-07-16",
+      "title": "simulado 16/07",
+      "status": "created",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-17-1",
+      "date": "2026-07-17",
+      "title": "Simulado",
+      "status": "created",
+      "file": "manual"
+    },
+    {
+      "id": "lesson-2026-07-18-1",
+      "date": "2026-07-18",
+      "title": "Simulado",
+      "status": "created",
+      "file": "manual"
     }
   ],
-  "totalLessons": 27,
-  "processedAt": "2026-06-25T13:55:49.797Z",
+  "totalLessons": 36,
+  "processedAt": "2026-07-18T17:19:27.5398761-03:00",
   "categoryId": "az104"
 }

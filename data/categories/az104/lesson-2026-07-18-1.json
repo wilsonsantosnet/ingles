@@ -1,0 +1,42 @@
+{
+  "id": "lesson-2026-07-18-1",
+  "date": "2026-07-18",
+  "title": "Simulado",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-07-18T20:08:02.493Z",
+  "updatedAt": "2026-07-18T20:09:47.165Z",
+  "status": "created",
+  "generatedContents": [
+    {
+      "id": "gen-1784405387161",
+      "generatedContent": {
+        "title": "AZ-104 — Definição de função: Virtual Network (todas as ações) e Storage (somente leitura) — Resposta e explicação",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Resumo da pergunta: Você precisa criar uma definição de função que atenda a: (1) usuários podem visualizar dados de configuração de uma conta de armazenamento; (2) usuários podem executar todas as ações em uma rede virtual; (3) aplicar princípio do menor privilégio. O que incluir nas ações da role para cada requisito?",
+            "answer": {
+              "Perform all actions on a virtual network:": "\"Microsoft.Network/virtualNetworks/*\"",
+              "View the configuration data of a storage account:": "\"Microsoft.Storage/StorageAccounts/read\""
+            },
+            "explanation": "## Explicação\n\n- ✅ Escolha para \"Perform all actions on a virtual network\": **\"Microsoft.Network/virtualNetworks/*\"**\n  - \"*\" representa todas as operações de gerenciamento (criar, atualizar, excluir, listar, etc.) para o tipo de recurso virtualNetworks no provedor Microsoft.Network. Como o requisito pede **todas as ações** sobre a VNet, usar o curinga é correto.\n  - Observação: alternativas como **/write** cobrem apenas operações de escrita (criar/atualizar) e podem não incluir operações de exclusão ou outras operações específicas; **/delete** cobre só exclusão.\n\n- ✅ Escolha para \"View the configuration data of a storage account\": **\"Microsoft.Storage/StorageAccounts/read\"**\n  - Esse caminho define permissões de leitura no plano de gerenciamento (management plane) para a conta de armazenamento — ou seja, permite ver as configurações da conta (propriedades, settings, chaves gerenciadas, etc.).\n  - A opção **Microsoft.Storage/StorageAccounts/* **daria privilégios excessivos (violando o princípio do menor privilégio).\n  - A opção **Microsoft.Storage/StorageAccounts/blobServices/containers/blob/read** pertence ao plano de dados (data plane) e refere-se a leitura de objetos blob; não é suficiente para ver a configuração da conta de armazenamento.\n\n## Observações técnicas rápidas\n- Em definições de função personalizadas, use a propriedade `Actions` para operações do plano de gerenciamento (ex.: Microsoft.Storage/StorageAccounts/read) e `DataActions` para operações do plano de dados (ex.: leitura de blobs).\n- Princípio do menor privilégio: prefira `.../read` quando só for necessário visualizar, e evite `*` salvo quando for explicitamente exigido.\n\n## Exemplo (snippet JSON de uma role personalizada)\n\n{\n  \"Name\": \"VNetFull_and_StorageRead_CustomRole\",\n  \"IsCustom\": true,\n  \"Description\": \"Permite todas ações em VNets e leitura das configurações de Storage Account\",\n  \"Actions\": [\n    \"Microsoft.Network/virtualNetworks/*\",\n    \"Microsoft.Storage/StorageAccounts/read\"\n  ],\n  \"NotActions\": [],\n  \"DataActions\": [],\n  \"NotDataActions\": [],\n  \"AssignableScopes\": [\"/subscriptions/{subscriptionId}\"]\n}\n\n\n## Dica rápida de comandos\n- Criar role via CLI (arquivo JSON):\nbash\naz role definition create --role-definition ./customRole.json\n\n\n## Dicas para se preparar para AZ-104 ✅\n- Estude bem o modelo RBAC do Azure: diferença entre **Actions**, **NotActions**, **DataActions**, **NotDataActions**, e scopes (subscription, resourceGroup, resource).\n- Pratique criar roles customizadas no portal e via Azure CLI/PowerShell (criar/atualizar/deletar role definitions).\n- Foque na diferença entre plano de gerenciamento (management plane) e plano de dados (data plane) — muitas questões de exame exploram essa distinção.\n- Treine identificar o menor privilégio: quando a questão pede “view/read” escolha apenas operações de leitura; quando pede “all actions” use `*` para aquele recurso específico.\n- Faça simulados cronometrados e revise logs das respostas erradas para entender lacunas de conhecimento.\n\n💡 Última dica: memorize patterns comuns das operações (ex.: `resourceProvider/resourceType/read`, `/write`, `/delete`, `/*`) — isso agiliza respostas em provas objetivas."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-18T20:09:47.160Z",
+      "userPrompt": "Preciso Replique a pergunta de forma resumida, me de a resposta e da Explicação, como estou me preparando para a certificação se puder me dar algum dica sera bem vindo"
+    }
+  ]
+}

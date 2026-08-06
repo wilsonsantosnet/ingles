@@ -1,0 +1,528 @@
+{
+  "id": "lesson-2026-07-16-2",
+  "date": "2026-07-16",
+  "title": "Gerenciamento de ciclo de vida e tiers em Azure Blob Storage",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You periodically take blob snapshots of critical blobs.\n\nYou create the following lifecycle management policy.\n\n{\n  \"rules\": [\n    {\n      \"enabled\": true,\n      \"name\": \"rule1\",\n      \"type\": \"Lifecycle\",\n      \"definition\": {\n        \"actions\": {\n          \"version\": {\n            \"tierToCool\": {\n              \"daysAfterCreationGreaterThan\": 15\n            },\n            \"tierToArchive\": {\n              \"daysAfterLastTierChangeGreaterThan\": 7,\n              \"daysAfterCreationGreaterThan\": 30\n            }\n          }\n        }\n      },\n      \"filters\": {\n        \"blobTypes\": [\n          \"blockBlob\"\n        ],\n        \"prefixMatch\": [\n          \"container1/\"\n        ]\n      }\n    }\n  ]\n}\n\n---\n\nBox 1: Yes\nWe see: tierToCool daysAfterCreationGreaterThan 15\n\nExample:\nThe following sample JSON defines a lifecycle policy that moves a block blob whose name begins with log to the cool tier if it has been more than 30 days since the blob was modified.\n\n{\n\"rules\": [\n{\n\"enabled\": true,\n\"name\": \"move-to-cool\",\n\"type\": \"Lifecycle\",\n\"definition\": {\n\"actions\": {\n\"baseBlob\": {\n\"tierToCool\": {\n\"daysAfterModificationGreaterThan\": 30\n}\n}\n}\n},\n\"filters\": {\n\"blobTypes\": [\n\"blockBlob\"\n],\n\"prefixMatch\": [\n\"sample-container/log\"\n]\n}\n}\n]\n}\n\n---\n\nBox 2: No\nWe see: prefixMatch container1\n\nThe lifecycle management policy does not apply to container2.\n\nNote: Blob storage versioning automatically maintains previous versions of an object and identifies them with timestamps. You can restore a previous version of a blob to recover your data if it's erroneously modified or deleted.\n\nBox 3: No\nWe see: tierToArchive: daysAfterLastTierChangeGreaterThan 7\n\nAfter 7 days, not after 30 days.\n\nNote:\nIn order to read or download a blob that is in the archive tier, it needs to be moved to the online tier, hot or cool and this process is called rehydration.\n\nReference:\nhttps://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure\nhttps://sigmoidanalytics.medium.com/rehydrate-bulk-archived-data-in-azure-storage-using-powershell-script-7886f7286375\nhttps://learn.microsoft.com/en-us/azure/storage/blobs/versioning-enable",
+  "enriched": {
+    "title": "Gerenciamento de ciclo de vida e tiers em Azure Blob Storage",
+    "summary": "Explica como políticas de lifecycle gerenciam transições de tier (hot/cool/archive) para blobs, escopo via filtros (prefixMatch/blobTypes) e parâmetros temporais (daysAfterCreation/Modification/LastTierChange). Cobre também versioning, snapshots e rehidratação de blobs arquivados.",
+    "topics": [
+      {
+        "title": "Lifecycle Management Policy",
+        "description": "Criação e interpretação de regras JSON para automação de transições de tier e ações sobre blobs no Azure Storage.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Blob Storage Tiers (Hot, Cool, Archive)",
+        "description": "Diferenças operacionais e de custo entre tiers e quando usar transições automatizadas.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Filtros e escopo de política (prefixMatch, blobTypes)",
+        "description": "Como direcionar regras para containers/paths específicos e tipos de blob (ex: blockBlob).",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Parâmetros de tempo da política",
+        "description": "Interpretação de daysAfterCreationGreaterThan, daysAfterModificationGreaterThan e daysAfterLastTierChangeGreaterThan e seus efeitos.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Snapshots e Versioning",
+        "description": "Como snapshots e versioning preservam estados anteriores de blobs e impactam recuperação e políticas.",
+        "category": "Storage",
+        "importance": "medium"
+      },
+      {
+        "title": "Rehidratação (rehydrate) de blobs arquivados",
+        "description": "Processo de tornar um blob arquivado acessível novamente movendo-o para hot/cool (tempo e custos envolvidos).",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Validação e troubleshooting de políticas",
+        "description": "Como diagnosticar por que uma política não foi aplicada (escopo, syntax JSON, tipos de blob, horários).",
+        "category": "Monitoring",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Blob",
+        "definition": "Objeto de armazenamento no Azure Storage para dados não estruturados (Binary Large Object).",
+        "examples": [
+          "Arquivo de log armazenado como blob",
+          "Imagem ou backup armazenado como blob"
+        ],
+        "relatedConcepts": [
+          "Block Blob",
+          "Page Blob",
+          "Append Blob",
+          "Container"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Block Blob",
+        "definition": "Tipo de blob otimizado para upload de grandes arquivos em blocos; mais comum para armazenamento de objetos.",
+        "examples": [
+          "Arquivo .zip enviado em múltiplos blocos",
+          "Documento PDF armazenado como block blob"
+        ],
+        "relatedConcepts": [
+          "Blob Types",
+          "Lifecycle Policy"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Lifecycle Management Policy",
+        "definition": "Política em formato JSON que define regras para transição automática de tiers e gerenciamento de blobs no Azure Storage.",
+        "examples": [
+          "Mover blobs para Cool após 30 dias desde modificação",
+          "Arquivar blobs não acessados após 365 dias"
+        ],
+        "relatedConcepts": [
+          "tierToCool",
+          "tierToArchive",
+          "filters"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "tierToCool",
+        "definition": "Ação de política que move um blob para o Cooler Access Tier (cool) para reduzir custo de armazenamento de dados menos acessados.",
+        "examples": [
+          "tierToCool com daysAfterCreationGreaterThan = 15",
+          "tierToCool com daysAfterModificationGreaterThan = 30"
+        ],
+        "relatedConcepts": [
+          "tierToArchive",
+          "daysAfterModificationGreaterThan",
+          "daysAfterCreationGreaterThan"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "tierToArchive",
+        "definition": "Ação de política que move um blob para o Archive Tier, onde o custo de armazenamento é baixo mas há latência e custo para reidratação.",
+        "examples": [
+          "tierToArchive após daysAfterLastTierChangeGreaterThan = 7",
+          "tierToArchive após daysAfterCreationGreaterThan = 30"
+        ],
+        "relatedConcepts": [
+          "Rehydration",
+          "daysAfterLastTierChangeGreaterThan"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "daysAfterCreationGreaterThan",
+        "definition": "Parâmetro que determina quantos dias após a criação do blob a ação deve ocorrer.",
+        "examples": [
+          "Mover para cool se criado há mais de 15 dias",
+          "Arquivar se criado há mais de 90 dias"
+        ],
+        "relatedConcepts": [
+          "daysAfterModificationGreaterThan",
+          "daysAfterLastTierChangeGreaterThan"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "daysAfterModificationGreaterThan",
+        "definition": "Parâmetro que determina quantos dias desde a última modificação do blob antes de aplicar a ação.",
+        "examples": [
+          "tierToCool após 30 dias sem modificação",
+          "Excluir versões após 180 dias desde modificação"
+        ],
+        "relatedConcepts": [
+          "daysAfterCreationGreaterThan",
+          "Lifecycle Policy"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "daysAfterLastTierChangeGreaterThan",
+        "definition": "Parâmetro que aplica a ação com base no tempo transcorrido desde a última mudança de tier do blob.",
+        "examples": [
+          "Mover para archive 7 dias após ter sido movido para cool",
+          "Evitar reencadear tiers antes do período mínimo"
+        ],
+        "relatedConcepts": [
+          "tierToCool",
+          "tierToArchive"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "filters / prefixMatch",
+        "definition": "Filtros que restringem a aplicação da política a blobs com prefixos de nome ou tipos específicos.",
+        "examples": [
+          "prefixMatch: ['container1/'] aplica-se apenas a blobs sob container1/",
+          "prefixMatch: ['sample-container/log']"
+        ],
+        "relatedConcepts": [
+          "blobTypes",
+          "scope"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "blobTypes",
+        "definition": "Lista que indica quais tipos de blob (ex: blockBlob) a política deve considerar.",
+        "examples": [
+          "['blockBlob'] para afetar somente block blobs",
+          "['appendBlob'] para logs de append"
+        ],
+        "relatedConcepts": [
+          "Block Blob",
+          "Lifecycle Policy"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Snapshot",
+        "definition": "Cópia somente-leitura pontual de um blob que preserva o estado daquele momento.",
+        "examples": [
+          "Snapshot diário de um blob crítico",
+          "Restaurar arquivo a partir de snapshot"
+        ],
+        "relatedConcepts": [
+          "Versioning",
+          "Restore"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Versioning (Blob Storage versioning)",
+        "definition": "Recurso que mantém versões anteriores de um blob automaticamente, identificadas por timestamp, permitindo restauração.",
+        "examples": [
+          "Habilitar versioning para proteção contra alterações acidentais",
+          "Restaurar versão anterior via Portal ou API"
+        ],
+        "relatedConcepts": [
+          "Snapshot",
+          "Soft delete"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Rehydration (Reidratação)",
+        "definition": "Processo de mover um blob do Archive Tier para um tier online (Hot/Cool) para read/download; pode levar tempo e custo.",
+        "examples": [
+          "Rehidratar blob arquivado para cool antes de leitura",
+          "Solicitar rehydration com prioridade padrão ou alta (quando disponível)"
+        ],
+        "relatedConcepts": [
+          "tierToArchive",
+          "Archive Tier"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "JSON Policy Structure",
+        "definition": "Formato JSON exigido pelo Azure para definições de lifecycle contendo rules[], filters e definition.actions.",
+        "examples": [
+          "Objeto com rules, cada rule com enabled, name, type, definition, filters",
+          "Uso de baseBlob vs version ações"
+        ],
+        "relatedConcepts": [
+          "ARM Templates",
+          "Management API"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "baseBlob vs version",
+        "definition": "Distinção entre ações aplicadas ao blob base (baseBlob) e ações aplicadas a versões (version) dentro de uma política.",
+        "examples": [
+          "baseBlob.tierToCool aplica-se ao blob atual",
+          "version ações são utilizadas para versões antigas"
+        ],
+        "relatedConcepts": [
+          "Versioning",
+          "Lifecycle Policy actions"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "concept": "Regras de escopo (container vs blob prefix)",
+        "definition": "Como limites de escopo (ex: container1/ prefix) controlam aplicação da política a subconjuntos de dados.",
+        "examples": [
+          "prefixMatch 'container1/' não afetará 'container2/'",
+          "Usar vários prefixMatch para cobrir diferentes pastas lógicas"
+        ],
+        "relatedConcepts": [
+          "filters",
+          "RBAC"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "JSON",
+        "definition": "JavaScript Object Notation, formato de texto usado para definir políticas e configurações no Azure.",
+        "examples": [
+          "Política de lifecycle definida em JSON entregue via Portal ou API",
+          "Editar fields como daysAfterCreationGreaterThan no JSON"
+        ],
+        "relatedConcepts": [
+          "ARM Templates",
+          "REST API"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Política não está afetando blobs em container2",
+        "problem": "Uma política com prefixMatch ['container1/'] não move blobs em container2 para cool/archive mesmo depois do período configurado.",
+        "solution": "1) Verifique o prefixMatch no JSON; 2) Confirme o nome do container e se os blobs têm o prefixo correto; 3) Garanta que blobTypes inclui o tipo correto (ex: 'blockBlob'); 4) Use logs de diagnóstico e Activity Log para confirmar execução da política; 5) Teste com um blob de exemplo que satisfaça os critérios e monitore.",
+        "explanation": "prefixMatch limita o escopo; se o blob estiver fora do prefixo a política nunca será aplicada. Além disso, a política avalia blobTypes e parâmetros temporais, então todos devem coincidir para a ação ocorrer."
+      },
+      {
+        "scenario": "Evitar reencadeamento rápido entre Cool e Archive",
+        "problem": "Um blob foi movido para Cool e imediatamente a política tenta movê-lo para Archive, causando operações redundantes ou violações de windows de tier.",
+        "solution": "1) Use daysAfterLastTierChangeGreaterThan na ação tierToArchive para impor um intervalo mínimo após a última mudança de tier (ex: 7 dias); 2) Configure tierToCool com daysAfterCreationGreaterThan/daysAfterModificationGreaterThan apropriados; 3) Teste com blobs não críticos para validar comportamentos.",
+        "explanation": "daysAfterLastTierChangeGreaterThan previne que políticas encadeiem mudanças de tier imediatamente após uma transição, garantindo estabilidade e evitando custos desnecessários."
+      },
+      {
+        "scenario": "Recuperar blob arquivado antes de leitura",
+        "problem": "Aplicativo precisa ler um blob que foi automaticamente arquivado por uma política.",
+        "solution": "1) Solicite rehydration do blob para hot ou cool via API/Portal/CLI; 2) Aguarde o tempo necessário para rehidratação completar (pode levar horas dependendo do tamanho e prioridade); 3) Após rehidratação, leia/baixe o blob; 4) Opcional: ajuste política para evitar arquivamento automático de blobs críticos no futuro.",
+        "explanation": "Blobs em archive não são acessíveis online; a reidratação é um processo necessário que move o objeto para um tier online antes de permitir leitura, devido ao design do archive tier."
+      },
+      {
+        "scenario": "Manter snapshots periódicos e não arquivá-los",
+        "problem": "Snapshots periódicos de blobs críticos estão sendo arquivados automaticamente, dificultando restaurações rápidas.",
+        "solution": "1) Ajuste a política para aplicar somente em baseBlob e não em versões/snapshots (usar ações em baseBlob); 2) Ou use filters que excluam prefixes onde snapshots são armazenados; 3) Habilite versioning e configure regras específicas para versões (por exemplo, reter versões por X dias antes de arquivar/excluir).",
+        "explanation": "Snapshots e versions têm modelos de gerenciamento distintos. Políticas devem distinguir entre baseBlob e versões; caso contrário, ações podem afetar snapshots indesejados."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Explique a diferença entre daysAfterCreationGreaterThan e daysAfterModificationGreaterThan em políticas de lifecycle.",
+        "answer": "daysAfterCreationGreaterThan considera a idade desde a criação do blob; daysAfterModificationGreaterThan considera o tempo desde a última modificação. A escolha determina se a política baseia-se na data original de criação ou em atividade mais recente sobre o blob.",
+        "hint": "Pense em um arquivo que foi criado há 200 dias mas modificado ontem — qual parâmetro faria a política esperar?",
+        "topic": "Parâmetros de tempo da política"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você quer mover todos os block blobs sob 'container1/logs/' para Cool após 30 dias desde a última modificação. Escreva o trecho JSON principal da rule (apenas o objeto actions/baseBlob/tierToCool com o parâmetro de tempo).",
+        "answer": "{ \"baseBlob\": { \"tierToCool\": { \"daysAfterModificationGreaterThan\": 30 } } }",
+        "hint": "Use baseBlob para aplicar ao blob atual e daysAfterModificationGreaterThan para tempo desde a última modificação.",
+        "topic": "Lifecycle Management Policy"
+      },
+      {
+        "type": "command",
+        "question": "Como você validaria que a política JSON foi aplicada e quais blobs foram afetados usando o Portal ou logs? (descreva passos, já que não há comando explícito no documento).",
+        "answer": "No Portal, vá ao Storage Account > Lifecycle Management para confirmar o JSON e regras aplicadas; usar Azure Monitor / Activity Log e métricas de Blob Storage para ver operações de tiering; revisar logs de diagnóstico configurados para o storage account para histórico de ações.",
+        "hint": "Procure por logs de diagnóstico e Activity Log para ver execuções de políticas.",
+        "topic": "Validação e troubleshooting de políticas"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Uma regra define tierToArchive com daysAfterLastTierChangeGreaterThan = 7 e daysAfterCreationGreaterThan = 30. Um blob foi criado há 40 dias e movido para cool há 3 dias. A política não arquiva o blob. Por quê?",
+        "answer": "A condição daysAfterLastTierChangeGreaterThan = 7 não foi satisfeita (apenas 3 dias desde a última mudança de tier), então a ação de arquivar não será aplicada mesmo que daysAfterCreationGreaterThan seja > 30. Ambas as condições relevantes devem ser observadas conforme definidas.",
+        "hint": "Verifique todos os critérios temporais que a regra exige; daysAfterLastTierChangeGreaterThan impõe uma espera após a última mudança de tier.",
+        "topic": "Parâmetros de tempo da política"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Projete uma estratégia de políticas para: manter snapshots diários de blobs críticos por 30 dias, mover blobs de logs para cool após 15 dias de criação e arquivar logs que já estiverem em cool por 60 dias desde a última mudança de tier.",
+        "answer": "1) Habilitar versioning/snapshots e criar regra separada para versions/snapshots com retenção de 30 dias (ex: delete_versons after 30 days). 2) Criar rule baseBlob.tierToCool with daysAfterCreationGreaterThan=15 e filters prefixMatch para logs. 3) Criar rule baseBlob.tierToArchive with daysAfterLastTierChangeGreaterThan=60 e possivelmente daysAfterCreationGreaterThan para reforçar. Separar escopos por prefixMatch ou containers para não afetar blobs críticos.",
+        "hint": "Use regras distintas para versões/snapshots e para baseBlob; combine daysAfterCreation/LastTierChange conforme necessário.",
+        "topic": "Lifecycle Management Policy"
+      },
+      {
+        "type": "concept",
+        "question": "O que é rehidratação e por que é necessária para blobs em Archive?",
+        "answer": "Rehidratação (rehydrate) é o processo de mover um blob do Archive Tier para um tier online (Hot ou Cool) para possibilitar leitura/download. É necessária porque o Archive Tier é otimizado para custo e não suporta acesso online direto; a reidratação restaura acessibilidade mas pode levar tempo e custos.",
+        "hint": "Pense em archive como armazenamento offline: é preciso trazê-lo de volta online antes de ler.",
+        "topic": "Rehydration"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Diferencie daysAfterCreationGreaterThan de daysAfterModificationGreaterThan nas questões: examinem se a política depende da data de criação ou da atividade recente.",
+        "relevance": "Questões de certificação frequentemente testam entendimento de parâmetros temporais para políticas de lifecycle.",
+        "topic": "Parâmetros de tempo da política"
+      },
+      {
+        "tip": "Sempre verifique o escopo (prefixMatch e blobTypes) quando uma regra aparentemente não é aplicada — prefix incorreto é causa comum.",
+        "relevance": "Erros de escopo são uma pegadinha comum em cenários práticos do exame.",
+        "topic": "Filtros e escopo de política"
+      },
+      {
+        "tip": "Saiba que blobs em Archive não podem ser lidos até completar a reidratação; isso costuma aparecer em perguntas sobre acessibilidade e custos.",
+        "relevance": "Provas cobram compreensão do comportamento do Archive Tier e expectativas de latência/custo.",
+        "topic": "Rehydration"
+      },
+      {
+        "tip": "Entenda a diferença entre ações em baseBlob e em version — aplicar políticas ao tipo errado pode afetar snapshots/versioning.",
+        "relevance": "Perguntas avançadas podem exigir distinguir entre gerenciamento de versões e do blob base.",
+        "topic": "Versioning / Lifecycle Policy"
+      },
+      {
+        "tip": "Lembre-se: daysAfterLastTierChangeGreaterThan impede mudanças imediatas de tier após uma transição — útil para evitar churn de tiers.",
+        "relevance": "Cobre cenários de otimização de custo e operações no exame.",
+        "topic": "Parâmetros de tempo da política"
+      }
+    ],
+    "references": [
+      {
+        "title": "Configurar políticas de gerenciamento de ciclo de vida para blobs no Azure Storage (documentação oficial)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure",
+        "type": "documentation"
+      },
+      {
+        "title": "Rehydrate bulk archived data in Azure Storage using PowerShell (tutorial no Medium)",
+        "url": "https://sigmoidanalytics.medium.com/rehydrate-bulk-archived-data-in-azure-storage-using-powershell-script-7886f7286375",
+        "type": "tutorial"
+      },
+      {
+        "title": "Habilitar versioning para Azure Blob Storage (documentação oficial)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-enable",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Configurar políticas de gerenciamento de ciclo de vida para blobs no Azure Storage (documentação oficial)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure",
+        "type": "documentation"
+      },
+      {
+        "title": "Rehydrate bulk archived data in Azure Storage using PowerShell (tutorial no Medium)",
+        "url": "https://sigmoidanalytics.medium.com/rehydrate-bulk-archived-data-in-azure-storage-using-powershell-script-7886f7286375",
+        "type": "tutorial"
+      },
+      {
+        "title": "Habilitar versioning para Azure Blob Storage (documentação oficial)",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-enable",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-07-16T12:40:36.833Z",
+  "updatedAt": "2026-07-16T12:53:34.719Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-16T12:41:46.649Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1784206414698",
+      "generatedContent": {
+        "title": "Explicação simples e direta dos parâmetros das políticas de lifecycle do Azure Blob Storage",
+        "type": "explanation",
+        "content": [
+          {
+            "parameter": "rules[].enabled",
+            "explanation": "Ativa (true) ou desativa (false) a regra. Se false, a regra é ignorada pela execução do lifecycle.",
+            "whereUsed": "Nível da regra",
+            "example": "enabled: true — a regra será avaliada e executada quando os critérios coincidirem."
+          },
+          {
+            "parameter": "rules[].name",
+            "explanation": "Identificador legível da regra para administração e logs. Não afeta comportamento da regra.",
+            "whereUsed": "Nível da regra",
+            "example": "name: \"move-to-cool\""
+          },
+          {
+            "parameter": "rules[].type",
+            "explanation": "Tipo da regra; para políticas de ciclo de vida deve ser 'Lifecycle'.",
+            "whereUsed": "Nível da regra",
+            "example": "type: \"Lifecycle\""
+          },
+          {
+            "parameter": "filters.prefixMatch",
+            "explanation": "Lista de prefixes (ex.: 'container1/' ou 'container1/logs/') que limitam o escopo da regra. A regra só se aplica a blobs cujos nomes comecem pelo prefixo.",
+            "whereUsed": "Filtros da regra",
+            "example": "prefixMatch: ['container1/'] — afeta apenas blobs sob container1/",
+            "note": "Prefixos devem corresponder exatamente (sensible a cases do nome do blob) e incluir o nome do container quando usado nesse formato."
+          },
+          {
+            "parameter": "filters.blobTypes",
+            "explanation": "Lista de tipos de blob aos quais a regra se aplica (ex.: 'blockBlob', 'appendBlob', 'pageBlob'). Se um blob não for do tipo listado, não será afetado.",
+            "whereUsed": "Filtros da regra",
+            "example": "blobTypes: ['blockBlob'] — somente block blobs serão considerados."
+          },
+          {
+            "parameter": "definition.actions.baseBlob.tierToCool.daysAfterCreationGreaterThan",
+            "explanation": "Move o blob para o tier Cool quando a idade desde a criação do blob for maior que X dias. Baseado na data de criação original.",
+            "whereUsed": "Ação tierToCool sobre o blob base (versão atual)",
+            "example": "daysAfterCreationGreaterThan: 15 — mover após 15 dias da criação."
+          },
+          {
+            "parameter": "definition.actions.baseBlob.tierToCool.daysAfterModificationGreaterThan",
+            "explanation": "Move o blob para Cool quando o tempo desde a última modificação exceder X dias. Útil quando a atividade recente deve resetar a contagem.",
+            "whereUsed": "Ação tierToCool sobre o blob base",
+            "example": "daysAfterModificationGreaterThan: 30 — mover se não houver modificação por 30 dias."
+          },
+          {
+            "parameter": "definition.actions.version.* (ex.: tierToCool / tierToArchive)",
+            "explanation": "Ações aplicadas às versões anteriores do blob (quando versioning está habilitado). Permite políticas diferentes para versões em comparação com o blob base.",
+            "whereUsed": "Ações para 'version' dentro de definition.actions",
+            "example": "version.tierToArchive.daysAfterCreationGreaterThan: 90 — arquivar versões com mais de 90 dias."
+          },
+          {
+            "parameter": "daysAfterLastTierChangeGreaterThan",
+            "explanation": "Condição que exige que X dias tenham passado desde a última mudança de tier do blob antes de executar a ação. Evita transições imediatas/encadeadas entre tiers.",
+            "whereUsed": "Usado tipicamente em tierToArchive ou outras ações que dependem de estabilidade de tier",
+            "example": "daysAfterLastTierChangeGreaterThan: 7 — só arquiva se já tiverem se passado 7 dias desde a última mudança de tier."
+          },
+          {
+            "parameter": "Combinação de conditions (várias propriedades de tempo na mesma ação)",
+            "explanation": "Quando múltiplos parâmetros de tempo são definidos para a mesma ação (ex.: daysAfterCreationGreaterThan e daysAfterLastTierChangeGreaterThan), todos devem ser satisfeitos (comportamento do tipo AND) para que a ação ocorra.",
+            "whereUsed": "Dentro de uma única ação (ex.: tierToArchive)",
+            "example": "Se creation > 30 dias e lastTierChange > 7 dias são ambos requeridos, ambos precisam ser verdadeiros."
+          },
+          {
+            "parameter": "baseBlob vs version",
+            "explanation": "baseBlob: aplica ações ao blob atual (a versão ativa). version: aplica ações às versões armazenadas (ou snapshots/versões) separadamente. Escolher corretamente evita afetar snapshots ou versões indesejadas.",
+            "whereUsed": "definition.actions",
+            "example": "baseBlob.tierToCool move o blob corrente; version.tierToArchive afeta apenas versões."
+          },
+          {
+            "parameter": "Snapshot / Versioning (contexto, não campo JSON obrigatório)",
+            "explanation": "Snapshots e versioning criam cópias históricas do blob. Políticas podem ser escritas para incluir/excluir versões ou agir apenas sobre baseBlob. Sem cuidado, snapshots/versões podem ser arquivados ou excluídos inadvertidamente.",
+            "whereUsed": "Projeto da política e filters",
+            "note": "Habilite versioning se precisar de restauração fácil e defina regras separadas para versões."
+          },
+          {
+            "parameter": "Rehydration (comportamento de tier Archive)",
+            "explanation": "Blobs em Archive não são acessíveis online. Para ler/baixar, é necessário rehidratar (mover para Hot/Cool) via operação de rehidratação; esse processo consome tempo e custos adicionais.",
+            "whereUsed": "Após execução de tierToArchive",
+            "note": "Planeje políticas para evitar arquivar blobs que precisarão de acesso frequente."
+          },
+          {
+            "parameter": "Frequência de avaliação da política",
+            "explanation": "O serviço do Azure avalia regras de lifecycle periodicamente (normalmente uma vez por dia). Mudanças recentes no blob podem demorar até a próxima execução para serem aplicadas.",
+            "whereUsed": "Operação do serviço Azure Storage",
+            "note": "Não espere execução em tempo real; políticas não são instantâneas."
+          },
+          {
+            "parameter": "Escopo e troubleshooting",
+            "explanation": "Se uma regra não for aplicada, verifique: prefixMatch (escopo correto), blobTypes, se a regra está enabled, se os critérios temporais foram satisfeitos e logs/diagnósticos do storage account.",
+            "whereUsed": "Ao validar políticas",
+            "example": "prefixMatch 'container1/' não afetará blobs em 'container2/'."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T12:53:34.698Z",
+      "userPrompt": "Pode gerar uma explicação simples e direta para cada parametro  que representa os critérios de funcionamento da politica de ciclo de vida do Storage Account?"
+    }
+  ]
+}

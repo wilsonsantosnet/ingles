@@ -5,6 +5,7 @@ const els = {
   previewNote: document.getElementById('preview-note'),
   previewPanel: document.getElementById('preview-panel'),
   savePanel: document.getElementById('save-panel'),
+  previewSpeakBtn: document.getElementById('preview-speak-btn'),
   previewWord: document.getElementById('preview-word'),
   previewTranslation: document.getElementById('preview-translation'),
   previewPos: document.getElementById('preview-pos'),
@@ -23,20 +24,120 @@ const els = {
 };
 
 let currentPreview = null;
+let voiceList = [];
+let isAudioPlaying = false;
 
 document.addEventListener('DOMContentLoaded', async () => {
   els.newLessonDate.value = new Date().toISOString().slice(0, 10);
   bindEvents();
+  initializeSpeechSupport();
   await loadLessons();
 });
 
 function bindEvents() {
   els.previewBtn.addEventListener('click', generatePreview);
   els.saveBtn.addEventListener('click', saveWord);
+  els.previewSpeakBtn.addEventListener('click', togglePreviewAudio);
 
   document.querySelectorAll('input[name="lesson-mode"]').forEach((radio) => {
     radio.addEventListener('change', handleLessonMode);
   });
+}
+
+function supportsSpeechSynthesis() {
+  return typeof window !== 'undefined'
+    && 'speechSynthesis' in window
+    && typeof window.SpeechSynthesisUtterance !== 'undefined';
+}
+
+function initializeSpeechSupport() {
+  if (!supportsSpeechSynthesis()) {
+    els.previewSpeakBtn.disabled = true;
+    els.previewSpeakBtn.title = 'Navegador sem suporte de áudio';
+    els.previewSpeakBtn.setAttribute('aria-label', 'Navegador sem suporte de áudio');
+    return;
+  }
+
+  voiceList = window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => {
+    voiceList = window.speechSynthesis.getVoices();
+  };
+}
+
+function refreshAudioButtonState() {
+  els.previewSpeakBtn.classList.toggle('playing', isAudioPlaying);
+  els.previewSpeakBtn.textContent = isAudioPlaying ? '⏹' : '🔊';
+  const label = isAudioPlaying ? 'Parar áudio' : 'Ouvir palavra';
+  els.previewSpeakBtn.title = label;
+  els.previewSpeakBtn.setAttribute('aria-label', label);
+}
+
+function pickEnglishVoice() {
+  const voices = voiceList.length ? voiceList : window.speechSynthesis.getVoices();
+  const preferred = voices.find((voice) => /^en(-|_)/i.test(voice.lang));
+  return preferred || null;
+}
+
+function speakPreviewWord() {
+  const text = (els.previewWord.value || els.wordInput.value || '').trim();
+
+  if (!text) {
+    return;
+  }
+
+  if (!supportsSpeechSynthesis()) {
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new window.SpeechSynthesisUtterance(text);
+  const englishVoice = pickEnglishVoice();
+
+  if (englishVoice) {
+    utterance.voice = englishVoice;
+    utterance.lang = englishVoice.lang;
+  } else {
+    utterance.lang = 'en-US';
+  }
+
+  utterance.rate = 0.9;
+
+  utterance.onstart = () => {
+    isAudioPlaying = true;
+    refreshAudioButtonState();
+  };
+
+  utterance.onend = () => {
+    isAudioPlaying = false;
+    refreshAudioButtonState();
+  };
+
+  utterance.onerror = () => {
+    isAudioPlaying = false;
+    refreshAudioButtonState();
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopPreviewAudio() {
+  if (!supportsSpeechSynthesis()) {
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  isAudioPlaying = false;
+  refreshAudioButtonState();
+}
+
+function togglePreviewAudio() {
+  if (isAudioPlaying) {
+    stopPreviewAudio();
+    return;
+  }
+
+  speakPreviewWord();
 }
 
 async function loadLessons(preferredLessonId = null) {
@@ -293,6 +394,7 @@ async function generatePreview() {
 
     els.previewPanel.hidden = false;
     els.savePanel.hidden = false;
+    refreshAudioButtonState();
   } catch (error) {
     els.previewError.hidden = false;
     els.previewError.textContent = error.message;

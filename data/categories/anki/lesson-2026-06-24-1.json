@@ -26,15 +26,20 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-0",
         "spacedRepetition": {
-          "easeFactor": 1.7000000000000002,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-06-24",
-          "lastReview": "2026-06-24",
+          "easeFactor": 1.8000000000000003,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
           "reviews": [
             {
               "date": "2026-06-24T15:19:54.854Z",
               "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:28:35.583Z",
+              "quality": 5,
               "interval": 0
             }
           ]
@@ -57,14 +62,19 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-1",
         "spacedRepetition": {
-          "easeFactor": 1.7000000000000002,
+          "easeFactor": 1.3,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-06-24",
-          "lastReview": "2026-06-24",
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
           "reviews": [
             {
               "date": "2026-06-24T15:20:05.326Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-05T12:28:45.520Z",
               "quality": 0,
               "interval": 0
             }
@@ -88,12 +98,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-2",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-06-24",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:29:02.305Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -113,12 +129,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-3",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-06-24",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:32:54.435Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -138,12 +160,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-4",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:25.100Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -163,12 +191,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-5",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:29.938Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -188,12 +222,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-6",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:39.327Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -213,12 +253,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-7",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:33:56.179Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -238,12 +284,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-8",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:01.981Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -263,12 +315,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-9",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:11.983Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -288,12 +346,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-10",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:16.785Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -313,12 +377,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-11",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:20.532Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -338,12 +408,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-12",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:24.539Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -363,12 +439,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-13",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:31.634Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -388,12 +470,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-14",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:41.914Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -413,12 +501,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-15",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:54.062Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -438,12 +532,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-24-1-16",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-06",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:34:57.037Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -463,10 +563,175 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-24-1-17",
         "spacedRepetition": {
+          "easeFactor": 1.7000000000000002,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-05",
+          "lastReview": "2026-07-05",
+          "reviews": [
+            {
+              "date": "2026-07-05T12:35:22.030Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "word": "carefully",
+        "translation": "cuidadosamente",
+        "definition": "in a way that avoids harm or mistakes; with attention and caution",
+        "examples": [
+          "Please read the instructions carefully.",
+          "She placed the vase carefully on the shelf.",
+          "Drive carefully in the snow.",
+          "He listened carefully to the teacher.",
+          "Open the box carefully."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "carefully",
+        "id": "vocab-lesson-2026-06-24-1-18",
+        "spacedRepetition": {
           "easeFactor": 2.5,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
+          "nextReview": "2026-07-15",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "amount",
+        "translation": "quantidade",
+        "definition": "the total number or quantity of something",
+        "examples": [
+          "The amount of sugar in the recipe is too high.",
+          "She paid a small amount for the book.",
+          "The total amount due is $50.",
+          "An enormous amount of work went into the report."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "amount",
+        "id": "vocab-lesson-2026-06-24-1-19",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-15",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "beyond",
+        "translation": "além de",
+        "definition": "on or to the other side of; outside the limits of; more than",
+        "examples": [
+          "The house is beyond the hill.",
+          "The problem is beyond my control.",
+          "Her skills go beyond expectations.",
+          "The car was beyond repair."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "other",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word",
+        "sourceText": "beyond",
+        "id": "vocab-lesson-2026-06-24-1-20",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-15",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "nouns",
+        "translation": "substantivos",
+        "definition": "words that name people, places, things, or ideas",
+        "examples": [
+          "Cats and dogs are nouns.",
+          "Paris and Brazil are proper nouns.",
+          "She learned new nouns today.",
+          "Countable nouns use numbers.",
+          "Nouns can be singular or plural."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "noun",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "nouns",
+        "id": "vocab-lesson-2026-06-24-1-21",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-15",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "heavily",
+        "translation": "fortemente",
+        "definition": "to a great degree; with much weight, intensity, or force",
+        "examples": [
+          "It was raining heavily.",
+          "She breathed heavily after the run.",
+          "The company is heavily invested in technology.",
+          "He was heavily criticized for the decision."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "adverb",
+        "synonyms": [],
+        "difficulty": "intermediate",
+        "sourceType": "word",
+        "sourceText": "heavily",
+        "id": "vocab-lesson-2026-06-24-1-22",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-15",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "rely",
+        "translation": "confiar (em), depender (de)",
+        "definition": "to depend on someone or something for support, help, or the truth of something",
+        "examples": [
+          "I rely on my friends for support.",
+          "You can rely on me.",
+          "The team relies on good communication.",
+          "Don't rely on rumors.",
+          "We rely heavily on technology."
+        ],
+        "pronunciation": "",
+        "partOfSpeech": "verb",
+        "synonyms": [],
+        "difficulty": "basic",
+        "sourceType": "word",
+        "sourceText": "rely",
+        "id": "vocab-lesson-2026-06-24-1-23",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-07-15",
           "lastReview": null,
           "reviews": []
         }
@@ -478,6 +743,6 @@
     "supportMaterials": []
   },
   "createdAt": "2026-06-24T15:01:26.690Z",
-  "updatedAt": "2026-07-02T14:19:53.634Z",
+  "updatedAt": "2026-07-15T21:00:02.389Z",
   "status": "enriched"
 }

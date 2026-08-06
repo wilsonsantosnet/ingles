@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Paste de imagem (Ctrl+V)
   document.addEventListener('paste', handlePaste);
+  document.addEventListener('keydown', handleAiContentModalKeydown);
+
+  setupAiContentModal();
   
   // Se é edição, carregar dados
   if (currentLessonId) {
@@ -856,9 +859,283 @@ function renderAllLists() {
 // CONTEÚDO AI
 // ============================================
 let aiGeneratedContents = [];
+let aiContentSelectedImages = [];
+let aiMermaidInitialized = false;
+
+function setupAiContentModal() {
+  const dropZone = document.getElementById('ai-content-drop-zone');
+  const imageInput = document.getElementById('ai-content-image-input');
+
+  if (dropZone && imageInput) {
+    dropZone.addEventListener('click', () => imageInput.click());
+    dropZone.addEventListener('dragover', handleAiContentDragOver);
+    dropZone.addEventListener('dragleave', handleAiContentDragLeave);
+    dropZone.addEventListener('drop', handleAiContentDrop);
+  }
+
+  document.addEventListener('paste', handleAiContentPaste);
+}
+
+function openAiContentModal() {
+  const modal = document.getElementById('ai-content-modal');
+  const promptInput = document.getElementById('ai-content-prompt-modal');
+  const resultDiv = document.getElementById('ai-content-result');
+
+  if (!modal || !promptInput || !resultDiv) {
+    return;
+  }
+
+  aiContentSelectedImages = [];
+  promptInput.value = '';
+  resultDiv.style.display = 'none';
+  resultDiv.classList.remove('is-error');
+  resultDiv.innerHTML = '';
+
+  resetAiContentImagePreview();
+  modal.classList.remove('maximized');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('ai-modal-open');
+  updateAiContentMaximizeButton();
+}
+
+function closeAiContentModal() {
+  const modal = document.getElementById('ai-content-modal');
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.remove('open', 'maximized');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('ai-modal-open');
+  aiContentSelectedImages = [];
+  resetAiContentImagePreview();
+}
+
+function toggleAiContentModalMaximize() {
+  const modal = document.getElementById('ai-content-modal');
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.toggle('maximized');
+  updateAiContentMaximizeButton();
+}
+
+function handleAiContentModalKeydown(event) {
+  const modal = document.getElementById('ai-content-modal');
+  if (!modal || !modal.classList.contains('open')) {
+    return;
+  }
+
+  if (event.key === 'Escape') {
+    closeAiContentModal();
+  }
+}
+
+function updateAiContentMaximizeButton() {
+  const modal = document.getElementById('ai-content-modal');
+  const button = document.getElementById('ai-content-maximize-btn');
+  if (!modal || !button) {
+    return;
+  }
+
+  const isMaximized = modal.classList.contains('maximized');
+  button.textContent = isMaximized ? '🗗' : '⛶';
+  button.title = isMaximized ? 'Restaurar' : 'Maximizar';
+  button.setAttribute('aria-label', button.title);
+}
+
+function resetAiContentImagePreview() {
+  const preview = document.getElementById('ai-content-image-preview');
+  const content = document.getElementById('ai-content-drop-text');
+  const input = document.getElementById('ai-content-image-input');
+  const thumbs = document.getElementById('ai-content-image-thumbs');
+  const countLabel = document.getElementById('ai-content-image-count-label');
+
+  if (preview) {
+    preview.style.display = 'none';
+  }
+  if (content) {
+    content.style.display = 'block';
+  }
+  if (thumbs) {
+    thumbs.innerHTML = '';
+  }
+  if (countLabel) {
+    countLabel.textContent = 'Imagens selecionadas: 0';
+  }
+  if (input) {
+    input.value = '';
+  }
+}
+
+function handleAiContentImageSelect(event) {
+  const files = Array.from(event.target.files || []);
+  if (!files.length) return;
+  addAiContentImagesToQueue(files);
+}
+
+function addAiContentImagesToQueue(files) {
+  const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  const maxSize = 20 * 1024 * 1024;
+  const maxImages = 10;
+  let added = 0;
+
+  for (const file of files) {
+    if (!validTypes.includes(file.type)) {
+      alert(`Formato inválido: ${file.name}. Use JPEG ou PNG.`);
+      continue;
+    }
+
+    if (file.size > maxSize) {
+      alert(`Imagem muito grande: ${file.name}. Máximo 20MB por imagem.`);
+      continue;
+    }
+
+    if (aiContentSelectedImages.length >= maxImages) {
+      alert('Limite de 10 imagens por geração atingido.');
+      break;
+    }
+
+    aiContentSelectedImages.push(file);
+    added += 1;
+  }
+
+  if (added > 0) {
+    renderAiContentImagePreviews();
+  }
+
+  const input = document.getElementById('ai-content-image-input');
+  if (input) {
+    input.value = '';
+  }
+}
+
+function renderAiContentImagePreviews() {
+  const preview = document.getElementById('ai-content-image-preview');
+  const content = document.getElementById('ai-content-drop-text');
+  const thumbs = document.getElementById('ai-content-image-thumbs');
+  const countLabel = document.getElementById('ai-content-image-count-label');
+
+  if (!preview || !content || !thumbs || !countLabel) {
+    return;
+  }
+
+  if (!aiContentSelectedImages.length) {
+    resetAiContentImagePreview();
+    return;
+  }
+
+  preview.style.display = 'block';
+  content.style.display = 'none';
+  countLabel.textContent = `Imagens selecionadas: ${aiContentSelectedImages.length}`;
+  thumbs.innerHTML = '';
+
+  aiContentSelectedImages.forEach((file, idx) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const thumb = document.createElement('div');
+      thumb.className = 'ai-image-thumb';
+      thumb.innerHTML = `
+        <img src="${e.target.result}" alt="Imagem ${idx + 1}" title="${escapeHtmlAi(file.name)}">
+        <span class="ai-image-index">${idx + 1}</span>
+        <button type="button" class="ai-image-remove-btn" onclick="removeAiContentImage(${idx}, event)" title="Remover">✕</button>
+      `;
+      thumbs.appendChild(thumb);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeAiContentImage(idx, event) {
+  if (event) {
+    event.stopPropagation();
+  }
+
+  aiContentSelectedImages.splice(idx, 1);
+  renderAiContentImagePreviews();
+}
+
+function clearAiContentImages(event) {
+  if (event) {
+    event.stopPropagation();
+  }
+
+  aiContentSelectedImages = [];
+  resetAiContentImagePreview();
+}
+
+function clearAiContentImage(event) {
+  clearAiContentImages(event);
+}
+
+function handleAiContentDragOver(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  event.currentTarget.classList.add('drag-over');
+}
+
+function handleAiContentDragLeave(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  event.currentTarget.classList.remove('drag-over');
+}
+
+function handleAiContentDrop(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const dropZone = event.currentTarget;
+  dropZone.classList.remove('drag-over');
+
+  const files = Array.from(event.dataTransfer.files || []);
+  if (files.length) {
+    addAiContentImagesToQueue(files);
+  }
+}
+
+function handleAiContentPaste(event) {
+  const modal = document.getElementById('ai-content-modal');
+  if (!modal || !modal.classList.contains('open')) {
+    return;
+  }
+
+  const activeElement = document.activeElement;
+  const isEditableField = activeElement && (
+    activeElement.tagName === 'INPUT' ||
+    activeElement.tagName === 'TEXTAREA' ||
+    activeElement.isContentEditable
+  );
+
+  if (isEditableField) {
+    return;
+  }
+
+  const items = event.clipboardData?.items;
+  if (!items) {
+    return;
+  }
+
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      event.preventDefault();
+      const blob = item.getAsFile();
+      if (!blob) {
+        break;
+      }
+
+      const extension = blob.type.split('/')[1];
+      const fileName = `pasted-image-${Date.now()}.${extension}`;
+      const file = new File([blob], fileName, { type: blob.type });
+      addAiContentImagesToQueue([file]);
+      break;
+    }
+  }
+}
 
 async function generateAiContent() {
-  const promptInput = document.getElementById('ai-content-prompt');
+  const promptInput = document.getElementById('ai-content-prompt-modal');
   const prompt = promptInput.value.trim();
 
   if (!prompt) {
@@ -871,23 +1148,55 @@ async function generateAiContent() {
     return;
   }
 
-  const btn = document.getElementById('ai-content-generate-btn');
+  const btn = document.getElementById('ai-content-modal-generate-btn');
+  const resultDiv = document.getElementById('ai-content-result');
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spinner"></span> Gerando...';
+  resultDiv.style.display = 'none';
+  resultDiv.classList.remove('is-error');
+  resultDiv.innerHTML = '';
 
   try {
-    const response = await fetch(`/api/categories/${currentCategory.id}/lessons/${currentLessonId}/generate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Erro ao gerar conteúdo');
+    let response;
+    if (aiContentSelectedImages.length > 0) {
+      const formData = new FormData();
+      formData.append('prompt', prompt);
+      aiContentSelectedImages.forEach(file => {
+        formData.append('images', file);
+      });
+      response = await fetch(`/api/categories/${currentCategory.id}/lessons/${currentLessonId}/generate`, {
+        method: 'POST',
+        body: formData
+      });
+    } else {
+      response = await fetch(`/api/categories/${currentCategory.id}/lessons/${currentLessonId}/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
     }
 
-    const data = await response.json();
+    if (!response.ok) {
+      let errorMessage = 'Erro ao gerar conteúdo';
+      try {
+        const errorJson = await response.json();
+        errorMessage = errorJson.error || errorMessage;
+      } catch {
+        const errorText = await response.text();
+        if (errorText) {
+          errorMessage = errorText.slice(0, 300);
+        }
+      }
+      throw new Error(errorMessage);
+    }
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      const bodyText = await response.text();
+      throw new Error(`Resposta inesperada da API (não JSON): ${bodyText.slice(0, 120)}`);
+    }
 
     // Adicionar ao array local
     aiGeneratedContents.push({
@@ -899,9 +1208,27 @@ async function generateAiContent() {
 
     renderAiContentList();
     promptInput.value = '';
-    alert('Conteúdo gerado com sucesso!');
+
+    const generatedContent = data.generated?.generatedContent || data.generated;
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+      <h4 class="ai-result-title">✅ Conteúdo gerado com sucesso!</h4>
+      <div class="ai-result-scroll">
+        <div class="ai-result-body">
+          ${formatAiGeneratedContent(generatedContent)}
+        </div>
+      </div>
+      <p class="ai-result-meta">Total de conteúdos gerados nesta aula: ${aiGeneratedContents.length}</p>
+    `;
+
+    renderAiMermaidInContainer(resultDiv);
+
+    aiContentSelectedImages = [];
+    resetAiContentImagePreview();
   } catch (error) {
-    alert(`Erro: ${error.message}`);
+    resultDiv.style.display = 'block';
+    resultDiv.classList.add('is-error');
+    resultDiv.innerHTML = `<p class="ai-result-empty">❌ Erro: ${escapeHtmlAi(error.message)}</p>`;
   } finally {
     btn.disabled = false;
     btn.innerHTML = '🚀 Gerar Conteúdo';
@@ -952,6 +1279,8 @@ function renderAiContentList() {
       </div>
     `;
   }).join('');
+
+  renderAiMermaidInContainer(container);
 }
 
 function formatAiGeneratedContent(content) {
@@ -960,7 +1289,7 @@ function formatAiGeneratedContent(content) {
   if (typeof normalized === 'string') {
     return `
       <div class="ai-content-block">
-        <div class="ai-content-text">${formatAiText(normalized)}</div>
+        <div class="ai-content-text">${renderAiStructuredContent(normalized)}</div>
       </div>
     `;
   }
@@ -1013,7 +1342,7 @@ function renderAiObject(obj) {
   }
 
   if (obj.content) {
-    blocks.push(`<div class="ai-content-text">${formatAiText(obj.content)}</div>`);
+    blocks.push(`<div class="ai-content-text">${renderAiStructuredContent(obj.content)}</div>`);
   }
 
   for (const [key, value] of Object.entries(obj)) {
@@ -1101,7 +1430,7 @@ function renderAiObjectFields(obj) {
         return `
           <div style="margin-bottom: 12px;">
             <strong style="color:#374151; display:block; margin-bottom:6px;">${escapeHtmlAi(label)}</strong>
-            <div class="ai-content-card">${renderAiObjectFields(value)}</div>
+            <div class="ai-content-card">${renderAiStructuredContent(value)}</div>
           </div>
         `;
       }
@@ -1109,10 +1438,55 @@ function renderAiObjectFields(obj) {
       return `
         <div style="margin-bottom: 10px;">
           <strong style="color:#374151;">${escapeHtmlAi(label)}:</strong>
-          <span class="ai-content-text"> ${formatAiInlineText(String(value))}</span>
+          <div class="ai-content-text" style="display:inline-block; margin-left:4px;">${renderAiStructuredContent(String(value))}</div>
         </div>
       `;
     }).join('');
+}
+
+function renderAiStructuredContent(content) {
+  if (content == null || content === '') {
+    return '<div class="ai-content-text">Conteúdo vazio.</div>';
+  }
+
+  if (typeof content === 'string') {
+    return formatAiText(content);
+  }
+
+  if (Array.isArray(content)) {
+    const primitivesOnly = content.every(item => item == null || ['string', 'number', 'boolean'].includes(typeof item));
+    if (primitivesOnly) {
+      return `
+        <ul class="ai-content-list">
+          ${content.map(item => `<li>${formatAiInlineText(String(item ?? ''))}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    return `
+      <div class="ai-content-grid">
+        ${content.map((item, index) => `
+          <div class="ai-content-card">
+            <div class="ai-content-card-title">Item ${index + 1}</div>
+            ${typeof item === 'object' ? renderAiObjectFields(item) : `<div class="ai-content-text">${renderAiStructuredContent(String(item ?? ''))}</div>`}
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  if (typeof content === 'object') {
+    const objectKeys = Object.keys(content);
+    const hasRecognizedFields = objectKeys.some(key => ['title', 'type', 'content'].includes(key));
+
+    if (hasRecognizedFields) {
+      return renderAiObject(content);
+    }
+
+    return renderAiObjectFields(content);
+  }
+
+  return formatAiInlineText(String(content));
 }
 
 function formatAiLabel(key) {
@@ -1124,18 +1498,303 @@ function formatAiLabel(key) {
 }
 
 function formatAiText(text) {
-  const escaped = escapeHtmlAi(text)
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\s*[-*]\s+/g, '\n• ');
+  return renderAiMarkdown(text);
+}
 
-  return escaped
-    .split(/\n\n+/)
-    .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`)
-    .join('');
+function renderAiMarkdown(text) {
+  const normalized = normalizeLooseMermaidBlocks(String(text || '').replace(/\r\n/g, '\n'));
+  let html;
+
+  if (window.marked && typeof window.marked.parse === 'function') {
+    html = window.marked.parse(normalized, {
+      gfm: true,
+      breaks: true
+    });
+  } else {
+    html = normalized
+      .split(/\n\n+/)
+      .map((paragraph) => `<p>${escapeHtmlAi(paragraph).replace(/\n/g, '<br>')}</p>`)
+      .join('');
+  }
+
+  if (window.DOMPurify && typeof window.DOMPurify.sanitize === 'function') {
+    html = window.DOMPurify.sanitize(html, {
+      USE_PROFILES: { html: true },
+      ADD_ATTR: ['class', 'target', 'rel'],
+      ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i
+    });
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+
+  wrapper.querySelectorAll('pre > code.language-mermaid, pre > code.lang-mermaid').forEach((codeEl) => {
+    const pre = codeEl.parentElement;
+    const mermaidBlock = document.createElement('div');
+    mermaidBlock.className = 'mermaid';
+    mermaidBlock.textContent = sanitizeMermaidSource(codeEl.textContent || '');
+    if (pre && pre.parentElement) {
+      pre.parentElement.replaceChild(mermaidBlock, pre);
+    }
+  });
+
+  convertLooseMermaidParagraphs(wrapper);
+  convertInlineMermaidParagraphs(wrapper);
+
+  wrapper.querySelectorAll('a').forEach((anchor) => {
+    anchor.setAttribute('target', '_blank');
+    anchor.setAttribute('rel', 'noreferrer noopener');
+  });
+
+  return wrapper.innerHTML;
+}
+
+function normalizeLooseMermaidBlocks(markdown) {
+  const lines = markdown.split('\n');
+  const result = [];
+  let i = 0;
+
+  const isMermaidStart = (line) => {
+    const value = line.trim().toLowerCase();
+    return value === 'mermaid';
+  };
+
+  const isDiagramLine = (line) => {
+    const value = line.trim().toLowerCase();
+    return /^(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/.test(value);
+  };
+
+  while (i < lines.length) {
+    const current = lines[i];
+    if (!isMermaidStart(current)) {
+      result.push(current);
+      i += 1;
+      continue;
+    }
+
+    const block = [];
+    let j = i + 1;
+    while (j < lines.length) {
+      const candidate = lines[j];
+      if (!candidate.trim()) {
+        if (block.length === 0) {
+          j += 1;
+          continue;
+        }
+        break;
+      }
+      block.push(candidate);
+      j += 1;
+    }
+
+    if (block.length > 0 && isDiagramLine(block[0])) {
+      result.push('```mermaid');
+      result.push(...block);
+      result.push('```');
+      i = j;
+      continue;
+    }
+
+    result.push(current);
+    i += 1;
+  }
+
+  return result.join('\n');
+}
+
+function sanitizeMermaidSource(source) {
+  const normalized = String(source || '').replace(/\r\n/g, '\n');
+  const diagramStart = /^(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/i;
+
+  let lines = normalized
+    .split('\n')
+    .map(line => line.replace(/\t/g, '  ').trimEnd())
+    .filter(line => line.trim() !== '```' && line.trim().toLowerCase() !== '```mermaid');
+
+  const startIndex = lines.findIndex(line => diagramStart.test(line.trim()));
+  if (startIndex > 0) {
+    lines = lines.slice(startIndex);
+  }
+
+  const cleaned = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      cleaned.push(line);
+      continue;
+    }
+
+    if (/^#{1,6}\s+/.test(trimmed)) {
+      break;
+    }
+
+    cleaned.push(
+      line
+        .replace(/[→⇒]/g, '-->')
+        .replace(/^[-*]\s+(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/i, '$1')
+    );
+  }
+
+  return cleaned.join('\n').trim();
+}
+
+function isLikelyMermaidSource(source) {
+  const firstLine = String(source || '')
+    .split('\n')
+    .map(line => line.trim())
+    .find(Boolean);
+
+  if (!firstLine) {
+    return false;
+  }
+
+  return /^(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/i.test(firstLine);
+}
+
+function convertLooseMermaidParagraphs(wrapper) {
+  const paragraphs = Array.from(wrapper.querySelectorAll('p'));
+
+  const isDiagramLine = (line) => {
+    const value = line.trim().toLowerCase();
+    return /^(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/.test(value);
+  };
+
+  for (let index = 0; index < paragraphs.length; index += 1) {
+    const marker = paragraphs[index];
+    if (marker.textContent.trim().toLowerCase() !== 'mermaid') {
+      continue;
+    }
+
+    const collected = [];
+    const toRemove = [];
+    let cursor = marker.nextElementSibling;
+    while (cursor && cursor.tagName === 'P') {
+      const line = cursor.textContent.trim();
+      if (!line) {
+        break;
+      }
+      collected.push(cursor.textContent);
+      toRemove.push(cursor);
+      cursor = cursor.nextElementSibling;
+    }
+
+    if (collected.length > 0 && isDiagramLine(collected[0])) {
+      const mermaidBlock = document.createElement('div');
+      mermaidBlock.className = 'mermaid';
+      mermaidBlock.textContent = sanitizeMermaidSource(collected.join('\n'));
+      marker.parentElement.replaceChild(mermaidBlock, marker);
+      toRemove.forEach((node) => node.remove());
+    }
+  }
+}
+
+function convertInlineMermaidParagraphs(wrapper) {
+  const paragraphs = Array.from(wrapper.querySelectorAll('p'));
+  const diagramStart = /^(graph|flowchart|sequencediagram|classdiagram|statediagram|erdiagram|journey|gantt|pie|mindmap|timeline|quadrantchart|gitgraph|sankey)/i;
+
+  paragraphs.forEach((paragraph) => {
+    const raw = (paragraph.innerText || paragraph.textContent || '').replace(/\r\n/g, '\n').trim();
+    if (!raw) return;
+
+    const lines = raw.split('\n').map(line => line.trim()).filter(Boolean);
+    if (lines.length < 2) return;
+    if (lines[0].toLowerCase() !== 'mermaid') return;
+    if (!diagramStart.test(lines[1])) return;
+
+    const mermaidBlock = document.createElement('div');
+    mermaidBlock.className = 'mermaid';
+    mermaidBlock.textContent = sanitizeMermaidSource(lines.slice(1).join('\n'));
+    paragraph.parentElement.replaceChild(mermaidBlock, paragraph);
+  });
+}
+
+async function renderAiMermaidInContainer(container) {
+  if (!container || !window.mermaid) {
+    return;
+  }
+
+  try {
+    if (!aiMermaidInitialized) {
+      window.mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'default'
+      });
+      aiMermaidInitialized = true;
+    }
+
+    const validNodes = Array.from(container.querySelectorAll('.mermaid'));
+    for (let index = 0; index < validNodes.length; index += 1) {
+      const node = validNodes[index];
+      const source = sanitizeMermaidSource(node.textContent || '');
+
+      if (!source || !isLikelyMermaidSource(source)) {
+        node.remove();
+        continue;
+      }
+
+      try {
+        if (typeof window.mermaid.parse === 'function') {
+          const parseResult = await window.mermaid.parse(source, { suppressErrors: true });
+          if (parseResult === false) {
+            throw new Error('Mermaid parse retornou inválido');
+          }
+        }
+
+        const renderId = `ai-mermaid-${Date.now()}-${index}`;
+        const rendered = await window.mermaid.render(renderId, source);
+
+        if (!rendered || typeof rendered.svg !== 'string' || rendered.svg.includes('Syntax error in text')) {
+          throw new Error('Mermaid retornou SVG de erro');
+        }
+
+        node.innerHTML = rendered.svg;
+        node.classList.add('mermaid-rendered');
+        if (typeof rendered.bindFunctions === 'function') {
+          rendered.bindFunctions(node);
+        }
+      } catch (error) {
+        const fallback = document.createElement('pre');
+        fallback.className = 'ai-content-mermaid-fallback';
+        fallback.textContent = source;
+        if (node.parentElement) {
+          node.parentElement.replaceChild(fallback, node);
+        }
+        console.warn('Falha ao renderizar Mermaid, mantendo código:', error);
+      }
+    }
+  } catch (error) {
+    console.warn('Falha ao renderizar Mermaid:', error);
+  }
 }
 
 function formatAiInlineText(text) {
-  return escapeHtmlAi(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const normalized = String(text || '').replace(/\r\n/g, '\n');
+  let html;
+
+  if (window.marked && typeof window.marked.parseInline === 'function') {
+    html = window.marked.parseInline(normalized);
+  } else {
+    html = escapeHtmlAi(normalized).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  }
+
+  if (window.DOMPurify && typeof window.DOMPurify.sanitize === 'function') {
+    html = window.DOMPurify.sanitize(html, {
+      USE_PROFILES: { html: true },
+      ADD_ATTR: ['class', 'target', 'rel'],
+      ALLOWED_TAGS: ['strong', 'em', 'code', 'a', 'span', 'br'],
+      ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i
+    });
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  wrapper.querySelectorAll('a').forEach((anchor) => {
+    anchor.setAttribute('target', '_blank');
+    anchor.setAttribute('rel', 'noreferrer noopener');
+  });
+
+  return wrapper.innerHTML;
 }
 
 function escapeHtmlAi(text) {

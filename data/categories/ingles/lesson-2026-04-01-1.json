@@ -1,0 +1,270 @@
+{
+  "date": "2026-04-01",
+  "title": "Present Perfect: Mudanças, Acontecimentos Recentes e Relatar Notícias",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. ",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. "
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATION7.12 – Lisa has broken her leg.3 – The bus fare has gone up.4 – Her English has improved.5 – Dan has grown a beard.6 – The letter has arrived.7 – The temperature has fallen.Homework: choose some news from an online news platform or blog and report it next class. "
+      ]
+    }
+  ],
+  "source": "docx",
+  "id": "lesson-2026-04-01-1",
+  "enriched": {
+    "summary": "A aula aborda o uso do Present Perfect para descrever mudanças, acontecimentos recentes e situações que evoluíram ao longo do tempo. Também inclui exemplos de vocabulário relevante e a prática de relatar notícias atuais como lição de casa.",
+    "mainTopics": [
+      "Present Perfect",
+      "Mudanças e acontecimentos recentes",
+      "Relatar notícias"
+    ],
+    "vocabulary": [
+      {
+        "word": "break",
+        "translation": "quebrar",
+        "definition": "To separate into parts with sudden force.",
+        "examples": [
+          "Lisa has broken her leg.",
+          "I accidentally broke the vase."
+        ],
+        "pronunciation": "/breɪk/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "shatter",
+          "fracture"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-1-break",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "go up",
+        "translation": "subir, aumentar",
+        "definition": "To increase in value, level, or amount.",
+        "examples": [
+          "The bus fare has gone up.",
+          "Prices have gone up recently."
+        ],
+        "pronunciation": "/ɡəʊ ʌp/",
+        "partOfSpeech": "phrasal verb",
+        "synonyms": [
+          "increase",
+          "rise"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-1-go-up",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "improve",
+        "translation": "melhorar",
+        "definition": "To become better or to make something better.",
+        "examples": [
+          "Her English has improved.",
+          "I want to improve my writing skills."
+        ],
+        "pronunciation": "/ɪmˈpruːv/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "enhance",
+          "upgrade"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-04-01-1-improve",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "grow",
+        "translation": "crescer",
+        "definition": "To develop or increase in size or amount.",
+        "examples": [
+          "Dan has grown a beard.",
+          "The plant grew quickly."
+        ],
+        "pronunciation": "/ɡrəʊ/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "develop",
+          "expand"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-1-grow",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "arrive",
+        "translation": "chegar",
+        "definition": "To reach a place at the end of a journey.",
+        "examples": [
+          "The letter has arrived.",
+          "She arrived at the airport on time."
+        ],
+        "pronunciation": "/əˈraɪv/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "reach",
+          "come"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-1-arrive",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "word": "fall",
+        "translation": "cair",
+        "definition": "To move downward, typically rapidly and freely without control.",
+        "examples": [
+          "The temperature has fallen.",
+          "Leaves fall from the trees in autumn."
+        ],
+        "pronunciation": "/fɔːl/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "drop",
+          "decline"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-04-01-1-fall",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Present Perfect",
+        "explanation": "The Present Perfect tense is used to describe actions or events that have occurred at an unspecified time in the past or that began in the past and continue to the present.",
+        "rules": [
+          "Formed with 'has/have' + past participle.",
+          "Used for actions with relevance to the present or recent events.",
+          "Common with adverbs like 'already', 'just', 'yet', 'ever', and 'never'."
+        ],
+        "examples": [
+          "Lisa has broken her leg.",
+          "The bus fare has gone up.",
+          "Her English has improved.",
+          "Dan has grown a beard.",
+          "The letter has arrived.",
+          "The temperature has fallen."
+        ],
+        "commonMistakes": [
+          "Using the wrong auxiliary verb (e.g., 'She have broken her leg' instead of 'She has broken her leg').",
+          "Mixing up the past simple and present perfect (e.g., 'She broke her leg yesterday' vs. 'She has broken her leg')."
+        ],
+        "id": "grammar-lesson-2026-04-01-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "expressions": [],
+    "practiceQuestions": [
+      {
+        "question": "Complete the sentence: 'Lisa _____ her leg.'",
+        "answer": "has broken",
+        "explanation": "The Present Perfect is used because the action has relevance to the present.",
+        "type": "fill-in-blank",
+        "tense": "Present Perfect",
+        "id": "question-lesson-2026-04-01-1-0",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      },
+      {
+        "question": "Reescreva a frase no tempo verbal correto: 'The bus fare go up.'",
+        "answer": "The bus fare has gone up.",
+        "explanation": "Use 'has gone' (present perfect) because it indicates a recent change.",
+        "type": "translation",
+        "tense": "Present Perfect",
+        "id": "question-lesson-2026-04-01-1-1",
+        "spacedRepetition": {
+          "easeFactor": 2.5,
+          "interval": 0,
+          "repetitions": 0,
+          "nextReview": "2026-04-30",
+          "lastReview": null,
+          "reviews": []
+        }
+      }
+    ],
+    "culturalNotes": [
+      "Nos países de língua inglesa, o Present Perfect é frequentemente usado para relatar mudanças ou novidades, especialmente em notícias e conversas informais."
+    ],
+    "studyTips": [
+      "Pratique formar o Present Perfect com diferentes verbos irregulares para dominar suas conjugações.",
+      "Leia notícias em inglês e identifique frases no Present Perfect para entender o contexto de uso."
+    ],
+    "originalExamples": [
+      "Lisa has broken her leg. (Lisa quebrou a perna.)",
+      "The bus fare has gone up. (A tarifa do ônibus subiu.)",
+      "Her English has improved. (O inglês dela melhorou.)",
+      "Dan has grown a beard. (Dan deixou crescer uma barba.)",
+      "The letter has arrived. (A carta chegou.)",
+      "The temperature has fallen. (A temperatura caiu.)"
+    ]
+  },
+  "enrichedAt": "2026-04-30T00:11:45.255Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": [
+      "practiceQuestions tem apenas 2 item(ns), recomendado mínimo de 3"
+    ]
+  }
+}

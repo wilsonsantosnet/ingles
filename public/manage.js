@@ -324,18 +324,51 @@ function openAiModal(lessonId, lessonTitle) {
   aiSelectedImage = null;
   document.getElementById('ai-modal-lesson-title').textContent = `Aula: ${lessonTitle}`;
   document.getElementById('ai-prompt-input').value = '';
-  document.getElementById('ai-result').style.display = 'none';
+  const resultDiv = document.getElementById('ai-result');
+  resultDiv.style.display = 'none';
+  resultDiv.classList.remove('is-error');
+  resultDiv.innerHTML = '';
   document.getElementById('ai-image-preview').style.display = 'none';
   document.getElementById('ai-drop-content').style.display = 'block';
   document.getElementById('ai-image-input').value = '';
   const modal = document.getElementById('ai-prompt-modal');
-  modal.style.display = 'flex';
+  modal.classList.remove('maximized');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('ai-modal-open');
+  updateAiModalMaximizeButton();
 }
 
 function closeAiModal() {
-  document.getElementById('ai-prompt-modal').style.display = 'none';
+  const modal = document.getElementById('ai-prompt-modal');
+  modal.classList.remove('open', 'maximized');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('ai-modal-open');
   aiTargetLessonId = null;
   aiSelectedImage = null;
+}
+
+function toggleAiModalMaximize() {
+  const modal = document.getElementById('ai-prompt-modal');
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.toggle('maximized');
+  updateAiModalMaximizeButton();
+}
+
+function updateAiModalMaximizeButton() {
+  const modal = document.getElementById('ai-prompt-modal');
+  const button = document.getElementById('ai-maximize-btn');
+  if (!modal || !button) {
+    return;
+  }
+
+  const isMaximized = modal.classList.contains('maximized');
+  button.textContent = isMaximized ? '🗗' : '⛶';
+  button.title = isMaximized ? 'Restaurar' : 'Maximizar';
+  button.setAttribute('aria-label', button.title);
 }
 
 function handleAiImageSelect(event) {
@@ -391,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Suporte a Ctrl+V (paste) de imagem da área de transferência
   document.addEventListener('paste', (e) => {
     const modal = document.getElementById('ai-prompt-modal');
-    if (!modal || modal.style.display === 'none') return;
+    if (!modal || !modal.classList.contains('open')) return;
     
     const items = e.clipboardData?.items;
     if (!items) return;
@@ -428,6 +461,8 @@ async function submitAiPrompt() {
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spinner"></span> Gerando...';
   resultDiv.style.display = 'none';
+  resultDiv.classList.remove('is-error');
+  resultDiv.innerHTML = '';
 
   try {
     let response;
@@ -460,66 +495,195 @@ async function submitAiPrompt() {
     resultDiv.style.display = 'block';
     const content = data.generated?.generatedContent || data.generated;
     resultDiv.innerHTML = `
-      <h4 style="color:#065f46; margin:0 0 10px 0;">✅ Conteúdo gerado com sucesso!</h4>
-      <div style="background:#f9fafb; padding:16px; border-radius:8px; max-height:300px; overflow-y:auto;">
-        ${formatAiResult(content)}
+      <h4 class="ai-result-title">✅ Conteúdo gerado com sucesso!</h4>
+      <div class="ai-result-scroll">
+        <div class="ai-result-body">
+          ${renderAiResult(content)}
+        </div>
       </div>
-      <p style="color:#6b7280; font-size:0.85rem; margin-top:8px;">Total de conteúdos gerados nesta aula: ${data.totalGenerated}</p>
+      <p class="ai-result-meta">Total de conteúdos gerados nesta aula: ${data.totalGenerated}</p>
     `;
   } catch (error) {
     resultDiv.style.display = 'block';
-    resultDiv.style.background = '#fef2f2';
-    resultDiv.style.borderColor = '#fecaca';
-    resultDiv.innerHTML = `<p style="color:#991b1b; margin:0;">❌ Erro: ${escapeHtml(error.message)}</p>`;
+    resultDiv.classList.add('is-error');
+    resultDiv.innerHTML = `<p class="ai-result-empty">❌ Erro: ${escapeHtml(error.message)}</p>`;
   } finally {
     btn.disabled = false;
     btn.innerHTML = '🚀 Gerar';
   }
 }
 
-function formatAiResult(content) {
+function renderAiResult(content) {
   if (typeof content === 'string') {
-    return `<div style="line-height:1.7; font-size:0.95rem;">${content.replace(/\\n/g, '\n').replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
+    return renderRichText(content);
   }
+
   if (!content || typeof content !== 'object') {
-    return `<p>${String(content)}</p>`;
+    return `<p>${escapeHtml(String(content))}</p>`;
   }
-  let parts = [];
+
+  const parts = [];
+
   if (content.title) {
-    parts.push(`<h5 style="margin:0 0 8px 0; color:#5b21b6; font-size:1.1rem;">${escapeHtml(content.title)}</h5>`);
+    parts.push(`<h5>${escapeHtml(content.title)}</h5>`);
   }
+
   if (content.type) {
-    parts.push(`<span style="display:inline-block; background:#ede9fe; color:#6d28d9; padding:2px 10px; border-radius:12px; font-size:0.8rem; margin-bottom:10px;">${escapeHtml(content.type)}</span>`);
+    parts.push(`<span class="ai-result-key">${escapeHtml(content.type)}</span>`);
   }
+
   if (content.content) {
-    if (typeof content.content === 'string') {
-      const formatted = content.content.replace(/\\n/g, '\n').replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/(\d+)\.\s/g, '<br><strong>$1.</strong> ');
-      parts.push(`<div style="line-height:1.8; font-size:0.95rem; margin-top:8px;">${formatted}</div>`);
-    } else if (Array.isArray(content.content)) {
-      parts.push('<div style="margin-top:8px;">');
-      content.content.forEach((item, i) => {
-        if (typeof item === 'object') {
-          parts.push(`<div style="background:white; border:1px solid #e5e7eb; border-radius:8px; padding:12px; margin-bottom:8px;">`);
-          if (item.question) parts.push(`<div style="font-weight:600; color:#1f2937; margin-bottom:4px;"><strong>${i + 1}.</strong> ${escapeHtml(item.question)}</div>`);
-          if (item.answer) parts.push(`<div style="color:#059669; font-size:0.9rem;">✅ ${escapeHtml(item.answer)}</div>`);
-          if (item.explanation) parts.push(`<div style="color:#6b7280; font-size:0.85rem; margin-top:4px;">💡 ${escapeHtml(item.explanation)}</div>`);
-          parts.push('</div>');
-        } else {
-          parts.push(`<div style="margin-bottom:4px;">• ${escapeHtml(String(item))}</div>`);
-        }
-      });
-      parts.push('</div>');
-    } else {
-      parts.push(`<pre style="white-space:pre-wrap; font-size:0.85rem;">${escapeHtml(JSON.stringify(content.content, null, 2))}</pre>`);
-    }
+    parts.push(renderStructuredContent(content.content));
   }
-  // Outros campos
+
   Object.keys(content).forEach(key => {
     if (!['title', 'type', 'content'].includes(key)) {
-      const val = typeof content[key] === 'object' ? JSON.stringify(content[key], null, 2) : String(content[key]);
-      const formatted = val.replace(/\\n/g, '\n').replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      parts.push(`<div style="margin-top:10px;"><strong style="color:#6d28d9; text-transform:capitalize;">${escapeHtml(key)}:</strong><div style="line-height:1.7; color:#374151; margin-top:4px;">${formatted}</div></div>`);
+      const value = typeof content[key] === 'object' ? JSON.stringify(content[key], null, 2) : String(content[key]);
+      parts.push(`
+        <section class="ai-result-content-card">
+          <strong style="color:#6d28d9; text-transform:capitalize; display:block; margin-bottom:8px;">${escapeHtml(key)}:</strong>
+          <div>${renderRichText(value)}</div>
+        </section>
+      `);
     }
   });
+
   return parts.join('');
+}
+
+function renderStructuredContent(content) {
+  if (typeof content === 'string') {
+    return renderRichText(content);
+  }
+
+  if (Array.isArray(content)) {
+    return `
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:10px;">
+        ${content.map((item, index) => {
+          if (item && typeof item === 'object') {
+            return `
+              <article class="ai-result-card">
+                ${item.question ? `<div class="ai-result-question">${index + 1}. ${escapeHtml(item.question)}</div>` : ''}
+                ${item.answer ? `<div class="ai-result-answer">✅ ${renderRichText(String(item.answer))}</div>` : ''}
+                ${item.explanation ? `<div class="ai-result-explanation">💡 ${renderRichText(String(item.explanation))}</div>` : ''}
+              </article>
+            `;
+          }
+
+          return `<div class="ai-result-card">• ${renderRichText(String(item))}</div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  if (typeof content === 'object') {
+    return `<pre>${escapeHtml(JSON.stringify(content, null, 2))}</pre>`;
+  }
+
+  return renderRichText(String(content));
+}
+
+function renderRichText(value) {
+  const normalized = String(value).replace(/\r\n/g, '\n').replace(/\\n/g, '\n');
+  const lines = normalized.split('\n');
+  const blocks = [];
+  let paragraph = [];
+  let listMode = null;
+  let listItems = [];
+  let codeBlock = [];
+  let inCodeBlock = false;
+
+  const flushParagraph = () => {
+    if (paragraph.length > 0) {
+      blocks.push(`<p>${paragraph.join(' ').trim()}</p>`);
+      paragraph = [];
+    }
+  };
+
+  const flushList = () => {
+    if (listMode && listItems.length > 0) {
+      const tag = listMode === 'ordered' ? 'ol' : 'ul';
+      blocks.push(`<${tag}>${listItems.map(item => `<li>${item}</li>`).join('')}</${tag}>`);
+    }
+    listMode = null;
+    listItems = [];
+  };
+
+  const flushCodeBlock = () => {
+    if (codeBlock.length > 0) {
+      blocks.push(`<pre>${escapeHtml(codeBlock.join('\n'))}</pre>`);
+    }
+    codeBlock = [];
+  };
+
+  lines.forEach(line => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('```')) {
+      if (inCodeBlock) {
+        flushCodeBlock();
+      } else {
+        flushParagraph();
+        flushList();
+      }
+      inCodeBlock = !inCodeBlock;
+      return;
+    }
+
+    if (inCodeBlock) {
+      codeBlock.push(line);
+      return;
+    }
+
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+
+    const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/);
+    if (headingMatch) {
+      flushParagraph();
+      flushList();
+      const level = headingMatch[1].length + 1;
+      blocks.push(`<h${level}>${formatInline(headingMatch[2])}</h${level}>`);
+      return;
+    }
+
+    const bulletMatch = trimmed.match(/^[-*•]\s+(.+)$/);
+    const orderedMatch = trimmed.match(/^\d+[.)]\s+(.+)$/);
+    if (bulletMatch || orderedMatch) {
+      flushParagraph();
+      const mode = orderedMatch ? 'ordered' : 'unordered';
+      if (listMode && listMode !== mode) {
+        flushList();
+      }
+      listMode = mode;
+      listItems.push(formatInline((bulletMatch || orderedMatch)[1]));
+      return;
+    }
+
+    if (listMode) {
+      flushList();
+    }
+
+    paragraph.push(formatInline(trimmed));
+  });
+
+  flushParagraph();
+  flushList();
+  if (inCodeBlock) {
+    flushCodeBlock();
+  }
+
+  return blocks.join('');
+}
+
+function formatInline(text) {
+  const escaped = escapeHtml(text);
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noreferrer">$1</a>');
 }

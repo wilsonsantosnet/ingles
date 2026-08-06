@@ -304,8 +304,93 @@
       margin: 0 0 12px;
     }
 
+
+    .ai-content-text h1,
+    .ai-content-text h2,
+    .ai-content-text h3,
+    .ai-content-text h4 {
+      margin: 1rem 0 0.6rem;
+      color: #111827;
+      line-height: 1.35;
+    }
+
+    .ai-content-text h1:first-child,
+    .ai-content-text h2:first-child,
+    .ai-content-text h3:first-child,
+    .ai-content-text h4:first-child {
+      margin-top: 0;
+    }
     .ai-content-text p:last-child {
       margin-bottom: 0;
+    }
+
+    .ai-content-text blockquote {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #8b5cf6;
+      background: #f5f3ff;
+      border-radius: 0 8px 8px 0;
+      color: #374151;
+    }
+
+    .ai-content-text pre {
+      margin: 12px 0;
+      padding: 12px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .ai-content-text code {
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.08);
+      font-size: 0.92em;
+    }
+
+    .ai-content-text pre code {
+      background: transparent;
+      padding: 0;
+    }
+
+    .ai-content-text table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+
+    .ai-content-text th,
+    .ai-content-text td {
+      border: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .ai-content-text th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .ai-content-text .mermaid {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .ai-content-mermaid-fallback {
+      margin: 12px 0;
+      padding: 12px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre;
     }
 
     .ai-content-list {
@@ -323,6 +408,438 @@
       padding: 10px 12px;
       color: #374151;
       line-height: 1.6;
+    }
+
+    body.ai-modal-open {
+      overflow: hidden;
+    }
+
+    .ai-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .ai-modal-backdrop.open {
+      display: flex;
+    }
+
+    .ai-modal-dialog {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      width: min(980px, calc(100vw - 40px));
+      max-height: calc(100vh - 40px);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ai-modal-backdrop.maximized {
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 12px;
+    }
+
+    .ai-modal-backdrop.maximized .ai-modal-dialog {
+      width: 100%;
+      max-height: none;
+      height: calc(100vh - 24px);
+      border-radius: 18px;
+    }
+
+    .ai-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .ai-modal-title {
+      margin: 0;
+      color: #667eea;
+      font-size: 1.4rem;
+    }
+
+    .ai-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .ai-modal-icon-btn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #374151;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .ai-modal-icon-btn:hover {
+      transform: translateY(-1px);
+      background: #e5e7eb;
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+    }
+
+    .ai-modal-scroll {
+      overflow-y: auto;
+      padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ai-modal-section {
+      margin-bottom: 0;
+    }
+
+    .ai-modal-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .ai-drop-zone {
+      border: 2px dashed #d1d5db;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .ai-drop-zone:hover {
+      border-color: #a5b4fc;
+      background: #f8f7ff;
+    }
+
+    .ai-drop-zone.drag-over {
+      border-color: #667eea;
+      background: #eef2ff;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+    }
+
+    .ai-drop-content {
+      display: block;
+    }
+
+    .ai-image-preview {
+      display: none;
+      text-align: left;
+    }
+
+    .ai-image-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ai-image-count-label {
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 0.92rem;
+    }
+
+    .ai-image-preview-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ai-preview-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    .ai-preview-btn.danger {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .ai-image-thumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ai-image-thumb {
+      position: relative;
+      display: inline-block;
+    }
+
+    .ai-image-thumb img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+
+    .ai-image-index {
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+    }
+
+    .ai-image-remove-btn {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 24px;
+      height: 24px;
+      border: none;
+      border-radius: 50%;
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.8rem;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .ai-hint {
+      color: #9ca3af;
+      font-size: 0.82rem;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .ai-prompt-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 132px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .ai-prompt-input:focus {
+      outline: none;
+      border-color: #818cf8;
+      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+    }
+
+    .ai-result-panel {
+      display: none;
+      margin-top: 2px;
+      padding: 18px;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+    }
+
+    .ai-result-panel.is-error {
+      background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%);
+      border-color: #fda4af;
+    }
+
+    .ai-result-title {
+      color: #065f46;
+      margin: 0 0 12px 0;
+      font-size: 1.05rem;
+    }
+
+    .ai-result-scroll {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 12px;
+      padding: 18px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .ai-result-body {
+      color: #1f2937;
+      font-size: 1rem;
+      line-height: 1.9;
+      letter-spacing: 0.01em;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .ai-result-body p {
+      margin: 0 0 1rem;
+    }
+
+    .ai-result-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-result-body h1,
+    .ai-result-body h2,
+    .ai-result-body h3,
+    .ai-result-body h4,
+    .ai-result-body h5,
+    .ai-result-body h6 {
+      margin: 1.2rem 0 0.7rem;
+      line-height: 1.35;
+      color: #111827;
+    }
+
+    .ai-result-body h1:first-child,
+    .ai-result-body h2:first-child,
+    .ai-result-body h3:first-child,
+    .ai-result-body h4:first-child,
+    .ai-result-body h5:first-child,
+    .ai-result-body h6:first-child {
+      margin-top: 0;
+    }
+
+    .ai-result-body ul,
+    .ai-result-body ol {
+      margin: 0.75rem 0 1rem 1.4rem;
+      padding: 0;
+    }
+
+    .ai-result-body li {
+      margin-bottom: 0.45rem;
+    }
+
+    .ai-result-body blockquote {
+      margin: 1rem 0;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid #86efac;
+      background: #f8fafc;
+      color: #374151;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .ai-result-body pre {
+      margin: 1rem 0;
+      padding: 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .ai-result-body code {
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.08);
+      font-size: 0.92em;
+    }
+
+    .ai-result-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .ai-result-body th,
+    .ai-result-body td {
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .ai-result-body th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .ai-result-meta {
+      color: #6b7280;
+      font-size: 0.88rem;
+      margin: 10px 0 0 0;
+      line-height: 1.5;
+    }
+
+    .ai-result-content-card {
+      margin-top: 14px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .ai-result-key {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+      background: #ede9fe;
+      color: #6d28d9;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .ai-result-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    .ai-result-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-result-question {
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .ai-result-answer {
+      color: #047857;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .ai-result-explanation {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .ai-result-empty {
+      margin: 0;
+      color: #6b7280;
     }
 
     .ai-content-grid {
@@ -835,11 +1352,10 @@
           <p style="color: #6b7280; margin-bottom: 16px; font-size: 0.95rem;">
             A IA usará todos os dados desta aula (conteúdo bruto, enriquecido, exercícios, etc.) como contexto para gerar o que você pedir.
           </p>
-          <div class="form-group">
-            <label for="ai-content-prompt">Prompt *</label>
-            <textarea id="ai-content-prompt" rows="4" placeholder="Ex: Gere 10 questões de múltipla escolha sobre este conteúdo..."></textarea>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button onclick="openAiContentModal()" class="btn btn-primary" id="ai-content-generate-btn">🚀 Gerar Conteúdo</button>
+            <span class="hint">Abre o popup com suporte a imagem, como na tela de gerenciamento.</span>
           </div>
-          <button onclick="generateAiContent()" class="btn btn-primary" id="ai-content-generate-btn">🚀 Gerar Conteúdo</button>
         </div>
 
         <div class="item-list" id="ai-content-list">
@@ -850,6 +1366,62 @@
   </div>
 
   <script src="/categoryAdapter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <script src="/manage-full.js"></script>
+
+  <div id="ai-content-modal" class="ai-modal-backdrop" aria-hidden="true" onclick="if (event.target === this) closeAiContentModal();">
+    <div class="ai-modal-dialog">
+      <div class="ai-modal-header">
+        <div>
+          <h3 class="ai-modal-title">🧠 Gerar Novo Conteúdo com IA</h3>
+          <p style="color:#6b7280; margin:8px 0 0; font-size:0.95rem;">A IA usará todos os dados desta aula como contexto para gerar o que você pedir.</p>
+        </div>
+        <div class="ai-modal-actions">
+          <button type="button" id="ai-content-maximize-btn" class="ai-modal-icon-btn" onclick="toggleAiContentModalMaximize()" title="Maximizar" aria-label="Maximizar">⛶</button>
+          <button type="button" class="ai-modal-icon-btn" onclick="closeAiContentModal()" title="Fechar" aria-label="Fechar">✕</button>
+        </div>
+      </div>
+
+      <div class="ai-modal-scroll">
+        <div class="ai-modal-section">
+          <label class="ai-modal-label">📸 Imagens (Opcional):</label>
+          <div id="ai-content-drop-zone" class="ai-drop-zone">
+            <div id="ai-content-drop-text" class="ai-drop-content">
+              <div style="font-size:2rem;">📷</div>
+              <div style="color:#6b7280; font-size:0.92rem;">Arraste imagens ou clique para selecionar</div>
+              <div style="color:#9ca3af; font-size:0.82rem; margin-top:4px;">JPEG, PNG (máx 20MB por imagem)</div>
+            </div>
+            <div id="ai-content-image-preview" class="ai-image-preview">
+              <div class="ai-image-preview-header">
+                <span id="ai-content-image-count-label" class="ai-image-count-label">Imagens selecionadas: 0</span>
+                <div class="ai-image-preview-actions">
+                  <button type="button" class="ai-preview-btn" onclick="event.stopPropagation(); document.getElementById('ai-content-image-input').click();">➕ Adicionar mais</button>
+                  <button type="button" class="ai-preview-btn danger" onclick="clearAiContentImages(event)">🗑️ Remover todas</button>
+                </div>
+              </div>
+              <div id="ai-content-image-thumbs" class="ai-image-thumbs"></div>
+            </div>
+            <input type="file" id="ai-content-image-input" accept="image/jpeg,image/jpg,image/png" style="display:none;" multiple onchange="handleAiContentImageSelect(event)">
+          </div>
+          <p class="ai-hint">A IA analisará as imagens junto com o prompt para gerar o conteúdo.</p>
+        </div>
+
+        <div class="ai-modal-section">
+          <label class="ai-modal-label">Prompt *</label>
+          <textarea id="ai-content-prompt-modal" class="ai-prompt-input" rows="4" placeholder="Ex: Gere 10 questões de múltipla escolha sobre este conteúdo..."></textarea>
+          <p class="ai-hint">O prompt pode pedir questões, resumo, flashcards, explicações ou qualquer outro conteúdo para esta aula.</p>
+        </div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+          <button onclick="closeAiContentModal()" class="btn btn-secondary">Cancelar</button>
+          <button onclick="generateAiContent()" class="btn btn-primary" id="ai-content-modal-generate-btn">🚀 Gerar Conteúdo</button>
+        </div>
+
+        <div id="ai-content-result" class="ai-result-panel"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

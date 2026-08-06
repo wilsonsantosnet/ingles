@@ -1,0 +1,627 @@
+{
+  "date": "2026-07-08",
+  "title": "Vocabulário técnico e pronúncia: evaluate, function, parameter",
+  "rawContent": "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONevaluatefunctionparameterspaceanswertechnologiescountryEurope",
+  "paragraphs": [
+    "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONevaluatefunctionparameterspaceanswertechnologiescountryEurope"
+  ],
+  "sections": [
+    {
+      "type": "general",
+      "title": "Conteúdo Geral",
+      "content": [
+        "TODAY’S TAKEAWAYSGRAMMARVOCABULARYPRONUNCIATIONevaluatefunctionparameterspaceanswertechnologiescountryEurope"
+      ]
+    }
+  ],
+  "source": "docx",
+  "sourceFile": "Wilson Santos - 08July2026.docx",
+  "id": "lesson-2026-07-08-1",
+  "enriched": {
+    "title": "Vocabulário técnico e pronúncia: evaluate, function, parameter",
+    "summary": "A aula apresenta vocabulário técnico (evaluate, function, parameter, etc.), com foco em significado e pronúncia. Inclui pontos gramaticais básicos para usar essas palavras em frases e exercícios práticos para fixação.",
+    "mainTopics": [
+      "Vocabulário técnico (evaluate, function, parameter, technologies)",
+      "Palavras geográficas e gerais (country, Europe, space, answer)",
+      "Pronúncia em inglês (stress e sons principais)",
+      "Uso gramatical: substantivos vs. verbos"
+    ],
+    "vocabulary": [
+      {
+        "word": "evaluate",
+        "translation": "avaliar",
+        "definition": "to judge or calculate the quality, importance, amount, or value of something",
+        "examples": [
+          "Evaluate the function before making changes.",
+          "We need to evaluate the results carefully."
+        ],
+        "pronunciation": "/ɪˈvæljueɪt/ or /ɪˈvæljueɪt/",
+        "partOfSpeech": "verb",
+        "synonyms": [
+          "assess",
+          "estimate",
+          "appraise"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-08-1-evaluate",
+        "spacedRepetition": {
+          "easeFactor": 2.0000000000000004,
+          "interval": 11,
+          "repetitions": 3,
+          "nextReview": "2026-07-26",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:16.505Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:28:07.688Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:37:43.399Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:48:47.293Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "function",
+        "translation": "função",
+        "definition": "1) a purpose that something is used for; 2) (math/CS) a relation or formula that associates inputs with outputs",
+        "examples": [
+          "The function of this button is to turn the machine on.",
+          "In programming, a function returns a value."
+        ],
+        "pronunciation": "/ˈfʌŋkʃən/",
+        "partOfSpeech": "noun (can also be a verb)",
+        "synonyms": [
+          "role",
+          "purpose",
+          "operation"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-08-1-function",
+        "spacedRepetition": {
+          "easeFactor": 2.9000000000000004,
+          "interval": 45,
+          "repetitions": 4,
+          "nextReview": "2026-08-29",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:22.979Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:29:08.352Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:37:45.953Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-07-15T20:48:49.795Z",
+              "quality": 5,
+              "interval": 16
+            }
+          ]
+        }
+      },
+      {
+        "word": "parameter",
+        "translation": "parâmetro",
+        "definition": "a numerical or other measurable factor forming one of a set that defines a system or sets the conditions of its operation; in programming, an input value for functions",
+        "examples": [
+          "You must pass the parameter to the function.",
+          "Adjust the parameters to improve the model."
+        ],
+        "pronunciation": "/pəˈræmɪtər/ (US) /pəˈræmɪtə/ (UK)",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "specification",
+          "criterion",
+          "variable"
+        ],
+        "difficulty": "advanced",
+        "id": "vocab-lesson-2026-07-08-1-parameter",
+        "spacedRepetition": {
+          "easeFactor": 2.9000000000000004,
+          "interval": 45,
+          "repetitions": 4,
+          "nextReview": "2026-08-29",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:26.163Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:30:18.101Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:37:48.680Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-07-15T20:48:51.737Z",
+              "quality": 5,
+              "interval": 16
+            }
+          ]
+        }
+      },
+      {
+        "word": "space",
+        "translation": "espaço",
+        "definition": "1) an area that is empty or available; 2) the physical universe beyond the earth's atmosphere",
+        "examples": [
+          "We need more space in the database.",
+          "Astronauts travel into space."
+        ],
+        "pronunciation": "/speɪs/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "area",
+          "room",
+          "expanse"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-08-1-space",
+        "spacedRepetition": {
+          "easeFactor": 2.9000000000000004,
+          "interval": 45,
+          "repetitions": 4,
+          "nextReview": "2026-08-29",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:29.667Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:31:22.604Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:37:51.470Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-07-15T20:48:53.347Z",
+              "quality": 5,
+              "interval": 16
+            }
+          ]
+        }
+      },
+      {
+        "word": "answer",
+        "translation": "resposta",
+        "definition": "a response to a question, letter, phone call, etc.; to reply",
+        "examples": [
+          "She didn't know the answer to the question.",
+          "Please answer the email as soon as possible."
+        ],
+        "pronunciation": "/ˈænsər/ (US) /ˈɑːnsə/ (UK)",
+        "partOfSpeech": "noun / verb",
+        "synonyms": [
+          "reply",
+          "response",
+          "solution"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-08-1-answer",
+        "spacedRepetition": {
+          "easeFactor": 2.9000000000000004,
+          "interval": 45,
+          "repetitions": 4,
+          "nextReview": "2026-08-29",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:32.563Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:31:48.884Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:37:58.708Z",
+              "quality": 5,
+              "interval": 6
+            },
+            {
+              "date": "2026-07-15T20:48:54.985Z",
+              "quality": 5,
+              "interval": 16
+            }
+          ]
+        }
+      },
+      {
+        "word": "technologies",
+        "translation": "tecnologias",
+        "definition": "plural of technology: the application of scientific knowledge for practical purposes, especially in industry",
+        "examples": [
+          "New technologies are changing how we work.",
+          "He studies emerging technologies in Europe."
+        ],
+        "pronunciation": "/tɛkˈnɒlədʒiz/ (UK) /tɛkˈnɑːlədʒiz/ (US)",
+        "partOfSpeech": "noun (plural)",
+        "synonyms": [
+          "tech",
+          "tools",
+          "systems"
+        ],
+        "difficulty": "intermediate",
+        "id": "vocab-lesson-2026-07-08-1-technologies",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-07-31",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:35.476Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:38:05.915Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:48:56.740Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "country",
+        "translation": "país",
+        "definition": "a nation with its own government, occupying a particular territory",
+        "examples": [
+          "She travels to another country every year.",
+          "Each country has its own laws."
+        ],
+        "pronunciation": "/ˈkʌntri/",
+        "partOfSpeech": "noun",
+        "synonyms": [
+          "nation",
+          "state",
+          "land"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-08-1-country",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-07-31",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:38.015Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:38:11.199Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:48:58.410Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      },
+      {
+        "word": "Europe",
+        "translation": "Europa",
+        "definition": "the continent to the west of Asia, comprising many countries such as France, Germany, Spain, etc.",
+        "examples": [
+          "He moved to Europe last year.",
+          "European technologies are often standards-driven."
+        ],
+        "pronunciation": "/ˈjʊərəp/ or /ˈjʊərəp/",
+        "partOfSpeech": "proper noun",
+        "synonyms": [
+          "the Continent (informal)"
+        ],
+        "difficulty": "basic",
+        "id": "vocab-lesson-2026-07-08-1-europe",
+        "spacedRepetition": {
+          "easeFactor": 2.8000000000000003,
+          "interval": 16,
+          "repetitions": 3,
+          "nextReview": "2026-07-31",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:40.182Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:38:14.569Z",
+              "quality": 5,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:48:59.956Z",
+              "quality": 5,
+              "interval": 6
+            }
+          ]
+        }
+      }
+    ],
+    "grammar": [
+      {
+        "topic": "Substantive vs. Verbal use (noun vs. verb)",
+        "explanation": "Some words in English can be both nouns and verbs (e.g., function, answer). The sentence structure and verb forms change depending on the use.",
+        "rules": [
+          "When used as a noun, position it after determiners/articles (a/the) or adjectives: 'the function is clear.'",
+          "When used as a verb, conjugate according to subject and tense: 'She answers the question.'",
+          "Use correct verb patterns after verbs: 'evaluate' is followed by a noun or clause: 'evaluate the result' or 'evaluate whether...' "
+        ],
+        "examples": [
+          "The function of this button is to start the device. (noun)",
+          "Can you function properly after the update? (verb)",
+          "Please answer the email. (verb)",
+          "I still don't have the answer. (noun)"
+        ],
+        "commonMistakes": [
+          "Using the verb form without conjugation: 'She answer the question' (should be 'answers').",
+          "Confusing noun and verb placement: 'Function clear is' instead of 'The function is clear.'"
+        ],
+        "id": "grammar-lesson-2026-07-08-1-0",
+        "spacedRepetition": {
+          "easeFactor": 1.9000000000000004,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:48.257Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:42:26.226Z",
+              "quality": 0,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:49:02.038Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "topic": "Countable vs. Uncountable nouns",
+        "explanation": "Some nouns are countable (country, answer, technology/technologies) and others can be uncountable depending on meaning (space as uncountable for room/area). This affects use of articles and quantifiers.",
+        "rules": [
+          "Use 'a'/'an' with singular countable nouns: 'a country', 'an answer'.",
+          "Use plural for multiple countable items: 'two countries', 'many technologies'.",
+          "Do not use 'a' with uncountable nouns like 'space' when meaning area: 'There is space' (not 'a space' unless referring to a single slot or location)."
+        ],
+        "examples": [
+          "She visited three countries last year.",
+          "There is not enough space in the database."
+        ],
+        "commonMistakes": [
+          "Saying 'a space' when meaning general room: prefer 'space' without article unless specific.",
+          "Using plural when the noun is uncountable: 'informations' (incorrect) instead of 'information'."
+        ],
+        "id": "grammar-lesson-2026-07-08-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.9000000000000004,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:27:56.662Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:43:56.464Z",
+              "quality": 0,
+              "interval": 1
+            },
+            {
+              "date": "2026-07-15T20:49:03.736Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      }
+    ],
+    "expressions": [],
+    "practiceQuestions": [
+      {
+        "question": "Fill in the blank: Please ____ the data before you submit the report.",
+        "answer": "evaluate",
+        "explanation": "The verb 'evaluate' means to judge or assess; present simple is used for instructions.",
+        "type": "fill-in-blank",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-08-1-0",
+        "spacedRepetition": {
+          "easeFactor": 1.9000000000000004,
+          "interval": 6,
+          "repetitions": 2,
+          "nextReview": "2026-07-21",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:28:38.903Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:44:23.724Z",
+              "quality": 5,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:49:11.955Z",
+              "quality": 5,
+              "interval": 1
+            }
+          ]
+        }
+      },
+      {
+        "question": "Multiple choice: Which sentence uses 'function' as a verb?\nA) The function of this tool is clear.\nB) This tool functions well under pressure.\nC) I need three functions for the program.\nD) She has the function done.",
+        "answer": "B",
+        "explanation": "Option B uses 'functions' as a verb meaning 'works'; A and C use it as noun; D is incorrect usage.",
+        "type": "multiple-choice",
+        "tense": "Present Simple",
+        "id": "question-lesson-2026-07-08-1-1",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:29:50.697Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:49:23.852Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "question": "Translate to English: 'Ela mudou-se para a Europa no ano passado.'",
+        "answer": "She moved to Europe last year.",
+        "explanation": "Past action completed in the past: Simple Past 'moved'.",
+        "type": "translation",
+        "tense": "Simple Past",
+        "id": "question-lesson-2026-07-08-1-2",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:30:06.742Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:49:53.458Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      },
+      {
+        "question": "Fill in: We need more ____ on this page (meaning 'área disponível').",
+        "answer": "space",
+        "explanation": "'Space' is the correct uncountable noun meaning available area.",
+        "type": "fill-in-blank",
+        "tense": "Present Simple (noun usage)",
+        "id": "question-lesson-2026-07-08-1-3",
+        "spacedRepetition": {
+          "easeFactor": 1.8000000000000003,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T19:30:23.905Z",
+              "quality": 0,
+              "interval": 0
+            },
+            {
+              "date": "2026-07-15T20:50:05.960Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
+        }
+      }
+    ],
+    "culturalNotes": [
+      "The word 'Europe' refers to a continent made up of many countries with diverse languages and varieties of English (British English influences vs. American English).",
+      "Technology adoption and terminology can vary by country; e.g., British English often uses different spellings (organisation vs. organization) and some vocabulary differs (lift vs. elevator)."
+    ],
+    "studyTips": [
+      "Faça flashcards com a palavra, tradução e uma frase de exemplo para praticar diariamente.",
+      "Pratique a pronúncia ouvindo frases em contexto (text-to-speech ou vídeos) e repita em voz alta.",
+      "Separe o estudo entre significado, pronúncia e uso gramatical: aprenda primeiro o significado, depois a pronúncia e por fim como usar em frases."
+    ],
+    "originalExamples": [
+      "TODAY’S TAKEAWAYS (Principais pontos de hoje)",
+      "GRAMMAR (Gramática)",
+      "VOCABULARY (Vocabulário)",
+      "PRONUNCIATION (Pronúncia)",
+      "evaluate (avaliar)",
+      "function (função)",
+      "parameter (parâmetro)",
+      "space (espaço)",
+      "answer (resposta)",
+      "technologies (tecnologias)",
+      "country (país)",
+      "Europe (Europa)"
+    ],
+    "references": [],
+    "supportMaterials": []
+  },
+  "enrichedAt": "2026-07-15T19:00:27.531Z",
+  "status": "enriched",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

@@ -21,6 +21,19 @@ class CategoryAdapter {
   }
 
   /**
+   * Formata enunciado de multipla escolha para quebrar linha entre opcoes (A, B, C...)
+   */
+  static formatMultipleChoiceQuestion(text) {
+    const normalized = String(text || '').replace(/\s+/g, ' ').trim();
+
+    if (!/[A-Ha-h]\)/.test(normalized)) {
+      return normalized;
+    }
+
+    return normalized.replace(/\s+([A-Ha-h]\))/g, '<br>$1');
+  }
+
+  /**
    * Retorna os campos disponíveis para o tipo de categoria
    */
   getAvailableFields() {
@@ -684,10 +697,6 @@ class CategoryAdapter {
           vocabAnswer += `<p style="margin-top: 10px;"><strong>💬 Definição</strong><br>${item.definition}</p>`;
         }
         
-        if (item.pronunciation) {
-          vocabAnswer += `<p style="margin-top: 10px;"><strong>🔊 Pronúncia</strong><br><span style="font-family: monospace; color: #667eea;">${item.pronunciation}</span></p>`;
-        }
-        
         if (item.examples && item.examples.length > 0) {
           vocabAnswer += `<p style="margin-top: 10px;"><strong>📝 Exemplos</strong></p><ul style="margin-left: 20px;">`;
           vocabAnswer += item.examples.map(ex => `<li>${ex}</li>`).join('');
@@ -706,6 +715,9 @@ class CategoryAdapter {
       case 'question':
         // Determinar tipo de exercício
         const exerciseType = item.type || 'translation';
+        const displayQuestion = exerciseType === 'multiple-choice'
+          ? CategoryAdapter.formatMultipleChoiceQuestion(item.question)
+          : (item.question || '');
         const typeLabels = {
           'translation': '🌐 Tradução',
           'fill-in-blank': '✍️ Complete',
@@ -725,7 +737,7 @@ class CategoryAdapter {
         }
         
         // Frase em inglês com destaque + botão TTS
-        questionHTML += `<div class="english-sentence" style="display:flex; align-items:center; gap:8px;"><span style="flex:1;">${item.question}</span>${CategoryAdapter.ttsButton(item.question, '1.1rem')}</div>`;
+        questionHTML += `<div class="english-sentence" style="display:flex; align-items:center; gap:8px;"><span style="flex:1;">${displayQuestion}</span>${CategoryAdapter.ttsButton(item.question, '1.1rem')}</div>`;
         
         // Área editável para tradução
         questionHTML += `

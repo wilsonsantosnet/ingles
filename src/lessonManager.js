@@ -446,6 +446,9 @@ export class LessonManager {
       const idx = index.lessons.findIndex(l => l.id === lessonData.id);
       if (idx !== -1) {
         index.lessons[idx] = { ...index.lessons[idx], ...lessonData };
+      } else {
+        // Auto-recupera entradas ausentes no índice para evitar aulas "sumidas" na listagem.
+        index.lessons.push(lessonData);
       }
     } else if (operation === 'remove') {
       index.lessons = index.lessons.filter(l => l.id !== lessonData.id);

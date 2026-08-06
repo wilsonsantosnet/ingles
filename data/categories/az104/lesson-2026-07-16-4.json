@@ -1,0 +1,282 @@
+{
+  "id": "lesson-2026-07-16-4",
+  "date": "2026-07-16",
+  "title": "Gerenciar atributos de usuários em implantação híbrida do Entra ID",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have a hybrid deployment of Microsoft Entra ID that contains the users shown in the following table.\n\nName    Type    Source\nUser1   Member  Microsoft Entra ID\nUser2   Member  Windows Server Active Directory\nUser3   Guest   Microsoft account\n\nYou need to modify the JobTitle and UsageLocation attributes for the users.\n\nFor which users can you modify the attributes from Microsoft Entra ID? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nAnswer Area\n\nJobTitle:\nUser1 only\nUser1 and User2 only\nUser1 and User3 only\nUser1, User2, and User3\n\nUsageLocation:\nUser1 only\nUser1 and User2 only\nUser1 and User3 only\nUser1, User2, and User3",
+  "enriched": {
+    "title": "Gerenciar atributos de usuários em implantação híbrida do Entra ID",
+    "summary": "Análise de quais atributos de usuário podem ser modificados diretamente no Microsoft Entra ID numa implantação híbrida. Inclui distinção entre fontes de identidade (cloud, on‑premises, Microsoft account/guest) e impacto da sincronização no controle de atributos como JobTitle e UsageLocation.",
+    "topics": [
+      {
+        "title": "Identity",
+        "description": "Principais conceitos de identidade em ambiente híbrido: Microsoft Entra ID (Azure AD), Windows Server Active Directory, contas externas/guest e sincronização de diretórios.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Sincronização de Diretório (Azure AD Connect)",
+        "description": "Como a sincronização on‑premises torna certos atributos somente leitura no tenant Entra ID e quando alterações devem ser feitas no AD local.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Atributos de Usuário (JobTitle, UsageLocation)",
+        "description": "Comportamento e finalidade de atributos comuns; impacto em licenciamento e políticas ao alterar UsageLocation e JobTitle em diferentes tipos de usuário.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "B2B / Contas Externas (Guest)",
+        "description": "Tratamento de usuários guest (Microsoft account ou conta organizacional externa) no Entra ID e quais atributos são administráveis no portal Entra ID.",
+        "category": "Identity",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "Microsoft Entra ID (Azure AD)",
+        "definition": "Serviço de identidade baseado em nuvem da Microsoft que gerencia usuários, grupos e acesso a recursos em nuvem.",
+        "examples": [
+          "Usuário cloud‑only criado diretamente no portal Entra ID",
+          "Aplicação integrada com autenticação via Entra ID"
+        ],
+        "relatedConcepts": [
+          "Windows Server Active Directory",
+          "Azure AD Connect",
+          "B2B Collaboration"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Windows Server Active Directory (on‑premises AD)",
+        "definition": "Diretório local que armazena identidades e políticas em rede local; frequentemente sincronizado com Entra ID em ambientes híbridos.",
+        "examples": [
+          "Usuário criado no AD local sincronizado para Entra ID",
+          "Políticas de Grupo (GPO) em AD local"
+        ],
+        "relatedConcepts": [
+          "Azure AD Connect",
+          "onPremisesSyncEnabled"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Conta Microsoft (Microsoft account)",
+        "definition": "Conta pessoal da Microsoft usada para serviços como Outlook.com; quando convidada como B2B, aparece como Guest no Entra ID.",
+        "examples": [
+          "user@hotmail.com convidado como Guest",
+          "Acesso colaborativo a um tenant Entra ID"
+        ],
+        "relatedConcepts": [
+          "B2B Collaboration",
+          "Guest user"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Source (Origem do usuário)",
+        "definition": "Propriedade que indica onde a identidade é gerada: 'Microsoft Entra ID' (cloud), 'Windows Server AD' (sincronizada), ou 'Microsoft account' (externa/guest).",
+        "examples": [
+          "Source = Microsoft Entra ID (cloud‑only)",
+          "Source = Windows Server AD (sync)"
+        ],
+        "relatedConcepts": [
+          "onPremisesSyncEnabled",
+          "Azure AD Connect"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "onPremisesSyncEnabled",
+        "definition": "Atributo booleano que indica se um objeto de usuário é sincronizado a partir de um AD local; quando true, a maioria dos atributos é somente leitura no Entra ID.",
+        "examples": [
+          "onPremisesSyncEnabled = true → editar no AD local",
+          "onPremisesSyncEnabled = false → editar no Entra ID"
+        ],
+        "relatedConcepts": [
+          "Azure AD Connect",
+          "attributo somente leitura"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "JobTitle",
+        "definition": "Atributo descritivo do cargo/posição do usuário; frequentemente sincronizado a partir do AD local quando o usuário é on‑premises.",
+        "examples": [
+          "JobTitle = 'Analista de TI'",
+          "JobTitle alterado no AD local e sincronizado para Entra ID"
+        ],
+        "relatedConcepts": [
+          "attributos de usuário",
+          "sincronização de atributos"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "UsageLocation",
+        "definition": "Atributo que indica o país/região do usuário para fins de atribuição de licenças e conformidade; necessário para atribuir determinadas licenças M365.",
+        "examples": [
+          "UsageLocation = 'BR' para Brasil",
+          "Necessário para atribuir licenças Office 365"
+        ],
+        "relatedConcepts": [
+          "licenciamento",
+          "atribuição de licença",
+          "tenant geográfico"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Writeback",
+        "definition": "Mecanismo pelo qual certas alterações feitas no Azure AD podem ser escritas de volta ao AD local (ex: password writeback); não aplica-se genericamente a todos os atributos de usuário.",
+        "examples": [
+          "Password writeback habilitado pelo Azure AD Connect",
+          "Group writeback disponível para Teams templates"
+        ],
+        "relatedConcepts": [
+          "Azure AD Connect",
+          "limitações de writeback"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "B2B Collaboration (Guest)",
+        "definition": "Modelo que permite convidar identidades externas para colaborar em recursos do tenant Entra ID como usuários guest.",
+        "examples": [
+          "Convidar parceiro externo como Guest",
+          "Configurar políticas de acesso para guests"
+        ],
+        "relatedConcepts": [
+          "External Identities",
+          "Guest user management"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Editar JobTitle de usuário sincronizado e cloud",
+        "problem": "Administrador tenta alterar JobTitle de um usuário cujo Source é 'Windows Server AD' e não consegue no portal Entra ID.",
+        "solution": "1) Verifique onPremisesSyncEnabled no objeto de usuário; 2) Se true, faça a alteração no AD local no atributo jobTitle; 3) Aguarde a sincronização do Azure AD Connect ou force‑sync; 4) Verifique no portal Entra ID.",
+        "explanation": "Quando onPremisesSyncEnabled=true, o AD local é a autoridade para atributos sincronizados. Alterações devem ocorrer no AD local e propagar via Azure AD Connect."
+      },
+      {
+        "scenario": "Atribuir licença que requer UsageLocation para usuário guest",
+        "problem": "Você precisa atribuir uma licença M365 a um usuário guest (Source: Microsoft account) mas o sistema reclama da falta de UsageLocation.",
+        "solution": "1) No portal Entra ID, abra o usuário guest e edite UsageLocation (se permitido); 2) Se edição disponível, defina o país apropriado; 3) Atribua a licença; 4) Caso não seja permitida, converta o usuário para um tipo gerenciável ou crie um usuário cloud‑only.",
+        "explanation": "UsageLocation é necessário para licenciamento; guest com Source cloud geralmente pode ter UsageLocation definido no Entra ID. Se estiver bloqueado, é por restrições do tipo de conta ou políticas do tenant."
+      },
+      {
+        "scenario": "Determinar quais atributos são editáveis no Entra ID",
+        "problem": "Equipe de suporte precisa de regra rápida para saber quando editar no Entra ID vs AD local.",
+        "solution": "1) Verifique Source do usuário: se 'Windows Server AD' → editar no AD local; se 'Microsoft Entra ID' ou 'Microsoft account' → editar no Entra ID; 2) Confirme onPremisesSyncEnabled; 3) Documente políticas internas.",
+        "explanation": "A origem (Source) e a flag onPremisesSyncEnabled determinam a autoridade de edição. Cloud‑only e guests não sincronizados são editáveis no tenant Entra ID."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Em uma implantação híbrida, por que você não deve editar JobTitle no portal Entra ID para um usuário sincronizado a partir do AD local?",
+        "answer": "Porque o usuário tem onPremisesSyncEnabled=true e o atributo JobTitle é sincronizado a partir do AD local; a alteração deve ser feita no AD local e sincronizada para o Entra ID.",
+        "hint": "Verifique a propriedade Source/onPremisesSyncEnabled do usuário.",
+        "topic": "Sincronização de Diretório"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você tem User1 (Source: Microsoft Entra ID), User2 (Source: Windows Server AD) e User3 (Source: Microsoft account). Para quais desses usuários você pode modificar UsageLocation diretamente no Entra ID?",
+        "answer": "User1 e User3 — ambos não são sincronizados a partir do AD local, portanto UsageLocation pode ser editado no Entra ID.",
+        "hint": "Considere onde a identidade é gerida (cloud vs on‑premises).",
+        "topic": "Atributos de Usuário"
+      },
+      {
+        "type": "command",
+        "question": "Como você verifica via PowerShell se um usuário é sincronizado do AD local (onPremisesSyncEnabled)?",
+        "answer": "Use o módulo AzureAD ou Microsoft Graph: Get-AzureADUser -ObjectId user@domain.com | Select DisplayName, OnPremisesSyncEnabled  (ou consultar Microsoft Graph /users/{id} e verificar onPremisesSyncEnabled).",
+        "hint": "Pode usar AzureAD ou MSOnline/Graph API; procure a propriedade OnPremisesSyncEnabled.",
+        "topic": "Gestão de Usuários"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Após atualizar o atributo JobTitle no AD local, a alteração não aparece em Entra ID após 24 horas. Quais passos você toma para resolver?",
+        "answer": "1) Verifique logs do Azure AD Connect e status da sincronização; 2) Force um delta sync (Start-ADSyncSyncCycle -PolicyType Delta) no servidor Azure AD Connect; 3) Confirme se o atributo jobTitle está incluído nas regras de sincronização; 4) Verifique conflitos ou regras de mapeamento.",
+        "hint": "Use o comando Start-ADSyncSyncCycle no servidor com Azure AD Connect para forçar sincronização.",
+        "topic": "Sincronização/AD Connect"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa atribuir uma licença que exige UsageLocation para User2 (sincronizado). O que é a melhor prática para proceder?",
+        "answer": "Atualize o atributo usageLocation no AD local (se mapeado) ou configure uma regra de sincronização para incluir esse atributo; depois force a sincronização para que o valor esteja disponível no Entra ID e permita a atribuição da licença.",
+        "hint": "Alterações em usuários sincronizados devem ser feitas no AD local e sincronizadas.",
+        "topic": "Licenciamento e Sincronização"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre verifique a propriedade Source/onPremisesSyncEnabled antes de tentar editar atributos no Entra ID.",
+        "relevance": "Determina se o atributo é somente leitura no portal; questão comum em exames sobre administração híbrida.",
+        "topic": "Sincronização"
+      },
+      {
+        "tip": "Lembre que contas guest (Microsoft account) geralmente são editáveis no tenant Entra ID, diferentemente de usuários sincronizados do AD local.",
+        "relevance": "Perguntas de B2B e gerenciamento de usuários frequentemente exploram diferenças entre Member e Guest.",
+        "topic": "B2B / Guest"
+      },
+      {
+        "tip": "Não confunda writeback com edição arbitrária de atributos: writeback cobre cenários específicos como password writeback, não todos os atributos.",
+        "relevance": "Pegadinha comum: acreditar que você pode editar qualquer atributo no Entra ID e enviar de volta ao AD local.",
+        "topic": "Azure AD Connect / Writeback"
+      },
+      {
+        "tip": "UsageLocation é obrigatório para atribuição de algumas licenças — se não puder editar no Entra ID, ajuste no AD local para usuários sincronizados.",
+        "relevance": "Questões de licenciamento pedem atenção a UsageLocation e sua origem.",
+        "topic": "Licenciamento"
+      }
+    ],
+    "references": [
+      {
+        "title": "Visão geral de identidade híbrida (Microsoft Entra)",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/hybrid/whatis-hybrid-identity",
+        "type": "documentation"
+      },
+      {
+        "title": "Propriedades do usuário no Azure Active Directory",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/users-groups-roles/users-properties",
+        "type": "documentation"
+      },
+      {
+        "title": "B2B collaboration: convites e gestão de usuários guest",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/what-is-b2b",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Visão geral de identidade híbrida (Microsoft Entra)",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/hybrid/whatis-hybrid-identity",
+        "type": "documentation"
+      },
+      {
+        "title": "Propriedades do usuário no Azure Active Directory",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/users-groups-roles/users-properties",
+        "type": "documentation"
+      },
+      {
+        "title": "B2B collaboration: convites e gestão de usuários guest",
+        "url": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/what-is-b2b",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-07-16T13:49:40.568Z",
+  "updatedAt": "2026-07-16T13:50:38.143Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-16T13:50:38.135Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

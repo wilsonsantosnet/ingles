@@ -1,0 +1,317 @@
+{
+  "id": "lesson-2026-07-14-1",
+  "date": "2026-07-14",
+  "title": "Proteção de Azure VMs com Recovery Services Vault",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You purchase a new Azure subscription named Subscription1.\n\nYou create a virtual machine named VM1 in Subscription1. VM1 is not protected by Azure Backup.\n\nYou need to protect VM1 by using Azure Backup. Backups must be created at 01:00 and stored for 30 days.\n\nWhat should you do? To answer, select the appropriate options in the answer area.\n\nNOTE: Each correct selection is worth one point.\n\nAnswer Area\n\nLocation in which to store the backups:\nA blob container\nA file share\nA Recovery Services vault\nA storage account\n\nObject to use to configure the protection for VM1:\nA backup policy\nA batch job\nA batch schedule\nA recovery plan",
+  "enriched": {
+    "title": "Proteção de Azure VMs com Recovery Services Vault",
+    "summary": "Como proteger uma VM Azure usando Azure Backup: escolha do local de armazenamento e criação de política de backup com agendamento e retenção. Demonstra os conceitos e passos práticos para agendar backups diários às 01:00 com retenção de 30 dias.",
+    "topics": [
+      {
+        "title": "Backup e Recovery",
+        "description": "Fundamentos do Azure Backup, tipos de backup, políticas de retenção e pontos de recuperação.",
+        "category": "Monitoring",
+        "importance": "high"
+      },
+      {
+        "title": "Recovery Services vault",
+        "description": "Recurso do Azure usado para armazenar e gerenciar backups e pontos de recuperação.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Azure Virtual Machines (VM)",
+        "description": "Máquinas virtuais como itens protegidos pelo Azure Backup; pré-requisitos para habilitar backup.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Política de Backup",
+        "description": "Configuração que define horários de backup, frequência e regras de retenção (ex.: diário às 01:00, retenção 30 dias).",
+        "category": "Monitoring",
+        "importance": "high"
+      },
+      {
+        "title": "Opções de armazenamento",
+        "description": "Diferença entre Recovery Services vault e recursos de armazenamento genéricos (storage account, blob, file share) para backups gerenciados.",
+        "category": "Storage",
+        "importance": "medium"
+      },
+      {
+        "title": "Recuperação e testes",
+        "description": "Processo de restauração a partir de pontos de recuperação e validação do backup (restores de arquivos, discos ou VM completa).",
+        "category": "Monitoring",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "VM (Virtual Machine)",
+        "definition": "Instância de máquina virtual provisionada no Azure que hospeda sistemas operacionais e cargas de trabalho.",
+        "examples": [
+          "VM Windows Server usada por um serviço web",
+          "VM Linux rodando uma aplicação de backend"
+        ],
+        "relatedConcepts": [
+          "Azure Subscription",
+          "Managed Disk",
+          "Availability Set"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure Backup",
+        "definition": "Serviço gerenciado da Microsoft para proteger dados e VMs no Azure e on-premises, incluindo agendamento e retenção centralizados.",
+        "examples": [
+          "Backup diário de VMs",
+          "Backup de arquivos com Azure Backup Agent"
+        ],
+        "relatedConcepts": [
+          "Recovery Services vault",
+          "Backup policy",
+          "Restore"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Recovery Services vault",
+        "definition": "Recurso do Azure que armazena dados de backup e metadados; gere políticas, pontos de recuperação e restaurações.",
+        "examples": [
+          "Vault em mesma região que a VM",
+          "Vault configurado com soft delete ativado"
+        ],
+        "relatedConcepts": [
+          "Azure Backup",
+          "Storage account",
+          "Backup item"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Backup policy (Política de Backup)",
+        "definition": "Objeto que define quando os backups são executados (schedule), a frequência e as regras de retenção dos pontos de recuperação.",
+        "examples": [
+          "Política diária às 01:00 com retenção 30 dias",
+          "Política semanal com retenção anual"
+        ],
+        "relatedConcepts": [
+          "Recovery Services vault",
+          "Retention",
+          "Schedule"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Retention (Retenção)",
+        "definition": "Período durante o qual um ponto de recuperação é mantido antes de ser eliminado segundo a política.",
+        "examples": [
+          "Retenção de 30 dias para backups diários",
+          "Retenção de 7 anos para backups de conformidade"
+        ],
+        "relatedConcepts": [
+          "Backup policy",
+          "Restore",
+          "Point-in-time"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Storage account",
+        "definition": "Conta de armazenamento genérica do Azure para blobs, files, queues e tables; não é o local de gerenciamento nativo do Azure Backup para VMs.",
+        "examples": [
+          "Conta de armazenamento para blobs estáticos",
+          "File share para lift-and-shift de arquivos"
+        ],
+        "relatedConcepts": [
+          "Blob container",
+          "Recovery Services vault"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Blob container",
+        "definition": "Local dentro de uma Storage account usado para armazenar blobs; não é usado diretamente para gerenciar backups de VM no Azure Backup.",
+        "examples": [
+          "Armazenar imagens e logs como blobs",
+          "Não usar para proteção de VM via Azure Backup"
+        ],
+        "relatedConcepts": [
+          "Storage account",
+          "Azure Backup"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "File share",
+        "definition": "Recurso de compartilhamento de arquivos (Azure Files) dentro de uma Storage account; não é o destino de gerenciamento para backups de VM pelo serviço Azure Backup.",
+        "examples": [
+          "Compartilhamento SMB usado por aplicações",
+          "Backup de arquivos via Azure File Sync"
+        ],
+        "relatedConcepts": [
+          "Storage account",
+          "Azure Backup"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Recovery plan",
+        "definition": "Objeto usado em Azure Site Recovery para orquestrar recuperações de aplicações multi-VM; diferente de políticas de backup do Azure Backup.",
+        "examples": [
+          "Orquestração de failover para aplicações multi-tier",
+          "Sequência de reinício de VMs após failover"
+        ],
+        "relatedConcepts": [
+          "Azure Site Recovery",
+          "Backup policy"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Protected item (Backup item)",
+        "definition": "Recurso registrado no Recovery Services vault que representa o objeto protegido (por exemplo, uma VM).",
+        "examples": [
+          "VM1 aparece como Backup item no vault",
+          "Disco restaurável listado como item protegido"
+        ],
+        "relatedConcepts": [
+          "Recovery Services vault",
+          "Restore"
+        ],
+        "difficulty": "beginner"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Proteger VM não protegida com backup diário às 01:00 e retenção 30 dias",
+        "problem": "Você criou VM1 em Subscription1, mas não está protegida por Azure Backup. É necessário configurar backups automáticos diários às 01:00 com retenção de 30 dias.",
+        "solution": "1) Criar um Recovery Services vault na mesma subscription e região que a VM. 2) No vault, criar ou editar uma backup policy com schedule diário às 01:00 e retenção de 30 dias. 3) Registrar a VM como item protegido no vault e aplicar a backup policy (Enable Backup / Configure Backup). 4) Validar o primeiro job de backup e garantir que o vault tenha soft delete e monitoramento configurados.",
+        "explanation": "Azure Backup usa Recovery Services vaults para gerir pontos de recuperação e políticas. Backup policy define horário (schedule) e regras de retenção; storage accounts, blob containers ou file shares não são usados como destino gerenciado para proteção de VMs pelo Azure Backup."
+      },
+      {
+        "scenario": "Mover proteção de backup entre subscriptions",
+        "problem": "VM1 está em Subscription1 e o vault está em Subscription2; precisamos proteger a VM sem recriar a VM.",
+        "solution": "Recomenda-se criar um Recovery Services vault na mesma subscription e região da VM ou mover a VM para a subscription do vault. Alternativamente, recriar a proteção após garantir permissões e que a rede e dependências permitam a operação.",
+        "explanation": "O vault e a VM não precisam obrigatoriamente estar na mesma subscription, mas a configuração e permissões podem complicar. Para simplicidade e compatibilidade administrativa, colocar o vault na mesma subscription/região é a prática comum."
+      },
+      {
+        "scenario": "Restaurar VM a partir de ponto de recuperação de 10 dias atrás",
+        "problem": "É necessário restaurar VM1 para o estado de 10 dias atrás usando Azure Backup.",
+        "solution": "No Recovery Services vault, localizar o backup item (VM1), selecionar 'Restore' e escolher o ponto de recuperação correspondente à data desejada; escolher restauração para nova VM ou discos, e seguir o assistente de restauração.",
+        "explanation": "Pontos de recuperação são gerenciados pelo vault e são usados para restaurar VMs completas ou discos individuais; retenção deve cobrir o período desejado para que o ponto exista."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual é o local apropriado para armazenar e gerenciar backups de uma VM do Azure: Storage account, Blob container, File share ou Recovery Services vault?",
+        "answer": "Recovery Services vault",
+        "hint": "Pense em onde o Azure gerencia políticas, pontos de recuperação e restaurações centralizadas.",
+        "topic": "Recovery Services vault"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você deve configurar backups diários às 01:00 com retenção de 30 dias para VM1. Quais objetos do Azure você precisa criar/configurar para atender esse requisito?",
+        "answer": "Criar um Recovery Services vault (se não existir), criar/editar uma backup policy com schedule diário às 01:00 e retenção de 30 dias, e habilitar proteção para VM1 aplicando a policy.",
+        "hint": "Separe onde o backup é armazenado (vault) e onde a frequência/retention é definida (policy).",
+        "topic": "Backup policy"
+      },
+      {
+        "type": "command",
+        "question": "No Portal do Azure, qual é o fluxo de navegação para habilitar backup para uma VM existente?",
+        "answer": "Portal > Recovery Services vaults > selecionar vault > Backup > 'Backup goal' selecionar 'Azure' e 'Virtual machine' > Select Items > escolher VM1 > 'Backup policy' escolher ou criar (diário 01:00, retenção 30 dias) > Enable backup.",
+        "hint": "Procure pela opção 'Backup' dentro do Recovery Services vault e depois por 'Backup goal'.",
+        "topic": "Portal UI"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Após habilitar backup, o job falha devido a problema de extensão na VM. Qual é a causa provável e como corrigir?",
+        "answer": "Azure Backup requer que a extensão de backup (Azure VM Backup extension) seja instalada na VM; corrigir reinstalando ou atualizando a extensão e garantindo que a VM tenha conectividade com os endpoints de Azure Backup e as permissões necessárias.",
+        "hint": "Verifique a extensão listada nas extensões da VM e os logs do job no Recovery Services vault.",
+        "topic": "Troubleshooting"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Quais diferenças existem entre usar um Storage account diretamente e usar um Recovery Services vault para proteção de VMs no Azure?",
+        "answer": "Storage accounts/containers são armazenamento genérico sem gerenciamento automatizado de políticas de backup e restauração; Recovery Services vault oferece gerenciamento de políticas, pontos de recuperação, catálogo de restore, monitoramento e integração com Azure Backup para VMs.",
+        "hint": "Pense em funcionalidades além do simples armazenamento: políticas, catálogo de restauração e orquestração.",
+        "topic": "Storage vs Vault"
+      },
+      {
+        "type": "concept",
+        "question": "O que é um 'backup policy' no contexto do Azure Backup?",
+        "answer": "É a configuração que define agendamento de backups (schedule), frequência (diário/semana/mês) e regras de retenção (quanto tempo manter cada ponto de recuperação).",
+        "hint": "É o objeto que determina quando e por quanto tempo os pontos de recuperação serão mantidos.",
+        "topic": "Backup policy"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Escolha sempre Recovery Services vault para backups gerenciados de VMs (não storage account/containers).",
+        "relevance": "Provas frequentemente pedem o recurso correto para proteger VMs; escolher storage account é uma armadilha comum.",
+        "topic": "Recovery Services vault"
+      },
+      {
+        "tip": "Separe conceito de 'local de armazenamento' (vault) do objeto que define schedule/retention (backup policy).",
+        "relevance": "Questões de múltipla escolha podem misturar termos como 'policy' e 'recovery plan' — saber a diferença evita erro.",
+        "topic": "Backup policy"
+      },
+      {
+        "tip": "Não confunda Recovery plan (ASR) com Backup policy (Azure Backup).",
+        "relevance": "Recovery plan é parte do Azure Site Recovery (orquestração de failover), enquanto Backup policy é parte do Azure Backup; exames cobram essa distinção.",
+        "topic": "Recovery plan"
+      },
+      {
+        "tip": "Verifique sempre a hora/UTC do agendamento da política ao definir horários como '01:00' — o Azure usa fuso/UTC conforme configuração da policy/portal.",
+        "relevance": "Erros de horário (fuso) podem fazer o backup ocorrer em horário diferente do esperado no exame ou ambiente real.",
+        "topic": "Backup policy"
+      }
+    ],
+    "references": [
+      {
+        "title": "Azure Backup overview",
+        "url": "https://learn.microsoft.com/azure/backup/backup-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Back up Azure VMs with Azure Backup",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-vms",
+        "type": "documentation"
+      },
+      {
+        "title": "Recovery Services vaults in Azure Backup",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-recovery-services-vault",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Azure Backup overview",
+        "url": "https://learn.microsoft.com/azure/backup/backup-overview",
+        "type": "documentation"
+      },
+      {
+        "title": "Back up Azure VMs with Azure Backup",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-vms",
+        "type": "documentation"
+      },
+      {
+        "title": "Recovery Services vaults in Azure Backup",
+        "url": "https://learn.microsoft.com/azure/backup/backup-azure-recovery-services-vault",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-07-14T15:30:20.862Z",
+  "updatedAt": "2026-07-14T15:31:12.463Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-14T15:31:12.446Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

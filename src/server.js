@@ -578,11 +578,17 @@ app.post('/api/categories/:categoryId/lessons/:id/enrich', async (req, res) => {
 /**
  * POST /api/categories/:categoryId/lessons/:id/generate - Gera conteúdo com prompt customizado
  */
-app.post('/api/categories/:categoryId/lessons/:id/generate', upload.single('image'), async (req, res) => {
+app.post('/api/categories/:categoryId/lessons/:id/generate', upload.fields([
+  { name: 'images', maxCount: 10 },
+  { name: 'image', maxCount: 1 }
+]), async (req, res) => {
   try {
     // Support both JSON body and multipart form data
     const prompt = req.body.prompt;
-    const imageFile = req.file;
+    const imageFiles = [
+      ...((req.files && req.files.images) || []),
+      ...((req.files && req.files.image) || [])
+    ];
 
     if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
       return res.status(400).json({ error: 'Prompt é obrigatório' });
@@ -602,17 +608,17 @@ app.post('/api/categories/:categoryId/lessons/:id/generate', upload.single('imag
       return res.status(404).json({ error: 'Categoria não encontrada' });
     }
 
-    // Se houver imagem, converter para base64 para enviar junto ao prompt
-    let imageBase64 = null;
-    let imageMimeType = null;
-    if (imageFile) {
-      imageBase64 = imageFile.buffer.toString('base64');
-      imageMimeType = imageFile.mimetype;
-      console.log(`📸 Imagem recebida: ${imageFile.originalname} (${(imageFile.size / 1024).toFixed(1)} KB)`);
-    }
+    // Se houver imagens, converter para base64 para enviar junto ao prompt
+    const imageInputs = imageFiles.map((file) => {
+      console.log(`📸 Imagem recebida: ${file.originalname} (${(file.size / 1024).toFixed(1)} KB)`);
+      return {
+        base64: file.buffer.toString('base64'),
+        mimeType: file.mimetype
+      };
+    });
 
     // Gerar conteúdo com IA
-    const generated = await generateWithPrompt(lesson, category, prompt.trim(), imageBase64, imageMimeType);
+    const generated = await generateWithPrompt(lesson, category, prompt.trim(), imageInputs);
 
     // Salvar conteúdo gerado atrelado à aula
     const existingGenerated = lesson.generatedContents || [];

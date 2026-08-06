@@ -1,0 +1,269 @@
+{
+  "id": "lesson-2026-07-16-1",
+  "date": "2026-07-16",
+  "title": "DNS em Azure VNet: padrão por VNet e sobrescrita por VM",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure subscription that contains the Azure virtual machines shown in the following table.\n\nName    Operating system                  Subnet    Virtual network\nVM1     Windows Server 2019               Subnet1   VNET1\nVM2     Windows Server 2019               Subnet2   VNET1\nVM3     Red Hat Enterprise Linux 7.7      Subnet3   VNET1\n\nYou configure the network interfaces of the virtual machines to use the settings shown in the following table.\n\nName    DNS server\nVM1     None\nVM2     192.168.10.15\nVM3     192.168.10.15\n\nFrom the settings of VNET1 you configure the DNS servers shown in the following exhibit.\n\nDNS servers\n○ Default (Azure-provided)\n● Custom\n\n193.77.134.10\n\nAdd DNS ser\n\n---\n\nThe virtual machines can successfully connect to the DNS server that has an IP address of 192.168.10.15 and the DNS server that has an IP address of 193.77.134.10.\n\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\n\nNOTE: Each correct selection is worth one point.\n\nAnswer Area\n\nStatements                     Yes    No\n\nVM1 connects to 193.77.134.10 for DNS queries.    ⊗     ○\n\nVM2 connects to 193.77.134.10 for DNS queries.    ○     ⊗\n\nVM3 connects to 192.168.10.15 for DNS queries.    ⊗     ○\n\n---\n\nBox 1: Yes\nYou can specify DNS server IP addresses in the VNet settings. The setting is applied as the default DNS server(s) for all VMs in the VNet.\n\nBox 2: No\nYou can set DNS servers per VM or cloud service to override the default network settings.\n\nBox 3: Yes\nYou can set DNS servers per VM or cloud service to override the default network settings.\n\nReference:\nhttps://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq#name-resolution-dns",
+  "enriched": {
+    "title": "DNS em Azure VNet: padrão por VNet e sobrescrita por VM",
+    "summary": "Explica como o Azure aplica servidores DNS configurados no nível da VNet como padrão e como interfaces de rede/VMs podem sobrescrever essa configuração. Inclui exemplos de ordem de resolução e cenários de troubleshooting para entender qual servidor DNS cada VM utilizará.",
+    "topics": [
+      {
+        "title": "Resolução de nomes em Azure VNet",
+        "description": "Funcionamento da resolução DNS dentro de uma Virtual Network: Azure-provided DNS versus Custom DNS configurado na VNet.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Configuração de DNS por VM (sobrescrita)",
+        "description": "Como configurar servidores DNS no nível da interface de rede (NIC) ou VM para sobrepor os servidores DNS definidos na VNet.",
+        "category": "Compute",
+        "importance": "high"
+      },
+      {
+        "title": "Diagnóstico e troubleshooting de DNS",
+        "description": "Procedimentos para verificar qual servidor DNS uma VM está usando e como resolver problemas de resolução de nomes.",
+        "category": "Network",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "DNS (Domain Name System)",
+        "definition": "Sistema de resolução de nomes que traduz nomes legíveis por humanos (ex: host.contoso.com) para endereços IP.",
+        "examples": [
+          "Resolução de vm01.contoso.com para 10.0.0.4",
+          "Consulta recursiva a servidor DNS interno"
+        ],
+        "relatedConcepts": [
+          "Azure-provided DNS",
+          "Custom DNS",
+          "Forwarders"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "VNet (Virtual Network)",
+        "definition": "Espaço de rede lógica no Azure que isola e organiza recursos de rede como VMs e subnets.",
+        "examples": [
+          "VNET1 contendo Subnet1, Subnet2, Subnet3",
+          "Configurar DNS customizado na VNet"
+        ],
+        "relatedConcepts": [
+          "Subnet",
+          "Network Interface",
+          "Network Security Group"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Azure-provided DNS",
+        "definition": "Servidor DNS interno gerenciado pelo Azure que fornece resolução de nomes dentro da VNet sem necessidade de configuração adicional.",
+        "examples": [
+          "Resolução de nomes entre VMs na mesma VNet usando o serviço Azure DNS interno"
+        ],
+        "relatedConcepts": [
+          "VNet DNS settings",
+          "Custom DNS"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Custom DNS (servidores DNS personalizados)",
+        "definition": "Endereços IP de servidores DNS configurados no nível da VNet ou por VM para substituir o serviço DNS padrão do Azure.",
+        "examples": [
+          "193.77.134.10 configurado como Custom DNS na VNet",
+          "Servidor DNS interno 192.168.10.15 configurado em NIC da VM"
+        ],
+        "relatedConcepts": [
+          "VNet DNS settings",
+          "NIC-level DNS override"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Network Interface (NIC) / DNS per-VM",
+        "definition": "Configuração de DNS aplicada na interface de rede da VM que pode sobrescrever as configurações de DNS padrão da VNet para aquela VM específica.",
+        "examples": [
+          "VM2 com NIC configurada para usar 192.168.10.15",
+          "VM1 sem DNS definido na NIC usa o padrão da VNet"
+        ],
+        "relatedConcepts": [
+          "VNet DNS settings",
+          "Azure DHCP options"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Order de resolução de DNS no Azure",
+        "definition": "Prioridade: se um servidor DNS é definido na NIC/VM, ele é usado; caso contrário usa-se o(s) servidor(es) configurados na VNet; por fim, o Azure-provided DNS se nenhum custom for definido.",
+        "examples": [
+          "VM com DNS na NIC usa esse servidor em vez do DNS da VNet",
+          "VM sem overrides usa servidores da VNet"
+        ],
+        "relatedConcepts": [
+          "Custom DNS",
+          "Azure-provided DNS",
+          "NIC-level override"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "VM (Virtual Machine)",
+        "definition": "Instância virtualizada de um sistema operacional executada em infraestrutura do Azure.",
+        "examples": [
+          "VM1: Windows Server 2019 em Subnet1",
+          "VM3: RHEL 7.7 em Subnet3"
+        ],
+        "relatedConcepts": [
+          "NIC",
+          "VNet",
+          "OS-level DNS resolver"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Endereço IP de servidor DNS",
+        "definition": "Endereço IPv4/IPv6 apontando para o serviço DNS que responderá consultas de resolução de nomes.",
+        "examples": [
+          "192.168.10.15 (servidor DNS interno)",
+          "193.77.134.10 (DNS custom configurado na VNet)"
+        ],
+        "relatedConcepts": [
+          "Custom DNS",
+          "Forwarders"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Cloud Service / Serviço em nuvem (contexto de override)",
+        "definition": "Em modelos clássicos ou alguns serviços, é possível sobrepor configurações de rede a nível de cloud service; o princípio do override é o mesmo que por VM.",
+        "examples": [
+          "Configuração de DNS em cloud service para VMs clássicas"
+        ],
+        "relatedConcepts": [
+          "NIC-level DNS",
+          "VNet DNS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Azure DHCP options",
+        "definition": "Opções DHCP aplicadas pelo Azure que incluem os servidores DNS que serão fornecidos às VMs quando não houver override por NIC.",
+        "examples": [
+          "VNet configurada com custom DNS → DHCP fornecerá esses IPs para VMs sem override"
+        ],
+        "relatedConcepts": [
+          "VNet DNS settings",
+          "NIC-level override"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Determinar qual servidor DNS uma VM usa",
+        "problem": "Você tem uma VNet com DNS custom 193.77.134.10 e três VMs; duas VMs têm suas NICs configuradas para 192.168.10.15 (uma não tem override). Precisa confirmar qual servidor cada VM está consultando e diagnosticar falhas de resolução.",
+        "solution": "1) Logue na VM. 2) No Windows execute ipconfig /all e verifique os servidores DNS listados; no Linux, verifique /etc/resolv.conf ou use nmcli dev show. 3) Execute nslookup/dig para um nome conhecido e observe qual servidor respondeu. 4) Se a VM mostra o IP configurado na NIC → usa override; se mostra o IP da VNet → usa configuração VNet; se nenhum, usa Azure-provided DNS. 5) Corrija a configuração na NIC ou na VNet conforme necessário.",
+        "explanation": "O Azure propaga os servidores DNS via opções DHCP: se a NIC tem servidores configurados, estes sobrescrevem os valores distribuídos pela VNet. As ferramentas de SO mostram os servidores DHCP recebidos e nslookup/dig indicam qual servidor respondeu à consulta."
+      },
+      {
+        "scenario": "Resolver nomes on-premises a partir de VMs no Azure",
+        "problem": "Você precisa que VMs na VNet resolvam nomes internos do datacenter on-premises (não públicos).",
+        "solution": "1) Disponibilize um servidor DNS que tenha encaminhamentos/zonas integradas com o Active Directory on-prem ou configure um forwarder para o DNS on-prem. 2) Configure a VNet para usar como Custom DNS o IP desse servidor DNS (ou configure cada NIC para usar esse DNS para casos específicos). 3) Teste resolução com nslookup e valide encaminhamento entre DNSs. 4) Caso use Azure VPN/ExpressRoute, certifique-se de que a rota para o IP do DNS on-prem é acessível.",
+        "explanation": "Ao apontar as VMs para um servidor DNS que conhece as zonas on-premises, as consultas internas serão resolvidas. A escolha entre configurar no nível da VNet (todas as VMs) ou por NIC (apenas algumas) depende do escopo desejado."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Se uma VNet tem Custom DNS 193.77.134.10 e uma VM na VNet não tem DNS configurado na NIC, qual servidor ela usará para resolver nomes?",
+        "answer": "193.77.134.10 (o servidor DNS configurado na VNet).",
+        "hint": "Lembre-se da prioridade: NIC/VM → VNet → Azure-provided DNS.",
+        "topic": "Resolução de nomes em Azure VNet"
+      },
+      {
+        "type": "concept",
+        "question": "Uma VM tem a NIC configurada para usar 192.168.10.15; a VNet tem 193.77.134.10. Para qual IP a VM enviará consultas DNS?",
+        "answer": "192.168.10.15 (a configuração na NIC sobrescreve a configuração da VNet).",
+        "hint": "Verifique onde o override foi aplicado (NIC vs VNet).",
+        "topic": "Configuração de DNS por VM (sobrescrita)"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Você executa nslookup em VM1 e observa que as consultas são respondidas por 193.77.134.10. A VM1 tem campo DNS na sua NIC vazio. Explique por que isso ocorre e como mudar para um servidor DNS diferente apenas nessa VM.",
+        "answer": "Como a NIC da VM1 não define servidores DNS, ela usa os servidores configurados na VNet (193.77.134.10). Para mudar apenas essa VM, defina no nível da NIC/VM o IP do servidor DNS desejado (ex: 192.168.10.15).",
+        "hint": "Procure as configurações de DNS da interface de rede da VM no Portal/Azure CLI/PowerShell.",
+        "topic": "Diagnóstico e troubleshooting de DNS"
+      },
+      {
+        "type": "command",
+        "question": "Como você verificaria, a partir de uma VM Windows, quais servidores DNS a VM recebeu via DHCP no Azure?",
+        "answer": "Executando o comando ipconfig /all e verificando a seção 'Servidores DNS'.",
+        "hint": "No Linux equivalente, verifique /etc/resolv.conf ou use nmcli dev show.",
+        "topic": "Diagnóstico e troubleshooting de DNS"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Sua aplicação em VM3 (Linux) não resolve nomes internos on-prem. A VM3 está configurada para usar 192.168.10.15, que é um DNS forwarder para on-prem, mas ainda falha. Liste passos para diagnosticar e resolver o problema.",
+        "answer": "1) Validar conectividade de rede entre VM3 e 192.168.10.15 (ping/tcp). 2) Verificar se 192.168.10.15 responde consultas DNS (dig @192.168.10.15 exemplo.onprem). 3) Conferir se o forwarder está configurado corretamente no servidor DNS 192.168.10.15. 4) Verificar rotas e regras de NSG/Firewalls que possam bloquear tráfego DNS (TCP/UDP 53). 5) Confirmar que a VPN/ExpressRoute entre Azure e on-prem está ativa e rotas adequadas existem.",
+        "hint": "Cheque conectividade (ICMP/TCP) e testes diretos ao servidor DNS antes de analisar configurações de aplicação.",
+        "topic": "Resolver nomes on-premises a partir de VMs no Azure"
+      },
+      {
+        "type": "advanced",
+        "question": "Explique a diferença prática entre usar o Azure-provided DNS e apontar a VNet para um servidor DNS customizado que faz forward para o on-premises. Quais implicações de disponibilidade e desempenho considerar?",
+        "answer": "Azure-provided DNS é gerenciado e oferece resolução básica dentro da VNet, mas não conhece zonas on-prem. Usar um servidor DNS customizado que faz forward para on-prem permite resolução de nomes internos. Implicações: dependência de conectividade e disponibilidade do servidor custom/on-prem e da VPN/ExpressRoute; latência adicional em consultas forwarded; necessidade de alta disponibilidade e redundância dos servidores DNS customizados; possível necessidade de regras de firewall/NSG que permitam tráfego DNS.",
+        "hint": "Considere quais nomes precisam ser resolvidos e se há requisito de integração com AD/zonas internas.",
+        "topic": "Resolução de nomes em Azure VNet"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Lembre a ordem de prioridade: configuração de DNS na NIC/VM sobrescreve a configuração da VNet.",
+        "relevance": "Questões de certificação frequentemente pedem qual valor é usado em cenários com múltiplas fontes de configuração.",
+        "topic": "Resolução de nomes em Azure VNet"
+      },
+      {
+        "tip": "Se uma VM parecer não resolver nomes on-prem, verifique primeiro conectividade para o servidor DNS configurado antes de alterar configurações no Azure.",
+        "relevance": "Muitos quesitos de troubleshooting pedem verificação de conectividade e portas (UDP/TCP 53) antes de mudanças de configuração.",
+        "topic": "Diagnóstico e troubleshooting de DNS"
+      },
+      {
+        "tip": "Não confunda 'Azure-provided DNS' com 'Azure DNS service' (serviço público de DNS para zonas públicas).",
+        "relevance": "Pegadinha comum: Azure-provided DNS é para resolução interna; Azure DNS é serviço de hospedagem de zonas DNS públicas.",
+        "topic": "Conceitos fundamentais"
+      },
+      {
+        "tip": "Ao configurar DNS custom para VNet, lembre de fornecer múltiplos servidores DNS para redundância.",
+        "relevance": "Provas e práticas recomendam alta disponibilidade e configuração adequada via DHCP/DNS.",
+        "topic": "Resolução de nomes em Azure VNet"
+      }
+    ],
+    "references": [
+      {
+        "title": "FAQ sobre Virtual Networks — seção Name resolution (DNS)",
+        "url": "https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq#name-resolution-dns",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "FAQ sobre Virtual Networks — seção Name resolution (DNS)",
+        "url": "https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq#name-resolution-dns",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-07-16T12:26:57.766Z",
+  "updatedAt": "2026-07-16T12:27:39.491Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-16T12:27:39.483Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

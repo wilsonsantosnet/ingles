@@ -396,18 +396,48 @@ async function processAllDocuments(categoryId = 'ingles', force = false) {
     });
   }
 
-  // Salvar índice de todas as aulas
+  // Salvar índice mesclando aulas existentes + processadas neste ciclo
+  const mergedLessonsMap = new Map();
+
+  for (const existingLesson of existingIndex.lessons || []) {
+    if (existingLesson?.id) {
+      mergedLessonsMap.set(existingLesson.id, existingLesson);
+    }
+  }
+
+  for (const processedLesson of processedLessons) {
+    if (!processedLesson?.id) {
+      continue;
+    }
+
+    const current = mergedLessonsMap.get(processedLesson.id) || {};
+    mergedLessonsMap.set(processedLesson.id, {
+      ...current,
+      ...processedLesson
+    });
+  }
+
+  const mergedLessons = Array.from(mergedLessonsMap.values())
+    .filter(item => item?.id)
+    .sort((a, b) => {
+      if (a.date !== b.date) {
+        return (a.date || '').localeCompare(b.date || '');
+      }
+
+      return (a.id || '').localeCompare(b.id || '');
+    });
+
   const indexPath = paths.index;
   writeFileSync(indexPath, JSON.stringify({
     categoryId: categoryId,
     processedAt: new Date().toISOString(),
-    totalLessons: processedLessons.length,
-    lessons: processedLessons
+    totalLessons: mergedLessons.length,
+    lessons: mergedLessons
   }, null, 2), 'utf-8');
 
   console.log(`\n${'='.repeat(60)}`);
   console.log('✨ Processamento concluído!');
-  console.log(`📊 Total de aulas no índice: ${processedLessons.length}`);
+  console.log(`📊 Total de aulas no índice: ${mergedLessons.length}`);
   if (skipped > 0) {
     console.log(`⏭️  Arquivos já processados (pulados): ${skipped}`);
   }

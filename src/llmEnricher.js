@@ -40,6 +40,16 @@ function parseJsonFromLlmContent(content) {
   }
 }
 
+function buildPromptFallbackResponse(rawContent) {
+  return {
+    generatedContent: {
+      title: 'Conteúdo gerado',
+      type: 'custom',
+      content: String(rawContent || '').trim()
+    }
+  };
+}
+
 function tryParseJson(candidate) {
   try {
     return JSON.parse(candidate);
@@ -836,10 +846,10 @@ IMPORTANTE:
  * @param {string} userPrompt - Prompt personalizado do usuário
  * @returns {Promise<Object>} Conteúdo gerado pela IA
  */
-export async function generateWithPrompt(lesson, category, userPrompt, imageBase64 = null, imageMimeType = null) {
+export async function generateWithPrompt(lesson, category, userPrompt, imageInputs = []) {
   console.log(`\n🧠 Gerando conteúdo com prompt customizado para: ${lesson.title}...`);
-  if (imageBase64) {
-    console.log(`📸 Imagem incluída no contexto (${imageMimeType})`);
+  if (imageInputs.length > 0) {
+    console.log(`📸 ${imageInputs.length} imagem(ns) incluída(s) no contexto`);
   }
 
   const categoryType = category?.type || 'language';
@@ -854,11 +864,11 @@ Abaixo estão TODOS os dados disponíveis da aula atual (em JSON). Use esses dad
 ${JSON.stringify(lesson, null, 2)}
 === FIM DOS DADOS ===
 
-${imageBase64 ? 'IMPORTANTE: Uma imagem foi fornecida pelo usuário. Analise a imagem em conjunto com o prompt e os dados da aula para gerar o conteúdo solicitado.\n' : ''}
+${imageInputs.length > 0 ? `IMPORTANTE: ${imageInputs.length} imagem(ns) foram fornecidas pelo usuário. Analise as imagens em conjunto com o prompt e os dados da aula para gerar o conteúdo solicitado.\n` : ''}
 INSTRUÇÕES:
 - Use os dados da aula como base/contexto para gerar novos conteúdos
 - O conteúdo gerado deve ser complementar à aula existente
-${imageBase64 ? '- Analise o conteúdo da imagem e use as informações nela como parte do contexto\n' : ''}- Retorne SEMPRE um JSON válido com a seguinte estrutura:
+${imageInputs.length > 0 ? '- Analise o conteúdo das imagens e use as informações nelas como parte do contexto\n' : ''}- Retorne SEMPRE um JSON válido com a seguinte estrutura:
 {
   "generatedContent": {
     "title": "título descritivo do conteúdo gerado",
@@ -867,19 +877,22 @@ ${imageBase64 ? '- Analise o conteúdo da imagem e use as informações nela com
   }
 }
 - Se o pedido envolve exercícios, use formato de array com question/answer/explanation
-- Se envolve explicação, use texto formatado
+- Se envolve explicação, use Markdown rico no campo content:
+  - Use títulos (##), subtítulos (###), negrito, listas e tabelas quando útil
+  - Use callouts visuais com emojis (ex.: ✅, ⚠️, 💡, 📌) para reduzir leitura pesada
+  - Use blocos de código quando houver comandos/exemplos técnicos
+  - Quando fizer sentido para explicar fluxo/arquitetura, inclua diagrama Mermaid em bloco \`\`\`mermaid
 - Seja técnico e preciso
-- Retorne APENAS o JSON, sem markdown ou texto adicional`;
+- Retorne APENAS o JSON (sem texto fora do JSON). O Markdown deve existir apenas dentro de generatedContent.content`;
 
   const fullPrompt = `${systemContext}\n\n=== PEDIDO DO USUÁRIO ===\n${userPrompt}`;
 
   try {
     let generatedContent;
-    if (imageBase64) {
-      // Use vision API with image
-      generatedContent = await callAzureOpenAIWithImage(fullPrompt, imageBase64, imageMimeType);
+    if (imageInputs.length > 0) {
+      generatedContent = await callAzureOpenAIWithImages(fullPrompt, imageInputs, true);
     } else {
-      generatedContent = await callAzureOpenAI(fullPrompt);
+      generatedContent = await callAzureOpenAI(fullPrompt, true);
     }
     return {
       ...generatedContent,
@@ -1101,13 +1114,22 @@ REGRAS:
  * @param {string} mimeType - Tipo MIME da imagem
  * @returns {Promise<Object>} Resposta processada
  */
-async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
+async function callAzureOpenAIWithImages(prompt, imageInputs, allowRawContentFallback = false) {
   const provider = getLlmProvider();
+  const visionContent = [
+    { type: 'text', text: prompt },
+    ...imageInputs.map(({ base64, mimeType }) => ({
+      type: 'image_url',
+      image_url: {
+        url: `data:${mimeType};base64,${base64}`
+      }
+    }))
+  ];
 
   if (provider === 'foundry') {
     const { endpoint, deployment } = config.foundryOpenAI;
 
-    console.log('📡 Enviando requisição com imagem para Foundry OpenAI...');
+    console.log(`📡 Enviando requisição com ${imageInputs.length} imagem(ns) para Foundry OpenAI...`);
     console.log('🔍 Endpoint:', endpoint);
     console.log('🎯 Deployment:', deployment);
     console.log('🔐 Autenticação: API Key (Foundry)');
@@ -1120,15 +1142,7 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
         messages: [
           {
             role: 'user',
-            content: [
-              { type: 'text', text: prompt },
-              {
-                type: 'image_url',
-                image_url: {
-                  url: `data:${mimeType};base64,${imageBase64}`
-                }
-              }
-            ]
+            content: visionContent
           }
         ]
       });
@@ -1151,6 +1165,12 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
           console.log('✅ JSON reparado com sucesso (Foundry)');
           return repaired;
         }
+
+        if (allowRawContentFallback) {
+          console.warn('⚠️ Fallback: retornando conteúdo bruto como markdown (Foundry/imagem).');
+          return buildPromptFallbackResponse(content);
+        }
+
         throw parseError;
       }
     } catch (error) {
@@ -1165,7 +1185,7 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
     throw new Error('Endpoint do Azure OpenAI não encontrado');
   }
 
-  console.log('📡 Enviando requisição com imagem para Azure OpenAI Vision...');
+  console.log(`📡 Enviando requisição com ${imageInputs.length} imagem(ns) para Azure OpenAI Vision...`);
 
   try {
     const credential = new DefaultAzureCredential();
@@ -1183,15 +1203,7 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
       messages: [
         {
           role: "user",
-          content: [
-            { type: "text", text: prompt },
-            {
-              type: "image_url",
-              image_url: {
-                url: `data:${mimeType};base64,${imageBase64}`
-              }
-            }
-          ]
+          content: visionContent
         }
       ],
       max_tokens: 4096,
@@ -1214,6 +1226,10 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
       return parseJsonFromLlmContent(content);
     } catch (parseError) {
       console.error('⚠️ Erro ao parsear JSON:', parseError.message);
+      if (allowRawContentFallback) {
+        console.warn('⚠️ Fallback: retornando conteúdo bruto como markdown (Azure/imagem).');
+        return buildPromptFallbackResponse(content);
+      }
       throw new Error('Resposta da API não está em formato JSON válido');
     }
   } catch (error) {
@@ -1227,7 +1243,7 @@ async function callAzureOpenAIWithImage(prompt, imageBase64, mimeType) {
  * @param {string} prompt - Prompt a enviar
  * @returns {Promise<Object>} Resposta processada
  */
-async function callAzureOpenAI(prompt) {
+async function callAzureOpenAI(prompt, allowRawContentFallback = false) {
   const provider = getLlmProvider();
 
   if (provider === 'foundry') {
@@ -1278,6 +1294,12 @@ async function callAzureOpenAI(prompt) {
             console.log('✅ JSON reparado com sucesso (Foundry)');
             return repaired;
           }
+
+          if (allowRawContentFallback) {
+            console.warn('⚠️ Fallback: retornando conteúdo bruto como markdown (Foundry fallback).');
+            return buildPromptFallbackResponse(fallbackContent);
+          }
+
           throw parseError;
         }
       }
@@ -1292,6 +1314,12 @@ async function callAzureOpenAI(prompt) {
           console.log('✅ JSON reparado com sucesso (Foundry)');
           return repaired;
         }
+
+        if (allowRawContentFallback) {
+          console.warn('⚠️ Fallback: retornando conteúdo bruto como markdown (Foundry).');
+          return buildPromptFallbackResponse(content);
+        }
+
         throw parseError;
       }
     } catch (error) {
@@ -1364,6 +1392,10 @@ async function callAzureOpenAI(prompt) {
     } catch (parseError) {
       console.error('⚠️ Erro ao parsear JSON:', parseError.message);
       console.log('📄 Conteúdo recebido (primeiros 500 chars):', content.substring(0, 500));
+      if (allowRawContentFallback) {
+        console.warn('⚠️ Fallback: retornando conteúdo bruto como markdown (Azure).');
+        return buildPromptFallbackResponse(content);
+      }
       throw new Error('Resposta da API não está em formato JSON válido');
     }
   } catch (error) {

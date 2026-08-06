@@ -42,12 +42,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-because-of-this",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:51:26.873Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -66,12 +72,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-scared-of",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:51:34.424Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -90,12 +102,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-exciting",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:51:42.591Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -111,12 +129,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-norway",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:51:51.675Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -136,12 +160,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-30-1-bet",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:51:57.350Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -160,12 +190,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-mainly",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:16.049Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -184,12 +220,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-30-1-addicted-to",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:21.983Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -208,12 +250,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-delivery",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:30.098Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -232,12 +280,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-deliver",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:33.995Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -256,12 +310,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-30-1-automate",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:39.658Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -280,12 +340,18 @@
         "difficulty": "intermediate",
         "id": "vocab-lesson-2026-06-30-1-measurable",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:51.540Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -304,12 +370,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-future",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:52:54.618Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -328,12 +400,18 @@
         "difficulty": "basic",
         "id": "vocab-lesson-2026-06-30-1-culture",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:53:06.465Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       }
     ],
@@ -355,12 +433,18 @@
         ],
         "id": "grammar-lesson-2026-06-30-1-0",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:53:08.961Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -383,12 +467,18 @@
         ],
         "id": "grammar-lesson-2026-06-30-1-1",
         "spacedRepetition": {
-          "easeFactor": 2.5,
-          "interval": 0,
-          "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "easeFactor": 2.6,
+          "interval": 1,
+          "repetitions": 1,
+          "nextReview": "2026-07-16",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:53:11.384Z",
+              "quality": 5,
+              "interval": 0
+            }
+          ]
         }
       }
     ],
@@ -411,12 +501,18 @@
         "tense": "Present Perfect",
         "id": "question-lesson-2026-06-30-1-0",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:53:41.134Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       },
       {
@@ -427,12 +523,18 @@
         "tense": "Past Simple",
         "id": "question-lesson-2026-06-30-1-1",
         "spacedRepetition": {
-          "easeFactor": 2.5,
+          "easeFactor": 1.7000000000000002,
           "interval": 0,
           "repetitions": 0,
-          "nextReview": "2026-07-02",
-          "lastReview": null,
-          "reviews": []
+          "nextReview": "2026-07-15",
+          "lastReview": "2026-07-15",
+          "reviews": [
+            {
+              "date": "2026-07-15T20:53:45.754Z",
+              "quality": 0,
+              "interval": 0
+            }
+          ]
         }
       }
     ],

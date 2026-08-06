@@ -1,0 +1,390 @@
+{
+  "id": "lesson-2026-07-16-3",
+  "date": "2026-07-16",
+  "title": "Azure Container Registry: Endpoints de dados dedicados e Networking",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an Azure container registry named contoso2023 as shown in the following exhibit.\n\ncontoso2023\nContainer registry\n\nMove  Delete\n\nEssentials\n\nResource group (move)\nRG1\n\nLocation\nEast US\n\nSubscription (move)\nAzure Pass - Sponsorship\n\nSubscription ID\nd9676d8a-8245-47f0-a37d-55ffc424223b\n\nSoft delete (Preview)\nDisabled\n\nTags (edit)\nAdd tags\n\nLogin server\ncontoso2023.azurecr.io\n\nCreation date\n10/29/2023, 8:13 PM GMT+1\n\nProvisioning state\nSucceeded\n\nPricing plan\nStandard\n\nYou need to enable contoso2023 to use a dedicated data endpoint.\n\nWhich two settings should you configure for contoso2023? To answer, select the appropriate settings in the answer area.\n\nNOTE: Each correct answer is worth one point.\n\n---\n\nOverview\nActivity log\nAccess control (IAM)\nTags\nQuick start\nEvents\nSettings\nAccess keys\nEncryption\nIdentity\nNetworking\nMicrosoft Defender for Cloud\nProperties\nLocks\nServices\nRepositories\nWebhooks\nGeo-replications\nTasks\n\nNotas:\nNo Azure Container Registry (ACR), configurar um endpoint de dados dedicado significa criar um endpoint específico para o tráfego de dados do registry — principalmente push/pull de imagens e artefatos — separado do endpoint principal de gerenciamento/login.\n\nNa prática, em vez de todo o tráfego usar apenas algo como:\n\ntext\n\n\nmyregistry.azurecr.io\no ACR passa a expor endpoints de dados regionais/dedicados, por exemplo:\n\ntext\n\n\nmyregistry.westeurope.data.azurecr.io\nIsso é relevante especialmente quando você usa Private Link / private endpoints. O ACR tem tipos diferentes de tráfego:\n\n\n\n\nTipo\tExemplo\tFunção\nEndpoint do registry\tmyregistry.azurecr.io\tAutenticação, descoberta, APIs do registry\nEndpoint de dados\tmyregistry.<region>.data.azurecr.io\tTransferência das camadas/blobs das imagens\nPor que configurar? Para garantir que o tráfego de dados das imagens passe por um caminho dedicado e privado, em vez de sair pela internet pública ou depender de endpoints compartilhados. Isso melhora controle de rede, isolamento, compliance e previsibilidade de acesso.\n\nEm resumo: endpoint de dados dedicado no ACR é o endpoint usado para transportar os blobs/camadas das imagens, normalmente necessário para cenários com Private Link, firewall e acesso privado ao registry.",
+  "enriched": {
+    "title": "Azure Container Registry: Endpoints de dados dedicados e Networking",
+    "summary": "Explica o conceito de endpoint de dados dedicado no Azure Container Registry (ACR), por que é usado com Private Link/Private Endpoint e quais configurações de networking e segurança são relevantes. Fornece tópicos, conceitos, cenários práticos e exercícios para preparar para implementação e certificações.",
+    "topics": [
+      {
+        "title": "Azure Container Registry (ACR) - Visão geral",
+        "description": "Introdução ao serviço ACR, recursos principais como login server, repositórios, tags, e modelos de consumo.",
+        "category": "Storage",
+        "importance": "high"
+      },
+      {
+        "title": "Endpoints de dados dedicados",
+        "description": "Conceito de endpoint de dados (data endpoint) separado do endpoint de gerenciamento/login usado para transferir blobs/camadas das imagens.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Private Link e Private Endpoint",
+        "description": "Uso de Azure Private Link / Private Endpoint para tornar o tráfego de dados privado entre cliente e ACR, incluindo como mapear o endpoint de dados.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Firewall e regras de rede do ACR",
+        "description": "Configuração de redes permitidas, regras de IP, e integração com VNet para controlar acesso ao registry e ao data endpoint.",
+        "category": "Security",
+        "importance": "high"
+      },
+      {
+        "title": "Autenticação e credenciais",
+        "description": "Métodos de autenticação: tokens do ACR, credenciais de admin (Access keys), Managed Identity e Service Principal.",
+        "category": "Identity",
+        "importance": "high"
+      },
+      {
+        "title": "Criptografia e Soft Delete",
+        "description": "Configurações de criptografia em repouso, soft delete para imagens e artefatos e implicações de compliance.",
+        "category": "Security",
+        "importance": "medium"
+      },
+      {
+        "title": "Geo-replication e endpoints regionais",
+        "description": "Capacidades de replicação geográfica do ACR e como endpoints regionais/dedicados afetam latência e disponibilidade.",
+        "category": "Network",
+        "importance": "medium"
+      },
+      {
+        "title": "Propriedades e SKU do ACR",
+        "description": "Como o plano/pricing (Basic/Standard/Premium) impacta recursos disponíveis do registry, incluindo funcionalidades de rede avançadas.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Operações e auditoria",
+        "description": "Uso de Activity Log, eventos e Microsoft Defender for Cloud para monitoramento e auditoria das operações no registry.",
+        "category": "Monitoring",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "ACR / Azure Container Registry",
+        "definition": "Serviço gerenciado da Azure para armazenar e gerenciar imagens de containers e artefatos OCI/Docker.",
+        "examples": [
+          "contoso2023.azurecr.io como login server",
+          "repositório: contoso2023/repo1:tag1"
+        ],
+        "relatedConcepts": [
+          "Login server",
+          "Repositórios",
+          "Geo-replication"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Login server (registry endpoint)",
+        "definition": "Endpoint principal do registry usado para autenticação, descoberta e APIs de gerenciamento (ex: myregistry.azurecr.io).",
+        "examples": [
+          "contoso2023.azurecr.io",
+          "uswest2.azurecr.io para outro registry"
+        ],
+        "relatedConcepts": [
+          "Data endpoint",
+          "Authentication"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Data endpoint (endpoint de dados dedicado)",
+        "definition": "Endpoint separado, tipicamente regional (ex: myregistry.westeurope.data.azurecr.io), utilizado para a transferência das camadas/blobs das imagens (push/pull).",
+        "examples": [
+          "myregistry.eastus.data.azurecr.io para tráfego de blobs",
+          "useless quando tráfego via internet pública"
+        ],
+        "relatedConcepts": [
+          "Private Link",
+          "Blob storage",
+          "Networking"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Private Link / Private Endpoint",
+        "definition": "Serviço Azure que permite conectar serviços PaaS de forma privada dentro de uma VNet, mapeando endpoints do recurso para interfaces de rede privadas.",
+        "examples": [
+          "criar um Private Endpoint para contoso2023 na VNet-prod",
+          "resolver contoso2023.eastus.privatelink.azurecr.io via DNS privado"
+        ],
+        "relatedConcepts": [
+          "VNet",
+          "DNS privado",
+          "Network security"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Firewall e regras de rede do ACR",
+        "definition": "Configuração que limita acesso ao registry por intervalos de IP e controlos de rede; quando habilitado, normalmente exige Private Link para acesso privado.",
+        "examples": [
+          "permitir apenas IPs 10.0.0.0/24",
+          "bloquear acesso público e usar Private Endpoint"
+        ],
+        "relatedConcepts": [
+          "Network Security Groups (NSG)",
+          "Private Endpoint"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Access keys (Credenciais de administrador do ACR)",
+        "definition": "Credenciais administradoras (nome de usuário e senha) geradas pelo ACR para operações de push/pull se o admin user estiver habilitado.",
+        "examples": [
+          "usar access key para autenticar no docker login",
+          "desabilitar admin user para segurança"
+        ],
+        "relatedConcepts": [
+          "Managed Identity",
+          "Service Principal"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Managed Identity",
+        "definition": "Identidade gerenciada pelo Azure atribuída a recursos para autenticação sem credenciais explícitas, suportada para operações contra ACR.",
+        "examples": [
+          "VM com system-assigned identity que faz pull de imagens do ACR",
+          "AKS com identity para puxar imagens privadas"
+        ],
+        "relatedConcepts": [
+          "Service Principal",
+          "RBAC"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Soft delete",
+        "definition": "Funcionalidade que preserva artefatos excluídos por um período, permitindo recuperação em caso de exclusão acidental.",
+        "examples": [
+          "soft delete habilitado para repositórios",
+          "recuperar imagem deletada dentro do período de retenção"
+        ],
+        "relatedConcepts": [
+          "Retention policy",
+          "Data protection"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Geo-replication",
+        "definition": "Recurso que replica conteúdo do registry para múltiplas regiões, reduzindo latência e proporcionando failover regional.",
+        "examples": [
+          "replicar contoso2023 para West Europe e East US 2",
+          "usar endpoints regionais para pulls locais"
+        ],
+        "relatedConcepts": [
+          "Data endpoint regional",
+          "High availability"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Provisioning state",
+        "definition": "Estado do recurso no Azure (ex: Succeeded, Failed) indicando resultado de operações de criação/atualização.",
+        "examples": [
+          "Provisioning state: Succeeded após criar o registry",
+          "Failed em caso de erro durante update"
+        ],
+        "relatedConcepts": [
+          "Azure Resource Manager (ARM)",
+          "Activity Log"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "SKU / Pricing plan (Basic/Standard/Premium)",
+        "definition": "Níveis de serviço do ACR que determinam características disponíveis, desempenho e limites (por exemplo, funcionalidades de networking avançadas podem depender do SKU).",
+        "examples": [
+          "Standard SKU para uso geral",
+          "Premium SKU para geo-replication e maiores limites"
+        ],
+        "relatedConcepts": [
+          "Throughput",
+          "Limits and quotas"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Blobs / Camadas de imagens",
+        "definition": "Unidades de dados que compõem imagens de container; transferidas via data endpoints durante push/pull.",
+        "examples": [
+          "camadas de imagens docker, blobs armazenados internamente",
+          "push de várias camadas aumenta tráfego do data endpoint"
+        ],
+        "relatedConcepts": [
+          "Data endpoint",
+          "Storage"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Login Server (endereço DNS)",
+        "definition": "FQDN usado para operações docker login/auth e para referenciar imagens (ex: contoso2023.azurecr.io).",
+        "examples": [
+          "docker pull contoso2023.azurecr.io/myapp:1.0",
+          "configurar CI para usar o login server"
+        ],
+        "relatedConcepts": [
+          "DNS privado",
+          "Private Link"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Microsoft Defender for Cloud",
+        "definition": "Serviço de segurança que oferece recomendações, detecção de ameaças e políticas para recursos como ACR.",
+        "examples": [
+          "alertas sobre configurações inseguras do registry",
+          "recomendações para habilitar firewall"
+        ],
+        "relatedConcepts": [
+          "Monitoring",
+          "Security Center"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Habilitar acesso privado (data endpoint) para contoso2023",
+        "problem": "A organização exige que todo o tráfego de imagens (push/pull) de contêineres fique dentro da rede privada e não passe pela internet pública.",
+        "solution": "1) Acesse o recurso contoso2023 no portal Azure > Networking. 2) Habilite Private Endpoint para o registry e crie uma interface de endpoint na VNet alvo. 3) Configure DNS privado para resolver o data endpoint regional para a IP privada do endpoint. 4) Ajuste firewall do ACR para bloquear acesso público e permitir apenas tráfego via Private Endpoint. 5) Teste docker login/pull a partir de uma VM na VNet para validar o caminho privado.",
+        "explanation": "O Private Endpoint mapeia o serviço ACR para uma interface de rede privada na VNet, garantindo que o tráfego para o data endpoint use a rota privada. Bloquear acesso público força clientes a usar o Private Link, proporcionando isolamento e compliance."
+      },
+      {
+        "scenario": "Troubleshooting: Pull falha após habilitar Private Endpoint",
+        "problem": "Após criar Private Endpoint e bloquear acesso público, pulls de imagens falham com erros de timeout ou TLS.",
+        "solution": "1) Verifique a resolução DNS do login server e do data endpoint a partir do cliente (nslookup). 2) Confirme que o Private Endpoint está aprovado e que a interface tem IP na VNet. 3) Valide regras de firewall do ACR e NSG da subnet. 4) Se o DNS público ainda resolve para myregistry.azurecr.io, configure zonas DNS privadas e recordes para apontar para o IP privado do endpoint. 5) Teste novamente o pull.",
+        "explanation": "Falhas geralmente ocorrem porque clientes ainda estão resolvendo endpoints para IPs públicos ou porque o Private Endpoint não está associado corretamente ao DNS privado; corrigir a resolução garante que o tráfego seja roteado pela interface privada."
+      },
+      {
+        "scenario": "Reduzir latência em ambiente multi-região",
+        "problem": "Usuários em várias regiões enfrentam alta latência ao puxar imagens de um único registry central.",
+        "solution": "1) Habilite Geo-replication para o registry se suportado pelo SKU. 2) Configure endpoints regionais e, se necessário, data endpoints regionais. 3) Atualize pipelines/hosts para usar o endpoint regional mais próximo. 4) Se usar Private Link, crie Private Endpoints em cada VNet/região onde necessário.",
+        "explanation": "Geo-replication cria réplicas regionais do registry e endpoints locais, reduzindo a latência de transferência de blobs e melhorando a disponibilidade local."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Qual a diferença funcional entre o login server (registry endpoint) e o data endpoint de um ACR?",
+        "answer": "O login server (registry endpoint) é usado para autenticação e APIs de gerenciamento (ex: docker login e discovery), enquanto o data endpoint é o endpoint dedicado para transferência de blobs/camadas (push/pull) e pode ser regional/dedicado para tráfego de dados.",
+        "hint": "Pense em autenticação vs transferência de dados.",
+        "topic": "Endpoints de dados dedicados"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa garantir que imagens Docker só possam ser puxadas por VMs dentro de uma VNet específica. Quais configurações principais você aplicaria no ACR?",
+        "answer": "Criar um Private Endpoint do ACR na VNet alvo, configurar DNS privado para resolver o endpoint para o IP privado, e ajustar o firewall do ACR para bloquear acesso público permitindo apenas tráfego via Private Endpoint.",
+        "hint": "Combine Private Endpoint + DNS + firewall.",
+        "topic": "Private Link / Networking"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Após habilitar Private Endpoint, pipelines de CI/CD em uma subnet diferente não conseguem fazer push. O que checar primeiro?",
+        "answer": "Verificar a resolução DNS dos endpoints a partir da subnet do pipeline, checar conectividade entre subnet e a VNet/endpoint (peers/vnet access), e confirmar que o Private Endpoint está aprovado e não bloqueado por NSG/firewall.",
+        "hint": "DNS e conectividade de rede são causas comuns.",
+        "topic": "Troubleshooting / Networking"
+      },
+      {
+        "type": "command",
+        "question": "Como você confirmaria, do ponto de vista operacional, qual é o login server do registry contoso2023?",
+        "answer": "No portal Azure, abrir o recurso contoso2023 e verificar o campo 'Login server' (por exemplo contoso2023.azurecr.io). Alternativamente usar CLI: az acr show --name contoso2023 --resource-group RG1 --query loginServer -o tsv",
+        "hint": "Use az acr show para obter propriedades do registry.",
+        "topic": "Operações ACR"
+      },
+      {
+        "type": "concept",
+        "question": "Explique por que habilitar um endpoint de dados dedicado pode ser crítico para compliance e segurança.",
+        "answer": "Um endpoint de dados dedicado, usado com Private Link/firewall e DNS privado, garante que transferência de blobs não transite pela internet pública, oferecendo isolamento, controle de tráfego, menor superfície de ataque e atendimento a requisitos de compliance que exigem tráfego interno.",
+        "hint": "Pense em tráfego público vs privado e requisitos de auditoria.",
+        "topic": "Security / Networking"
+      },
+      {
+        "type": "advanced",
+        "question": "Descreva os passos para validar que, após configuração, todo o tráfego de dados do ACR está rodando por interfaces privadas e não usando a rota pública.",
+        "answer": "1) Validar resolução DNS dos endpoints apontando para IPs privados (nslookup/reference DNS privado). 2) Capturar tráfego de rede (tcpdump/Network Watcher) em host cliente para confirmar conexões para IPs privados do Private Endpoint. 3) Verificar logs de firewall e activity log do ACR para entradas de acesso e origens de IP. 4) Testar pulls/pushes a partir de hosts fora da VNet para garantir bloqueio. 5) Revisar configurações NSG/route tables para confirmar caminhos privados.",
+        "hint": "Combine verificação de DNS, captura de tráfego e logs de auditoria.",
+        "topic": "Troubleshooting / Security"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Entenda a diferença entre login server e data endpoint do ACR.",
+        "relevance": "Questões de certificação frequentemente testam quais endpoints lidam com autenticação vs transferência de blobs.",
+        "topic": "Endpoints de dados dedicados"
+      },
+      {
+        "tip": "Associe Private Endpoint com DNS privado — muitos problemas de acesso são causados por resolução incorreta.",
+        "relevance": "Em provas/práticas, configurar Private Link sem ajustar DNS privado é uma pegadinha comum que causa falhas.",
+        "topic": "Private Link / Networking"
+      },
+      {
+        "tip": "Saiba quando usar Access keys vs Managed Identity/Service Principal.",
+        "relevance": "Provas cobram práticas seguras: Managed Identity ou SPs são preferíveis a credenciais estáticas para produção.",
+        "topic": "Identity"
+      },
+      {
+        "tip": "Revise limitações por SKU (ex: geo-replication/limites) antes de selecionar plano para requisitos de rede avançados.",
+        "relevance": "Perguntas podem pedir qual SKU suporta funcionalidades como geo-replication ou maior throughput.",
+        "topic": "Pricing / SKU"
+      },
+      {
+        "tip": "Use logs (Activity Log, Diagnostic Settings, Microsoft Defender) para responder questões de auditoria e troubleshooting.",
+        "relevance": "Provas e cenários práticos pedem evidências e fluxo de investigação; saber onde checar logs é crítico.",
+        "topic": "Monitoring"
+      }
+    ],
+    "references": [
+      {
+        "title": "Azure Container Registry Private Link (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-private-link",
+        "type": "documentation"
+      },
+      {
+        "title": "Networking overview for Azure Container Registry (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-networking",
+        "type": "documentation"
+      },
+      {
+        "title": "Azure Container Registry overview (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-overview",
+        "type": "documentation"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Azure Container Registry Private Link (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-private-link",
+        "type": "documentation"
+      },
+      {
+        "title": "Networking overview for Azure Container Registry (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-networking",
+        "type": "documentation"
+      },
+      {
+        "title": "Azure Container Registry overview (documentação oficial)",
+        "url": "https://learn.microsoft.com/azure/container-registry/container-registry-overview",
+        "type": "documentation"
+      }
+    ]
+  },
+  "createdAt": "2026-07-16T13:42:38.149Z",
+  "updatedAt": "2026-07-16T13:43:40.683Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-16T13:43:40.674Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

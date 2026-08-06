@@ -1,0 +1,381 @@
+{
+  "id": "lesson-2026-07-14-2",
+  "date": "2026-07-14",
+  "title": "VPN Gateway S2S: SKU de IP Público e Atribuição",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "You have an on-premises network that contains a database server named dbserver1.\n\nYou have an Azure subscription.\n\nYou plan to deploy three Azure virtual machines. Each virtual machine will be deployed to a separate availability zone.\n\nYou need to configure an Azure VPN gateway for a site-to-site VPN. The solution must ensure that the virtual machines can connect to dbserver1.\n\nWhich type of public IP address SKU and assignment should you use for the gateway?\n\n○ A    a basic SKU and a static IP address assignment\n\n● B    a standard SKU and a static IP address assignment\n\n○ C    a basic SKU and a dynamic IP address assignment",
+  "enriched": {
+    "title": "VPN Gateway S2S: SKU de IP Público e Atribuição",
+    "summary": "Determina o tipo de Public IP e a atribuição necessários para um Azure VPN Gateway em um cenário site-to-site. Resposta: use um Public IP Standard SKU com atribuição estática para garantir conectividade estável entre VMs em zonas e o servidor on-premises.",
+    "topics": [
+      {
+        "title": "Azure VPN Gateway",
+        "description": "Serviço gerenciado que fornece conectividade VPN entre uma rede virtual do Azure e redes on-premises usando conexões site-to-site ou point-to-site.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Public IP Address SKU",
+        "description": "Tipos de SKU (Basic vs Standard) para endereços IP públicos do Azure, com diferenças em SLA, recursos e compatibilidade com cenários high-availability/zone-redundant.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "IP Address Assignment",
+        "description": "Atribuição de IP público: estática (IP reservado) versus dinâmica (pode mudar), e a importância para configurações de IPs fio a fio em VPNs site-to-site.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Availability Zones",
+        "description": "Distribuição de VMs em múltiplas zonas para alta disponibilidade e impacto na arquitetura de conectividade e requisitos de gateway.",
+        "category": "Compute",
+        "importance": "medium"
+      },
+      {
+        "title": "Site-to-site VPN Configuration",
+        "description": "Componentes e passos para configurar uma conexão VPN site-to-site: gateway de rede virtual, subnet GatewaySubnet, public IP do gateway, local network gateway e connection.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "On-premises Integration",
+        "description": "Considerações para integração com redes on-premises, endereçamento, NAT e necessidade de IP público estático no endpoint Azure para estabilidade da túnel IPsec/IKE.",
+        "category": "Network",
+        "importance": "high"
+      },
+      {
+        "title": "Segurança de Conexão VPN",
+        "description": "Protocolos (IPsec/IKE) e necessidade de coordenar parâmetros (pre-shared key, IKE versão, cifragem) entre Azure e dispositivo on-premises.",
+        "category": "Security",
+        "importance": "medium"
+      }
+    ],
+    "concepts": [
+      {
+        "concept": "VPN Gateway",
+        "definition": "Recurso do Azure que provê conectividade criptografada (IPsec/IKE) entre uma Virtual Network e redes remotas ou clientes.",
+        "examples": [
+          "Conexão site-to-site entre VNet e data center on-premises",
+          "Conexão point-to-site para máquinas remotas"
+        ],
+        "relatedConcepts": [
+          "Virtual Network",
+          "Local Network Gateway",
+          "Connection",
+          "GatewaySubnet"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Public IP (IP Público)",
+        "definition": "Endereço IP exposto na internet associado a um recurso do Azure, usado pelo VPN Gateway como endpoint público do túnel.",
+        "examples": [
+          "Public IP Standard associado a um Virtual Network Gateway",
+          "Public IP dinâmico para VMs (não recomendado para endpoints estáveis)"
+        ],
+        "relatedConcepts": [
+          "IP Assignment (estática/dinâmica)",
+          "SKU (Basic/Standard)"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "SKU (Stock Keeping Unit) de IP Público",
+        "definition": "Classificação do tipo de IP público (Basic ou Standard) que define funcionalidades, SLAs e compatibilidade com recursos como zone-redundancy.",
+        "examples": [
+          "Standard SKU para VPN Gateway",
+          "Basic SKU geralmente não recomendado para produção e gateways avançados"
+        ],
+        "relatedConcepts": [
+          "Availability Zones",
+          "SLA",
+          "High Availability"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "IP Assignment (Atribuição de IP)",
+        "definition": "Modo como o IP público é atribuído: estático (reservado e previsível) ou dinâmico (pode trocar ao recriar/reativar recurso).",
+        "examples": [
+          "Estática para endpoints de VPN site-to-site",
+          "Dinâmica para cenários de teste sem necessidade de IP fixo"
+        ],
+        "relatedConcepts": [
+          "Public IP",
+          "VPN Gateway",
+          "Local Network Gateway"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Site-to-site VPN",
+        "definition": "Conexão VPN persistente e encriptada entre a rede do Azure e uma rede física remota (on-premises) usando dispositivos compatíveis com IPsec/IKE.",
+        "examples": [
+          "Conectar VNet a um data center corporativo",
+          "Replicar dados de base on-prem para VMs no Azure via túnel VPN seguro"
+        ],
+        "relatedConcepts": [
+          "VPN Gateway",
+          "IPsec",
+          "IKE",
+          "Local Network Gateway"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Availability Zone",
+        "definition": "Local físico isolado dentro de uma região Azure usado para distribuir recursos e aumentar a disponibilidade contra falhas de datacenter.",
+        "examples": [
+          "Três VMs implantadas em zonas 1, 2 e 3 da mesma região",
+          "Serviços zone-redundant para maior resiliência"
+        ],
+        "relatedConcepts": [
+          "VM",
+          "Zone-redundant resources",
+          "Public IP SKU Standard"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "VM (Virtual Machine)",
+        "definition": "Instância computacional virtual executando um sistema operacional e aplicações na Azure.",
+        "examples": [
+          "VMs hospedando aplicações que se conectam a um servidor de banco de dados on-premises",
+          "VMs distribuídas em Availability Zones para alta disponibilidade"
+        ],
+        "relatedConcepts": [
+          "Virtual Network",
+          "Availability Zone"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Local Network Gateway",
+        "definition": "Objeto no Azure que representa o endpoint e as redes do lado on-premises (endereço IP público do dispositivo VPN e prefixos de rede remota).",
+        "examples": [
+          "Definir o IP público do appliance on-prem em Local Network Gateway",
+          "Listar prefixos de rede on-premises para roteamento via VPN"
+        ],
+        "relatedConcepts": [
+          "VPN Gateway",
+          "Connection"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "GatewaySubnet",
+        "definition": "Subnet dedicada dentro de uma VNet onde o recurso de Virtual Network Gateway é implantado; deve ter nome exato 'GatewaySubnet'.",
+        "examples": [
+          "Criar GatewaySubnet com tamanho /27 para suportar VPN Gateway",
+          "Não implantar VMs no GatewaySubnet"
+        ],
+        "relatedConcepts": [
+          "Virtual Network",
+          "VPN Gateway"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "IPsec / IKE",
+        "definition": "Conjunto de protocolos usados para estabelecer e proteger túneis VPN (IPsec para criptografia, IKE para negociação de chaves).",
+        "examples": [
+          "IKEv2 com AES256 para túnel entre Azure e appliance on-prem",
+          "Parâmetros de lifetimes e algoritmos configurados em ambas as pontas"
+        ],
+        "relatedConcepts": [
+          "Site-to-site VPN",
+          "Pre-shared key"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "concept": "Static IP (IP Estático)",
+        "definition": "Endereço IP público que permanece associado ao recurso até que seja explicitamente liberado; essencial para endpoints fixos.",
+        "examples": [
+          "IP público estático usado pelo VPN Gateway para configurar peer on-premises",
+          "Evitar IP dinâmico para túneis permanentes"
+        ],
+        "relatedConcepts": [
+          "Public IP",
+          "Site-to-site VPN"
+        ],
+        "difficulty": "beginner"
+      },
+      {
+        "concept": "Basic SKU",
+        "definition": "SKU de IP público com capacidades limitadas, menor SLA e menos recursos; não adequado para cenários de produção que exigem redundância ou recursos avançados.",
+        "examples": [
+          "Não usar Basic SKU para VPN Gateway em produção",
+          "Basic pode ser usado em testes simples sem requisitos de SLA"
+        ],
+        "relatedConcepts": [
+          "Standard SKU",
+          "Public IP"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "concept": "Standard SKU",
+        "definition": "SKU de IP público com melhor SLA, compatibilidade com zone-redundancy e adequado para recursos de produção como VPN Gateway.",
+        "examples": [
+          "Associar Public IP Standard ao VPN Gateway",
+          "Suporte a balanceamento de carga e segurança aprimorada"
+        ],
+        "relatedConcepts": [
+          "Public IP",
+          "Availability Zones"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "commands": [],
+    "scenarios": [
+      {
+        "scenario": "Conectar 3 VMs em zonas diferentes a um servidor on-premises via S2S VPN",
+        "problem": "Você implantou três VMs em diferentes Availability Zones e precisa que todas se conectem de forma confiável a dbserver1 no data center on-premises via site-to-site VPN.",
+        "solution": "1) Criar ou validar a Virtual Network (VNet) onde as VMs residem. 2) Criar GatewaySubnet na VNet com tamanho apropriado (ex: /27). 3) Provisionar um Public IP do tipo Standard SKU com atribuição estática. 4) Criar um Virtual Network Gateway (VPN Gateway) associado ao Public IP Standard e à GatewaySubnet. 5) Criar o Local Network Gateway com o IP público do dispositivo on-premises e prefixos de rede on-prem. 6) Criar a Connection site-to-site entre o VPN Gateway e o Local Network Gateway especificando a pre-shared key e parametros de IKE/IPsec. 7) Ajustar routes e Network Security Groups se necessário para permitir tráfego entre as subnets das VMs e dbserver1. 8) Testar conectividade (ping/TCP) e verificar logs de conexão no gateway e no appliance on-premises.",
+        "explanation": "O Public IP Standard com atribuição estática fornece um endpoint público estável e compatível com requisitos de produção e zone-redundant. A atribuição estática garante que o IP do endpoint Azure não mude, permitindo que o dispositivo on-premises mantenha uma configuração de peer fixa para o túnel IPsec; o VPN Gateway intermedia o tráfego criptografado entre a VNet (onde as VMs estão distribuídas por zonas) e o datacenter on-premises."
+      },
+      {
+        "scenario": "Túnel VPN cai após recriar o gateway com IP dinâmico",
+        "problem": "O administrador recriou o VPN Gateway sem manter o IP público e a conexão site-to-site parou de funcionar.",
+        "solution": "1) Verificar se o Public IP foi reatribuído e se é dinâmico. 2) Se IP mudou, atualizar a configuração do peer on-premises (Local Network Gateway) para usar o novo IP. 3) Para evitar novas quedas, reprovisionar um Public IP Standard com atribuição estática e re-associá-lo ao VPN Gateway, depois atualizar o dispositivo on-prem com o IP final. 4) Validar a conexão e sincronia de parâmetros IKE/IPsec e pre-shared key.",
+        "explanation": "Atribuições dinâmicas podem alterar o IP público ao recriar recursos, quebrando a configuração estática do peer on-premises. Usar IP estático previne essa classe de problema."
+      },
+      {
+        "scenario": "Necessidade de alta disponibilidade do gateway em múltiplas zonas",
+        "problem": "Deseja-se alta disponibilidade do VPN Gateway em uma região com Availability Zones.",
+        "solution": "1) Escolher SKU e arquitetura compatíveis com zone-redundancy (Standard SKU ou SKUs superiores que suportem zone-redundant deployment). 2) Provisionar Public IP Standard SKU e confirmar suporte a zonas/região. 3) Usar configurações de gateway que suportem active-active se necessário e configurar múltiplos túneis com appliance on-prem compatível. 4) Testar failover entre zonas e monitorar métricas de disponibilidade.",
+        "explanation": "Algumas SKUs e configurações avançadas do gateway suportam implantação tolerante a falhas entre zonas; a Standard SKU oferece compatibilidade e SLA superior comparado à Basic."
+      }
+    ],
+    "exercises": [
+      {
+        "type": "concept",
+        "question": "Por que não é recomendado usar Public IP Basic SKU para um VPN Gateway de produção?",
+        "answer": "Porque o Basic SKU oferece SLA e recursos limitados, não suporta cenários avançados de redundância e pode não ser compatível com requisitos de produção ou implantações zone-redundant.",
+        "hint": "Compare recursos, SLA e suporte a zone-redundancy entre Basic e Standard.",
+        "topic": "Public IP Address SKU"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você tem um VPN Gateway configurado com Public IP dinâmico; ao reiniciar o gateway, o túnel cai. Qual é a ação correta para evitar isso no futuro?",
+        "answer": "Provisionar um Public IP do tipo Standard com atribuição estática e associá-lo ao VPN Gateway; atualizar a configuração do peer on-premises se necessário.",
+        "hint": "Considere a necessidade de um endpoint público previsível para o peer on-premises.",
+        "topic": "IP Assignment"
+      },
+      {
+        "type": "command",
+        "question": "Quais recursos mínimos você precisa criar no Azure para estabelecer uma conexão site-to-site (liste nomes dos recursos)?",
+        "answer": "Virtual Network (VNet), GatewaySubnet, Public IP (Standard, estático), Virtual Network Gateway (VPN Gateway), Local Network Gateway, Connection (site-to-site).",
+        "hint": "Pense nos objetos que representam a VNet, o gateway, o endpoint remoto e a conexão em si.",
+        "topic": "Site-to-site VPN Configuration"
+      },
+      {
+        "type": "troubleshooting",
+        "question": "Após configurar a VPN site-to-site, as VMs no Azure não conseguem pingar o servidor on-premises; quais verificações você faz primeiro?",
+        "answer": "Verificar se a conexão VPN está estabelecida (Status do Connection), confirmar rotas e prefixos no Local Network Gateway, checar Network Security Groups/Firewalls e regras de on-prem para permitir ICMP/TCP, e validar políticas IKE/IPsec e pre-shared key.",
+        "hint": "Verifique status do Connection no portal e se os prefixos on-prem estão corretos no Local Network Gateway.",
+        "topic": "Troubleshooting VPN"
+      },
+      {
+        "type": "concept",
+        "question": "Explique a diferença prática entre IP público estático e dinâmico em cenários de VPN site-to-site.",
+        "answer": "Estático mantém o mesmo IP mesmo após reboots/recriações, permitindo configuração permanente no peer on-premises; dinâmico pode mudar, o que quebra a configuração do peer e resulta em perda de conectividade até a atualização.",
+        "hint": "Pense no que o dispositivo on-premises precisa saber para estabelecer o túnel.",
+        "topic": "IP Assignment"
+      },
+      {
+        "type": "scenario-based",
+        "question": "Você precisa que seus três VMs, distribuídas por zonas, acessem um banco de dados on-prem. A conexão precisa ser resiliente e previsível. Qual SKU e atribuição de IP você escolheria para o VPN Gateway e por quê?",
+        "answer": "Public IP Standard SKU com atribuição estática, porque oferece SLA/recursos adequados para produção, suporte a implantações zone-redundant e um endpoint público previsível para o peer on-premises.",
+        "hint": "Considere SLA, zone-redundancy e a necessidade de um IP fixo para túnel.",
+        "topic": "Architecture/Network"
+      }
+    ],
+    "examTips": [
+      {
+        "tip": "Sempre escolha Public IP Standard SKU e atribuição estática para VPN Gateway em cenários de produção/site-to-site",
+        "relevance": "Exames frequentemente testam entendimento de SKUs e requisitos de conectividade estável; escolher Basic ou IP dinâmico costuma ser opção incorreta.",
+        "topic": "Network"
+      },
+      {
+        "tip": "Verifique se a GatewaySubnet existe e tem espaço de IP suficiente antes de provisionar o VPN Gateway",
+        "relevance": "Falhar em criar ou nomear corretamente a GatewaySubnet (deve se chamar 'GatewaySubnet') impede a implantação do gateway — questão comum em laboratórios e provas práticas.",
+        "topic": "Network"
+      },
+      {
+        "tip": "Lembre-se: IP público dinâmico pode quebrar configurações de peer on-premises — prefira estático para túneis permanentes",
+        "relevance": "Perguntas de certificação frequentemente exploram a diferença entre estático e dinâmico em termos de estabilidade de endpoint.",
+        "topic": "Network"
+      },
+      {
+        "tip": "Não confunda Basic vs Standard SKU — Basic tem limitações em SLA, recursos e compatibilidade com configurações avançadas (ex: active-active, zone-redundant)",
+        "relevance": "Muitas alternativas de prova apresentam Basic para confundir; entender limitações elimina essa pegadinha.",
+        "topic": "Network"
+      },
+      {
+        "tip": "Em questões de alta disponibilidade/zonas, confirme se o recurso (ex: Public IP ou Gateway) suporta zone-redundancy",
+        "relevance": "Algumas SKUs e serviços não suportam Availability Zones; isso aparece frequentemente em cenários de arquitetura de alta disponibilidade.",
+        "topic": "Compute/Network"
+      }
+    ],
+    "references": [
+      {
+        "title": "Visão geral do Azure VPN Gateway",
+        "url": "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação de endereços IP públicos do Azure (SKUs e atribuição)",
+        "url": "https://learn.microsoft.com/azure/virtual-network/public-ip-addresses",
+        "type": "documentation"
+      },
+      {
+        "title": "Criar uma conexão VPN site-to-site (Resource Manager, portal)",
+        "url": "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal",
+        "type": "tutorial"
+      }
+    ],
+    "supportMaterials": [
+      {
+        "title": "Visão geral do Azure VPN Gateway",
+        "url": "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways",
+        "type": "documentation"
+      },
+      {
+        "title": "Documentação de endereços IP públicos do Azure (SKUs e atribuição)",
+        "url": "https://learn.microsoft.com/azure/virtual-network/public-ip-addresses",
+        "type": "documentation"
+      },
+      {
+        "title": "Criar uma conexão VPN site-to-site (Resource Manager, portal)",
+        "url": "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal",
+        "type": "tutorial"
+      }
+    ]
+  },
+  "createdAt": "2026-07-14T15:37:47.260Z",
+  "updatedAt": "2026-07-14T15:40:05.365Z",
+  "status": "enriched",
+  "enrichedAt": "2026-07-14T15:38:58.887Z",
+  "validation": {
+    "isValid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "generatedContents": [
+    {
+      "id": "gen-1784043605354",
+      "generatedContent": {
+        "title": "Diagrama visual (ASCII) da questão: VPN Gateway S2S — SKU de IP Público e Atribuição",
+        "type": "custom",
+        "content": "                 On-premises datacenter\n  +-------------------------------------------------------------+\n  |  [dbserver1] (192.168.10.10)                                |\n  |                                                             |\n  |  [Firewall / VPN appliance] --- public IP: X.X.X.X (peer)    |\n  +-------------------------------------------------------------+\n                           |\n                           | Internet (IPsec/IKE)\n                           v\n                +----------------------------------+\n                | Public Internet / Transit Cloud  |\n                +----------------------------------+\n                           |\n                           v\n           Azure region (single region, 3 Availability Zones)\n  +-------------------------------------------------------------+\n  |  Public IP (Standard SKU, Static)  <---->  Virtual Network   |\n  |         [PIP: y.y.y.y]              |                      |\n  |                                      |  +----------------+  |\n  |  Virtual Network                     |  | GatewaySubnet  |  |\n  |  +------------------------------+    |  | (para VPN GW)  |  |\n  |  | VNet: 10.1.0.0/16            |    |  +----------------+  |\n  |  |                              |    |       | VPN Gateway |\n  |  |  AZ 1   AZ 2   AZ 3          |    |       v            |\n  |  |  [VM1]  [VM2]  [VM3]         |    |   +------------+    |\n  |  |  (10.1.1.x) (10.1.2.x) (10.1.3.x)|  |   | VPN Gateway |----+  <-- Site-to-site Connection (IPsec)\n  |  +------------------------------+    |   +------------+    |\n  +-------------------------------------------------------------+\n\nComponent notes / annotations:\n- dbserver1: servidor on-premises que as VMs Azure devem acessar.\n- On-prem VPN appliance: dispositivo com um Public IP fixo (peer) conhecido.\n- Public IP associado ao Azure VPN Gateway: deve ser Standard SKU com atribuição estática (y.y.y.y).\n- GatewaySubnet: subnet dedicada na VNet chamada exatamente 'GatewaySubnet' (ex: /27) onde o VPN Gateway é provisionado.\n- VMs implantadas em 3 Availability Zones diferentes dentro da mesma VNet para alta disponibilidade.\n- Site-to-site connection: túnel IPsec/IKE entre o VPN Gateway (Azure) e o appliance on-premises.\n\nRecomendação essencial (resposta da questão):\n- Use Public IP Standard SKU com atribuição ESTÁTICA para o Azure VPN Gateway.\n  Motivo curto: Standard fornece SLA/compatibilidade com deploys zone-redundant e recursos de produção; atribuição estática garante que o endereço público do endpoint não mude, necessário para configuração estável do peer on-premises.\n\nErros comuns (por que as outras opções são incorretas):\n- Public IP Basic SKU: não recomendado para produção — limitações de SLA e compatibilidade com cenários de alta disponibilidade.\n- Public IP Dinâmico: o IP pode mudar ao recriar/reinicializar, quebrando a configuração do peer on-prem e a persistência do túnel."
+      },
+      "generatedAt": "2026-07-14T15:40:05.354Z",
+      "userPrompt": "vc consegue gerar uma representação visual dessa pergunta, pegue o contexto do campo coneudo bruto?"
+    }
+  ]
+}

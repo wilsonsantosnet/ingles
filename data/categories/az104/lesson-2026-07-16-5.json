@@ -1,0 +1,229 @@
+{
+  "id": "lesson-2026-07-16-5",
+  "date": "2026-07-16",
+  "title": "simulado 16/07",
+  "categoryId": "az104",
+  "source": "manual",
+  "rawContent": "",
+  "enriched": {
+    "summary": "",
+    "mainTopics": [],
+    "vocabulary": [],
+    "practiceQuestions": [],
+    "grammar": [],
+    "expressions": [],
+    "culturalNotes": [],
+    "supportMaterials": []
+  },
+  "createdAt": "2026-07-16T14:44:58.192Z",
+  "updatedAt": "2026-07-16T19:00:19.444Z",
+  "status": "created",
+  "generatedContents": [
+    {
+      "id": "gen-1784213211548",
+      "generatedContent": {
+        "title": "Resposta: peering entre VNets com espaços de endereços sobrepostos",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "VNet1 tem espaço de endereços 10.2.0.0/16. VNet2 também tem 10.2.0.0/16. Você precisa criar um peering entre VNet1 e VNet2. O que você deve fazer primeiro?",
+            "answer": "A",
+            "explanation": "Os espaços de endereços de VNets emparelhadas não podem se sobrepor. Como ambos usam 10.2.0.0/16, a primeira ação é modificar o espaço de endereços de uma das VNets para um bloco não sobreposto (por exemplo 10.3.0.0/16). Nem gateway subnet, nem sub-redes adicionais, nem service endpoints resolvem conflito de sobreposição — esses itens são irrelevantes para permitir o peering. Passos típicos: 1) planejar novo CIDR não sobreposto; 2) atualizar o Address space da VNet (Portal/Azure CLI/Powershell); 3) ajustar subnets e recursos se necessário; 4) criar o peering."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T14:46:51.548Z",
+      "userPrompt": "Pode responder essa pergunta?"
+    },
+    {
+      "id": "gen-1784213676592",
+      "generatedContent": {
+        "title": "Resposta: recursos que podem ser associados a um Public IP (IP1)",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Você criou um Public IP chamado IP1. Quais dois recursos dentre a lista abaixo podem ser associados a IP1? (Escolha duas): A) VM1  B) LB1  C) NIC1  D) VPN1  E) VNet1",
+            "answer": [
+              "B",
+              "C"
+            ],
+            "explanation": "Correto: LB1 (Load Balancer) e NIC1 (Network Interface).\n\nPor quê:\n- Network interface (NIC): um Public IP é normalmente associado à interface de rede de uma VM para atribuir um endereço público à máquina. Ou seja, você associa o recurso Public IP à NIC, não diretamente ao recurso VM.\n- Load Balancer: um Public IP é associado à configuração de IP front-end do Load Balancer para expor serviços ao público.\n\nPor que as outras opções estão incorretas:\n- VM1 (A): você não associa o Public IP diretamente ao recurso VM; associa à NIC da VM (ou usa um IP atribuído por nível de instância, que ainda assim mapeia para a NIC). Portanto VM1 não é uma associação direta completa.\n- VNet1 (E): redes virtuais não recebem Public IPs diretamente. Public IPs são ligados a recursos de camada de rede (NIC, LB, gateway, etc.), não ao objeto VNet.\n- VPN1 (D): atenção — o Virtual Network Gateway (VPN gateway) de fato pode usar um Public IP. Contudo, na pergunta são pedidas duas opções e as respostas mais diretamente corretas e típicas são LB1 e NIC1. Em muitos cenários práticos a VPN gateway também exige um Public IP, mas a combinação esperada nesta questão (formato clássico de exame) é B e C."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T14:54:36.592Z",
+      "userPrompt": "pode reponder essa pergunta?"
+    },
+    {
+      "id": "gen-1784213792653",
+      "generatedContent": {
+        "title": "Resposta: a quais storage accounts é possível aplicar lifecycle management rules?",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Você tem as contas: storage1 (StorageV2, Standard), storage2 (BlobStorage, Standard), storage3 (BlockBlobStorage, Premium), storage4 (FileStorage, Premium). Em quais delas você pode aplicar regras de lifecycle management?",
+            "answer": "B",
+            "explanation": "Correto: storage1 e storage2 apenas.\n\nMotivo técnico:\n- As regras de Lifecycle Management do Azure atuam sobre o serviço Blob (objetos blob) e exigem que a conta seja do tipo que ofereça o serviço Blob compatível com a funcionalidade. Contas do tipo StorageV2 (General purpose v2) e BlobStorage em performance Standard suportam lifecycle management.\n- Contas em camada Premium (por exemplo BlockBlobStorage em Premium) não suportam as políticas de lifecycle (não suportam movimentação automática para camadas como Cool/Archive nem políticas de expiração típicas do recurso).\n- FileStorage é para Azure Files, não para Blob service, portanto não é coberto pelas regras de lifecycle management de blobs.\n\nObservação prática:\n- Para aplicar: abra a Storage account (StorageV2 ou BlobStorage padrão) → Data management → Lifecycle management, ou use ARM/CLI/REST para definir a policy (regras de mover para Cool/Archive, deletar por idade, filtros por prefix/containers)."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T14:56:32.653Z",
+      "userPrompt": "pode reponder essa pergunta?"
+    },
+    {
+      "id": "gen-1784214210093",
+      "generatedContent": {
+        "title": "Resposta: permitir que User1 atribua a role Reader para VNet1",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Você tem uma subscrição Subscription1 com uma VNet chamada VNet1 em RG1. User1 possui as funções Reader, Security Admin e Security Reader. Você precisa garantir que User1 possa atribuir a função Reader para VNet1 a outros usuários. O que você deve fazer?\n\nOpções:\nA) Remover User1 da função Security Reader na subscription. Atribuir a User1 a função Contributor para RG1.\nB) Atribuir a User1 a função Access Administrator para VNet1.\nC) Remover User1 das funções Security Reader e Reader na subscription. Atribuir a User1 a função Contributor para a subscription.\nD) Atribuir a User1 a função Network Contributor para RG1.",
+            "answer": "B",
+            "explanation": "Correto: a função necessária para que um usuário possa criar/gerenciar atribuições de função (role assignments) é a função User Access Administrator (também chamada Access Administrator). Essa função permite gerenciar o controle de acesso (IAM) no escopo definido.\n\nPor que as outras opções estão incorretas:\n- Contributor (opções A e C) permite gerenciar recursos no escopo, mas não concede permissões para gerenciar atribuições de função (role assignments). Apenas Owner ou User Access Administrator podem fazê-lo.\n- Network Contributor (opção D) permite operações de rede (criar/alterar recursos de rede) mas não permite gerenciar acesso/atribuição de roles.\n- As funções Security Admin e Security Reader são funções de Azure AD ou de segurança e não substituem a necessidade do User Access Administrator para gerenciar RBAC em recursos.\n\nComo aplicar: atribua a função User Access Administrator a User1 no escopo da VNet1 (Portal/CLI/PowerShell) para que ele consiga atribuir a role Reader a outros usuários apenas nessa VNet."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T15:03:30.091Z",
+      "userPrompt": "pode reponder essa pergunta?"
+    },
+    {
+      "id": "gen-1784214420176",
+      "generatedContent": {
+        "title": "Resposta: Connection Monitor captura tráfego entre VM1 e VM2?",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "You manage a VNet VNet1 in West US with VM1 and VM2 (Windows). You need to inspect all network traffic from VM1 to VM2 for three hours. Solution: From Azure Network Watcher, you create a connection monitor. Does this meet the goal?",
+            "answer": "B",
+            "explanation": "Não. Connection Monitor verifica conectividade, latência e disponibilidade entre endpoints (pings, TCP/HTTP checks, métricas de latência), mas não captura o tráfego de rede em nível de pacote nem gera um pcap para inspeção detalhada.\n\nSoluções corretas para inspecionar todo o tráfego (ou obter registros úteis):\n- Packet Capture (Network Watcher): captura pacotes nas VMs e gera arquivos .pcap que você pode analisar com Wireshark. Ex.: use o Portal (Network Watcher → Packet capture → criar) ou CLI:\n  az network watcher packet-capture create --resource-group RG1 --name capVM1 --vm VM1 --time-limit 10800 --storage-account <storageAccount>\n  Repita para VM2 se necessário.\n- NSG Flow Logs + Traffic Analytics: fornece registros de fluxo (quem se comunicou com quem, portas, bytes) armazenados em uma storage account ou Log Analytics — bom para análise de fluxo, não para conteúdo de pacotes.\n  Ex.: az network watcher flow-log configure --nsg <nsgName> --enabled true --storage-account <sa> --retention 0 --workspace <logAnalyticsWorkspace>\n- Agente dentro da VM (netsh trace, tcpdump/tshark, Wireshark) para captura local e retenção por 3 horas.\n\nObservações práticas:\n- Ative o Network Watcher para a região West US antes de criar capturas.\n- Para 3 horas use time-limit de 10800 segundos no packet capture.\n- Escolha packet capture para inspeção profunda (conteúdo/pcap). Use NSG Flow Logs quando fluxos e estatísticas forem suficientes.\n\nPortanto, a resposta correta é: B) No."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T15:07:00.176Z",
+      "userPrompt": "pode reponder essa pergunta?"
+    },
+    {
+      "id": "gen-1784214688119",
+      "generatedContent": {
+        "title": "Resposta: proteger dados contra falha de zona em Storage (GPv1, LRS)",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "You have a general-purpose v1 Azure Storage account named storage1 that uses locally-redundant storage (LRS). You need to ensure that the data in the storage account is protected if a zone fails. The solution must minimize costs and administrative effort. What should you do first? (A) Create a new storage account. (B) Configure object replication rules. (C) Upgrade the account to general-purpose v2. (D) Modify the Replication setting of storage1.",
+            "answer": "C",
+            "explanation": "Correto: primeiro faça o upgrade da conta para general-purpose v2 (StorageV2). Motivos e passos:\n- Contas GPv1 (Storage) têm limitações e não suportam diretamente alterar para replicação baseada em zonas (ZRS/GZRS). Para poder mudar o tipo de replicação para algo que proteja contra falha de zona (por exemplo ZRS ou GZRS), a conta normalmente precisa ser do tipo StorageV2 (general-purpose v2).\n- Após o upgrade para StorageV2 você pode então alterar a configuração de replicação para Standard_ZRS (ou GZRS/GRAZRS conforme necessidade de replicação geográfica/LEIA-APENAS) via Portal/CLI/PowerShell.\n- Opções incorretas:\n  - D (Modificar a configuração de Replication de storage1): não é a primeira ação viável porque em GPv1 você não consegue trocar para ZRS diretamente — é preciso primeiro converter para StorageV2.\n  - B (Configurar object replication rules): exige criar contas adicionais e regras entre contas; é mais esforço administrativo e custo (replicação entre contas) do que simplesmente converter a conta e mudar o SKU de replicação.\n  - A (Criar uma nova storage account): funciona, mas aumenta o esforço administrativo e pode aumentar custo/complexidade; não é a solução com menor esforço.\n- Procedimento prático resumido: 1) Converter storage1 para StorageV2 (Portal: Storage account → Upgrade to v2, ou CLI: az storage account update --name storage1 --resource-group <rg> --kind StorageV2); 2) Alterar o tipo de replicação para ZRS/GZRS conforme necessidade (Portal/CLI) para obter proteção contra falha de zona."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T15:11:28.119Z",
+      "userPrompt": "pode reponder essa pergunta?"
+    },
+    {
+      "id": "gen-1784216449958",
+      "generatedContent": {
+        "title": "Resposta e justificativa: bloquear RDP da Internet, permitir RDP do on‑premises",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "You have the Azure virtual network named VNet1 that contains a subnet named Subnet1. Subnet1 contains three Azure virtual machines. Each virtual machine has a public IP address. The virtual machines host several applications that are accessible over port 443 to users on the Internet. Your on-premises network has a site-to-site VPN connection to VNet1. You discover that the virtual machines can be accessed by using the Remote Desktop Protocol (RDP) from the Internet and from the on-premises network. You need to prevent RDP access to the virtual machines from the Internet, unless the RDP connection is established from the on-premises network. The solution must ensure that all the applications can still be accessed by the Internet users. What should you do?",
+            "answer": "B",
+            "explanation": "Criar uma regra de negação (deny) em um Network Security Group (NSG) vinculado a Subnet1 é a solução correta. Explicação técnica e passos:\n\n- Objetivo: Bloquear RDP (porta TCP 3389) quando a origem for a Internet, porém permitir RDP quando a origem for a rede on‑premises via site‑to‑site VPN. Ao mesmo tempo, portas usadas pelas aplicações (por exemplo 443) devem permanecer acessíveis à Internet.\n\n- Por que NSG é adequado: NSGs permitem definir regras inbound/outbound por porta, protocolo e prefixo de origem/destino. Ao aplicar o NSG no nível da subnet (ou nas NICs das VMs) você aplica as regras a todas as VMs em Subnet1 sem impactar outras subnets.\n\n- Como configurar (resumo dos passos):\n  1) Criar um NSG (ex.: NSG-Subnet1).\n  2) Criar uma regra de Allow com prioridade mais alta (valor menor) para permitir RDP da faixa de endereços on‑premises (ou prefixos IP usados pela rede on‑premises). Ex.: prioridade 100, Action=Allow, Source = <on‑premises-prefix>, DestinationPort=3389.\n  3) Criar uma regra de Deny para bloquear RDP da Internet (usar Source = Internet ou Source = Any e especificar prioridade maior que a regra Allow). Ex.: prioridade 200, Action=Deny, Source = Internet, DestinationPort=3389.\n  4) Associar o NSG à Subnet1.\n\n- Observações importantes:\n  - Use o prefixo de origem correto para sua rede on‑premises (os endereços IP que as conexões VPN vão apresentar como origem). Se necessário, confirme os prefixos configurados no Local Network Gateway / on‑prem config.\n  - Não remova os Public IPs das VMs nem altere o address space da VNet; essas ações são desnecessárias para o requisito.\n  - Regras para porta 443 não precisam ser alteradas — manterão acesso de Internet se não forem bloqueadas.\n  - Alternativamente, é possível aplicar regras nas NICs em vez da subnet, mas para consistência a subnet é mais simples quando todas as VMs compartilham o mesmo comportamento.\n\n- Exemplos de comandos Azure CLI (exemplificativo):\n  az network nsg create --resource-group RG1 --name NSG-Subnet1\n  az network nsg rule create --resource-group RG1 --nsg-name NSG-Subnet1 --name Allow-RDP-OnPrem --priority 100 --access Allow --direction Inbound --protocol Tcp --source-address-prefixes 10.0.0.0/16 --destination-port-ranges 3389 --description \"Allow RDP from on-premises\"\n  az network nsg rule create --resource-group RG1 --nsg-name NSG-Subnet1 --name Deny-RDP-Internet --priority 200 --access Deny --direction Inbound --protocol Tcp --source-address-prefixes Internet --destination-port-ranges 3389 --description \"Deny RDP from Internet\"\n  az network vnet subnet update --resource-group RG1 --vnet-name VNet1 --name Subnet1 --network-security-group NSG-Subnet1\n\nConclusão: opção B (criar uma regra de negação num NSG vinculado à Subnet1) é a resposta correta."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T15:40:49.957Z",
+      "userPrompt": "Pode responder a pergunta"
+    },
+    {
+      "id": "gen-1784216742340",
+      "generatedContent": {
+        "title": "Resposta: aumentar suporte a 100 conexões SSH simultâneas no Azure Bastion",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Você tem uma subscrição com 10 VMs e os recursos mostrados: VNET1 (Virtual network) e Bastion1 (Azure Bastion host, Basic SKU). O AzureBastionSubnet tem tamanho /26. Você precisa garantir que Bastion1 suporte 100 usuários SSH concorrentes. A solução deve minimizar esforço administrativo. O que você deve fazer primeiro?\n\nOpções:\nA) Redimensionar o subnet de Bastion1\nB) Configurar host scaling\nC) Criar um Network Security Group (NSG)\nD) Atualizar Bastion1 para a SKU Standard",
+            "answer": "D",
+            "explanation": "Correto: atualizar o Bastion1 para a SKU Standard.\n\nJustificativa técnica:\n- A SKU Basic do Azure Bastion não suporta host scaling e tem limites menores de sessões concorrentes (a SKU Basic não foi projetada para escalar para 100 sessões simultâneas).\n- A SKU Standard adiciona suporte a host scaling (auto‑scale/scale‑out) e permite aumentar a capacidade do Bastion para atender a centenas de conexões simultâneas. Por isso, o primeiro passo é migrar/atualizar o recurso para Standard.\n- O subnet já tem /26 (tamanho mínimo recomendado para AzureBastionSubnet é /26), logo redimensionar o subnet não é necessário como primeira ação.\n- Criar um NSG não aumenta o número de sessões suportadas e não resolve o requisito de capacidade concorrente.\n- Configurar host scaling (opção B) só é aplicável depois que você estiver na SKU Standard — não é possível habilitar o host scaling na SKU Basic. Portanto o passo inicial é atualizar para Standard e, em seguida, configurar o dimensionamento (scale) conforme necessário.\n\nAções recomendadas (passos práticos):\n1) Verifique o subnet AzureBastionSubnet — já está /26, OK.\n2) Atualize o Bastion para a SKU Standard via Portal/CLI/ARM (criar/atualizar Bastion com SKU=Standard). Em alguns cenários é necessário recriar o recurso Bastion selecionando Standard.\n3) Após a migração para Standard, habilite/configure host scaling (defina número de instâncias ou auto‑scale rules) para suportar 100 usuários SSH concorrentes.\n4) Teste conexões e monitore métricas (CPU, conexões simultâneas) para ajustar escala.\n\nPortanto, a resposta inicial correta é D: Upgrade Bastion1 para a Standard SKU."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T15:45:42.340Z",
+      "userPrompt": "Pode responder essa pergunta?"
+    },
+    {
+      "id": "gen-1784227373178",
+      "generatedContent": {
+        "title": "Resumo do case Contoso e resposta: como mover os arquivos blueprint para o Azure",
+        "type": "exercise",
+        "content": [
+          {
+            "summary": "Resumo do cenário: Contoso é uma fabricante que mantém arquivos blueprint que precisam ser movidos para o Azure. A aplicação App1 tem três tiers (cada tier com 5 VMs) e é pública via HTTPS. Mudanças planejadas incluem migrar os tiers para Azure, mover os arquivos blueprint para o Azure Blob storage e criar um diretório híbrido. Requisitos técnicos relevantes ao movimento dos arquivos blueprint:\n- Os blueprints devem ser copiados para o Azure pela Internet.\n- Os arquivos devem ser armazenados na camada de armazenamento archive.\n- O acesso de parceiros aos arquivos deve ser seguro e temporário.\n- Evitar armazenamento de senhas ou hashes na Azure.\n- Minimizar esforço administrativo.\nObservações operacionais importantes: para aplicar políticas de lifecycle e tiers (incluindo Archive) a uma storage account e gerenciar blobs, a conta deve ser do tipo StorageV2 (General purpose v2). Para dar acesso temporário e restrito a parceiros, recomenda-se usar SAS (Shared Access Signatures) ou Azure AD RBAC; evitar distribuir a access key da conta para terceiros."
+          },
+          {
+            "question": "Você precisa mover os blueprint files to Azure. O que você deve fazer?\nOpções:\nA) Generate an access key. Map a drive, and then copy the files by using File Explorer.\nB) Use Azure Storage Explorer to copy the files.\nC) Use the Azure Import/Export service.\nD) Generate a shared access signature (SAS). Map a drive, and then copy the files by using File Explorer.",
+            "answer": "B",
+            "explanation": "Justificativa: a opção B (usar Azure Storage Explorer) atende ao requisito de copiar os arquivos pela Internet com mínimo esforço administrativo e é a ferramenta recomendada para uploads/manutenção de blobs quando o volume permite transferência pela rede. Procedimento e pontos técnicos:\n- Crie/garanta uma Storage account do tipo StorageV2 (General purpose v2) em performance Standard (necessário para suportar o tier Archive e lifecycle management).\n- Crie um container blob para os blueprints. Use Storage Explorer (ou AzCopy) para transferir os arquivos pela Internet para o container.\n- Após upload, defina o tier Archive para os blobs (ou crie uma rule de lifecycle management para mover para Archive automaticamente). Isso satisfaz a exigência de armazenamento em Archive.\n- Para conceder acesso temporário e seguro a parceiros, gere um SAS com permissões mínimas (read, talvez list) e prazo de validade curto; distribua o SAS ao parceiro. Alternativamente, use Azure AD RBAC combinado com roles apropriadas.\n- Evite distribuir a account key (opção A), pois ela concede acesso amplo e permanente; isso contraria o requisito de acesso temporário e mais seguro.\n- A opção C (Import/Export) é para large-scale offline transfer via discos físicos e contradiz o requisito de copiar pela Internet.\n- A opção D menciona gerar um SAS, o que é correto para acesso temporário, mas mapear unidade por File Explorer normalmente aplica-se a Azure Files (SMB), não a blobs em container archive, e mapping + File Explorer não é o método mais direto para colocar blobs em Archive. Por isso B (usando Storage Explorer e SAS para compartilhamento temporário) é a escolha prática e correta.\nPortanto: Use Azure Storage Explorer para copiar os arquivos para uma StorageV2, ajuste o tier para Archive (ou configure lifecycle), e use SAS tokens para conceder acesso de parceiro temporário e restrito."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T18:42:53.174Z",
+      "userPrompt": "Pode resumir esse caso de estudo e responder a questão?"
+    },
+    {
+      "id": "gen-1784227965118",
+      "generatedContent": {
+        "title": "Resposta: recursos que User1 pode escrever usando SAS1 e key1",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "A que recursos o User1 pode gravar usando (A) key1 e (B) SAS1?",
+            "answer": {
+              "key1": "Table1, folder1, and container1",
+              "SAS1": "Table1 only"
+            },
+            "explanation": "key1 (account key): a chave da conta (account key) fornece acesso total à conta de armazenamento independentemente de atribuições RBAC. Com key1 o User1 pode realizar operações de escrita em todos os serviços do armazenamento presentes (Blob container1, File share folder1 e Table1), portanto pode escrever em Table1, folder1 e container1.\n\nSAS1 (Shared Access Signature mostrada): o painel mostra que os Allowed services têm apenas Table selecionado. As permissões incluem Write/Create/Update/etc., mas porque o SAS permite apenas o serviço Table, ele só autoriza operações em tabelas. Logo, usando SAS1 o User1 pode escrever somente em Table1. (Observação: SAS concede acesso conforme o escopo/serviços/permissões definidos no token; RBAC não expande um SAS para serviços não incluídos.)"
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T18:52:45.118Z",
+      "userPrompt": "Preciso da resposta e da explicação dessa pergunta"
+    },
+    {
+      "id": "gen-1784228145077",
+      "generatedContent": {
+        "title": "Resposta e explicação: manter cliente sempre no mesmo servidor web (Azure Load Balancer)",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "Você tem cinco VMs Windows Server 2016 configuradas como web servers atrás de um Azure Load Balancer (LB1). Precisa garantir que os visitantes sejam atendidos pelo mesmo web server em cada requisição. O que você deve configurar?",
+            "answer": "A",
+            "explanation": "Resposta correta: A) Session persistence to Client IP and protocol.\n\nPor que:\n- O Azure Load Balancer (camada 4) oferece opções de persistência de sessão (session persistence / affinity) na regra de balanceamento: None, Client IP, e Client IP and protocol. Quando se escolhe \"Client IP and protocol\" o balanceador encaminha todo o tráfego originado do mesmo par (IP do cliente + protocolo) sempre para a mesma instância backend enquanto a afinidade estiver ativa — isto garante \"stickiness\": o visitante verá sempre o mesmo web server para as requisições subsequentes.\n\nPor que as outras opções estão erradas:\n- B) Protocol to UDP: alterar o protocolo para UDP muda apenas o protocolo de transporte; não implementa afinidade de sessão. Além disso, tráfego HTTP/HTTPS usa TCP, não UDP.\n- C) Session persistence to None: desabilita afinidade; cada requisição pode ser encaminhada a qualquer VM do pool, portanto não garante que o mesmo web server atenderá o visitante.\n- D) Floating IP (direct server return) to Disabled: o floating IP (Direct Server Return) é uma opção usada em cenários específicos (por ex. SQL Always On, SNAT/DSR configurações) e não é a configuração que cria afinidade de sessão para usuários web.\n\nObservações práticas e limitações:\n- Se os clientes estiverem atrás de NAT (vários clientes compartilhando o mesmo IP público), a persistência baseada em Client IP pode agrupar múltiplos usuários distintos no mesmo backend — isso é uma limitação.\n- Para afinidade no nível da aplicação HTTP (mais confiável quando há NAT ou necessidade de cookie-based affinity), considere usar Azure Application Gateway com Cookie-based affinity (Layer 7) em vez do Load Balancer (Layer 4).\n- Para aplicar no Portal: vá em Load Balancer → Load balancing rules → selecione/edite a regra → Session persistence → escolha \"Client IP and protocol\". Em CLI/ARM use o parâmetro de session persistence (por exemplo, criar/atualizar a load balancing rule com session-persistence = ClientIPProtocol).\n\nConclusão: a configuração \"Session persistence to Client IP and protocol\" é a opção correta para garantir que visitantes sejam atendidos sempre pelo mesmo web server usando Azure Load Balancer."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T18:55:45.077Z",
+      "userPrompt": "resposta e explicação"
+    },
+    {
+      "id": "gen-1784228419429",
+      "generatedContent": {
+        "title": "Respostas e explicações — Licenças no Microsoft Entra (User1)",
+        "type": "exercise",
+        "content": [
+          {
+            "question": "User is consuming [answer choice] for Microsoft Intune Suite.",
+            "answer": "two licenses",
+            "explanation": "Motivo: a coluna Assignment Paths mostra \"Direct, Inherited (Group 1)\", ou seja, o mesmo SKU (Microsoft Intune Suite) foi atribuído a User1 de duas formas — uma atribuição direta e outra herdada por pertencer ao Group 1. Quando um usuário recebe a mesma licença por múltiplos caminhos de atribuição, cada atribuição consome uma unidade da quota de licenças; portanto User1 está consumindo duas licenças do Intune Suite. (O valor \"5/8\" na coluna Enabled Services refere‑se aos serviços/recursos do SKU que estão habilitados, não ao número de licenças consumidas.)"
+          },
+          {
+            "question": "To remove Microsoft Fabric (Free) from the license assignments of User1, you must [answer choice].",
+            "answer": "remove both the direct assignment and the group assignment (unassign the license for User1 and remove User1 from Group1)",
+            "explanation": "Motivo: a linha Microsoft Fabric (Free) mostra Assignment Paths = \"Direct, Inherited (Group 1)\", indicando que o SKU foi atribuído a User1 diretamente e também por herança através do Group 1. Para que o usuário deixe de ter a licença, é necessário eliminar todas as atribuições que o estão concedendo: remover (unassign) a atribuição direta e também eliminar a herança (por exemplo, remover User1 do Group 1 ou remover a atribuição do grupo). Se você executar apenas uma das ações (por exemplo, desatribuir somente a atribuição direta), a licença continuará sendo aplicada via a atribuição herdada do grupo; se apenas remover User1 do grupo, a atribuição direta ainda concederá a licença. Portanto é preciso tratar ambas as fontes de atribuição."
+          }
+        ]
+      },
+      "generatedAt": "2026-07-16T19:00:19.429Z",
+      "userPrompt": "resposta e explicação"
+    }
+  ]
+}
